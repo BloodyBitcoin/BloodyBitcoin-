@@ -1,410 +1,459 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BloodyBitcoin — Network</title>
-<meta name="description" content="GPU is the New OIL — BloodyBitcoin. Echtzeit-Bitcoinpreis (€) und hochwertige, animierte Netzwerk-Metriken.">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BloodyBitcoin — GPU is the New OIL</title>
+<meta name="description" content="BloodyBitcoin: Neon-Krypto-Interface mit DNA-Hero, Live-EUR-Preis (BTC) und reaktiven Netzwerk-Panels.">
+
+<!-- ====== THEME ====== -->
 <style>
 :root{
-  --bg:#050708; --fg:#e9fff5; --muted:#a7e6d3;
-  --neon:#00ff9c; --neon2:#37ffd4; --amber:#ffb35a; --amber2:#ff9a3c;
-  --red:#ff4a64; --border:#0e2019; --glass:rgba(10,22,18,.65);
-  --shadow:0 0 22px rgba(0,255,156,.30), 0 0 44px rgba(55,255,212,.20);
+  /* Farben an dein DNA-Bild angelehnt */
+  --bg:#07090c;
+  --panel:#0b0f15;
+  --glass:#0f1722cc;
+  --line:#182434;
+  --neonG:#00e958;   /* Neon-Grün */
+  --neonR:#cc102a;   /* Blut-Rot */
+  --btcO:#ff8a1f;    /* Bitcoin-Orange */
+  --txt:#e8f6ff;
+  --muted:#9bb2c8;
 }
 
-/* Base */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
-.container{width:min(1120px,92%);margin:0 auto}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);
+  font-family: system-ui,-apple-system,Inter,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
 
-/* ===== Sticky Top: Slogan ===== */
+/* Container */
+.container{width:min(1200px,92%);margin:0 auto}
+
+/* ====== HEADER / SLOGAN ====== */
 .top{
   position:sticky; top:0; z-index:50;
-  backdrop-filter:blur(12px);
-  background:linear-gradient(180deg,rgba(0,15,10,.85),rgba(0,10,8,.20));
-  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(10,14,18,.85), rgba(10,14,18,.35));
+  border-bottom:1px solid #0d131c;
+  backdrop-filter: blur(8px);
 }
-.top .row{display:flex;align-items:center;justify-content:center;padding:1rem .8rem;text-align:center}
 .slogan{
-  font-weight:900; letter-spacing:.08em;
-  font-size:clamp(2.4rem,6vw,4rem);
-  color:var(--neon);
+  text-align:center; padding:.8rem 0 1rem;
+}
+.slogan h1{
+  margin:.2rem 0 0;
+  font-size:clamp(1.6rem,4.8vw,2.6rem);
+  letter-spacing:.05em;
+  color:var(--neonG);
   text-shadow:
-    0 0 20px rgba(0,255,156,.6),
-    0 0 40px rgba(0,255,156,.4),
-    0 0 80px rgba(0,255,156,.25);
-  animation:sglow 2.4s ease-in-out infinite alternate, flicker 6s infinite;
+    0 0 10px color-mix(in srgb, var(--neonG) 60%, transparent),
+    0 0 24px color-mix(in srgb, var(--neonG) 40%, transparent),
+    0 0 44px color-mix(in srgb, var(--neonG) 30%, transparent);
+  animation:pulse 2.8s ease-in-out infinite;
 }
-.founder{margin-top:.25rem;color:#bffbe9;opacity:.9;font-size:1rem}
-@keyframes sglow{
-  0%{ text-shadow:0 0 20px rgba(0,255,156,.5), 0 0 50px rgba(0,255,156,.3) }
-  100%{ text-shadow:0 0 70px rgba(0,255,156,.95), 0 0 140px rgba(0,255,156,.5) }
+.slogan .sub{
+  margin-top:.25rem;color:#bfe6d1;opacity:.9;
+  font-size:clamp(.9rem,2.4vw,1.05rem);
 }
-@keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.82}}
-
-/* ===== HERO (DNA nur oben) ===== */
-.hero{position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden}
-.dna-wrap{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none}
-.dna-img{
-  width:min(100vw,1400px); height:auto; object-fit:contain; /* komplettes Bild sichtbar */
-  filter:saturate(1.15) brightness(1.06);
-  transform-origin:center;
-  animation:float 26s ease-in-out infinite;
-}
-@keyframes float{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(.35deg)}100%{transform:translateY(0) rotate(0)}}
-.tint-left,.tint-right{position:absolute; inset:0; mix-blend-mode:screen; pointer-events:none}
-.tint-left {background:linear-gradient(to right, rgba(0,255,156,.18), transparent 55%)}
-.tint-right{background:linear-gradient(to left,  rgba(255,64,64,.16),  transparent 55%)}
-
-/* Partikel (auch im Hero sichtbar) & grünes Fluid für den Rest */
-#bgParticles, #bgFluid{position:fixed; inset:0; z-index:1; pointer-events:none}
-#bgFluid{opacity:.33; mix-blend-mode:screen}
-
-/* Hero Content */
-.hero-inner{position:relative; z-index:2; text-align:center; padding:4.6rem 1rem 3rem}
-
-/* ===== Sections unterhalb (viel Raum, neon-grünlicher Look) ===== */
-section{padding:clamp(3rem,7vw,5.8rem) 0; border-top:1px solid var(--border); position:relative; z-index:2}
-.section-title{font-size:clamp(1.2rem,2.3vw,1.6rem); color:#c8ffee; text-align:center; margin-bottom:1.6rem}
-
-/* ===== Grid Cards (radioaktive Glasfelder) ===== */
-.grid{display:grid; gap:1.1rem; grid-template-columns:repeat(2,minmax(260px,1fr))}
-@media (max-width:680px){ .grid{grid-template-columns:1fr} }
-.card{
-  position:relative; border-radius:16px; overflow:hidden;
-  background:linear-gradient(180deg, rgba(9,20,16,.78), rgba(7,16,13,.72));
-  border:1px solid var(--border);
-  box-shadow:0 12px 44px rgba(0,0,0,.30), inset 0 0 0 1px rgba(0,255,156,.08);
-  padding:1rem 1.2rem;
-}
-.card::before{
-  content:""; position:absolute; inset:-20% -10% auto -10%; height:140%;
-  background:radial-gradient(circle at 20% 20%, rgba(0,255,156,.28), rgba(0,0,0,0) 60%),
-             radial-gradient(circle at 80% 10%, rgba(55,255,212,.18), transparent 55%);
-  mix-blend-mode:screen; animation:shine 8s linear infinite;
-}
-@keyframes shine{ 0%{transform:translateX(-2%)} 50%{transform:translateX(2%)} 100%{transform:translateX(-2%)} }
-.row{display:flex; align-items:center; justify-content:space-between}
-.label{font-size:1rem; color:#9fe9cb; letter-spacing:.35px}
-.value{
-  font-family:ui-monospace, Menlo, Consolas, monospace;
-  font-size:1.7rem; font-weight:900; letter-spacing:.4px; color:#eafff6;
-  text-shadow:0 0 14px rgba(0,255,156,.28)
-}
-.bar{height:12px; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:#07110d; margin-top:.75rem}
-.bar i{display:block; height:100%; width:35%;
-  background:linear-gradient(90deg,#00ff9c,#37ffd4); box-shadow:0 0 20px rgba(0,255,156,.35)}
-
-/* ===== Spezielles BTC-Feld (ORANGE, groß, unten in den Parametern) ===== */
-.card.btc{
-  grid-column:1/-1;
-  background:linear-gradient(180deg, rgba(30,18,6,.88), rgba(22,12,4,.78));
-  border:1px solid rgba(255,165,90,.35);
-  box-shadow:0 14px 56px rgba(255,155,70,.25), inset 0 0 0 1px rgba(255,170,90,.18);
-}
-.card.btc .label{color:#ffd9b0}
-.card.btc .value{
-  color:#ffd2a3; text-shadow:0 0 18px rgba(255,162,68,.35), 0 0 38px rgba(255,162,68,.22);
-  font-size:clamp(2rem,5.4vw,3.2rem);
-}
-.card.btc .bar i{
-  background:linear-gradient(90deg,#ffa244,#ffcf8a);
-  box-shadow:0 0 22px rgba(255,162,68,.40);
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.03)}
 }
 
-/* ===== Login Button (hochwertig, dezent) ===== */
-.login .container{display:flex; justify-content:center}
-.lab{
-  position:relative; width:280px; height:280px; border-radius:50%;
-  background:radial-gradient(circle at 50% 40%, rgba(0,255,156,.28), rgba(0,0,0,.0) 62%), #07130f;
-  border:1px solid rgba(0,255,156,.38);
-  box-shadow: var(--shadow), inset 0 0 0 1px rgba(0,255,156,.18);
-  cursor:pointer; transition:transform .3s ease;
+/* ====== HERO (DNA) ====== */
+.hero{position:relative; overflow:hidden; min-height:80svh}
+.hero .layer{
+  position:absolute; inset:0; pointer-events:none;
 }
-.lab:hover{transform:translateY(-2px)}
-.lab::before,.lab::after{
-  content:""; position:absolute; inset:-22px; border-radius:50%;
-  border:2px dashed rgba(0,255,156,.26); animation:spin 18s linear infinite
+.dnaWrap{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  mix-blend-mode:screen;
+  filter: saturate(1.05) contrast(1.05);
 }
-.lab::after{inset:-44px; border-style:solid; border-width:1px; border-color:rgba(55,255,212,.18); animation:spin 26s linear infinite reverse}
-@keyframes spin{to{transform:rotate(360deg)}}
-.core{
-  position:absolute; inset:28px; border-radius:50%;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 1rem;
-  background:radial-gradient(circle at 50% 30%, rgba(0,255,156,.42), rgba(0,255,156,.08) 60%, rgba(0,0,0,.48) 80%);
-  color:#caffea; font-weight:900; letter-spacing:.7px; text-shadow:0 0 12px rgba(0,255,156,.35)
+#dna{
+  width:min(1100px,92vw);
+  aspect-ratio: 16 / 9;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 40px color-mix(in srgb, var(--neonG) 18%, transparent),
+    0 0 60px color-mix(in srgb, var(--neonR) 10%, transparent);
+  transform:translateZ(0);
+  opacity:.96;
+  animation: dnaFloat 14s ease-in-out infinite;
 }
-.core small{margin-top:.3rem; font-weight:600; opacity:.9}
+@keyframes dnaFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(.0deg) scale(1.0)}
+  50%{transform:translate3d(0,-6px,0) rotate(.25deg) scale(1.005)}
+}
 
-/* Footer */
-footer{padding:2rem 0; text-align:center; color:#86eec6}
-.small{opacity:.85; font-size:.92rem}
+/* Partikel vorne/hinten */
+#partFront, #partBack{
+  position:absolute; inset:0; width:100%; height:100%;
+}
+
+/* sanfter Verlauf an den Rändern, damit das Bild „eingebettet“ wirkt */
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(60% 60% at 50% 45%,
+    transparent 0%, transparent 60%, rgba(7,9,12,.85) 100%);
+  pointer-events:none;
+}
+
+/* ====== SECTION – „Flüssiges“ Grün mit Partikeln im Hintergrund ====== */
+.section{
+  position:relative; overflow:hidden;
+  padding: clamp(2.2rem, 5vw, 3.2rem) 0;
+  background:
+    radial-gradient(1200px 600px at 50% -200px, color-mix(in srgb, var(--neonG) 8%, transparent), transparent 60%),
+    linear-gradient(180deg, #0a1116 0%, #070b10 100%);
+  border-top:1px solid #0e1620;
+}
+.section .bgParticles{
+  position:absolute; inset:0; opacity:.45; pointer-events:none;
+}
+
+/* ====== PANELS / GLASS ====== */
+.panel{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--glass) 100%, transparent), rgba(8,12,18,.6));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:1rem 1.1rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.03),
+    0 10px 30px rgba(0,0,0,.35),
+    0 0 50px color-mix(in srgb, var(--neonG) 12%, transparent);
+}
+.panel + .panel{margin-top:1rem}
+
+.panel .label{color:var(--muted); letter-spacing:.4px; font-size:.95rem}
+.panel .value{font-weight:800; font-size:1.8rem}
+
+/* BTC – großes oranges Kachel */
+.btcCard{
+  display:flex; align-items:center; gap:.9rem;
+  background: radial-gradient(160px 160px at 56px 50%, rgba(255,138,31,.18), transparent 60%),
+             linear-gradient(180deg, rgba(32,24,12,.55), rgba(18,12,8,.6));
+  border:1px solid color-mix(in srgb, var(--btcO) 35%, var(--line));
+  box-shadow:
+    0 0 30px color-mix(in srgb, var(--btcO) 24%, transparent),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.btcBadge{
+  width:72px; height:72px; border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #ffd1a1 8%, var(--btcO) 55%, #b25e14 100%);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--btcO) 35%, transparent);
+  display:grid; place-items:center; color:#1a0e05; font-weight:900; font-size:1.5rem;
+}
+
+/* Stat-Gitter */
+.grid{
+  display:grid; gap:1rem;
+  grid-template-columns:repeat(2, 1fr);
+}
+@media (min-width:900px){
+  .grid{grid-template-columns:repeat(3, 1fr)}
+}
+
+/* Ladebalken – „flüssig“ */
+.meter{height:10px; border-radius:12px; background:#0a1017; border:1px solid var(--line); overflow:hidden; margin-top:.55rem}
+.meter i{
+  display:block; height:100%; width:35%;
+  background: linear-gradient(90deg, #0f3, #63ffa3, #b7ffe6);
+  filter: drop-shadow(0 0 16px rgba(0,255,128,.35));
+  animation: flow 2.8s ease-in-out infinite;
+}
+@keyframes flow{
+  0%{transform:translateX(-60%)}
+  50%{transform:translateX(10%)}
+  100%{transform:translateX(110%)}
+}
 
 /* Reveal */
-.reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+.reveal{opacity:0; transform:translateY(16px); transition:opacity .6s, transform .6s}
 .reveal.visible{opacity:1; transform:none}
 
-/* Sound Toggle (klein & unauffällig) */
-#soundBtn{
-  position:fixed; right:10px; bottom:10px; z-index:60;
-  background:rgba(0,0,0,.45); border:1px solid rgba(0,255,156,.35);
-  color:#bffbe9; border-radius:10px; padding:.35rem .5rem; font-size:.8rem; cursor:pointer;
-  backdrop-filter:blur(6px);
+/* Sound Toggle */
+.soundToggle{
+  position:fixed; right:14px; bottom:14px; z-index:60;
+  width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+  background:linear-gradient(180deg, #0d161f, #0a1016); border:1px solid #12212f; color:#cde9ffaa;
+  box-shadow:0 6px 20px rgba(0,0,0,.4), 0 0 18px rgba(0,233,88,.15);
+  cursor:pointer; user-select:none;
 }
+.soundToggle.on{color:#fff; box-shadow:0 0 22px rgba(0,233,88,.35)}
+
+/* Kleinere Typo-Hilfen */
+h2{margin:0 0 .8rem; font-size:clamp(1.3rem,3.6vw,1.8rem)}
+.subtle{color:var(--muted)}
+.center{text-align:center}
+.spacer{height:2rem}
 </style>
 </head>
 <body>
 
-<!-- Sticky Top -->
+<!-- ===== HEADER / SLOGAN ===== -->
 <div class="top">
-  <div class="row container">
-    <div>
-      <div class="slogan">GPU IS THE NEW OIL</div>
-      <div class="founder">Founder — Chris&nbsp;R.&nbsp;Herloch</div>
-    </div>
+  <div class="slogan container">
+    <h1>GPU is the New OIL</h1>
+    <div class="sub">Founder — Chris R. Herloch</div>
   </div>
 </div>
 
-<!-- Fixe Hintergründe: Partikel & Grün-„Fluid“ -->
-<canvas id="bgFluid" aria-hidden="true"></canvas>
-<canvas id="bgParticles" aria-hidden="true"></canvas>
+<!-- ===== HERO: DNA + Partikel ===== -->
+<header class="hero" aria-label="DNA Hero">
+  <!-- hintere Partikel (soft) -->
+  <canvas id="partBack" class="layer"></canvas>
 
-<!-- HERO: DNA nur hier sichtbar -->
-<section class="hero" id="hero">
-  <div class="dna-wrap" aria-hidden="true">
-    <img class="dna-img" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="">
-    <div class="tint-left"></div>
-    <div class="tint-right"></div>
+  <!-- DNA integriert -->
+  <div class="dnaWrap layer">
+    <img id="dna" alt="BloodyBitcoin DNA"
+      src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png">
   </div>
-  <div class="hero-inner container">
-    <!-- absichtlich kein BTC hier -->
-  </div>
-</section>
 
-<!-- PARAMETER (grün) + BTC (orange, groß) -->
-<section class="metrics">
-  <div class="container reveal">
-    <h2 class="section-title">Netzwerk — Live</h2>
-    <div class="grid" id="grid">
-      <!-- grüne Karten werden durch JS befüllt -->
-      <!-- BTC-Feld (orange) kommt per JS als letzte Karte dazu -->
+  <!-- vordere Partikel (kräftiger) -->
+  <canvas id="partFront" class="layer"></canvas>
+</header>
+
+<!-- ===== NETWORK / PANELS ===== -->
+<section class="section">
+  <canvas id="sectionParticles" class="bgParticles"></canvas>
+
+  <div class="container">
+    <!-- BTC – echtes EUR-Preisfeld -->
+    <div class="panel btcCard reveal">
+      <div class="btcBadge">Ƀ</div>
+      <div>
+        <div class="label">Bitcoin (EUR)</div>
+        <div class="value" id="btcPrice">—</div>
+        <div class="subtle" id="btcUpdated">lädt…</div>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- LOGIN unten -->
-<section class="login">
-  <div class="container reveal">
-    <div class="lab" id="loginBtn" aria-label="Login Beta">
-      <div class="core">LOGIN • BETA<small>bald verfügbar</small></div>
+    <!-- Stat-Grid (viele „radioaktive“ Panels) -->
+    <div class="grid">
+      <div class="panel reveal">
+        <div class="label">Transaktionen (ges.)</div>
+        <div class="value" id="txTotal">0</div>
+        <div class="meter"><i></i></div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="label">Throughput</div>
+        <div class="value"><span id="tps">0</span> TPS</div>
+        <div class="meter"><i></i></div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="label">Latenz</div>
+        <div class="value"><span id="lat">0</span> ms</div>
+        <div class="meter"><i></i></div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="label">GPU-Leistung</div>
+        <div class="value"><span id="gpu">0.00</span> PFLOPS</div>
+        <div class="meter"><i></i></div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="label">Knoten online</div>
+        <div class="value" id="nodes">0</div>
+        <div class="meter"><i></i></div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="label">Netzwerkauslastung</div>
+        <div class="value"><span id="load">0</span>%</div>
+        <div class="meter"><i></i></div>
+      </div>
     </div>
+
+    <div class="spacer"></div>
+
+    <div class="center subtle">Live-Interface (visuelle Demo; BTC-Preis ist echt)</div>
   </div>
 </section>
 
-<footer>
-  <div class="container small">© <span id="yy"></span> BloodyBitcoin</div>
-</footer>
+<!-- ===== SOUND TOGGLE ===== -->
+<button class="soundToggle" id="soundBtn" title="Sound an/aus">🔊</button>
 
-<button id="soundBtn" title="Sound umschalten">🔈</button>
-
+<!-- ===== SCRIPTS ===== -->
 <script>
-/* Year */
-document.getElementById('yy').textContent=new Date().getFullYear();
+/* ========== Basics ========== */
+const clamp=(n,min,max)=>Math.min(Math.max(n,min),max);
 
-/* Reveal on scroll */
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+/* ================= DNA Parallax ================= */
+const dna = document.getElementById('dna');
+let mx=0,my=0, sy=0;
+window.addEventListener('mousemove', e=>{
+  mx = (e.clientX / innerWidth) - .5;
+  my = (e.clientY / innerHeight) - .5;
+});
+window.addEventListener('scroll', ()=>{ sy = scrollY; });
 
-/* ===== Hintergrund: Neon-Grün „Fluid“ ===== */
-const fluid=document.getElementById('bgFluid'), fctx=fluid.getContext('2d');
-const partsCanvas=document.getElementById('bgParticles'), pctx=partsCanvas.getContext('2d');
-function fitAll(){[fluid,partsCanvas].forEach(c=>{c.width=innerWidth; c.height=innerHeight})} fitAll(); addEventListener('resize',fitAll);
+(function parallax(){
+  const tx = mx*14;
+  const ty = my*10 - sy*0.03;
+  dna.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${mx*.6}deg)`;
+  requestAnimationFrame(parallax);
+})();
 
-/* Simple organischer Fluid-Effekt: mehrere wandernde Radial-Gradients */
-let blobs = Array.from({length:6},()=>({
-  x: Math.random()*innerWidth, y: Math.random()*innerHeight,
-  r: 120+Math.random()*220, vx:(Math.random()-.5)*0.4, vy:(Math.random()-.5)*0.4
-}));
-function drawFluid(){
-  fctx.clearRect(0,0,fluid.width,fluid.height);
-  blobs.forEach(b=>{
-    b.x+=b.vx; b.y+=b.vy;
-    if(b.x<-200) b.x=fluid.width+200; if(b.x>fluid.width+200) b.x=-200;
-    if(b.y<-200) b.y=fluid.height+200; if(b.y>fluid.height+200) b.y=-200;
-    const g=fctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
-    g.addColorStop(0,'rgba(0,255,156,.25)');
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    fctx.globalCompositeOperation='screen';
-    fctx.fillStyle=g; fctx.beginPath(); fctx.arc(b.x,b.y,b.r,0,Math.PI*2); fctx.fill();
-    fctx.globalCompositeOperation='source-over';
-  });
-  requestAnimationFrame(drawFluid);
-}
-drawFluid();
+/* ================= Partikel (Hero & Section) ================= */
+function mkParticles(canvas, opts){
+  const ctx = canvas.getContext('2d');
+  const P = [];
+  const conf = Object.assign({
+    count: 90,
+    size: [2, 6],
+    speed: [.1, .5],
+    green: 'rgba(0,233,88, .9)',
+    red:   'rgba(204,16,42, .9)',
+    mix: .5
+  }, opts||{});
 
-/* ===== Hintergrund-Partikel (dauerhaft) ===== */
-let P=Array.from({length:80},()=>({
-  x:Math.random()*innerWidth, y:Math.random()*innerHeight,
-  vx:(Math.random()-.5)*0.4, vy:(Math.random()-.5)*0.4,
-  r:Math.random()*1.8+.6, hue: Math.random()<.7?120:0
-}));
-function drawParticles(){
-  pctx.clearRect(0,0,partsCanvas.width,partsCanvas.height);
-  for(const p of P){
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<-10)p.x=partsCanvas.width+10; if(p.x>partsCanvas.width+10)p.x=-10;
-    if(p.y<-10)p.y=partsCanvas.height+10; if(p.y>partsCanvas.height+10)p.y=-10;
-    const R=p.r*7, g=pctx.createRadialGradient(p.x,p.y,0,p.x,p.y,R);
-    g.addColorStop(0,(p.hue===120?'rgba(0,255,156,.85)':'rgba(255,74,100,.75)'));
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    pctx.fillStyle=g; pctx.beginPath(); pctx.arc(p.x,p.y,R,0,Math.PI*2); pctx.fill();
+  function fit(){
+    canvas.width = canvas.clientWidth || innerWidth;
+    canvas.height = canvas.clientHeight || (innerHeight*0.6);
   }
-  requestAnimationFrame(drawParticles);
-}
-drawParticles();
+  new ResizeObserver(fit).observe(canvas); fit();
 
-/* ===== Klick-Splitter (nur bei Klick, nicht beim Scrollen) ===== */
-function clickBurst(x,y){
-  for(let i=0;i<28;i++){
-    P.push({x,y, vx:(Math.random()-.5)*5, vy:(Math.random()-.5)*4-Math.random()*1.2, r:Math.random()*2+1.2, hue:Math.random()<.6?120:0});
+  for(let i=0;i<conf.count;i++){
+    P.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      z: Math.random(),
+      r: Math.random()*(conf.size[1]-conf.size[0])+conf.size[0],
+      vx: (Math.random()-.5)*(conf.speed[1]-conf.speed[0])+conf.speed[0],
+      vy: (Math.random()-.5)*(conf.speed[1]-conf.speed[0])+conf.speed[0],
+      g: Math.random()<conf.mix
+    });
   }
-  setTimeout(()=>{P.splice(0,28)},1000);
-}
-addEventListener('click', (e)=>{ const p=e.touches?.[0]??e; clickBurst(p.clientX,p.clientY); });
 
-/* ===== Live BTC Preis (EUR) — jede Sekunde ===== */
-let btcValue = null;
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const p of P){
+      p.x += p.vx + mx*0.6;
+      p.y += p.vy + my*0.6 + (sy*0.0004);
+      if(p.x<-12)p.x=canvas.width+12; if(p.x>canvas.width+12)p.x=-12;
+      if(p.y<-12)p.y=canvas.height+12; if(p.y>canvas.height+12)p.y=-12;
+
+      const grd = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5*(1+p.z));
+      grd.addColorStop(0, p.g? conf.green : conf.red);
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*5,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+}
+mkParticles(document.getElementById('partBack'), {count:70, size:[2,5], speed:[.05,.35], mix:.7,
+  green:'rgba(0,233,88,.55)', red:'rgba(204,16,42,.35)'});
+mkParticles(document.getElementById('partFront'),{count:65, size:[3,7], speed:[.08,.6], mix:.55});
+mkParticles(document.getElementById('sectionParticles'),{count:80, size:[2,5], speed:[.06,.5], mix:.75,
+  green:'rgba(0,233,88,.45)', red:'rgba(204,16,42,.25)'});
+
+/* ================= Reveal on Scroll ================= */
+const io = new IntersectionObserver(es=>{
+  for(const e of es){ if(e.isIntersecting) e.target.classList.add('visible'); }
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ================= Fake Network Zahlen (flüssig) ================= */
+const el = id => document.getElementById(id);
+let model = {
+  tx: 11508000, tps: 5300, lat: 34, gpu: 3.72, nodes: 156, load: 41
+};
+function animNum(elm, val, digits=0){
+  elm.textContent = Number(val).toLocaleString('de-DE', {minimumFractionDigits:digits, maximumFractionDigits:digits});
+}
+function drift(){
+  model.tx += Math.random()*400 + 120;
+  // sanfte Wobbles
+  model.tps += (Math.random()-.5)*18;
+  model.lat += (Math.random()-.5)*1.6;
+  model.gpu += (Math.random()-.5)*0.02;
+  model.nodes += (Math.random()-.5)*0.8;
+  model.load += (Math.random()-.5)*1.2;
+  // clamp
+  model.tps = clamp(model.tps, 3200, 6800);
+  model.lat = clamp(model.lat, 18, 55);
+  model.gpu = clamp(model.gpu, 2.8, 5.1);
+  model.nodes = clamp(model.nodes, 120, 220);
+  model.load = clamp(model.load, 18, 92);
+
+  animNum(el('txTotal'), model.tx);
+  animNum(el('tps'), model.tps, 0);
+  animNum(el('lat'), model.lat, 0);
+  animNum(el('gpu'), model.gpu, 2);
+  animNum(el('nodes'), model.nodes, 0);
+  animNum(el('load'), model.load, 0);
+}
+setInterval(drift, 800); drift();
+
+/* ================= BTC Preis (EUR) – sekündlich ================= */
+const btcPriceEl = document.getElementById('btcPrice');
+const btcUpdEl   = document.getElementById('btcUpdated');
 async function fetchBTC(){
   try{
-    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
-    if(!r.ok) throw 0; const j=await r.json(); btcValue = j?.bitcoin?.eur ?? null;
-    renderBTC();
-  }catch{
-    try{
-      const r2=await fetch('https://api.coinbase.com/v2/prices/BTC-EUR/spot',{cache:'no-store'});
-      const j2=await r2.json(); btcValue = Number(j2?.data?.amount) || null;
-      renderBTC();
-    }catch{ /* keep last */ }
+    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
+    const j = await r.json();
+    const eur = j?.bitcoin?.eur;
+    if(typeof eur === 'number'){
+      btcPriceEl.textContent = eur.toLocaleString('de-DE', {style:'currency', currency:'EUR', maximumFractionDigits:0});
+      btcUpdEl.textContent = 'aktualisiert: ' + new Date().toLocaleTimeString('de-DE');
+      return;
+    }
+    throw new Error('Kein EUR');
+  }catch(e){
+    // Fallback: sanfte Simulation
+    let base = (btcPriceEl.dataset.fallback || 98000);
+    base = (+base) + (Math.random()-.5)*120;
+    btcPriceEl.dataset.fallback = base;
+    btcPriceEl.textContent = Number(base).toLocaleString('de-DE', {style:'currency', currency:'EUR', maximumFractionDigits:0});
+    btcUpdEl.textContent = 'verbindung: simuliert';
   }
 }
-setInterval(fetchBTC,1000); fetchBTC();
+setInterval(fetchBTC, 1000); fetchBTC();
 
-/* ===== Grüne Karten (fake smooth) + Oranges BTC-Feld ===== */
-const metrics=[
-  {label:'Transaktionen (gesamt)', key:'tx',   init:4_500_000,  drift:4500, fmt:(v)=>v.toLocaleString('de-DE')},
-  {label:'Throughput (TPS)',      key:'tps',  init:3400,       drift:80,   fmt:(v)=>Math.round(v).toLocaleString('de-DE')+' TPS'},
-  {label:'Latenz',                key:'lat',  init:26,         drift:1.2,  fmt:(v)=>Math.round(v)+' ms'},
-  {label:'Nodes online',          key:'nodes',init:164,        drift:.4,   fmt:(v)=>Math.round(v).toLocaleString('de-DE')},
-  {label:'GPU-Leistung',          key:'gpu',  init:3.4,        drift:.04,  fmt:(v)=>v.toFixed(2)+' PFLOPS'},
-  {label:'Netzwerkauslastung',    key:'util', init:51,         drift:1.5,  fmt:(v)=>Math.round(v)+' %'},
-  {label:'AI Tasks / min',        key:'ai',   init:980,        drift:14,   fmt:(v)=>Math.round(v).toLocaleString('de-DE')},
-  {label:'Finalität',             key:'fin',  init:1.6,        drift:.02,  fmt:(v)=>v.toFixed(2)+' s'},
-  {label:'Durchsatz / Tag',       key:'dpt',  init:86_000_000, drift:12000,fmt:(v)=>v.toLocaleString('de-DE')},
-  {label:'Energie / Tx',          key:'ept',  init:.12,        drift:.003, fmt:(v)=>v.toFixed(3)+' Wh'}
-];
-const grid=document.getElementById('grid');
-const state={}, target={};
-function buildCards(){
-  metrics.forEach(m=>{
-    const card=document.createElement('div'); card.className='card';
-    const row=document.createElement('div'); row.className='row';
-    const lab=document.createElement('div'); lab.className='label'; lab.textContent=m.label;
-    const val=document.createElement('div'); val.className='value'; val.id='v_'+m.key; val.textContent='—';
-    row.appendChild(lab); row.appendChild(val);
-    const bar=document.createElement('div'); bar.className='bar';
-    const fill=document.createElement('i'); fill.id='b_'+m.key; bar.appendChild(fill);
-    card.appendChild(row); card.appendChild(bar); grid.appendChild(card);
-    state[m.key]=m.init*(0.985+Math.random()*0.03);
-    target[m.key]=state[m.key];
-  });
-  // BTC ORANGE CARD (am Ende)
-  const btcCard=document.createElement('div'); btcCard.className='card btc';
-  const row=document.createElement('div'); row.className='row';
-  const lab=document.createElement('div'); lab.className='label'; lab.textContent='Bitcoin (BTC) • EUR';
-  const val=document.createElement('div'); val.className='value'; val.id='btc_val'; val.textContent='€ —';
-  row.appendChild(lab); row.appendChild(val);
-  const bar=document.createElement('div'); bar.className='bar';
-  const fill=document.createElement('i'); fill.id='btc_bar'; bar.appendChild(fill);
-  btcCard.appendChild(row); btcCard.appendChild(bar); grid.appendChild(btcCard);
-}
-buildCards();
+/* ================= Scroll-Sound (lauter, pitch-by-speed) ================= */
+let audioCtx, osc, gain;
+let lastY = window.scrollY, lastT = performance.now();
+const btn = document.getElementById('soundBtn');
 
-function renderBTC(){
-  const el=document.getElementById('btc_val'); const bar=document.getElementById('btc_bar');
-  if(!el) return;
-  if(btcValue!=null){ el.textContent='€ '+Number(btcValue).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-  // „Puls“-Effekt im Balken (ohne echten Chart, aber sekündlich sichtbar)
-  const w=30 + Math.random()*60; bar.style.width=w+'%';
+function initAudio(){
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  osc = audioCtx.createOscillator();
+  gain = audioCtx.createGain();
+  osc.type = 'triangle';
+  osc.frequency.value = 160;      // Grundton heller
+  gain.gain.value = 0.0;          // startet stumm
+  osc.connect(gain).connect(audioCtx.destination);
+  osc.start();
 }
+btn.addEventListener('click', async ()=>{
+  initAudio();
+  if(audioCtx.state === 'suspended') await audioCtx.resume();
+  const on = btn.classList.toggle('on');
+  gain.gain.cancelScheduledValues(audioCtx.currentTime);
+  gain.gain.linearRampToValueAtTime(on ? 0.12 : 0.0, audioCtx.currentTime + 0.12); // lauter & weich
+  btn.textContent = on ? '🔊' : '🔈';
+});
 
-function lerp(a,b,t){return a+(b-a)*t}
-function pickTargets(){
-  metrics.forEach(m=>{
-    const span = (Math.random()-.5)*m.drift;
-    target[m.key]+=span;
-    if(m.key==='tx'){ target[m.key]+=Math.abs(span)*30; }      // tx steigt stetig
-    if(m.key==='lat'){ target[m.key]=Math.max(12, Math.min(80, target[m.key])); }
-    if(m.key==='util'){ target[m.key]=Math.max(10, Math.min(98, target[m.key])); }
-  });
-}
-setInterval(pickTargets, 3200);
-
-function frame(){
-  metrics.forEach(m=>{
-    state[m.key]=lerp(state[m.key], target[m.key], .06);
-    if(m.key==='tx') state[m.key]+= (Math.random()*200);
-    const val=document.getElementById('v_'+m.key);
-    const bar=document.getElementById('b_'+m.key);
-    if(val) val.textContent = m.fmt(state[m.key]);
-    if(bar){
-      let w=0;
-      switch(m.key){
-        case 'tx':   w=(state[m.key]%100); break;
-        case 'tps':  w=Math.min(100, state[m.key]/80); break;
-        case 'lat':  w=Math.min(100, (80-state[m.key])/0.8); break;
-        case 'nodes':w=Math.min(100, (state[m.key]-120)); break;
-        case 'gpu':  w=Math.min(100, state[m.key]/0.05); break;
-        case 'util': w=Math.min(100, state[m.key]); break;
-        case 'ai':   w=Math.min(100, state[m.key]/30); break;
-        case 'fin':  w=Math.min(100, (3-state[m.key])*50); break;
-        case 'dpt':  w=Math.min(100, (state[m.key]%100)/1); break;
-        case 'ept':  w=Math.min(100, (0.5-state[m.key])*180); break;
-      }
-      bar.style.width=Math.max(0,Math.min(100,w))+'%';
-    }
-  });
-  requestAnimationFrame(frame);
-}
-requestAnimationFrame(frame);
-
-/* ===== Sound (dezent), startet nach erster Interaktion ===== */
-let audioOn=false, ac=null, master=null;
-function startAudio(){
-  if(audioOn) return;
-  ac = new (window.AudioContext||window.webkitAudioContext)();
-  master = ac.createGain(); master.gain.value=0.0; master.connect(ac.destination);
-  const o1=ac.createOscillator(); o1.type='sawtooth'; o1.frequency.value=46;
-  const g1=ac.createGain(); g1.gain.value=0.03; o1.connect(g1); g1.connect(master); o1.start();
-  const o2=ac.createOscillator(); o2.type='sine'; o2.frequency.value=88;
-  const g2=ac.createGain(); g2.gain.value=0.025; o2.connect(g2); g2.connect(master); o2.start();
-  const now=ac.currentTime; master.gain.linearRampToValueAtTime(0.06, now+1.0);
-  audioOn=true; soundBtn.textContent='🔊';
-}
-function stopAudio(){
-  if(!audioOn) return;
-  const now=ac.currentTime; master.gain.linearRampToValueAtTime(0.0, now+0.5);
-  audioOn=false; soundBtn.textContent='🔈';
-}
-const soundBtn=document.getElementById('soundBtn');
-['click','touchstart','keydown','scroll'].forEach(ev=>addEventListener(ev,startAudio,{once:true}));
-soundBtn.addEventListener('click',()=> audioOn?stopAudio():startAudio());
-
-/* ===== Kleines Parallax im Hero (DNA leicht bewegen) ===== */
-const dna=document.querySelector('.dna-img');
-window.addEventListener('mousemove',e=>{
-  const mx=(e.clientX/innerWidth-.5), my=(e.clientY/innerHeight-.5);
-  dna.style.transform=`translate(${mx*10}px, ${-8+my*10}px) rotate(${mx*.6}deg)`;
+window.addEventListener('scroll', ()=>{
+  if(!audioCtx || btn.classList.contains('on')===false) return;
+  const now = performance.now();
+  const dy = Math.abs(window.scrollY - lastY);
+  const dt = (now - lastT) / 1000;
+  const speed = clamp(dy / Math.max(dt, .016), 0, 4000); // px/s
+  const f = 160 + (speed*0.12);                         // Pitch reagiert auf Speed
+  const v = clamp(0.06 + speed/5000, .06, .22);         // Lautstärke leicht mit
+  osc.frequency.setTargetAtTime(f, audioCtx.currentTime, 0.06);
+  gain.gain.setTargetAtTime(v, audioCtx.currentTime, 0.12);
+  lastY = window.scrollY; lastT = now;
 });
 </script>
 </body>
