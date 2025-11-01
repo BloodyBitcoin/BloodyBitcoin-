@@ -140,4 +140,277 @@ footer{
   background:#000; padding:5rem 0 6rem; text-align:center; border-top:1px solid #111;
 }
 .seal{
-  width:min(560px,86%); height:auto; opacity:0
+  width:min(560px,86%); height:auto; opacity:0;
+  transform:translateY(24px);
+  filter: drop-shadow(0 0 28px rgba(255,60,40,.35)) saturate(1.08);
+  transition:opacity .8s ease, transform .8s ease, filter .8s ease;
+}
+.seal.show{
+  opacity:1; transform:none;
+  filter:drop-shadow(0 0 42px rgba(255,50,30,.55));
+}
+.note{color:#8aa5b0; margin-top:1rem; font-size:.95rem}
+</style>
+</head>
+<body>
+
+<!-- Sticky Claim -->
+<div class="claim">
+  <div class="claim-inner">
+    <h1>GPU is the New OIL</h1>
+    <p>Founder — Chris R. Herloch</p>
+  </div>
+</div>
+
+<!-- HERO mit DNA und Partikeln -->
+<header class="hero" id="top">
+  <img class="dna" id="dnaImg" alt=""
+       src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png">
+  <div class="overlay-grad"></div>
+  <canvas id="particles"></canvas>
+</header>
+
+<div class="spacer"></div>
+
+<!-- METRICS -->
+<section class="section container" id="metrics">
+  <h2>Netzwerk-Parameter</h2>
+
+  <!-- BTC EUR live -->
+  <div class="panel btc-card">
+    <div class="btc-row">
+      <div class="btc-logo">₿</div>
+      <div class="btc-price"><span id="btc">€ —</span></div>
+    </div>
+  </div>
+
+  <div class="grid" id="statGrid">
+    <div class="panel glass">
+      <div class="label">Transaktionen (gesamt)</div>
+      <div class="value" id="tx">11 508 082</div>
+      <div class="bar"><i style="width:35%"></i></div>
+    </div>
+    <div class="panel glass">
+      <div class="label">Throughput (TPS)</div>
+      <div class="value" id="tps">5 334 TPS</div>
+      <div class="bar"><i style="width:55%"></i></div>
+    </div>
+    <div class="panel glass">
+      <div class="label">Latenz</div>
+      <div class="value" id="lat">34 ms</div>
+      <div class="bar"><i style="width:70%"></i></div>
+    </div>
+    <div class="panel glass">
+      <div class="label">GPU-Leistung</div>
+      <div class="value" id="gpu">3.69 PFLOPS</div>
+      <div class="bar"><i style="width:68%"></i></div>
+    </div>
+    <div class="panel glass">
+      <div class="label">Knoten online</div>
+      <div class="value" id="nodes">156</div>
+      <div class="bar"><i style="width:62%"></i></div>
+    </div>
+    <div class="panel glass">
+      <div class="label">Netzwerkauslastung</div>
+      <div class="value" id="load">41 %</div>
+      <div class="bar"><i style="width:41%"></i></div>
+    </div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- GLOBUS -->
+<section class="section container" id="globeSec">
+  <h2>Globales Netz — V1…V10</h2>
+  <div class="globe-wrap">
+    <div id="globe"></div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<!-- FOOTER mit rotem Siegel (nur unten sichtbar) -->
+<footer>
+  <img class="seal" id="seal" alt="BloodyBitcoin Seal"
+       src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_7712.jpeg" />
+  <div class="note">© <span id="year"></span> BloodyBitcoin — All systems nominal.</div>
+</footer>
+
+<!-- Sound Toggle -->
+<button class="sound" id="soundBtn" aria-label="Sound umschalten">🔊</button>
+
+<script>
+/* ===== Helpers ===== */
+const $ = sel => document.querySelector(sel);
+const $$ = sel => document.querySelectorAll(sel);
+
+/* ===== Year ===== */
+$('#year').textContent = new Date().getFullYear();
+
+/* ===== Parallax auf DNA ===== */
+const dna = $('#dnaImg');
+let mx=0,my=0,sy=0;
+addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5; my=e.clientY/innerHeight-.5});
+addEventListener('scroll',()=>{sy=scrollY});
+(function loopParallax(){
+  dna.style.transform = `translate3d(${mx*12}px, ${my*10 + sy*0.06}px, 0) scale(1.02)`;
+  requestAnimationFrame(loopParallax);
+})();
+
+/* ===== Partikel in Bildfarben ===== */
+const pc = $('#particles'), ctx = pc.getContext('2d');
+function fit(){ pc.width=innerWidth; pc.height=innerHeight; }
+addEventListener('resize',fit); fit();
+const parts = Array.from({length:80},()=>({
+  x:Math.random()*pc.width, y:Math.random()*pc.height,
+  r:Math.random()*2+1, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+  hue: Math.random()<.5 ? 130 : 356   // grün / rot wie im Bild
+}));
+(function loopParticles(){
+  ctx.clearRect(0,0,pc.width,pc.height);
+  for(const p of parts){
+    p.x+=p.vx + mx*.3; p.y+=p.vy + my*.3 + sy*.0004;
+    if(p.x<-20)p.x=pc.width+20; if(p.x>pc.width+20)p.x=-20;
+    if(p.y<-20)p.y=pc.height+20; if(p.y>pc.height+20)p.y=-20;
+    const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*8);
+    g.addColorStop(0, `hsla(${p.hue},100%,60%,.9)`);
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*8,0,6.283); ctx.fill();
+  }
+  requestAnimationFrame(loopParticles);
+})();
+
+/* ===== BTC in EUR (sekündlich) ===== */
+async function fetchBTC(){
+  try{
+    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
+    const j = await r.json();
+    const eur = j?.bitcoin?.eur;
+    if(typeof eur === 'number'){
+      $('#btc').textContent = '€ ' + eur.toLocaleString('de-DE',{maximumFractionDigits:0});
+    }
+  }catch(e){}
+}
+fetchBTC(); setInterval(fetchBTC, 1000);
+
+/* ===== Fake-Bewegung der anderen Metriken (glatt) ===== */
+const meters = [
+  {id:'tx',  v:11508082, drift:5000},
+  {id:'tps', v:5334,     drift:.8, suffix:' TPS'},
+  {id:'lat', v:34,       drift:.15, suffix:' ms'},
+  {id:'gpu', v:3.69,     drift:.01, suffix:' PFLOPS'},
+  {id:'nodes', v:156,    drift:.2},
+  {id:'load',  v:41,     drift:.25, suffix:' %', progress:true}
+];
+function tickStats(){
+  meters.forEach((m,i)=>{
+    const el = $('#'+m.id);
+    m.v += (Math.random()-.5)*m.drift;
+    if(m.id==='gpu') m.v=Math.max(3.2,Math.min(4.5,m.v));
+    if(m.id==='tps') m.v=Math.max(4200,Math.min(6800,m.v));
+    if(m.id==='lat') m.v=Math.max(18,Math.min(60,m.v));
+    if(m.id==='load') m.v=Math.max(18,Math.min(92,m.v));
+    const v = (m.id==='gpu') ? m.v.toFixed(2) : Math.round(m.v).toLocaleString('de-DE');
+    el.textContent = (m.prefix||'') + v + (m.suffix||'');
+    const bar = el.parentElement.querySelector('.bar > i');
+    if(bar){
+      const pct = (m.id==='load') ? m.v : 30 + (i*11 + (m.v%40));
+      bar.style.width = Math.max(6, Math.min(96, pct)) + '%';
+    }
+  });
+}
+setInterval(tickStats, 1400);
+
+/* ===== 3D Globus mit Knoten & Verbindungen ===== */
+(function initGlobe(){
+  const globeEl = document.getElementById('globe');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, globeEl.clientWidth/globeEl.clientHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+  renderer.setSize(globeEl.clientWidth, globeEl.clientHeight);
+  globeEl.appendChild(renderer.domElement);
+  addEventListener('resize', ()=>{
+    renderer.setSize(globeEl.clientWidth, globeEl.clientHeight);
+    camera.aspect = globeEl.clientWidth/globeEl.clientHeight; camera.updateProjectionMatrix();
+  });
+  camera.position.z = 3.3;
+
+  // Erde
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(1.2, 64, 64),
+    new THREE.MeshPhongMaterial({color:0x0c1820, emissive:0x0a151a, shininess:8, transparent:true, opacity:.95})
+  );
+  scene.add(sphere);
+
+  // Licht
+  scene.add(new THREE.AmbientLight(0x1affcf, .55));
+  const dir = new THREE.DirectionalLight(0x2effff, .75); dir.position.set(5,3,2); scene.add(dir);
+
+  // V1..V10 Punkte
+  const ptsGeo = new THREE.BufferGeometry();
+  const positions = [];
+  const nodes = 10;
+  for(let i=0;i<nodes;i++){
+    const phi = Math.random()*Math.PI*2, theta = Math.acos(2*Math.random()-1);
+    const r = 1.22;
+    positions.push(r*Math.sin(theta)*Math.cos(phi), r*Math.cos(theta), r*Math.sin(theta)*Math.sin(phi));
+  }
+  ptsGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
+  const ptsMat = new THREE.PointsMaterial({color:0x2cffb5, size:.06, transparent:true, opacity:.95});
+  const points = new THREE.Points(ptsGeo, ptsMat); scene.add(points);
+
+  // Linien
+  const lineMat = new THREE.LineBasicMaterial({color:0x74ffd6, transparent:true, opacity:.55});
+  const lines = new THREE.Group(); scene.add(lines);
+  function connect(){
+    lines.clear();
+    for(let i=0;i<positions.length;i+=3){
+      const j = Math.floor(Math.random()*nodes)*3;
+      const geo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(positions[i],positions[i+1],positions[i+2]),
+        new THREE.Vector3(positions[j],positions[j+1],positions[j+2])
+      ]);
+      const line = new THREE.Line(geo, lineMat); lines.add(line);
+    }
+  }
+  connect(); setInterval(connect, 1800);
+
+  (function animate(){
+    requestAnimationFrame(animate);
+    sphere.rotation.y += 0.0018;
+    points.rotation.y += 0.0018;
+    lines.rotation.y  += 0.0018;
+    renderer.render(scene,camera);
+  })();
+})();
+
+/* ===== Sound (WebAudio) – leise, Tonhöhe ~ Scrollspeed ===== */
+let audioOn=false, ctxA, osc, gain;
+function startAudio(){
+  if(audioOn) return;
+  ctxA = new (window.AudioContext||window.webkitAudioContext)();
+  osc = ctxA.createOscillator(); gain = ctxA.createGain();
+  osc.type='sine'; osc.frequency.value = 180;
+  gain.gain.value = 0.02; // leise
+  osc.connect(gain).connect(ctxA.destination); osc.start();
+  audioOn=true;
+}
+function stopAudio(){ if(!audioOn) return; try{osc.stop()}catch{} try{ctxA.close()}catch{} audioOn=false; }
+const btn = $('#soundBtn');
+btn.addEventListener('click', ()=> audioOn? (stopAudio(),btn.textContent='🔈') : (startAudio(),btn.textContent='🔊'));
+let lastY=scrollY;
+addEventListener('scroll', ()=>{
+  if(!audioOn) return;
+  const spd = Math.min(800, Math.abs(scrollY-lastY)); lastY=scrollY;
+  const f = 120 + spd*0.6; // schneller scrollen => höherer Ton
+  osc.frequency.setTargetAtTime(f, ctxA.currentTime, .05);
+});
+
+/* ===== Siegel nur am Ende zeigen ===== */
+const seal = $('#seal');
+const io = new IntersectionObserver((e)=>{ e.forEach(x=>{ if(x.isIntersecting) seal.classList.add('show'); }); },{threshold:.35});
+io.observe(seal);
+</script>
+</body>
+</html>
