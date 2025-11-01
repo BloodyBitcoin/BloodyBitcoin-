@@ -7,185 +7,166 @@
 <meta name="description" content="BloodyBitcoin — Krypto-DNA, Live-Metriken und globale Knoten.">
 <style>
 :root{
-  --bg:#060808; --fg:#e8fdf5; --muted:#9fd9c5;
+  --bg:#060808; --fg:#e8fdf5; --muted:#a0d9c6;
   --neon:#00ff9c; --neon2:#37ffd4; --orange:#ffa244;
-  --border:#0f2018; --card:#0b1210; --soft:#0a1511;
+  --red:#ff4444; --border:#0f2018; --card:#0b1210; --soft:#0a1511;
   --shadow:0 0 18px rgba(0,255,156,.3), 0 0 36px rgba(55,255,212,.2);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
+html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .container{width:min(1100px,92%);margin:0 auto}
 
-/* ===== TOP ===== */
-.top{
-  position:sticky; top:0; z-index:40;
-  background:linear-gradient(180deg,rgba(0,12,8,.75),rgba(0,10,7,.2));
-  backdrop-filter:blur(14px); border-bottom:1px solid var(--border);
+/* ========== TOP SLOGAN ========== */
+.top-slogan{
+  position:sticky; top:0; z-index:60;
+  padding:.6rem 0;
+  background:linear-gradient(180deg,rgba(0,12,8,.8),rgba(0,10,7,.15));
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  text-align:center;
 }
-.top .row{display:flex;justify-content:center;align-items:center;padding:.6rem 0}
-.logo-wrap img{height:42px;width:auto;filter:drop-shadow(0 0 14px rgba(0,255,156,.45))}
+.top-slogan h6{
+  font-size:.95rem; letter-spacing:.12rem; font-weight:800;
+  color:var(--neon);
+  text-shadow:0 0 16px rgba(0,255,156,.35),0 0 36px rgba(55,255,212,.2);
+}
+.top-slogan small{display:block;color:#bffbe9;opacity:.8;margin-top:.25rem}
 
-/* ===== HERO / DNA ===== */
-.hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.dna-layer{position:absolute;inset:-18%;pointer-events:none}
-.dna-img{position:absolute;inset:0;width:136%;height:136%;object-fit:cover;opacity:.9}
+/* ========== SECTIONS LAYOUT ========== */
+section{padding:clamp(3.5rem,8vw,6rem) 0; border-top:1px solid var(--border)}
+section.hero{border-top:none; padding:0; min-height:100vh}
+
+/* ========== HERO / DNA ONLY ========== */
+.hero{position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden}
+.dna-layer{position:absolute; inset:-20%; pointer-events:none}
+.dna-img{position:absolute; inset:0; width:140%; height:140%; object-fit:cover; opacity:.9}
 #dnaLeft{
   animation:pulse 8s ease-in-out infinite, drift 22s ease-in-out infinite, roll 120s linear infinite;
   filter:hue-rotate(-25deg) saturate(1.35) brightness(1.08);
   mix-blend-mode:screen;
-  mask-image:linear-gradient(to right, #000 70%, transparent 98%);
-  -webkit-mask-image:linear-gradient(to right, #000 70%, transparent 98%);
+  mask-image:linear-gradient(to right, #000 68%, transparent 98%);
+  -webkit-mask-image:linear-gradient(to right, #000 68%, transparent 98%);
 }
 #dnaRight{
   animation:tear 7.5s ease-in-out infinite, drift2 26s ease-in-out infinite, roll 140s linear infinite reverse;
   filter:hue-rotate(15deg) saturate(1.25) brightness(1.05);
-  mix-blend-mode:screen;
-  opacity:.6;
-  mask-image:linear-gradient(to left, #000 70%, transparent 98%);
-  -webkit-mask-image:linear-gradient(to left, #000 70%, transparent 98%);
+  mix-blend-mode:screen; opacity:.62;
+  mask-image:linear-gradient(to left, #000 68%, transparent 98%);
+  -webkit-mask-image:linear-gradient(to left, #000 68%, transparent 98%);
 }
-.tint-left, .tint-right{
-  position:absolute;inset:-18%;
-  mix-blend-mode:screen; pointer-events:none;
-}
-.tint-left{background:linear-gradient(to right, rgba(0,255,156,.18), transparent 60%)}
-.tint-right{background:linear-gradient(to left, rgba(255,64,64,.18), transparent 60%)}
+.tint-left,.tint-right{position:absolute; inset:-20%; mix-blend-mode:screen}
+.tint-left{ background:linear-gradient(to right, rgba(0,255,156,.18), transparent 55%) }
+.tint-right{background:linear-gradient(to left, rgba(255,68,68,.18),  transparent 55%)}
 
+/* Partikel (grün/rot, edel) */
+#dnaParticles{position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.9}
+
+/* Hero Headroom (nur DNA sichtbar) */
+.hero-spacer{min-height:100vh}
+
+/* Keyframes */
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
 @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(-1.4%,1.4%)}100%{transform:translate(0,0)}}
 @keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(-2.6%,1.1%)}100%{transform:translate(0,0)}}
 @keyframes roll{to{transform:rotate(360deg)}}
 @keyframes tear{0%{transform:translateX(0)}50%{transform:translateX(-3.6%)}100%{transform:translateX(0)}}
 
-/* overlay sparks */
-#spark{position:absolute;inset:0;opacity:.7;pointer-events:none;z-index:1}
-
-/* hero content */
-.hero-inner{position:relative;z-index:2;padding:5.2rem 1rem 1.2rem}
-h1#btc{font-weight:900;font-size:clamp(1.7rem,5vw,3.2rem);color:var(--orange);
-  text-shadow:0 0 18px rgba(255,162,68,.25),0 0 36px rgba(255,162,68,.16)}
-.sub{margin-top:.35rem;color:var(--muted)}
-
-/* LAB LOGIN BUTTON */
-.lab-login{
-  margin:1.4rem auto 0;display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap
+/* ========== METRICS (große Tachos, viel Luft) ========== */
+.metrics .container{max-width:860px}
+h2.section-title{font-size:clamp(1.2rem,2.4vw,1.6rem); color:#bfeee0; margin-bottom:1.2rem; opacity:.9}
+#btcPrice{
+  font-weight:900; font-size:clamp(1.8rem,5vw,3rem); color:var(--orange);
+  text-align:center; margin-bottom:1.2rem;
+  text-shadow:0 0 18px rgba(255,162,68,.25),0 0 36px rgba(255,162,68,.16);
 }
+#btcChart{width:100%; height:180px; display:block; border:1px solid var(--border); border-radius:12px; background:#080d0b; margin:0 auto 2rem auto}
+
+.board{display:flex; flex-direction:column; gap:1.1rem}
+.gauge{
+  padding:1.1rem 1.2rem; border-radius:14px;
+  background:linear-gradient(180deg,#0c1412,#09110f);
+  border:1px solid var(--border); box-shadow:0 8px 30px rgba(0,0,0,.15)
+}
+.g-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:.7rem}
+.g-label{font-size:1rem; color:#93d2bb; letter-spacing:.35px}
+.g-value{
+  font-family:ui-monospace, Menlo, Consolas, monospace;
+  font-size:1.7rem; font-weight:800; letter-spacing:.5px;
+  text-shadow:0 0 14px rgba(0,255,156,.25)
+}
+.g-bar{height:12px; background:#07110d; border:1px solid var(--border); border-radius:10px; overflow:hidden}
+.g-bar i{display:block; height:100%; width:35%;
+  background:linear-gradient(90deg,#00ff9c,#37ffd4);
+  box-shadow:0 0 20px rgba(0,255,156,.35)}
+
+/* ========== NEON WORLD (Wireframe) ========== */
+.map .container{max-width:1100px}
+.map-wrap{position:relative; aspect-ratio:16/9; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:#030606}
+#worldFx{position:absolute; inset:0; width:100%; height:100%}
+
+/* ========== LOGIN (unten) ========== */
+.login .container{display:flex; justify-content:center}
 .btn-lab{
-  position:relative; width:220px; height:220px; border-radius:50%;
-  background:radial-gradient(circle at 50% 40%, rgba(0,255,156,.22), rgba(0,0,0,.0) 60%), #07130f;
+  position:relative; width:260px; height:260px; border-radius:50%;
+  background:radial-gradient(circle at 50% 40%, rgba(0,255,156,.22), rgba(0,0,0,0) 60%), #07130f;
   border:1px solid rgba(0,255,156,.35);
   box-shadow:var(--shadow), inset 0 0 0 1px rgba(0,255,156,.18);
   cursor:pointer;
 }
 .btn-lab::before, .btn-lab::after{
-  content:""; position:absolute; inset:-18px; border-radius:50%;
-  border:2px dashed rgba(0,255,156,.25); animation:spin 18s linear infinite;
+  content:""; position:absolute; inset:-22px; border-radius:50%;
+  border:2px dashed rgba(0,255,156,.22); animation:spin 18s linear infinite
 }
-.btn-lab::after{inset:-36px; border-style:solid; border-width:1px; border-color:rgba(55,255,212,.18); animation:spin 26s linear infinite reverse}
+.btn-lab::after{inset:-44px; border-style:solid; border-width:1px; border-color:rgba(55,255,212,.16); animation:spin 26s linear infinite reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
 .btn-core{
-  position:absolute; inset:24px; border-radius:50%;
-  background:radial-gradient(circle at 50% 35%, rgba(0,255,156,.35), rgba(0,255,156,.05) 60%, rgba(0,0,0,.4) 80%);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800; letter-spacing:.6px;
-  text-shadow:0 0 12px rgba(0,255,156,.35);
+  position:absolute; inset:28px; border-radius:50%;
+  background:radial-gradient(circle at 50% 35%, rgba(0,255,156,.38), rgba(0,255,156,.06) 60%, rgba(0,0,0,.45) 80%);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; letter-spacing:.7px; text-shadow:0 0 12px rgba(0,255,156,.35)
 }
-.btn-core span{opacity:.9}
+.btn-core span{opacity:.95}
 .btn-lab:hover{transform:translateY(-2px)}
 
-/* ===== TACHO/BOARD ===== */
-.board{
-  margin:1.6rem auto 0; max-width:800px;
-  display:flex; flex-direction:column; gap:.9rem;
-}
-.gauge{
-  background:linear-gradient(180deg,#0c1412,#09110f);
-  border:1px solid var(--border); border-radius:14px; padding:1rem 1.1rem;
-  box-shadow:0 8px 30px rgba(0,0,0,.15);
-}
-.g-top{display:flex;justify-content:space-between;align-items:center}
-.g-label{font-size:.92rem;color:#93d2bb;letter-spacing:.35px}
-.g-value{
-  font-family:ui-monospace, Menlo, Consolas, monospace;
-  font-size:1.6rem; font-weight:800; letter-spacing:.5px;
-  text-shadow:0 0 14px rgba(0,255,156,.25);
-}
-.g-bar{height:10px;background:#07110d;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:.7rem}
-.g-bar i{display:block;height:100%;width:35%;background:linear-gradient(90deg,#00ff9c,#37ffd4);box-shadow:0 0 20px rgba(0,255,156,.35)}
+/* ========== FOOTER / YEAR ========== */
+footer{padding:2rem 0; text-align:center; color:#86eec6}
+.small{opacity:.85; font-size:.92rem}
 
-/* ===== MAP ===== */
-.map-section{position:relative;padding:2.2rem 0;border-top:1px solid var(--border);background:#030606}
-.map-wrap{position:relative;max-width:1100px;margin:0 auto;aspect-ratio:16/9;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#000}
-.map-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.94;filter:saturate(1.05) contrast(1.06) brightness(.9)}
-#mapFx{position:absolute;inset:0;width:100%;height:100%}
-
-/* ===== SLOGAN ===== */
-.slogan{
-  padding:3rem 0 3.5rem;
-  text-align:center;
-  background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,12,8,.5));
-}
-.slogan h2{
-  font-size:clamp(1.6rem,4vw,2.8rem);
-  color:var(--neon);
-  text-shadow:0 0 20px rgba(0,255,156,.4),0 0 40px rgba(55,255,212,.3);
-  letter-spacing:1.5px;
-  animation:glow 4s ease-in-out infinite alternate;
-}
-.slogan p{
-  margin-top:.6rem;
-  font-size:1rem;
-  color:#b8ffea;
-  letter-spacing:.4px;
-  opacity:.85;
-}
-@keyframes glow{
-  from{text-shadow:0 0 14px rgba(0,255,156,.3),0 0 28px rgba(55,255,212,.25);}
-  to{text-shadow:0 0 24px rgba(0,255,156,.55),0 0 60px rgba(55,255,212,.4);}
-}
-
-/* footer */
-footer{padding:1.8rem 0;text-align:center;color:#86eec6}
-.small{opacity:.85;font-size:.92rem}
-
-@media (max-width:520px){
-  .btn-lab{width:180px;height:180px}
-  .btn-core{inset:20px}
-  .g-value{font-size:1.35rem}
-}
+/* ========== CLICK PARTICLE (edel) ========== */
+#clickFx{position:fixed; inset:0; pointer-events:none; z-index:80}
 </style>
 </head>
 <body>
 
-<!-- TOP -->
-<div class="top">
-  <div class="row container">
-    <div class="logo-wrap">
-      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/AC4DE80B-C04D-465B-B2E4-14F987C0CF47.png" alt="BloodyBitcoin">
-    </div>
-  </div>
+<!-- TOP SLOGAN -->
+<div class="top-slogan">
+  <h6>GPU is the New OIL</h6>
+  <small>Founder — Chris&nbsp;R.&nbsp;Herloch</small>
 </div>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO: nur DNA -->
+<section class="hero" id="hero">
   <div class="dna-layer">
     <img id="dnaLeft"  class="dna-img" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="">
     <img id="dnaRight" class="dna-img" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="">
-    <div class="tint-left"></div><div class="tint-right"></div>
-    <canvas id="spark"></canvas>
+    <div class="tint-left"></div>
+    <div class="tint-right"></div>
+    <canvas id="dnaParticles"></canvas>
   </div>
+  <div class="hero-spacer"></div>
+</section>
 
-  <div class="hero-inner container">
-    <h1 id="btc">$—</h1>
-    <div class="sub">Rechenlast • Finalität • globale Verteilung</div>
+<!-- METRICS & BTC -->
+<section class="metrics" id="metrics">
+  <div class="container">
+    <h2 class="section-title">Netzwerkparameter</h2>
 
-    <div class="lab-login">
-      <div class="btn-lab" id="loginBtn" aria-label="Login Beta">
-        <div class="btn-core"><span>LOGIN • BETA</span></div>
-      </div>
-    </div>
+    <!-- BTC Preis + Chart -->
+    <div id="btcPrice">$—</div>
+    <canvas id="btcChart"></canvas>
 
+    <!-- Digitale Tachos -->
     <div class="board">
       <div class="gauge"><div class="g-top"><div class="g-label">Transaktionen (gesamt)</div><div class="g-value" id="tx">—</div></div><div class="g-bar"><i id="txBar"></i></div></div>
       <div class="gauge"><div class="g-top"><div class="g-label">Throughput (TPS)</div><div class="g-value" id="tps">—</div></div><div class="g-bar"><i id="tpsBar"></i></div></div>
@@ -197,21 +178,21 @@ footer{padding:1.8rem 0;text-align:center;color:#86eec6}
   </div>
 </section>
 
-<!-- MAP -->
-<section class="map-section">
+<!-- NEON WORLD -->
+<section class="map" id="map">
   <div class="container">
     <div class="map-wrap">
-      <img alt="Earth at Night" src="https://eoimages.gsfc.nasa.gov/images/imagerecords/55000/55167/earth_lights_lrg.jpg">
-      <canvas id="mapFx"></canvas>
+      <canvas id="worldFx"></canvas>
     </div>
   </div>
 </section>
 
-<!-- SLOGAN -->
-<section class="slogan">
+<!-- LOGIN (unten) -->
+<section class="login" id="login">
   <div class="container">
-    <h2>GPU is the New OIL</h2>
-    <p>Founder — Chris&nbsp;R.&nbsp;Herloch</p>
+    <div class="btn-lab" aria-label="Login Beta">
+      <div class="btn-core"><span>LOGIN • BETA — Bald verfügbar</span></div>
+    </div>
   </div>
 </section>
 
@@ -219,9 +200,46 @@ footer{padding:1.8rem 0;text-align:center;color:#86eec6}
   <div class="container small">© <span id="yy"></span> BloodyBitcoin</div>
 </footer>
 
+<!-- Subtile Klick-Partikel -->
+<canvas id="clickFx"></canvas>
+
 <script>
-/* ===== BTC live ===== */
-const btcEl=document.getElementById('btc');
+/* ======================= DNA Partikel (edel, grün/rot) ======================= */
+const dnaC=document.getElementById('dnaParticles'), dctx=dnaC.getContext('2d');
+function fitD(){dnaC.width=innerWidth; dnaC.height=innerHeight} addEventListener('resize',fitD); fitD();
+let drops=Array.from({length:100},()=>({
+  x:Math.random()*dnaC.width, y:Math.random()*dnaC.height*0.9,
+  vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
+  r:Math.random()*1.6+0.6, hue: Math.random()<.5?120:0 // 120≈grün, 0≈rot
+}));
+(function loopD(){
+  dctx.clearRect(0,0,dnaC.width,dnaC.height);
+  for(const p of drops){
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<-10) p.x=dnaC.width+10; if(p.x>dnaC.width+10) p.x=-10;
+    if(p.y<-10) p.y=dnaC.height+10; if(p.y>dnaC.height+10) p.y=-10;
+    const g=dctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*8);
+    const col = p.hue===120 ? 'rgba(0,255,156' : 'rgba(255,68,68';
+    g.addColorStop(0, col+',0.90)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    dctx.fillStyle=g; dctx.beginPath(); dctx.arc(p.x,p.y,p.r*7,0,Math.PI*2); dctx.fill();
+  }
+  requestAnimationFrame(loopD);
+})();
+
+/* ======================= BTC live + Sparkline ======================= */
+const btcEl=document.getElementById('btcPrice');
+const chart=document.getElementById('btcChart'), cctx=chart.getContext('2d');
+function fitChart(){chart.width=chart.clientWidth; chart.height=chart.clientHeight} addEventListener('resize',fitChart); fitChart();
+
+let prices=[];
+async function loadChart(){
+  try{
+    const r=await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=minutely',{cache:'no-store'});
+    if(!r.ok) throw 0; const j=await r.json();
+    prices = (j.prices||[]).map(a=>a[1]);
+    drawChart();
+  }catch{ /* silently fail */ }
+}
 async function fetchBTC(){
   try{
     const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',{cache:'no-store'});
@@ -235,29 +253,167 @@ async function fetchBTC(){
     }catch{ btcEl.textContent='$—'; }
   }
 }
-fetchBTC(); setInterval(fetchBTC, 20000);
+function drawChart(){
+  cctx.clearRect(0,0,chart.width,chart.height);
+  if(!prices.length) return;
+  const min=Math.min(...prices), max=Math.max(...prices);
+  const padY=8, padX=8;
+  const w=chart.width-padX*2, h=chart.height-padY*2;
+  cctx.strokeStyle='#ffa244'; cctx.lineWidth=2;
+  cctx.beginPath();
+  prices.forEach((v,i)=>{
+    const x = padX + (i/(prices.length-1))*w;
+    const y = padY + (1-(v-min)/(max-min||1))*h;
+    if(i===0) cctx.moveTo(x,y); else cctx.lineTo(x,y);
+  });
+  cctx.stroke();
+  // glow overlay
+  const grad=cctx.createLinearGradient(0,padY,0,chart.height-padY);
+  grad.addColorStop(0,'rgba(255,162,68,.25)');
+  grad.addColorStop(1,'rgba(255,162,68,0)');
+  cctx.fillStyle=grad;
+  cctx.lineTo(chart.width-padX,chart.height-padY);
+  cctx.lineTo(padX,chart.height-padY);
+  cctx.closePath();
+  cctx.fill();
+}
+fetchBTC(); loadChart();
+setInterval(fetchBTC, 20000);
+setInterval(loadChart, 60000);
 
-/* ===== Sparks ===== */
-const sc=document.getElementById('spark'), sctx=sc.getContext('2d');
-function fitS(){sc.width=innerWidth; sc.height=innerHeight} addEventListener('resize',fitS); fitS();
-let SP=Array.from({length:60},()=>({x:Math.random()*sc.width,y:Math.random()*sc.height,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.3+.5}));
-(function loopS(){
-  sctx.clearRect(0,0,sc.width,sc.height);
-  for(const p of SP){
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0)p.x=sc.width; if(p.x>sc.width)p.x=0;
-    if(p.y<0)p.y=sc.height; if(p.y>sc.height)p.y=0;
-    const g=sctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*7);
-    g.addColorStop(0,'rgba(0,255,156,.75)'); g.addColorStop(1,'rgba(0,0,0,0)');
-    sctx.fillStyle=g; sctx.beginPath(); sctx.arc(p.x,p.y,p.r*7,0,Math.PI*2); sctx.fill();
-  }
-  requestAnimationFrame(loopS);
-})();
-
-/* ===== Glatte Metriken ===== */
-const el={tx:qs('tx'), tps:qs('tps'), lat:qs('lat'), nodes:qs('nodes'), gpu:qs('gpu'), util:qs('util')};
-const bar={tx:qs('txBar'), tps:qs('tpsBar'), lat:qs('latBar'), nodes:qs('nodesBar'), gpu:qs('gpuBar'), util:qs('utilBar')};
+/* ======================= Realistische, glatte Metriken ======================= */
+const el={tx:gid('tx'), tps:gid('tps'), lat:gid('lat'), nodes:gid('nodes'), gpu:gid('gpu'), util:gid('util')};
+const bar={tx:gid('txBar'), tps:gid('tpsBar'), lat:gid('latBar'), nodes:gid('nodesBar'), gpu:gid('gpuBar'), util:gid('utilBar')};
 let st={tx:Math.floor(4_000_000+Math.random()*2_000_000),tps:3600+Math.random()*1400,lat:28+Math.random()*10,nodes:150+Math.random()*12,gpu:3.2+Math.random()*1.0,util:45+Math.random()*20},
     tg={...st};
-function qs(id){return document.getElementById(id)}
-function pick(){tg.tps=320
+function gid(id){return document.getElementById(id)}
+function pick(){tg.tps=3200+Math.random()*2400; tg.lat=22+Math.random()*16; tg.nodes=150+(Math.random()*6-3); tg.gpu=3.0+Math.random()*1.2; tg.util=35+Math.random()*40}
+setInterval(pick, 3500);
+function lerp(a,b,t){return a+(b-a)*t}
+(function render(){
+  st.tps=lerp(st.tps,tg.tps,.06);
+  st.lat=lerp(st.lat,tg.lat,.06);
+  st.nodes=lerp(st.nodes,tg.nodes,.02);
+  st.gpu=lerp(st.gpu,tg.gpu,.04);
+  st.util=lerp(st.util,tg.util,.05);
+  st.tx += Math.max(1, Math.round(st.tps*(0.45 + Math.random()*0.2)));
+
+  el.tx.textContent = st.tx.toLocaleString('de-DE');
+  el.tps.textContent = Math.round(st.tps).toLocaleString('de-DE')+" TPS";
+  el.lat.textContent = Math.round(st.lat)+" ms";
+  el.nodes.textContent = Math.round(st.nodes).toLocaleString('de-DE');
+  el.gpu.textContent = st.gpu.toFixed(2)+" PFLOPS";
+  el.util.textContent = Math.round(st.util)+" %";
+
+  bar.tx.style.width   = Math.min(100, (st.tx%100))+"%";
+  bar.tps.style.width  = Math.min(100, st.tps/80)+"%";
+  bar.lat.style.width  = Math.min(100, (80-st.lat)/0.8)+"%";
+  bar.nodes.style.width= Math.min(100, (st.nodes-120))+"%";
+  bar.gpu.style.width  = Math.min(100, st.gpu/0.05)+"%";
+  bar.util.style.width = Math.min(100, st.util)+"%";
+
+  requestAnimationFrame(render);
+})();
+
+/* ======================= Neon-World (Wireframe + springender Punkt) ======================= */
+const world=document.getElementById('worldFx'), wctx=world.getContext('2d');
+function fitW(){world.width=world.clientWidth; world.height=world.clientHeight}
+addEventListener('resize',fitW); fitW();
+let lonShift=0; // „Rotation“ über Längengrad-Offset
+function project(lat,lon){
+  const lonAdj = ((lon+lonShift+540)%360)-180; // wrap
+  const x=(lonAdj+180)/360*world.width;
+  const y=(90-lat)/180*world.height;
+  return {x,y};
+}
+function drawGrid(){
+  wctx.clearRect(0,0,world.width,world.height);
+  wctx.lineWidth=1;
+  // Meridiane
+  for(let lon=-180; lon<=180; lon+=15){
+    wctx.strokeStyle='rgba(0,255,156,.12)';
+    wctx.beginPath();
+    for(let lat=-90; lat<=90; lat+=3){
+      const p=project(lat,lon);
+      if(lat===-90) wctx.moveTo(p.x,p.y); else wctx.lineTo(p.x,p.y);
+    }
+    wctx.stroke();
+  }
+  // Parallelen
+  for(let lat=-75; lat<=75; lat+=15){
+    wctx.strokeStyle='rgba(55,255,212,.10)';
+    wctx.beginPath();
+    for(let lon=-180; lon<=180; lon+=3){
+      const p=project(lat,lon);
+      if(lon===-180) wctx.moveTo(p.x,p.y); else wctx.lineTo(p.x,p.y);
+    }
+    wctx.stroke();
+  }
+}
+const NODE_POS=[
+  {lat:50.1109, lon:8.6821},    // Frankfurt
+  {lat:47.3769, lon:8.5417},    // Zürich
+  {lat:40.7128, lon:-74.0060},  // New York
+  {lat:1.3521,  lon:103.8198},  // Singapur
+  {lat:-33.8688,lon:151.2093},  // Sydney
+];
+let from=0,to=2,prog=0;
+function nextHop(){
+  from=to;
+  do{ to = Math.floor(Math.random()*NODE_POS.length) } while(to===from);
+  prog=0;
+}
+function ease(x){return -(Math.cos(Math.PI*x)-1)/2}
+(function worldLoop(){
+  lonShift = (lonShift+0.05)%360; // langsame Rotation
+  drawGrid();
+  // Hop animieren
+  const A=project(NODE_POS[from].lat,NODE_POS[from].lon);
+  const B=project(NODE_POS[to].lat,  NODE_POS[to].lon);
+  const t = ease(Math.min(1,prog));
+  const x = A.x+(B.x-A.x)*t, y=A.y+(B.y-A.y)*t;
+  // Trail
+  wctx.strokeStyle='rgba(0,255,156,.18)'; wctx.lineWidth=2;
+  wctx.beginPath(); wctx.moveTo(A.x,A.y); wctx.lineTo(x,y); wctx.stroke();
+  // Pulse-Kern
+  const g=wctx.createRadialGradient(x,y,0,x,y,20);
+  g.addColorStop(0,'rgba(0,255,156,.95)'); g.addColorStop(1,'rgba(0,0,0,0)');
+  wctx.fillStyle=g; wctx.beginPath(); wctx.arc(x,y,20,0,Math.PI*2); wctx.fill();
+  prog += 0.008;
+  if(prog>=1) nextHop();
+  requestAnimationFrame(worldLoop);
+})();
+
+/* ======================= Elegante Klick-Partikel ======================= */
+const clickFx=document.getElementById('clickFx'), fctx=clickFx.getContext('2d');
+function fitC(){clickFx.width=innerWidth; clickFx.height=innerHeight} addEventListener('resize',fitC); fitC();
+function burst(x,y){
+  const N=30;
+  const parts=Array.from({length:N},()=>({
+    x,y, r:Math.random()*2+1.2,
+    vx:(Math.random()-.5)*2.8, vy:(Math.random()-.5)*2.8 - Math.random()*1.2,
+    life:50+Math.random()*20, hue: Math.random()<.5?120:0
+  }));
+  let t=0;
+  (function step(){
+    fctx.clearRect(0,0,clickFx.width,clickFx.height);
+    parts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.03; p.life--;
+      const a=Math.max(0,p.life/70);
+      fctx.beginPath();
+      fctx.fillStyle = (p.hue===120? 'rgba(0,255,156,' : 'rgba(255,68,68,') + a.toFixed(2) + ')';
+      fctx.arc(p.x,p.y,p.r,0,Math.PI*2); fctx.fill();
+    });
+    t++; if(t<70) requestAnimationFrame(step); else fctx.clearRect(0,0,clickFx.width,clickFx.height);
+  })();
+}
+document.addEventListener('click', (e)=>{
+  const p = e.touches?.[0] ?? e;
+  burst(p.clientX, p.clientY);
+});
+
+/* ======================= Misc ======================= */
+document.getElementById('yy').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
