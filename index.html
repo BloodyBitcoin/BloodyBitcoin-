@@ -7,7 +7,6 @@
 <meta name="description" content="BloodyBitcoin: Krypto-Infrastruktur mit Live-Metriken.">
 
 <style>
-/* ---------- THEME ---------- */
 :root{
   --bg:#0b0a0d;
   --fg:#eaf6ff;
@@ -16,275 +15,83 @@
   --neon2:#8a7dff;
   --blood:#cc102a;
   --ember:#ff7b22;
-  --card:#0f1220;
   --border:#1b2133;
-  --glow: drop-shadow(0 0 18px rgba(255,123,34,.45)) drop-shadow(0 0 30px rgba(204,16,42,.35));
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Inter,Segoe UI,Roboto,Arial,sans-serif}
-a{color:inherit;text-decoration:none}
-.container{width:min(1200px,92%);margin:0 auto}
+body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif}
 
-/* ---------- FIXED TOP / LOGO / LOGIN ---------- */
+/* TOP BAR */
 .topbar{
-  position:sticky; top:0; z-index:60;
-  backdrop-filter: blur(10px);
-  background:linear-gradient(180deg,rgba(10,10,14,.75),rgba(10,10,14,.25));
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.8rem 1.2rem;
 }
-.topbar .row{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0}
-.brand{display:flex;align-items:center;gap:.75rem}
-.brand img{height:34px; width:auto; filter:var(--glow)}
-.brand .name{font-weight:800; letter-spacing:.4px; font-size:1.05rem}
+.topbar img{height:40px;width:auto;filter:drop-shadow(0 0 8px #ff1a1a);}
+.login{display:flex;align-items:center;gap:.6rem;}
+.chip{padding:.4rem .8rem;border:1px solid var(--border);border-radius:10px;background:#12121a;color:#aee;}
+.cta{padding:.5rem .9rem;background:radial-gradient(circle,#ff7b22,#cc102a);border-radius:10px;cursor:pointer;color:#fff;font-weight:600;}
 
-.login{
-  display:flex; align-items:center; gap:.6rem;
-}
-.login .chip{
-  padding:.55rem .8rem; border-radius:12px;
-  border:1px solid var(--border);
-  background:linear-gradient(180deg,#111522,#0a0d18);
-  color:#bfe2ff;
-  box-shadow: inset 0 0 0 1px rgba(138,125,255,.12);
-}
-.login .cta{
-  padding:.6rem .9rem; border-radius:12px; cursor:pointer;
-  border:1px solid rgba(255,123,34,.45);
-  background:radial-gradient(70% 120% at 50% 10%, rgba(255,123,34,.2), rgba(204,16,42,.18) 60%, rgba(15,13,20,.6));
-  box-shadow:0 0 22px rgba(255,123,34,.2), 0 0 36px rgba(204,16,42,.18);
-}
-.login .cta:hover{transform:translateY(-1px)}
+/* HERO */
+.hero{position:relative;overflow:hidden;text-align:center;padding:4rem 1rem;}
+.hero h1{font-size:2.8rem;margin:0;color:#fff;text-shadow:0 0 15px #ff0000;}
+.hero p{color:#ccc;font-size:1.2rem;margin:.5rem 0 1.5rem;}
 
-/* ---------- HERO: DNA BACKGROUND ---------- */
-.hero{position:relative; overflow:hidden}
-.hero .container{padding:clamp(4rem,7vw,7rem) 0 1.2rem}
-h1{margin:0 0 .8rem; font-size:clamp(2.2rem,6.2vw,4.6rem); line-height:1.05}
-.subtitle{color:#cfe1ff; opacity:.85; font-size:clamp(1rem,2.1vw,1.25rem)}
-
-/* BACKGROUND LAYERS */
-#dnaGreen, #dnaRed, #dnaGrain, #sparkCanvas{
-  position:absolute; inset:0; width:120%; height:120%; left:-10%; top:-10%;
-  object-fit:cover; pointer-events:none;
+.hero img.bg{
+  position:absolute;inset:0;object-fit:cover;width:100%;height:100%;
+  opacity:.25;z-index:-2;animation:pulse 7s ease-in-out infinite alternate;
 }
-#dnaGreen{filter:brightness(1.1) saturate(1.2) hue-rotate(-15deg);}
-#dnaRed  {mix-blend-mode:screen; filter:brightness(1.05) saturate(1.1) hue-rotate(-5deg); opacity:.65}
-#dnaGrain{mix-blend-mode:overlay; opacity:.12}
-
-/* Puls / Drift / Tear */
-@keyframes pulse {
-  0%{transform:scale(1) rotate(0.0deg)}
-  50%{transform:scale(1.035) rotate(0.2deg)}
-  100%{transform:scale(1) rotate(0deg)}
-}
-@keyframes drift {
-  0%{transform:translate3d(0,0,0)}
-  50%{transform:translate3d(-1.2%, .9%, 0)}
-  100%{transform:translate3d(0,0,0)}
-}
-@keyframes tear {
-  0%{transform:translateX(0) rotate(0deg); opacity:.70}
-  50%{transform:translateX(-2.6%) rotate(-0.6deg); opacity:.85}
-  100%{transform:translateX(0) rotate(0deg); opacity:.70}
-}
-#dnaGreen{animation:pulse 7s ease-in-out infinite, drift 18s ease-in-out infinite}
-#dnaRed{animation:tear 5.8s ease-in-out infinite}
-#sparkCanvas{opacity:.9}
-
-/* CTA buttons */
-.hero-cta{margin-top:1.2rem; display:flex; gap:.8rem; flex-wrap:wrap}
-.btn{
-  padding:.85rem 1rem; border-radius:12px; border:1px solid var(--border);
-  background:linear-gradient(180deg,#141a29,#0c101d);
-  color:#eaf6ff;
-}
-.btn.primary{
-  border-color:rgba(255,123,34,.4);
-  box-shadow:0 0 22px rgba(255,123,34,.25), inset 0 0 0 1px rgba(204,16,42,.2);
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.04);}
+  100%{transform:scale(1);}
 }
 
-/* LIVE DASHBOARD */
-.panel{
-  margin:1.6rem 0 0; padding:1rem; border:1px solid var(--border);
-  border-radius:16px; background:linear-gradient(180deg,rgba(20,24,38,.85), rgba(12,16,26,.65));
-}
-.grid{display:grid; gap:.8rem; grid-template-columns:repeat(6, minmax(160px,1fr))}
-.card{
-  background:linear-gradient(180deg,#0f1320,#0c1220);
-  border:1px solid var(--border); border-radius:14px; padding:.9rem 1rem;
-}
-.label{color:#9fb3c8; font-size:.85rem; letter-spacing:.3px}
-.value{font-size:1.35rem; font-weight:800}
-.bar{height:8px; margin-top:.55rem; border-radius:10px; background:#0b0e14; border:1px solid var(--border); overflow:hidden}
-.bar>i{display:block; height:100%;
-  background:linear-gradient(90deg,#39ff14,#7cffa1,#b4ffea);
-  width:35%; box-shadow:0 0 22px rgba(57,255,20,.3);
-  animation:charge 2.6s ease-in-out infinite;
-}
-@keyframes charge{
-  0%{transform:translateX(-60%)}
-  50%{transform:translateX(15%)}
-  100%{transform:translateX(120%)}
-}
+/* CARDS */
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1rem;max-width:1000px;margin:0 auto;}
+.card{background:#111827;border:1px solid #1b2133;border-radius:10px;padding:1rem;text-align:center;}
+.label{color:#9fb3c8;font-size:.85rem;}
+.value{font-size:1.4rem;font-weight:700;margin-top:.4rem;}
+.bar{height:8px;background:#0b0e14;border-radius:8px;overflow:hidden;margin-top:.6rem;}
+.bar i{display:block;width:40%;height:100%;background:linear-gradient(90deg,#39ff14,#b4ffea);animation:charge 2.5s infinite alternate;}
+@keyframes charge{from{transform:translateX(-40%);}to{transform:translateX(100%);}}
 
-/* Reveal */
-.reveal{opacity:0; transform:translateY(16px); transition:opacity .6s, transform .6s}
-.reveal.visible{opacity:1; transform:none}
-
-/* FOOTER / SEAL */
-footer{padding:2.2rem 0; color:#b5c9de; text-align:center; position:relative}
-footer img{height:70px; width:auto; filter:drop-shadow(0 0 22px rgba(255,123,34,.25)); opacity:.9}
-
-/* Click-Seal effect */
-.click-seal{
-  position:fixed; z-index:1000; pointer-events:none;
-  width:120px; height:120px; transform:translate(-50%,-50%) scale(.8);
-  opacity:0; transition:transform .45s ease, opacity .45s ease, filter .45s ease;
-  filter:drop-shadow(0 0 18px rgba(255,123,34,.55));
-}
-.click-seal.show{opacity:1; transform:translate(-50%,-50%) scale(1.1) rotate(-3deg)}
-.click-seal.fade{opacity:0; transform:translate(-50%,-50%) scale(.9); filter:none}
-
-/* Responsive */
-@media (max-width:980px){ .grid{grid-template-columns:repeat(3,1fr)} }
-@media (max-width:640px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .brand .name{display:none}
-}
+/* FOOTER */
+footer{text-align:center;padding:2rem 0;color:#aaa;}
+footer img{height:70px;width:auto;filter:drop-shadow(0 0 20px rgba(255,123,34,.4));}
 </style>
 </head>
 <body>
 
-<!-- TOP -->
 <div class="topbar">
-  <div class="row container">
-    <div class="brand">
-      <img src="./assets/logo.png" alt="BloodyBitcoin Logo" />
-      <div class="name">BloodyBitcoin</div>
-    </div>
-    <div class="login">
-      <div class="chip">Access: <strong>Pending</strong></div>
-      <div class="cta" id="loginBtn">Login (Beta)</div>
-    </div>
+  <img src="./AC4DE80B-C04D-465B-B2E4-14F987C0CF47.png" alt="BloodyBitcoin Logo">
+  <div class="login">
+    <div class="chip">Access: <strong>Pending</strong></div>
+    <div class="cta">Login (Beta)</div>
   </div>
 </div>
 
-<!-- HERO with DNA background -->
-<header class="hero" id="home" aria-label="DNA background">
-  <img id="dnaGreen" src="./assets/dna.jpg" alt="" />
-  <img id="dnaRed"   src="./assets/dna.jpg" alt="" />
-  <canvas id="sparkCanvas"></canvas>
-  <img id="dnaGrain" src="./assets/dna.jpg" alt="" /> <!-- benutzt als Textur/Overlay -->
+<header class="hero">
+  <img class="bg" src="./0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="DNA Background">
+  <h1>Ultraschnelle Krypto-Infrastruktur<br>für morgen.</h1>
+  <p>Skalierbar. Energieeffizient. Sofort final.</p>
 
-  <div class="container">
-    <h1 class="reveal">Ultraschnelle Krypto-Infrastruktur<br>für morgen.</h1>
-    <p class="subtitle reveal">Skalierbar. Energieeffizient. Sofort final.</p>
-    <div class="hero-cta reveal">
-      <a class="btn primary" href="#dashboard">Live-Netzwerk ansehen</a>
-      <a class="btn" href="#tech">Architektur</a>
-    </div>
-
-    <!-- LIVE PANEL -->
-    <div id="dashboard" class="panel reveal">
-      <div class="grid">
-        <div class="card"><div class="label">Bitcoin (BTC)</div><div class="value" id="btc">—</div><div class="bar"><i></i></div></div>
-        <div class="card"><div class="label">Solana (SOL)</div><div class="value" id="sol">—</div><div class="bar"><i></i></div></div>
-        <div class="card"><div class="label">Render (RNDR)</div><div class="value" id="rndr">—</div><div class="bar"><i></i></div></div>
-        <div class="card"><div class="label">Illuvium (ILV)</div><div class="value" id="ilv">—</div><div class="bar"><i></i></div></div>
-        <div class="card"><div class="label">Bitcoin Cash (BCH)</div><div class="value" id="bch">—</div><div class="bar"><i></i></div></div>
-        <div class="card"><div class="label">Bittensor (TAO)</div><div class="value" id="tao">—</div><div class="bar"><i></i></div></div>
-      </div>
-    </div>
+  <div class="panel">
+    <div class="card"><div class="label">Bitcoin (BTC)</div><div class="value">$68,024.22</div><div class="bar"><i></i></div></div>
+    <div class="card"><div class="label">Solana (SOL)</div><div class="value">$150.33</div><div class="bar"><i></i></div></div>
+    <div class="card"><div class="label">Render (RNDR)</div><div class="value">$9.12</div><div class="bar"><i></i></div></div>
+    <div class="card"><div class="label">Illuvium (ILV)</div><div class="value">$89.45</div><div class="bar"><i></i></div></div>
+    <div class="card"><div class="label">Bitcoin Cash (BCH)</div><div class="value">$430.58</div><div class="bar"><i></i></div></div>
+    <div class="card"><div class="label">Bittensor (TAO)</div><div class="value">$352.44</div><div class="bar"><i></i></div></div>
   </div>
 </header>
 
-<!-- TECH-Section Platzhalter -->
-<section id="tech" class="container" style="padding:2.2rem 0;">
-  <h2 class="reveal">Technologie-Vorschau</h2>
-  <p class="reveal" style="color:#9fb3c8">Mehr Inhalte folgen. Zugang bald über den Login freigeschaltet.</p>
-</section>
-
 <footer>
-  <img src="./assets/seal.png" alt="BloodyBitcoin Seal">
-  <div>© <span id="year"></span> BloodyBitcoin</div>
+  <img src="./IMG_7712.jpeg" alt="BloodyBitcoin Seal">
+  <div>© <script>document.write(new Date().getFullYear())</script> BloodyBitcoin</div>
 </footer>
 
-<!-- Click-Seal element -->
-<img class="click-seal" id="clickSeal" src="./assets/seal.png" alt="Seal">
-
-<script>
-/* ===== Parallax Mouse & Scroll ===== */
-const green = document.getElementById('dnaGreen');
-const red   = document.getElementById('dnaRed');
-let mx=0,my=0, sy=0;
-window.addEventListener('mousemove', e=>{ mx=(e.clientX/window.innerWidth - .5); my=(e.clientY/window.innerHeight - .5); });
-window.addEventListener('scroll', ()=>{ sy = window.scrollY; });
-
-function parallax(){
-  const tiltX = mx*3, tiltY = my*3;
-  green.style.transform = `translate3d(${tiltX*3}px, ${tiltY*3 + sy*0.05}px, 0)`;
-  red.style.transform   = `translate3d(${tiltX*-6}px, ${tiltY*-5 + sy*0.08}px, 0)`;
-  requestAnimationFrame(parallax);
-}
-parallax();
-
-/* ===== Sparks / Funken (Canvas) ===== */
-const spark = document.getElementById('sparkCanvas');
-const ctx = spark.getContext('2d', {alpha:true});
-function fit(){ spark.width = window.innerWidth; spark.height = Math.max(window.innerHeight*.9, 420); }
-window.addEventListener('resize', fit); fit();
-
-let P = Array.from({length:80}, ()=>({
-  x: Math.random()*spark.width, y: Math.random()*spark.height, r: Math.random()*1.8 + .6,
-  vx:(Math.random()-.5)*0.35, vy:(Math.random()-.5)*0.35, hue: Math.random()<.5? 18:350
-}));
-function loop(){
-  ctx.clearRect(0,0,spark.width,spark.height);
-  for(const p of P){
-    p.x+=p.vx + mx*0.2; p.y+=p.vy + my*0.2 + (sy*0.0007);
-    if(p.x<-10)p.x=spark.width+10; if(p.x>spark.width+10)p.x=-10;
-    if(p.y<-10)p.y=spark.height+10; if(p.y>spark.height+10)p.y=-10;
-    const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*7);
-    g.addColorStop(0, `hsla(${p.hue},100%,60%,.9)`); g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*7,0,Math.PI*2); ctx.fill();
-  }
-  requestAnimationFrame(loop);
-}
-loop();
-
-/* ===== Fake Price Ticker (bewegte Live-Werte) ===== */
-const coins = {
-  btc:{el:'btc', base: 68000, drift: 800},
-  sol:{el:'sol', base:   150, drift:  6},
-  rndr:{el:'rndr', base:  9.0, drift: .7},
-  ilv:{el:'ilv', base:  90, drift:  6},
-  bch:{el:'bch', base:  430, drift: 18},
-  tao:{el:'tao', base:  350, drift: 20}
-};
-const fmt = n => n.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2});
-Object.values(coins).forEach(c=> c.val = c.base * (0.98 + Math.random()*0.04));
-
-function tick(){
-  for(const k of Object.keys(coins)){
-    const c = coins[k];
-    // Brownian wobble + trend nudge
-    c.val += (Math.random()-.5) * c.drift * 0.12;
-    const el = document.getElementById(c.el);
-    if (!el) continue;
-    const up = Math.random()>.5;
-    el.textContent = (k==='btc' ? '$' : '$') + fmt(c.val);
-    el.style.color = up ? '#7CFFA1' : '#ffb4a6';
-  }
-}
-setInterval(tick, 900);
-
-/* ===== Scroll Reveal ===== */
-const obs = new IntersectionObserver(es=>{
-  for(const e of es){ if(e.isIntersecting) e.target.classList.add('visible'); }
-},{threshold:.14});
-document.querySelectorAll('.reveal, .card').forEach(el=>obs.observe(el));
-
-/* ===== Click Seal (Stempel) ===== */
-const seal = document.getElementById('clickSeal');
-function stamp(x,y){
-  seal.style.left = x+'px'; seal.style.top = y+'px';
-  seal.classList.remove('fade'); seal.classList.add('show
+</body>
+</html>
