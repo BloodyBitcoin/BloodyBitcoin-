@@ -4,103 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BloodyBitcoin — Network</title>
-<meta name="description" content="BloodyBitcoin — pulsierende Krypto-DNA, Live-Metriken, Neon-Interaktion.">
+<meta name="description" content="BloodyBitcoin — pulsierende Krypto-DNA, Live-Metriken, globale Knoten.">
 <style>
 :root{
-  --bg:#060808; --fg:#e8fdf5; --muted:#9bdcc4;
-  --neon:#00ff9c; --neon2:#37ffd4; --ember:#ff8a2a; --blood:#cc102a;
-  --border:#0f2018; --card:#0b1210;
+  --bg:#060808; --fg:#e8fdf5; --muted:#a8d9c7;
+  --neon:#00ff9c; --neon2:#37ffd4; --orange:#ffa244;
+  --border:#0f2018; --card:#0b1210; --soft:#0a1511;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
-
-/* ======= TOP / KOPFZEILE ======= */
-.top{
-  position:sticky; top:0; z-index:50;
-  background:linear-gradient(180deg,rgba(0,12,8,.7),rgba(0,10,7,.25));
-  backdrop-filter: blur(12px);
-  border-bottom:1px solid var(--border);
-}
-.top .row{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem}
-.title{
-  margin:.2rem auto;
-  text-align:center;
-  font-weight:900;
-  letter-spacing:.5px;
-  font-size:clamp(1.8rem,4.6vw,3.2rem);
-  line-height:1;
-  text-shadow:0 0 18px rgba(0,255,156,.35), 0 0 36px rgba(55,255,212,.25);
-}
-.brandline{display:flex;align-items:center;gap:.6rem}
-.brandline img{height:28px;width:auto;filter:drop-shadow(0 0 10px var(--neon))}
-.login{
-  display:flex;align-items:center;gap:.6rem
-}
-.login .chip{
-  padding:.45rem .7rem;border-radius:10px;border:1px solid var(--border);
-  background:#0b1612;color:#c9ffea
-}
-.login .cta{
-  padding:.55rem .9rem;border-radius:12px;cursor:pointer;
-  border:1px solid rgba(0,255,156,.35);
-  background:linear-gradient(180deg,#0b221a,#073f2b);
-  box-shadow:0 0 22px rgba(0,255,156,.25), inset 0 0 0 1px rgba(0,255,156,.18);
-}
-.login .cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,255,180,.25)}
+a{color:inherit;text-decoration:none}
 .container{width:min(1200px,92%);margin:0 auto}
 
-/* ======= HERO DNA ======= */
-.hero{position:relative; height:100vh; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center}
-.bg-layer{position:absolute; inset:-10%; pointer-events:none}
-.bg-layer img{position:absolute; inset:0; width:120%; height:120%; object-fit:cover}
-#dnaGreen{animation:pulse 7s ease-in-out infinite, drift 18s ease-in-out infinite, roll 60s linear infinite;
-  filter:hue-rotate(-20deg) saturate(1.35) brightness(1.1)}
-#dnaRed{mix-blend-mode:screen; opacity:.65;
-  animation:tear 6s ease-in-out infinite, drift2 22s ease-in-out infinite}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
-@keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(-1%,1%)}100%{transform:translate(0,0)}}
-@keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(-2.2%,.8%)}100%{transform:translate(0,0)}}
-@keyframes roll{to{transform:rotate(360deg)}}
-@keyframes tear{0%{transform:translateX(0)}50%{transform:translateX(-3.2%)}100%{transform:translateX(0)}}
-
-.hero-inner{position:relative; z-index:2; padding:4.5rem 1rem 1rem}
-.hero h1{font-size:clamp(2.2rem,5.5vw,4.4rem); font-weight:900; text-shadow:0 0 22px rgba(0,255,156,.35)}
-.hero p{margin-top:.7rem; color:var(--muted); font-size:clamp(1rem,2.2vw,1.25rem)}
-.hero .buttons{margin-top:1.2rem; display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap}
-.btn{padding:.85rem 1.05rem;border-radius:12px;background:#0b1713;border:1px solid rgba(0,255,156,.28);box-shadow:0 0 16px rgba(0,255,156,.22);cursor:pointer}
-.btn:hover{transform:translateY(-2px)}
-
-/* Funken-Canvas (oberhalb DNA, unterhalb Text) */
-#sparkCanvas{position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.9}
-
-/* ======= DASHBOARD ======= */
-section{padding:clamp(2.2rem,5vw,3rem) 0; border-top:1px solid var(--border)}
-.grid{display:grid; gap:.9rem; grid-template-columns:repeat(6, minmax(160px,1fr))}
-.card{
-  background:linear-gradient(180deg,#0c1412,#0a1110); border:1px solid var(--border); border-radius:14px; padding:1rem;
+/* ===== TOPBAR ===== */
+.top{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(180deg,rgba(0,12,8,.75),rgba(0,10,7,.25));
+  backdrop-filter:blur(14px); border-bottom:1px solid var(--border);
 }
-.label{font-size:.85rem; color:#9ad9c0; letter-spacing:.3px}
-.value{font-size:1.38rem; font-weight:800; margin-top:.25rem}
-.bar{height:8px; background:#07110d; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:.55rem}
-.bar>i{display:block; height:100%; width:35%; background:linear-gradient(90deg,#00ff9c,#37ffd4); box-shadow:0 0 20px rgba(0,255,156,.35); animation:scan 2.4s ease-in-out infinite}
-@keyframes scan{0%{transform:translateX(-55%)}50%{transform:translateX(10%)}100%{transform:translateX(120%)}}
+.top .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:.7rem 0}
+.logo-wrap{display:flex;justify-content:center;align-items:center}
+.logo-wrap img{height:40px;width:auto;filter:drop-shadow(0 0 14px rgba(0,255,156,.45))}
+.login{display:flex;justify-content:end;align-items:center;gap:.6rem;padding-right:.6rem}
+.login .chip{padding:.45rem .7rem;border-radius:10px;border:1px solid var(--border);background:#0b1612;color:#c9ffea}
+.login .cta{padding:.55rem .95rem;border-radius:12px;cursor:pointer;border:1px solid rgba(0,255,156,.35);
+  background:linear-gradient(180deg,#0b221a,#08442f);box-shadow:0 0 22px rgba(0,255,156,.28), inset 0 0 0 1px rgba(0,255,156,.18)}
+.login .cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,180,.25)}
 
-.badges{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
-.badges span{font-size:.7rem;padding:.25rem .45rem;border:1px solid var(--border);border-radius:999px;background:#0a1511;color:#c8ffee}
+/* ===== HERO / DNA ===== */
+.hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.bg-layer{position:absolute;inset:-15%;pointer-events:none}
+.bg-layer img{position:absolute;inset:0;width:130%;height:130%;object-fit:cover}
+#dnaGreen{animation:pulse 8s ease-in-out infinite, drift 22s ease-in-out infinite, roll 120s linear infinite;
+  filter:hue-rotate(-20deg) saturate(1.35) brightness(1.08)}
+#dnaRed{mix-blend-mode:screen;opacity:.58;animation:tear 7.2s ease-in-out infinite, drift2 26s ease-in-out infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(-1.2%,1.2%)}100%{transform:translate(0,0)}}
+@keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(-2.4%,.9%)}100%{transform:translate(0,0)}}
+@keyframes roll{to{transform:rotate(360deg)}}
+@keyframes tear{0%{transform:translateX(0)}50%{transform:translateX(-3.4%)}100%{transform:translateX(0)}}
 
-@media (max-width:980px){ .grid{grid-template-columns:repeat(3,1fr)} }
-@media (max-width:640px){ .grid{grid-template-columns:repeat(2,1fr)} }
+.hero-inner{position:relative;z-index:2;padding:4.5rem 1rem 1.2rem}
+h1.btc{font-weight:900;font-size:clamp(1.6rem,4.6vw,3rem);color:var(--orange);
+  text-shadow:0 0 18px rgba(255,162,68,.28),0 0 36px rgba(255,162,68,.18)}
+.sub{margin-top:.4rem;color:var(--muted)}
+.panel{margin:1.2rem auto 0;background:linear-gradient(180deg,#0c1412,#09110f);
+  border:1px solid var(--border);border-radius:16px;padding:1rem}
+.grid{display:grid;gap:.9rem;grid-template-columns:repeat(6,minmax(160px,1fr))}
+.card{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:1rem}
+.label{font-size:.85rem;color:#98d5be;letter-spacing:.3px}
+.value{font-size:1.35rem;font-weight:800;margin-top:.25rem}
+.bar{height:8px;background:#07110d;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:.55rem}
+.bar i{display:block;height:100%;width:35%;background:linear-gradient(90deg,#00ff9c,#37ffd4);box-shadow:0 0 20px rgba(0,255,156,.35);
+  animation:scan 2.6s ease-in-out infinite}
+@keyframes scan{0%{transform:translateX(-55%)}50%{transform:translateX(12%)}100%{transform:translateX(120%)}}
 
-/* ======= CLICK STAMP (Siegel + Partikel) ======= */
-#seal{position:fixed; width:120px; height:120px; z-index:100; pointer-events:none; opacity:0;
-  transform:translate(-50%,-50%) scale(.85); transition:opacity .35s ease, transform .35s ease;
-  filter:drop-shadow(0 0 22px rgba(0,255,156,.45))}
-#seal.show{opacity:1; transform:translate(-50%,-50%) scale(1.05)}
-#fx{position:fixed; inset:0; z-index:101; pointer-events:none}
+@media (max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
 
-/* ======= FOOTER ======= */
-footer{padding:2rem 0; text-align:center; color:#86eec6}
-.small{font-size:.9rem; opacity:.85}
+/* Funken (dezent) */
+#sparkCanvas{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.75}
+
+/* ===== WORLD MAP ===== */
+.map-section{position:relative;padding:2.4rem 0;border-top:1px solid var(--border);background:#030606}
+.map-wrap{position:relative;max-width:1200px;margin:0 auto;aspect-ratio:16/9;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#000}
+.map-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;filter:saturate(1.1) contrast(1.05) brightness(.92)}
+#mapFx{position:absolute;inset:0;width:100%;height:100%}
+
+/* Footer */
+footer{padding:2rem 0;text-align:center;color:#86eec6}
+.small{opacity:.85;font-size:.92rem}
 </style>
 </head>
 <body>
@@ -108,10 +81,10 @@ footer{padding:2rem 0; text-align:center; color:#86eec6}
 <!-- ===== TOP ===== -->
 <div class="top">
   <div class="row container">
-    <div class="brandline">
-      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/AC4DE80B-C04D-465B-B2E4-14F987C0CF47.png" alt="Logo">
+    <div></div>
+    <div class="logo-wrap">
+      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/AC4DE80B-C04D-465B-B2E4-14F987C0CF47.png" alt="BloodyBitcoin">
     </div>
-    <div class="title">BLOODYBITCOIN</div>
     <div class="login">
       <div class="chip">Access: <strong>Pending</strong></div>
       <div class="cta" id="loginBtn">Login (Beta)</div>
@@ -119,7 +92,7 @@ footer{padding:2rem 0; text-align:center; color:#86eec6}
   </div>
 </div>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (DNA) ===== -->
 <section class="hero" id="home">
   <div class="bg-layer">
     <img id="dnaGreen" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="">
@@ -128,172 +101,172 @@ footer{padding:2rem 0; text-align:center; color:#86eec6}
   </div>
 
   <div class="hero-inner container">
-    <h1>Pulsierende Krypto-DNA</h1>
-    <p>Geschwindigkeit, Finalität, globale Verteilung — visuell erlebbar.</p>
-    <div class="buttons">
-      <div class="btn" data-action="network">Live-Netzwerk</div>
-      <div class="btn" data-action="tech">Architektur</div>
+    <h1 class="btc" id="btc">$—</h1>
+    <div class="sub">Rechenlast • Finalität • globale Verteilung</div>
+
+    <div class="panel">
+      <div class="grid">
+        <div class="card"><div class="label">Transaktionen (gesamt)</div><div class="value" id="totalTx">—</div><div class="bar"><i></i></div></div>
+        <div class="card"><div class="label">Throughput (TPS)</div><div class="value" id="tps">—</div><div class="bar"><i></i></div></div>
+        <div class="card"><div class="label">Latenz</div><div class="value" id="latency">—</div><div class="bar"><i></i></div></div>
+        <div class="card"><div class="label">Nodes online</div><div class="value" id="nodes">—</div><div class="bar"><i></i></div></div>
+        <div class="card"><div class="label">GPU-Leistung</div><div class="value" id="gpu">—</div><div class="bar"><i></i></div></div>
+        <div class="card"><div class="label">Netzwerkauslastung</div><div class="value" id="util">—</div><div class="bar"><i id="utilBar"></i></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== DASHBOARD ===== -->
-<section id="dash">
+<!-- ===== WORLD MAP (Night) ===== -->
+<section class="map-section" id="network">
   <div class="container">
-    <div class="grid">
-      <div class="card"><div class="label">Bitcoin (BTC) — Live</div><div class="value" id="btc">$—</div><div class="bar"><i></i></div></div>
-      <div class="card"><div class="label">Transaktionen (gesamt)</div><div class="value" id="totalTx">—</div><div class="bar"><i></i></div></div>
-      <div class="card"><div class="label">Throughput (TPS)</div><div class="value" id="tps">—</div><div class="bar"><i></i></div></div>
-      <div class="card"><div class="label">Latenz</div><div class="value" id="latency">—</div><div class="bar"><i></i></div></div>
-      <div class="card"><div class="label">GPU-Knoten online</div><div class="value" id="nodes">—</div><div class="bar"><i></i></div></div>
-      <div class="card"><div class="label">Netzwerkauslastung</div><div class="value" id="util">—</div><div class="bar"><i id="utilBar"></i></div></div>
+    <div class="map-wrap">
+      <img alt="Earth at Night" src="https://eoimages.gsfc.nasa.gov/images/imagerecords/55000/55167/earth_lights_lrg.jpg">
+      <canvas id="mapFx"></canvas>
     </div>
-    <div class="badges" id="geo"></div>
   </div>
 </section>
 
 <footer>
-  <div class="container small">© <span id="yy"></span> BloodyBitcoin • Visual Demo</div>
+  <div class="container small">© <span id="yy"></span> BloodyBitcoin</div>
 </footer>
 
-<!-- Click stamp & FX canvas -->
-<img id="seal" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_7712.jpeg" alt="Seal">
-<canvas id="fx"></canvas>
-
 <script>
-/* ===== Canvas Funken (grün / Neon) ===== */
-const spark = document.getElementById('sparkCanvas');
-const sctx = spark.getContext('2d');
-function fitSpark(){spark.width=innerWidth; spark.height=innerHeight;}
-addEventListener('resize', fitSpark); fitSpark();
-let P = Array.from({length:90}, ()=>({x:Math.random()*spark.width, y:Math.random()*spark.height, r:Math.random()*1.6+0.6, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35}));
-(function loop(){
-  sctx.clearRect(0,0,spark.width,spark.height);
-  for(const p of P){
+/* ===== Subtle green sparks ===== */
+const sc=document.getElementById('sparkCanvas'), sctx=sc.getContext('2d');
+function fitS(){sc.width=innerWidth; sc.height=innerHeight} addEventListener('resize',fitS); fitS();
+let SP=Array.from({length:70},()=>({x:Math.random()*sc.width,y:Math.random()*sc.height,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.4+.5}));
+(function loopS(){
+  sctx.clearRect(0,0,sc.width,sc.height);
+  for(const p of SP){
     p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0)p.x=spark.width; if(p.x>spark.width)p.x=0;
-    if(p.y<0)p.y=spark.height; if(p.y>spark.height)p.y=0;
+    if(p.x<0)p.x=sc.width; if(p.x>sc.width)p.x=0;
+    if(p.y<0)p.y=sc.height; if(p.y>sc.height)p.y=0;
     const g=sctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*8);
-    g.addColorStop(0,'rgba(0,255,156,.9)'); g.addColorStop(1,'rgba(0,0,0,0)');
-    sctx.fillStyle=g; sctx.beginPath(); sctx.arc(p.x,p.y,p.r*8,0,Math.PI*2); sctx.fill();
+    g.addColorStop(0,'rgba(0,255,156,.8)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    sctx.fillStyle=g; sctx.beginPath(); sctx.arc(p.x,p.y,p.r*7,0,Math.PI*2); sctx.fill();
   }
-  requestAnimationFrame(loop);
+  requestAnimationFrame(loopS);
 })();
 
-/* ===== Live Bitcoin Price (Coingecko + Coinbase Fallback) ===== */
-const btcEl = document.getElementById('btc');
+/* ===== BTC live (Coingecko → Coinbase Fallback) ===== */
+const btcEl=document.getElementById('btc');
 async function fetchBTC(){
   try{
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',{cache:'no-store'});
-    if(!r.ok) throw new Error('cg fail');
-    const j = await r.json();
-    const v = j.bitcoin.usd;
-    btcEl.textContent = '$' + Number(v).toLocaleString('en-US',{maximumFractionDigits:2});
-  }catch(e){
+    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',{cache:'no-store'});
+    if(!r.ok) throw 0; const j=await r.json();
+    btcEl.textContent='$'+Number(j.bitcoin.usd).toLocaleString('en-US',{maximumFractionDigits:2});
+  }catch{
     try{
-      const r2 = await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot',{cache:'no-store'});
-      const j2 = await r2.json();
-      const v2 = j2.data && j2.data.amount ? j2.data.amount : null;
-      if(v2) btcEl.textContent = '$' + Number(v2).toLocaleString('en-US',{maximumFractionDigits:2});
-      else throw new Error('cb fail');
-    }catch(e2){
-      btcEl.textContent = '$—';
-    }
+      const r2=await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot',{cache:'no-store'});
+      const j2=await r2.json(); const v=j2?.data?.amount;
+      btcEl.textContent=v?('$'+Number(v).toLocaleString('en-US',{maximumFractionDigits:2})):'$—';
+    }catch{ btcEl.textContent='$—'; }
   }
 }
 fetchBTC(); setInterval(fetchBTC, 20000);
 
-/* ===== Fake Metrics (bewegte Realtime-Werte) ===== */
-const totalTxEl = document.getElementById('totalTx');
-const tpsEl = document.getElementById('tps');
-const latencyEl = document.getElementById('latency');
-const nodesEl = document.getElementById('nodes');
-const utilEl = document.getElementById('util');
-const utilBar = document.getElementById('utilBar');
-const fmtDE = n => n.toLocaleString('de-DE');
-
-let totalTx = Math.floor(3_500_000 + Math.random()*3_000_000);
-let tpsTarget = 4200 + Math.random()*4500, tps = tpsTarget*.92;
-let latency = 26 + Math.random()*18;
-let nodes = 128 + Math.floor(Math.random()*48);
-let util = 42 + Math.random()*30;
-
-function tick(){
-  if(Math.random()<.02) tpsTarget = 3500 + Math.random()*5200;
-  tps += (tpsTarget - tps)*0.06;
-  totalTx += Math.floor(tps*(0.5 + Math.random()*0.9));
-  latency += (Math.random()-.5)*1.6; latency = Math.max(16, Math.min(70, latency));
-  if(Math.random()<.01) nodes += (Math.random()<.5?-1:1);
-  util += (Math.random()-.5)*3.4; util = Math.max(8, Math.min(98, util));
-
-  totalTxEl.textContent = fmtDE(totalTx);
-  tpsEl.textContent = fmtDE(Math.round(tps)) + ' TPS';
-  latencyEl.textContent = Math.round(latency) + ' ms';
-  nodesEl.textContent = fmtDE(nodes);
-  utilEl.textContent = Math.round(util) + ' %';
-  utilBar.style.width = util + '%';
+/* ===== Smooth metrics (easing, realistisch) ===== */
+const el={totalTx:qs('totalTx'), tps:qs('tps'), latency:qs('latency'), nodes:qs('nodes'), gpu:qs('gpu'), util:qs('util')};
+const utilBar=document.getElementById('utilBar');
+let state={
+  totalTx: Math.floor(4_200_000 + Math.random()*2_000_000),
+  tps: 3800 + Math.random()*1800,
+  latency: 28 + Math.random()*12,
+  nodes: 140 + Math.random()*20,
+  gpu: 3.0 + Math.random()*1.2, // PFLOPS (visual)
+  util: 48 + Math.random()*18
+};
+let target={...state};
+function qs(id){return document.getElementById(id)}
+function pickTargets(){
+  target.tps = 3200 + Math.random()*2800;
+  target.latency = 22 + Math.random()*18;
+  target.nodes = 140 + (Math.random()*10-5);
+  target.gpu = 2.8 + Math.random()*1.6;
+  target.util = 35 + Math.random()*40;
+  // totalTx steigt kontinuierlich je nach tps
 }
-setInterval(tick, 1200); tick();
-
-/* ===== Geo-Badges (Demo-Standorte) ===== */
-const cities = ['Frankfurt','Zürich','London','Amsterdam','New York','Toronto','São Paulo','Reykjavík','Dubai','Mumbai','Singapur','Hongkong','Seoul','Tokyo','Sydney'];
-const geo = document.getElementById('geo');
-cities.sort(()=>Math.random()-.5).slice(0,9).forEach(c=>{
-  const s=document.createElement('span'); s.textContent=c; geo.appendChild(s);
-});
-
-/* ===== Klick-Stempel + Partikel-Explosion (grün/orange) ===== */
-const seal = document.getElementById('seal');
-const fx = document.getElementById('fx');
-const fctx = fx.getContext('2d');
-function fitFx(){fx.width=innerWidth; fx.height=innerHeight}
-addEventListener('resize', fitFx); fitFx();
-
-function burst(x,y){
-  // Siegel Stamp
-  seal.style.left = x+'px'; seal.style.top = y+'px';
-  seal.classList.add('show');
-  setTimeout(()=>seal.classList.remove('show'), 320);
-
-  // Partikel
-  const N = 70;
-  const parts = Array.from({length:N}, ()=>({
-    x, y, r: Math.random()*2+1.5,
-    vx: (Math.random()-.5)*5.5,
-    vy: (Math.random()-.5)*5.5 - Math.random()*2,
-    life: 50+Math.random()*25,
-    col: Math.random()<.6 ? 'rgba(0,255,156,' : 'rgba(255,140,40,'
-  }));
-
-  let t=0;
-  (function step(){
-    fctx.clearRect(0,0,fx.width,fx.height);
-    parts.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy; p.vy+=0.05; p.life--;
-      const alpha = Math.max(0, p.life/70);
-      fctx.beginPath();
-      fctx.fillStyle = p.col + (alpha.toFixed(2)) + ')';
-      fctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      fctx.fill();
-    });
-    t++;
-    if(t<75) requestAnimationFrame(step); else fctx.clearRect(0,0,fx.width,fx.height);
-  })();
+setInterval(pickTargets, 3500);
+function lerp(a,b,t){return a+(b-a)*t}
+function render(){
+  // sanft Richtung Ziel
+  state.tps = lerp(state.tps, target.tps, 0.06);
+  state.latency = lerp(state.latency, target.latency, 0.06);
+  state.nodes = lerp(state.nodes, target.nodes, 0.02);
+  state.gpu = lerp(state.gpu, target.gpu, 0.04);
+  state.util = lerp(state.util, target.util, 0.05);
+  state.totalTx += Math.max(1, Math.round(state.tps*(0.45 + Math.random()*0.2)));
+  // Ausgabe
+  el.totalTx.textContent = state.totalTx.toLocaleString('de-DE');
+  el.tps.textContent = Math.round(state.tps).toLocaleString('de-DE')+' TPS';
+  el.latency.textContent = Math.round(state.latency)+' ms';
+  el.nodes.textContent = Math.round(state.nodes).toLocaleString('de-DE');
+  el.gpu.textContent = state.gpu.toFixed(2)+' PFLOPS';
+  el.util.textContent = Math.round(state.util)+' %';
+  utilBar.style.width = Math.max(6, Math.min(100, state.util))+'%';
+  requestAnimationFrame(render);
 }
+requestAnimationFrame(render);
 
-// alle Buttons & Login lösen Stempel aus
-['click','touchstart'].forEach(evt=>{
-  document.addEventListener(evt, e=>{
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    // nicht doppelt feuern, wenn Canvas selbst klickt
-    if (e.target.id==='sparkCanvas' || e.target.id==='fx' || e.target.id==='seal') return;
-    burst(p.clientX, p.clientY);
+/* ===== World map: pulsierende Verbindungen ===== */
+const map = document.getElementById('mapFx');
+const mctx = map.getContext('2d');
+function fitM(){map.width=map.clientWidth; map.height=map.clientHeight}
+addEventListener('resize',fitM); fitM();
+
+// Equirectangular Projektion
+function project(lat,lon){
+  const x = (lon+180)/360 * map.width;
+  const y = (90-lat)/180 * map.height;
+  return {x,y};
+}
+// Standorte (lat, lon, label)
+const nodes=[
+  {lat:50.1109, lon:8.6821,  label:'V1 Frankfurt'},
+  {lat:47.3769, lon:8.5417,  label:'V2 Zürich'},
+  {lat:40.7128, lon:-74.0060,label:'V3 New York'},
+  {lat:1.3521,  lon:103.8198,label:'V4 Singapur'},
+  {lat:-33.8688,lon:151.2093,label:'V5 Sydney'},
+];
+const links=[[0,1],[1,3],[0,2],[3,4],[2,3]];
+let t=0;
+(function mapLoop(){
+  mctx.clearRect(0,0,map.width,map.height);
+  // Linien mit Puls
+  links.forEach(([a,b],i)=>{
+    const pa=project(nodes[a].lat,nodes[a].lon);
+    const pb=project(nodes[b].lat,nodes[b].lon);
+    // Grundlinie (dunkelgrün)
+    mctx.strokeStyle='rgba(0,255,156,.18)'; mctx.lineWidth=2;
+    mctx.beginPath(); mctx.moveTo(pa.x,pa.y); mctx.lineTo(pb.x,pb.y); mctx.stroke();
+    // Puls-Kern wandert
+    const prog = ( (t*0.008 + i*0.2) % 1 );
+    const cx = pa.x + (pb.x-pa.x)*prog;
+    const cy = pa.y + (pb.y-pa.y)*prog;
+    const grad = mctx.createRadialGradient(cx,cy,0,cx,cy,22);
+    grad.addColorStop(0,'rgba(0,255,156,.9)');
+    grad.addColorStop(1,'rgba(0,0,0,0)');
+    mctx.fillStyle=grad; mctx.beginPath(); mctx.arc(cx,cy,22,0,Math.PI*2); mctx.fill();
   });
-});
-document.getElementById('loginBtn').addEventListener('click', (e)=>{ burst(e.clientX, e.clientY); });
+  // Nodes
+  nodes.forEach((n,idx)=>{
+    const p=project(n.lat,n.lon);
+    mctx.fillStyle='rgba(0,255,156,.95)'; mctx.beginPath(); mctx.arc(p.x,p.y,4.2,0,Math.PI*2); mctx.fill();
+    // Glow
+    const grad=mctx.createRadialGradient(p.x,p.y,0,p.x,p.y,14);
+    grad.addColorStop(0,'rgba(0,255,156,.55)'); grad.addColorStop(1,'rgba(0,0,0,0)');
+    mctx.fillStyle=grad; mctx.beginPath(); mctx.arc(p.x,p.y,14,0,Math.PI*2); mctx.fill();
+    // Label
+    mctx.fillStyle='rgba(210,255,240,.95)'; mctx.font='12px Inter, Arial';
+    mctx.fillText(n.label, p.x+8, p.y-8);
+  });
+  t++; requestAnimationFrame(mapLoop);
+})();
 
-/* ===== Kleinigkeiten ===== */
-document.getElementById('yy').textContent = new Date().getFullYear();
+/* ===== Misc ===== */
+document.getElementById('yy').textContent=new Date().getFullYear();
+document.getElementById('loginBtn').addEventListener('click',()=>{/* später echte Aktion */});
 </script>
 </body>
 </html>
