@@ -2,463 +2,142 @@
 <html lang="de">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BloodyBitcoin — Highspeed Network</title>
-<meta name="description" content="BloodyBitcoin: Neon-Krypto-Infrastruktur mit Live-Metriken und 3D-Globus.">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BloodyBitcoin</title>
+<meta name="description" content="BloodyBitcoin — Krypto • KI • High-Performance Netzwerk" />
 
 <!-- THREE.js für den Globus -->
-<script defer src="https://unpkg.com/three@0.159.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 
 <style>
 :root{
-  /* Farben angelehnt an dein DNA-Bild */
-  --bg:#0a0b0d;
-  --bg-2:#07080a;
-  --ink:#e9f7ff;
-  --muted:#a8c3d8;
-  --acid:#1aff68;         /* Neon-Grün aus Bild */
-  --acid-2:#00e0a0;
-  --blood:#ff2b2b;        /* Rot aus Bild */
-  --ember:#ff8a2a;        /* BTC-Orange */
-  --pane:#0d1119;
-  --glass:#0f1422cc;
-  --line:#1c2334;
-  --glow-acid: 0 0 28px rgba(26,255,104,.28), 0 0 60px rgba(0,224,160,.18);
-  --glow-ember: 0 0 28px rgba(255,138,42,.36), 0 0 70px rgba(255,70,20,.28);
+  --bg:#070a0b;
+  --ink:#e7f6ff;
+  --muted:#9bb6c7;
+  --neon:#2cffb5;
+  --neon2:#2ef7ff;
+  --lava:#ff8a2a;
+  --lava2:#ffb15e;
+  --glass:#0a1217cc;
+  --border:#103034;
+  --panel:#0b1116e6;
+  --glow-neon: 0 0 22px #1affcf, 0 0 44px #23ffd8;
+  --glow-lava: 0 0 22px #ff7a1e, 0 0 44px #ff9a4a;
 }
 
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-a{text-decoration:none;color:inherit}
-.container{width:min(1200px,92%);margin:0 auto}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:0 auto}
 
-/* ---------- Top Slogan ---------- */
-.top{
+.spacer{height:80vh} /* viel Raum zum Atmen */
+
+/* ---------- HEADER / CLAIM ---------- */
+.claim{
   position:sticky; top:0; z-index:50;
-  background:linear-gradient(180deg,rgba(6,8,12,.85),rgba(6,8,12,.35));
+  background:linear-gradient(180deg, rgba(7,10,11,.85), rgba(7,10,11,.25));
   backdrop-filter: blur(8px);
-  border-bottom:1px solid #0d1322;
+  border-bottom:1px solid #0d1c1f;
 }
-.top .inner{padding:.8rem 0; text-align:center}
-.tag{
-  font-weight:800; letter-spacing:.05em;
-  font-size:clamp(1.1rem,2.8vw,1.8rem);
-  color:#c8ffe1;
-  text-shadow: 0 0 10px rgba(26,255,104,.55), 0 0 26px rgba(26,255,104,.35);
+.claim-inner{padding:.9rem 0;text-align:center}
+.claim h1{
+  margin:.1rem 0 .2rem;
+  font-weight:900; letter-spacing:.4px;
+  font-size:clamp(1.3rem,2.8vw,2rem);
+  color:#cffff1;
+  text-shadow: 0 0 18px #19ffc9;
   animation:pulse 2.4s ease-in-out infinite;
 }
-.sub{margin-top:.2rem; color:#b8d6ea; opacity:.9; font-size:.95rem}
+.claim p{margin:0;opacity:.85;color:#bfe9df}
 @keyframes pulse{
-  0%,100%{filter:drop-shadow(0 0 10px rgba(26,255,104,.45))}
-  50%{filter:drop-shadow(0 0 26px rgba(26,255,104,.85))}
+  0%,100%{filter:drop-shadow(0 0 10px #19ffc9)}
+  50%{filter:drop-shadow(0 0 28px #19ffc9)}
 }
 
-/* ---------- Hero ---------- */
-.hero{position:relative; overflow:hidden; min-height:86vh;}
-.hero .layer{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none;
+/* ---------- HERO DNA ---------- */
+.hero{
+  position:relative; height:100vh; overflow:hidden;
+  background: radial-gradient(1200px 520px at 12% 20%, #082018 0%, #091013 50%, #070a0b 100%);
 }
-.hero .dna{opacity:1; transform:scale(1.02); transition:transform .8s ease}
-.hero .grain{mix-blend-mode:overlay; opacity:.16}
-.hero .grad{
-  background: radial-gradient(1200px 600px at 15% 30%, rgba(26,255,104,.12), transparent 60%),
-              radial-gradient(1200px 600px at 85% 25%, rgba(255,43,43,.10), transparent 60%),
-              linear-gradient(90deg,#06110b,#0a0b0d 40%,#0a0a0e);
-  filter:contrast(1.08) brightness(1.02);
+.hero .dna{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:.92; transform:scale(1.02);
+  filter:saturate(1.15) contrast(1.04) brightness(1.06);
 }
-#partHero{position:absolute; inset:0;}
+.hero .overlay-grad{
+  position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(20,255,120,.12), rgba(255,40,60,.12));
+  mix-blend-mode:screen; pointer-events:none;
+}
+#particles{
+  position:absolute; inset:0; pointer-events:none;
+  mix-blend-mode:screen;
+}
 
-/* ---------- Spacer (viel Raum) ---------- */
-.spacer{
-  position:relative;
-  height: 190vh;        /* 2-3 Bildschirmhöhen */
-  background:
-   radial-gradient(1600px 800px at 10% 10%, rgba(26,255,104,.08), transparent 60%),
-   radial-gradient(1400px 600px at 90% 15%, rgba(255,43,43,.06), transparent 60%),
-   linear-gradient(#0a0b0d,#07080a);
-  overflow:hidden;
-}
-#partFlow{position:absolute; inset:0;}
+/* ---------- PANELS ---------- */
+.section{padding:6rem 0}
+.section h2{margin:0 0 1.2rem; font-size:clamp(1.3rem,2.4vw,1.8rem); color:#bfe2f2}
 
-/* ---------- Panels ---------- */
-.section{padding:3.5rem 0}
-.h2{font-weight:900; font-size:clamp(1.4rem,3.4vw,2.1rem); margin:0 0 1.2rem}
-.grid{display:grid; gap:1.6rem; grid-template-columns:repeat(12,1fr)}
-.card{
-  grid-column:span 6; /* Standard 2 pro Reihe, unten überschrieben */
-  background:linear-gradient(180deg, rgba(31,46,62,.06), rgba(9,14,21,.4));
-  border:1px solid #122037;
-  border-radius:18px; padding:1.4rem 1.2rem;
-  position:relative; overflow:hidden;
-  box-shadow: inset 0 0 0 1px rgba(168,195,216,.06), 0 10px 40px rgba(0,0,0,.25);
-}
-.card::before{
-  content:""; position:absolute; inset:-2px; border-radius:20px;
-  background:radial-gradient(500px 140px at 15% 0%, rgba(26,255,104,.12), transparent 50%),
-             radial-gradient(500px 120px at 85% 0%, rgba(0,224,160,.08), transparent 50%);
-  mix-blend-mode:screen; filter:blur(6px); pointer-events:none;
-}
-.label{color:#a8c3d8; font-size:.95rem; letter-spacing:.02em}
-.value{margin-top:.35rem; font-weight:900; font-size:clamp(1.4rem,3.8vw,2.2rem)}
-.bar{height:10px; margin-top:.75rem; background:#0a0e14; border:1px solid #132238; border-radius:999px; overflow:hidden}
-.bar i{display:block; height:100%; width:18%; background:linear-gradient(90deg,#1aff68,#b6ffd8); box-shadow: var(--glow-acid); transition:width 1.4s ease-in-out}
+.grid{display:grid; gap:1.4rem; grid-template-columns:repeat(2, minmax(280px,1fr))}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
 
-/* Spezielle BTC-Karte */
-.card-btc{
-  grid-column:span 12;
-  border-color:#2b1810;
-  background:
-    radial-gradient(500px 140px at 18% -10%, rgba(255,138,42,.22), transparent 60%),
-    linear-gradient(180deg, rgba(35,24,10,.45), rgba(15,10,6,.55));
-  box-shadow: inset 0 0 0 1px rgba(255,138,42,.18), 0 18px 60px rgba(255,90,15,.18);
+.panel{
+  background:linear-gradient(180deg, #0d151b, #0a1116);
+  border:1px solid #102026; border-radius:18px; padding:1.2rem 1.4rem;
+  box-shadow: inset 0 0 0 1px rgba(46,247,255,.08), 0 10px 24px rgba(0,0,0,.35);
 }
-.btc-row{display:flex; align-items:center; gap:1.1rem; flex-wrap:wrap}
-.btc-icon{
-  width:64px; height:64px; border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, #ffd9a3, #ff8a2a 60%, #c74b00 100%);
-  box-shadow: var(--glow-ember);
-  display:grid; place-items:center;
+.panel.glass{
+  background:linear-gradient(180deg, rgba(12,24,20,.65), rgba(8,16,14,.65));
+  border:1px solid rgba(44,255,181,.2); backdrop-filter: blur(12px);
+  box-shadow: inset 0 0 0 1px rgba(44,255,181,.25), 0 0 28px rgba(44,255,181,.12);
 }
-.btc-price{font-size:clamp(1.8rem,4.6vw,2.6rem); font-weight:900; color:#ffd8b5; text-shadow:0 0 26px rgba(255,138,42,.35)}
-.small{font-size:.95rem; color:#f7caa5; opacity:.9}
+.label{color:#9fd8c8;letter-spacing:.4px}
+.value{font-size:1.8rem;font-weight:900}
 
-/* ---------- Globe ---------- */
-.globe-wrap{position:relative; height:72vh; border-top:1px solid #0f1628; border-bottom:1px solid #0f1628;
-  background: radial-gradient(1200px 500px at 50% -10%, rgba(26,255,104,.06), transparent 60%),
-              linear-gradient(180deg,#090b10,#07080a);}
-#globe{width:100%; height:100%;}
-.legend{position:absolute; right:18px; top:18px; display:flex; gap:.6rem; align-items:center; font-size:.9rem; color:#a8c3d8}
-.dot{width:.7rem; height:.7rem; border-radius:50%}
-.dot.g{background:#24ff70; box-shadow:0 0 12px #24ff70}
-.dot.r{background:#ff2b2b; box-shadow:0 0 12px #ff2b2b}
+/* BTC – orange Lava-Glas */
+.btc-card{
+  grid-column:1 / -1;
+  background:linear-gradient(180deg, rgba(50,20,0,.65), rgba(35,14,0,.65));
+  border:1px solid rgba(255,138,42,.38);
+  box-shadow: inset 0 0 0 1px rgba(255,177,94,.25), 0 0 28px rgba(255,138,42,.26);
+}
+.btc-row{display:flex;align-items:center;gap:1rem}
+.btc-logo{
+  width:64px;height:64px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, #ffcc7a 30%, #ff9c2f 60%, #ff7e1c 100%);
+  box-shadow: var(--glow-lava);
+  display:grid; place-items:center; color:#3c1d00; font-weight:900; font-size:1.6rem;
+}
+.btc-price{font-size:2rem;font-weight:900;color:#ffcda3;text-shadow:var(--glow-lava)}
 
-/* ---------- Footer & Sound ---------- */
-footer{padding:2.2rem 0; text-align:center; background:#000}
+/* Ladebalken – flüssig */
+.bar{height:10px; border-radius:10px; overflow:hidden; background:#081015; border:1px solid #0c3035}
+.bar > i{display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,#1cff95,#2effff);
+  box-shadow:0 0 18px rgba(44,255,181,.35);
+  transition:width 2.2s ease-in-out;
+}
+
+/* ---------- GLOBUS ---------- */
+.globe-wrap{height:520px; border-radius:22px; position:relative; overflow:hidden;
+  border:1px solid #103034; background: radial-gradient(900px 420px at 70% 30%, #0b1116, #070a0b);
+  box-shadow: inset 0 0 0 1px rgba(44,255,181,.06), 0 10px 30px rgba(0,0,0,.35);
+}
+#globe{position:absolute; inset:0}
+
+/* ---------- SOUND TOGGLE ---------- */
 .sound{
-  position:fixed; right:16px; bottom:16px; z-index:60;
-  width:42px; height:42px; border-radius:50%;
-  border:1px solid #143;
-  background:radial-gradient(60% 60% at 40% 30%, rgba(26,255,104,.18), rgba(10,20,15,.8));
-  display:grid; place-items:center; cursor:pointer; opacity:.9
+  position:fixed; right:14px; bottom:14px; z-index:60;
+  width:44px;height:44px;border-radius:14px; display:grid; place-items:center;
+  background:linear-gradient(180deg,#0f171c,#0a1216); border:1px solid #14313a;
+  box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px rgba(44,255,181,.18);
+  cursor:pointer; opacity:.88;
 }
-.sound svg{width:22px; height:22px; filter:drop-shadow(0 0 10px rgba(26,255,104,.6))}
-.sound.muted{opacity:.6; filter:grayscale(.2)}
-/* Responsive */
-@media (max-width:980px){
-  .card{grid-column:span 12}
+.sound small{font-size:.7rem;color:#8fcfbf}
+
+/* ---------- FOOTER (SIEGEL) ---------- */
+footer{
+  background:#000; padding:5rem 0 6rem; text-align:center; border-top:1px solid #111;
 }
-</style>
-</head>
-<body>
-
-<!-- Sticky Slogan -->
-<div class="top">
-  <div class="container inner">
-    <div class="tag">GPU is the New OIL</div>
-    <div class="sub">Founder — Chris R. Herloch</div>
-  </div>
-</div>
-
-<!-- HERO: DNA Bild + Partikel -->
-<section class="hero" aria-label="DNA Hero">
-  <div class="layer grad"></div>
-  <img class="layer dna" id="dnaImg"
-       src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png"
-       alt="BloodyBitcoin DNA">
-  <canvas id="partHero"></canvas>
-  <img class="layer grain" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="">
-</section>
-
-<!-- viel Raum mit fließenden Partikeln -->
-<div class="spacer">
-  <canvas id="partFlow"></canvas>
-</div>
-
-<!-- NETWORK PANELS -->
-<section class="section container" id="stats">
-  <h2 class="h2">Netzwerk-Parameter</h2>
-
-  <!-- BTC live EUR -->
-  <div class="card card-btc">
-    <div class="btc-row">
-      <div class="btc-icon" aria-hidden="true">
-        <!-- Bitcoin SVG -->
-        <svg viewBox="0 0 24 24" fill="#fff" width="28" height="28">
-          <path d="M13.5 3h-3v2h-2v2h2v8h-2v2h2v2h3v-2h2v-2h-2v-2.5h1c2.2 0 3.5-1.2 3.5-3s-1.3-3-3.5-3H13.5V5h2V3h-2zm0 5c.9 0 1.5.5 1.5 1.2s-.6 1.3-1.5 1.3h-1V8h1z"/>
-        </svg>
-      </div>
-      <div>
-        <div class="small">Bitcoin (EUR, live)</div>
-        <div class="btc-price" id="btcEur">Lade …</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid" id="metricGrid">
-    <!-- Karten werden per JS befüllt -->
-  </div>
-</section>
-
-<!-- 3D GLOBUS -->
-<section class="globe-wrap" aria-label="Global Nodes">
-  <div class="legend"><span class="dot g"></span> Verbunden <span class="dot r" style="margin-left:.8rem"></span> Wartet</div>
-  <div id="globe"></div>
-</section>
-
-<footer>
-  <div style="opacity:.8">© <span id="yr"></span> BloodyBitcoin — All Systems Online</div>
-</footer>
-
-<!-- Sound Button -->
-<button class="sound muted" id="soundBtn" aria-label="Sound ein/aus">
-  <svg viewBox="0 0 24 24"><path fill="#adffcf" d="M3 10v4h3l4 4V6L6 10H3zm13.5 2a4.5 4.5 0 0 0-3-4.243v8.486A4.5 4.5 0 0 0 16.5 12zm-3-9v2.06a7 7 0 0 1 0 13.88V21a9 9 0 0 0 0-18z"/></svg>
-</button>
-
-<script>
-/* UTIL */
-const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
-
-/* ======= HERO Partikel & DNA Bewegung ======= */
-(function(){
-  const cvs = document.getElementById('partHero'), ctx = cvs.getContext('2d');
-  const dna = document.getElementById('dnaImg');
-  const DPR = Math.min(2, window.devicePixelRatio||1);
-  function fit(){ cvs.width=innerWidth*DPR; cvs.height=innerHeight*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
-  fit(); addEventListener('resize',fit);
-
-  let p = Array.from({length:80}, () => ({
-    x: Math.random()*innerWidth, y: Math.random()*innerHeight*.9,
-    r: Math.random()*6+3, hue: Math.random()<.55? 140: 355, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3
-  }));
-
-  let mx=0,my=0;
-  addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2; my=(e.clientY/innerHeight-.5)*2;});
-
-  function loop(){
-    ctx.clearRect(0,0,innerWidth,innerHeight);
-    for(const a of p){
-      a.x+=a.vx + mx*.2; a.y+=a.vy + my*.2;
-      if(a.x<-20) a.x=innerWidth+20; if(a.x>innerWidth+20) a.x=-20;
-      if(a.y<-20) a.y=innerHeight+20; if(a.y>innerHeight+20) a.y=-20;
-      const g=ctx.createRadialGradient(a.x,a.y,0,a.x,a.y,a.r*4.2);
-      const c = a.hue===140? 'rgba(26,255,104,':'rgba(255,43,43,';
-      g.addColorStop(0, c+'0.9)');
-      g.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(a.x,a.y,a.r*4.2,0,Math.PI*2); ctx.fill();
-    }
-    // DNA parallax
-    const tx=mx*6, ty=my*6;
-    dna.style.transform = `translate(${tx}px, ${ty}px) scale(1.02)`;
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
-
-/* ======= Spacer Partikel (fliegen weiter) ======= */
-(function(){
-  const cvs=document.getElementById('partFlow'), ctx=cvs.getContext('2d');
-  const DPR=Math.min(2, window.devicePixelRatio||1);
-  function fit(){ cvs.width=innerWidth*DPR; cvs.height=cvs.parentElement.clientHeight*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
-  fit(); addEventListener('resize',fit);
-  let p = Array.from({length:110}, ()=>({x:Math.random()*innerWidth, y:Math.random()*cvs.height/DPR, r:Math.random()*5+2, vx:(Math.random()-.5)*.25, vy:(Math.random()*.35+.05), hue: Math.random()<.6? 140:355}));
-  function loop(){
-    ctx.clearRect(0,0,innerWidth,cvs.height/DPR);
-    for(const a of p){
-      a.x+=a.vx; a.y+=a.vy;
-      if(a.x<-30) a.x=innerWidth+30; if(a.x>innerWidth+30) a.x=-30;
-      if(a.y>cvs.height/DPR+20){ a.y=-20; a.x=Math.random()*innerWidth; }
-      const g=ctx.createRadialGradient(a.x,a.y,0,a.x,a.y,a.r*4);
-      const c=a.hue===140? 'rgba(26,255,104,':'rgba(255,43,43,';
-      g.addColorStop(0,c+'0.85)'); g.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(a.x,a.y,a.r*4,0,Math.PI*2); ctx.fill();
-    }
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
-
-/* ======= BTC EUR (live, sekündlich) ======= */
-const btcEl = document.getElementById('btcEur');
-async function fetchBTC(){
-  try{
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
-    const j = await r.json();
-    const eur = j.bitcoin.eur;
-    btcEl.textContent = eur.toLocaleString('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0});
-  }catch(e){ /* leise ignorieren */ }
-}
-fetchBTC(); setInterval(fetchBTC, 1000);
-
-/* ======= Dynamische grüne Metriken ======= */
-const metrics = [
-  {label:'Transaktionen (gesamt)', base: 11_508_082, bar: .78},
-  {label:'Throughput (TPS)', base: 5334, unit:' TPS', bar:.62},
-  {label:'Latenz', base: 34, unit:' ms', bar:.84, small:true},
-  {label:'GPU-Knoten online', base: 156, bar:.66},
-  {label:'GPU-Leistung', base: 3.69, unit:' PFLOPS', bar:.52},
-  {label:'Netzwerkauslastung', base: 41, unit:' %', bar:.41},
-  {label:'Bandbreite', base: 1280, unit:' Gbit/s', bar:.58},
-  {label:'Mempool-Tiefe', base: 62, unit:' MB', bar:.43},
-  {label:'Verträge / s', base: 184, unit:' cps', bar:.47},
-  {label:'Uptime', base: 99.982, unit:' %', bar:.96},
-  {label:'Validatoren', base: 842, unit:'', bar:.72},
-  {label:'Energie pro TX', base: 0.12, unit:' Wh', bar:.38}
-];
-const grid = document.getElementById('metricGrid');
-metrics.forEach((m,i)=>{
-  const card=document.createElement('div'); card.className='card';
-  if(i%3===0) card.style.gridColumn='span 12'; // regelmäßig große Karten
-  card.innerHTML=`<div class="label">${m.label}</div>
-                  <div class="value" id="v${i}">–</div>
-                  <div class="bar"><i id="b${i}"></i></div>`;
-  grid.appendChild(card);
-  m.val = m.base * (0.985 + Math.random()*0.03);
-});
-function tick(){
-  metrics.forEach((m,i)=>{
-    const drift = (Math.random()-.5) * (m.base*0.002);
-    m.val = Math.max(0, m.val + drift);
-    const el = document.getElementById('v'+i);
-    const bar = document.getElementById('b'+i);
-    let txt;
-    if(Number.isInteger(m.base)) txt = Math.round(m.val).toLocaleString('de-DE') + (m.unit||'');
-    else txt = m.val.toFixed( m.base<10 ? 2 : 0 ) + (m.unit||'');
-    el.textContent = txt;
-    const width = clamp((m.bar*100) + (Math.random()*10-5), 6, 98);
-    bar.style.width = width+'%';
-  });
-}
-tick(); setInterval(tick, 1100);
-
-/* ======= 3D Globe mit Nodes & Links ======= */
-(function(){
-  const el = document.getElementById('globe');
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(48, el.clientWidth/el.clientHeight, 0.1, 1000);
-  camera.position.set(0,0,7.2);
-  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-  renderer.setSize(el.clientWidth, el.clientHeight); el.appendChild(renderer.domElement);
-
-  // Globe
-  const geo = new THREE.SphereGeometry(3, 64, 64);
-  const mat = new THREE.MeshPhongMaterial({
-    color: 0x0b0f18,
-    emissive: 0x05280f,
-    shininess: 18,
-    specular: 0x111111
-  });
-  const earth = new THREE.Mesh(geo, mat); scene.add(earth);
-
-  // Subtle inner glow
-  const glow = new THREE.AmbientLight(0x1aff68, .08); scene.add(glow);
-  const dir = new THREE.DirectionalLight(0x24ff70, .6); dir.position.set(5,3,5); scene.add(dir);
-
-  // Helper: lat/lon -> 3D
-  const R=3;
-  const toVec = (lat,lon)=>{
-    const phi = (90-lat)*Math.PI/180, theta = (lon+180)*Math.PI/180;
-    return new THREE.Vector3(
-      -R*Math.sin(phi)*Math.cos(theta),
-      R*Math.cos(phi),
-      R*Math.sin(phi)*Math.sin(theta)
-    );
-  };
-
-  // Nodes (mehr Knoten, V1..V20)
-  const places = [
-    [52.52,13.405,'V1'],  [48.8566,2.3522,'V2'], [51.5074,-0.1278,'V3'],
-    [40.7128,-74.006,'V4'], [37.7749,-122.4194,'V5'], [34.0522,-118.2437,'V6'],
-    [25.2048,55.2708,'V7'], [1.3521,103.8198,'V8'], [35.6762,139.6503,'V9'],
-    [55.7558,37.6173,'V10'], [-33.8688,151.2093,'V11'], [41.9028,12.4964,'V12'],
-    [45.4642,9.19,'V13'], [52.3676,4.9041,'V14'], [59.3293,18.0686,'V15'],
-    [19.4326,-99.1332,'V16'], [-23.5505,-46.6333,'V17'], [31.2304,121.4737,'V18'],
-    [28.6139,77.2090,'V19'], [43.6532,-79.3832,'V20']
-  ];
-
-  const nodeGeo = new THREE.SphereGeometry(0.045, 12, 12);
-  const green = new THREE.MeshBasicMaterial({color:0x24ff70});
-  const red   = new THREE.MeshBasicMaterial({color:0xff2b2b});
-
-  const nodes = [];
-  places.forEach((p,i)=>{
-    const m = new THREE.Mesh(nodeGeo, Math.random()>.18 ? green : red);
-    m.position.copy( toVec(p[0],p[1]).multiplyScalar(1.01) );
-    m.userData = {name:p[2]};
-    scene.add(m); nodes.push(m);
-  });
-
-  // Verbindungs-Linien (sanfte Kurven)
-  const lineMat = new THREE.LineBasicMaterial({color:0x20ffa0, transparent:true, opacity:.55});
-  function link(a,b){
-    const v1=a.position.clone(), v2=b.position.clone();
-    const mid=v1.clone().add(v2).multiplyScalar(.5).normalize().multiplyScalar(R*1.25);
-    const curve = new THREE.QuadraticBezierCurve3(v1,mid,v2);
-    const points = curve.getPoints(48);
-    const geo = new THREE.BufferGeometry().setFromPoints(points);
-    const line = new THREE.Line(geo,lineMat.clone());
-    scene.add(line);
-    return line;
-  }
-  const links=[];
-  for(let i=0;i<nodes.length-1;i++){
-    if(i%2===0) links.push( link(nodes[i], nodes[(i+7)%nodes.length]) );
-  }
-
-  // Animation
-  let t=0;
-  function animate(){
-    requestAnimationFrame(animate);
-    earth.rotation.y += 0.0009;
-    nodes.forEach((n,i)=> n.scale.setScalar( 1+Math.sin(t+i*.6)*.18 + .9 ));
-    links.forEach((L,k)=>{
-      L.material.opacity = .35 + Math.sin(t*.8+k)*.25 + .2;
-    });
-    t+=0.02;
-    renderer.render(scene,camera);
-  }
-  animate();
-  addEventListener('resize',()=>{
-    camera.aspect=el.clientWidth/el.clientHeight; camera.updateProjectionMatrix();
-    renderer.setSize(el.clientWidth, el.clientHeight);
-  });
-})();
-
-/* ======= Sound (Scroll-reaktiv) ======= */
-(function(){
-  const btn=document.getElementById('soundBtn');
-  let ctx, osc, gain, enabled=false;
-  let lastY=window.scrollY, vel=0;
-
-  function init(){
-    if(ctx) return;
-    ctx = new (window.AudioContext||window.webkitAudioContext)();
-    osc = ctx.createOscillator(); gain = ctx.createGain();
-    osc.type='triangle'; osc.frequency.value=440; gain.gain.value=0.02; // leise
-    osc.connect(gain).connect(ctx.destination); osc.start();
-  }
-  function update(){
-    if(!enabled) return;
-    const y=window.scrollY; const dv = Math.abs(y-lastY); lastY=y;
-    vel = vel*0.85 + dv*0.15;                 // Smooth
-    const freq = 300 + clamp(vel,0,80)*8;     // schneller Scroll => höher
-    const vol  = 0.01 + clamp(vel,0,60)*0.0006;
-    osc.frequency.setTargetAtTime(freq, ctx.currentTime, .05);
-    gain.gain.setTargetAtTime(vol, ctx.currentTime, .1);
-  }
-  addEventListener('scroll', update, {passive:true});
-
-  btn.addEventListener('click', async ()=>{
-    if(!enabled){
-      init(); await ctx.resume(); enabled=true; btn.classList.remove('muted');
-    }else{
-      enabled=false; btn.classList.add('muted');
-      if(gain) gain.gain.setTargetAtTime(0.0, ctx.currentTime, .08);
-    }
-  });
-})();
-
-/* Footer year */
-document.getElementById('yr').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+.seal{
+  width:min(560px,86%); height:auto; opacity:0
