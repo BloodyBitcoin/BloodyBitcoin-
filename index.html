@@ -1086,5 +1086,58 @@ if('requestIdleCallback' in window){
   <div class="firewall-light"></div>
   <span class="firewall-text">FIREWALL ACTIVE</span>
 </div>
+</style><!-- BLOOD SURGE BUTTON -->
+<button id="bloodBtn" class="blood-btn">💉 BLOOD SURGE</button>
+
+<script>
+const btn = document.getElementById('bloodBtn');
+btn.addEventListener('click', () => {
+  // Füge Effektklasse hinzu
+  document.body.classList.add('blood-mode');
+  
+  // Entferne sie nach 2,8 Sekunden wieder
+  setTimeout(() => {
+    document.body.classList.remove('blood-mode');
+  }, 2800);
+});
+</script>
+
+<style>
+.blood-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  z-index: 10000;
+  background: linear-gradient(180deg,#2a0000,#000);
+  color: #ff4b4b;
+  font-weight: 800;
+  border: 1px solid #700;
+  border-radius: 14px;
+  padding: 0.7rem 1rem;
+  box-shadow: 0 0 10px #ff000044;
+  cursor: pointer;
+  letter-spacing: .05em;
+  transition: all .25s ease;
+}
+.blood-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px #ff222277;
+}
+
+/* Effekt, wenn Seite „blutet“ */
+@keyframes bloodPulse {
+  0%, 100% { background-color: #070a0b; }
+  30% { background-color: #1a0000; }
+  60% { background-color: #ff000022; }
+}
+body.blood-mode {
+  animation: bloodPulse 0.8s ease-in-out 3;
+  box-shadow: inset 0 0 80px #ff000055;
+  filter: saturate(1.4);
+}
+body.blood-mode * {
+  transition: color .2s ease, background .2s ease;
+  color: #ffdddd !important;
+}
 </style></body>
 </html>
