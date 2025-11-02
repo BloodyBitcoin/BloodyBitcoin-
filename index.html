@@ -1403,5 +1403,219 @@ window.addEventListener("load", () => {
   0%,100% { opacity: 0.2; }
   50% { opacity: 0.8; }
 }
+<!-- 🩸 BLOOD RAIN DELUXE EFFECT -->
+<script>
+  const aiBot = document.getElementById("ai-bot");
+  let bloodActive = false;
+
+  aiBot.addEventListener("click", () => {
+    if (bloodActive) return;
+    bloodActive = true;
+
+    // Overlay erstellen
+    const overlay = document.createElement("div");
+    overlay.className = "blood-overlay";
+    document.body.appendChild(overlay);
+
+    // Blut-Tropfen erzeugen
+    for (let i = 0; i < 30; i++) {
+      const drop = document.createElement("div");
+      drop.className = "blood-drop";
+      drop.style.left = Math.random() * 100 + "vw";
+      drop.style.animationDelay = Math.random() * 2 + "s";
+      overlay.appendChild(drop);
+    }
+
+    // Textflüstern
+    const whisper = document.createElement("div");
+    whisper.className = "blood-whisper";
+    whisper.innerText = "⚠️ SYSTEM BREACH DETECTED... PURGE PROTOCOL ACTIVE";
+    document.body.appendChild(whisper);
+
+    // Nach 10 Sekunden alles wieder entfernen
+    setTimeout(() => {
+      overlay.remove();
+      whisper.remove();
+      bloodActive = false;
+    }, 10000);
+  });
+</script>
+
+<style>
+/* 🔥 Overlay mit rotem Licht */
+.blood-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(120, 0, 0, 0.25);
+  z-index: 999999;
+  overflow: hidden;
+  pointer-events: none;
+  animation: redPulse 10s ease-in-out forwards;
+}
+
+/* 🩸 Einzelne Blut-Tropfen */
+.blood-drop {
+  position: absolute;
+  top: -20px;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, #ff0000, #990000);
+  box-shadow: 0 0 6px #ff1010;
+  animation: drip 3s linear infinite;
+  opacity: 0.8;
+  border-radius: 50%;
+}
+
+@keyframes drip {
+  0% { transform: translateY(0) scaleX(1); opacity: 0.9; }
+  80% { transform: translateY(100vh) scaleX(0.8); opacity: 0.7; }
+  100% { transform: translateY(110vh) scaleX(0.5); opacity: 0; }
+}
+
+/* 🔴 Pulsierender Hintergrund */
+@keyframes redPulse {
+  0% { background: rgba(0,0,0,0); }
+  20% { background: rgba(255,0,0,0.4); }
+  50% { background: rgba(255,0,0,0.8); }
+  80% { background: rgba(100,0,0,0.5); }
+  100% { background: rgba(0,0,0,0); }
+}
+
+/* 💬 Flackernder System-Text */
+.blood-whisper {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff3030;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  background: rgba(0,0,0,0.85);
+  padding: 14px 28px;
+  border: 1px solid #ff5050;
+  border-radius: 10px;
+  text-shadow: 0 0 25px #ff0000, 0 0 50px #ff1010;
+  z-index: 1000000;
+  animation: whisperFlicker 10s ease forwards;
+}
+
+@keyframes whisperFlicker {
+  0%,100% { opacity: 1; }
+  10% { opacity: 0.6; }
+  30% { opacity: 1; }
+  50% { opacity: 0.4; }
+  80% { opacity: 0.9; }
+  90% { opacity: 0.2; }
+  100% { opacity: 0; }
+}<!-- 🩸 BLOOD RAIN DELUXE EFFECT -->
+<script>
+let bloodActive = false;
+
+document.addEventListener("click", (e) => {
+  // Effekt nur auslösen, wenn Bot angeklickt wird
+  const bot = document.getElementById("ai-bot");
+  if (!bot || !bot.contains(e.target) || bloodActive) return;
+
+  bloodActive = true;
+
+  // Overlay erstellen
+  const overlay = document.createElement("div");
+  overlay.className = "blood-overlay";
+  document.body.appendChild(overlay);
+
+  // Tropfen erzeugen
+  for (let i = 0; i < 120; i++) {
+    const drop = document.createElement("div");
+    drop.className = "blood-drop";
+    drop.style.left = Math.random() * 100 + "vw";
+    drop.style.animationDelay = Math.random() * 10 + "s";
+    drop.style.animationDuration = 2 + Math.random() * 3 + "s";
+    overlay.appendChild(drop);
+  }
+
+  // Flackernder Text
+  const whisper = document.createElement("div");
+  whisper.className = "blood-whisper";
+  whisper.innerText = "⚠️ SYSTEM BREACH DETECTED ⚠️";
+  document.body.appendChild(whisper);
+
+  // Nach 10 Sekunden wieder entfernen
+  setTimeout(() => {
+    overlay.remove();
+    whisper.remove();
+    bloodActive = false;
+  }, 10000);
+});
+</script>
+
+<style>
+/* 🔥 Overlay mit rotem Licht */
+.blood-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(120, 0, 0, 0.25);
+  z-index: 999999;
+  overflow: hidden;
+  pointer-events: none;
+  animation: redPulse 10s ease-in-out;
+}
+
+/* 🔻 Blut-Tropfen */
+.blood-drop {
+  position: absolute;
+  top: -10px;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, #ff3030, #660000);
+  box-shadow: 0 0 6px #ff1010;
+  animation: drip 3s linear infinite;
+  opacity: 0.8;
+  border-radius: 50%;
+}
+
+@keyframes drip {
+  0% { transform: translateY(0) scaleY(1); opacity: 1; }
+  80% { transform: translateY(100vh) scaleY(1.5); opacity: 0.8; }
+  100% { transform: translateY(110vh) scaleY(1.8); opacity: 0; }
+}
+
+/* 🔴 Pulsierender Hintergrund */
+@keyframes redPulse {
+  0% { background: rgba(0,0,0,0); }
+  20% { background: rgba(255,0,0,0.4); }
+  50% { background: rgba(255,0,0,0.8); }
+  80% { background: rgba(100,0,0,0.5); }
+  100% { background: rgba(0,0,0,0); }
+}
+
+/* 💬 Flackernder System-Text */
+.blood-whisper {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff3030;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  background: rgba(0,0,0,0.85);
+  padding: 14px 28px;
+  border: 1px solid #ff5050;
+  border-radius: 10px;
+  text-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
+  z-index: 1000000;
+  animation: whisperFlicker 10s ease-in-out;
+}
+
+@keyframes whisperFlicker {
+  0%,100% { opacity: 1; }
+  10% { opacity: 0.6; }
+  30% { opacity: 1; }
+  50% { opacity: 0.4; }
+  80% { opacity: 0.9; }
+  90% { opacity: 0.2; }
+  100% { opacity: 0; }
+}
 </style></body>
 </html>
