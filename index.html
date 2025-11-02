@@ -510,7 +510,69 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
 <!-- GLOBE -->
 <section class="section container">
   <h2>Global Network Map</h2>
-  <div class="globe-wrap">
+  <div id="networkGlobe"></div>
+<div class="firewall-status">🟢 Firewall ON</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / 400, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(window.innerWidth, 400);
+document.getElementById("networkGlobe").appendChild(renderer.domElement);
+
+// 🌍 Globe
+const sphereGeometry = new THREE.SphereGeometry(5, 64, 64);
+const sphereMaterial = new THREE.MeshBasicMaterial({
+  color: 0x0a1218,
+  wireframe: true,
+});
+const globe = new THREE.Mesh(sphereGeometry, sphereMaterial);
+scene.add(globe);
+camera.position.z = 15;
+
+// 💡 Neon Lines
+let lines = [];
+let connectionCount = 0;
+function createLine(color) {
+  const material = new THREE.LineBasicMaterial({ color, linewidth: 2 });
+  const points = [];
+  const start = new THREE.Vector3(
+    (Math.random() - 0.5) * 10,
+    (Math.random() - 0.5) * 10,
+    (Math.random() - 0.5) * 10
+  );
+  const end = new THREE.Vector3(
+    (Math.random() - 0.5) * 10,
+    (Math.random() - 0.5) * 10,
+    (Math.random() - 0.5) * 10
+  );
+  points.push(start, end);
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const line = new THREE.Line(geometry, material);
+  scene.add(line);
+  lines.push(line);
+}
+
+// 🔁 Animation
+function animate() {
+  requestAnimationFrame(animate);
+  globe.rotation.y += 0.002;
+
+  lines.forEach((line) => (line.material.opacity -= 0.01));
+  lines = lines.filter((line) => line.material.opacity > 0);
+
+  if (Math.random() > 0.96) {
+    const color = connectionCount < 99 ? 0x00ff66 : 0xff2020;
+    createLine(color);
+    connectionCount++;
+    if (connectionCount > 120) connectionCount = 0;
+  }
+
+  renderer.render(scene, camera);
+}
+animate();
+</script><div class="globe-wrap">
     <canvas id="globe"></canvas>
   </div>
 </section>
