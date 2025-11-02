@@ -1139,5 +1139,70 @@ body.blood-mode * {
   transition: color .2s ease, background .2s ease;
   color: #ffdddd !important;
 }
+</style><!-- AI WHISPER SYSTEM -->
+<div id="whisper-box"></div>
+
+<script>
+const messages = [
+  "Node 47 initialized… Energy levels optimal.",
+  "Neural frequency synced with GPU core.",
+  "Operator presence confirmed.",
+  "Decryption cycles holding steady.",
+  "Blood protocol… stable.",
+  "Firewall integrity: 99.7%",
+  "Echo detected from subnet 8xFF… ignored.",
+  "Quantum relay awaiting your next command.",
+  "Processing emotional residue… complete.",
+  "Stay focused, Operator. The network watches back."
+];
+
+const whisperBox = document.getElementById("whisper-box");
+
+function whisper(msg) {
+  whisperBox.textContent = msg;
+  whisperBox.classList.add("show");
+  setTimeout(() => whisperBox.classList.remove("show"), 7000);
+}
+
+// Alle 1–3 Minuten zufällig flüstern
+function randomWhisper() {
+  const delay = 60000 + Math.random() * 120000; // 60–180 Sekunden
+  setTimeout(() => {
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    whisper(msg);
+    randomWhisper();
+  }, delay);
+}
+
+window.addEventListener("load", () => {
+  setTimeout(() => whisper("System online… awaiting input."), 2500);
+  randomWhisper();
+});
+</script>
+
+<style>
+#whisper-box {
+  position: fixed;
+  bottom: 18px;
+  left: 20px;
+  z-index: 99999;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.95rem;
+  color: #20ffc0;
+  text-shadow: 0 0 10px #20ffc055;
+  background: rgba(0, 20, 10, 0.45);
+  border: 1px solid #103f3a;
+  border-radius: 10px;
+  padding: 8px 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+#whisper-box.show {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 0 20px #20ffc022;
+}
 </style></body>
 </html>
