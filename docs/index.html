@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BloodyBitcoin — GPU is the New OIL</title>
+<meta name="description" content="BloodyBitcoin — Krypto • KI • High-Performance Netzwerk" />
+
+<!-- Three.js für 3D-Globus -->
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+<style>
+:root{
+  --bg:#070a0b;
+  --ink:#eaf7ff;
+  --muted:#99b7c7;
+
+  --neon:#2cffb5;          /* grün */
+  --neon2:#39f;            /* cyanish */
+  --lava:#ff8a2a;          /* orange für BTC */
+  --lava2:#ffc08a;
+
+  --glass:#0a1217cc;       /* Glasflächen */
+  --border:#13343a;
+
+  --panel:#0b1117e6;
+  --glow-neon: 0 0 18px rgba(44,255,181,.8), 0 0 42px rgba(44,255,181,.35);
+  --glow-lava: 0 0 20px rgba(255,138,42,.8), 0 0 42px rgba(255,138,42,.35);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:0 auto}
+.spacer{height:64vh}
+
+h2.section-title{margin:0 0 1.2rem; font-size:clamp(1.2rem,2.4vw,1.7rem); color:#cfe9ff}
+
+/* ---------- HEADER / CLAIM ---------- */
+.claim{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(180deg, rgba(7,10,11,.86), rgba(7,10,11,.15));
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid #0e191d;
+}
+.claim-inner{padding:.9rem 0 1rem; text-align:center}
+.claim h1{
+  margin:.1rem 0 .35rem;
+  font-weight:900; letter-spacing:.3px;
+  font-size:clamp(1.3rem,6vw,2.2rem);
+  color:#d7ffee;
+  text-shadow: 0 0 22px rgba(44,255,181,.95), 0 0 50px rgba(44,255,181,.4);
+  animation:claimPulse 2.6s ease-in-out infinite;
+}
+@keyframes claimPulse{
+  0%,100%{filter:drop-shadow(0 0 10px #19ffc9)}
+  50%{filter:drop-shadow(0 0 32px #19ffc9)}
+}
+.claim p{margin:0; opacity:.9; color:#bfe9df}
+
+/* ---------- HERO DNA (voll sichtbar) ---------- */
+.hero{
+  position:relative; overflow:hidden;
+  background: radial-gradient(1200px 520px at 15% 15%, #0b1f18 0%, #091114 45%, #070a0b 100%);
+}
+.hero .dna{
+  width:100%; height:auto; display:block;
+  filter:saturate(1.1) contrast(1.05) brightness(1.05);
+}
+.hero .layer{
+  position:absolute; inset:0; pointer-events:none;
+}
+#heroParticles{mix-blend-mode:screen; opacity:.85}
+.hero .split-grad{
+  background:linear-gradient(90deg, rgba(16,255,120,.12), rgba(255,40,60,.12)); 
+  mix-blend-mode:screen;
+}
+
+/* ---------- WALLET BUTTON ---------- */
+.cta-wrap{padding:4.5rem 0 2rem; display:flex; justify-content:center}
+.btn-glass{
+  --gl: rgba(44,255,181,.35);
+  position:relative; display:inline-flex; align-items:center; gap:.8rem;
+  padding:1.1rem 1.4rem; border-radius:18px; font-weight:800; letter-spacing:.5px;
+  background:linear-gradient(180deg, rgba(14,30,26,.55), rgba(10,20,18,.55));
+  border:1px solid rgba(44,255,181,.35);
+  box-shadow: inset 0 0 0 1px rgba(44,255,181,.25), 0 0 26px rgba(44,255,181,.2);
+  color:#d9fff1; font-size:clamp(1rem,2.5vw,1.15rem);
+  transform:translateZ(0);
+}
+.btn-glass::after{
+  content:""; position:absolute; inset:-14px -18px; border-radius:24px;
+  background: radial-gradient(60% 140% at 50% -20%, rgba(44,255,181,.22), transparent 55%);
+  filter:blur(22px); z-index:-1;
+}
+.btn-glass:hover{transform:translateY(-1px); box-shadow: inset 0 0 0 1px rgba(44,255,181,.32), 0 0 36px rgba(44,255,181,.25)}
+.btn-icon{font-size:1.25rem}
+
+/* ---------- PANELS / METRICS ---------- */
+.section{padding:5.5rem 0}
+.grid{display:grid; gap:2rem; grid-template-columns:1fr}
+.metric{
+  background:linear-gradient(180deg, rgba(12,24,20,.65), rgba(7,14,12,.65));
+  border:1px solid rgba(44,255,181,.18);
+  border-radius:20px; padding:1.3rem 1.4rem; 
+  box-shadow: inset 0 0 0 1px rgba(44,255,181,.2), 0 18px 34px rgba(0,0,0,.35);
+}
+.metric .label{color:#a5e3d2; letter-spacing:.35px; margin-bottom:.4rem}
+.metric .value{font-size:2.05rem; font-weight:900}
+.bar{height:12px; margin-top:.85rem; border-radius:12px; overflow:hidden; background:#081215; border:1px solid #0f3136}
+.bar>i{display:block; height:100%; width:0%;
+  background:linear-gradient(90deg,#1cff95,#2ef7ff,#b6fff5);
+  box-shadow:0 0 18px rgba(44,255,181,.35);
+  transition:width 2.4s ease-in-out;
+}
+
+/* BTC Karte in Lava-Optik */
+.metric.btc{
+  background:linear-gradient(180deg, rgba(50,20,0,.65), rgba(35,14,0,.65));
+  border:1px solid rgba(255,138,42,.38);
+  box-shadow: inset 0 0 0 1px rgba(255,177,94,.25), 0 0 28px rgba(255,138,42,.22);
+}
+.btc-row{display:flex; align-items:center; gap:1rem}
+.btc-logo{
+  width:64px; height:64px; border-radius:16px; flex:0 0 auto;
+  background:radial-gradient(circle at 35% 30%, #fff, #ffd493 28%, #ffab55 58%, #ff8921 100%);
+  display:grid; place-items:center; color:#2b1600; font-weight:900; font-size:1.8rem;
+  box-shadow: var(--glow-lava);
+}
+.btc-price{font-size:2.2rem; font-weight:900; color:#ffe0c4; text-shadow:var(--glow-lava)}
+
+/* ---------- GLOBUS ---------- */
+.globe-card{
+  border-radius:22px; overflow:hidden; border:1px solid #13343a;
+  background: radial-gradient(900px 420px at 70% 30%, #0b1117, #070a0b);
+  box-shadow: inset 0 0 0 1px rgba(44,255,181,.06), 0 10px 30px rgba(0,0,0,.35);
+}
+.globe-wrap{position:relative; height:520px}
+#globe, #globeFallback{position:absolute; inset:0}
+.globe-legend{padding:1rem 1.2rem; border-top:1px solid #13343a; color:#a7d9cc}
+
+/* ---------- SOUND ---------- */
+.sound{
+  position:fixed; right:14px; bottom:14px; z-index:60;
+  width:46px; height:46px; border-radius:14px; border:1px solid #14313a;
+  background:linear-gradient(180deg,#0f171c,#0a1216);
+  box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px rgba(44,255,181,.18);
+  display:grid; place-items:center; cursor:pointer; opacity:.9;
+}
+.sound svg{width:22px; height:22px; fill:#bfeee2}
+
+/* ---------- FOOTER / SEAL ---------- */
+footer{background:#000; margin-top:5rem; padding:4.5rem 0 6rem; color:#9fb2be; text-align:center}
+.seal-wrap{display:grid; place-items:center; gap:1rem}
+.seal{
+  width:min(560px,86%); height:auto; display:block; filter:drop-shadow(0 0 28px rgba(44,255,181,.22));
+  position:relative;
+}
+.seal-gloss{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(120% 40% at 50% -10%, rgba(255,255,255,.9), transparent 55%),
+    radial-gradient(60% 70% at 80% 70%, rgba(44,255,181,.18), transparent 60%);
+  mix-blend-mode:screen; opacity:.22; border-radius:24px;
+}
+
+/* Responsive spacing */
+.section, .cta-wrap { padding-left: clamp(1rem,4vw,0); padding-right: clamp(1rem,4vw,0); }
+</style>
+</head>
+<body>
+
+<!-- CLAIM -->
+<header class="claim">
+  <div class="claim-inner container">
+    <h1>GPU is the New OIL</h1>
+    <p>Founder — Chris R. Herloch</p>
+  </div>
+</header>
+
+<!-- HERO: komplettes DNA-Bild + Partikel -->
+<section class="hero" aria-label="DNA">
+  <img class="dna" src="./0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png" alt="BloodyBitcoin DNA" />
+  <canvas id="heroParticles" class="layer"></canvas>
+  <div class="split-grad layer"></div>
+</section>
+
+<!-- WALLET CTA -->
+<div class="cta-wrap">
+  <a class="btn-glass" href="#" id="walletBtn"><span class="btn-icon">🧪</span> WALLET VERKNÜPFEN</a>
+</div>
+
+<!-- METRICS -->
+<section class="section container" id="metrics">
+  <h2 class="section-title">Netzwerk-Parameter</h2>
+
+  <div class="grid">
+    <!-- BTC -->
+    <div class="metric btc" id="btcCard">
+      <div class="btc-row">
+        <div class="btc-logo">₿</div>
+        <div>
+          <div class="label" style="color:#ffd7b2">Bitcoin (EUR)</div>
+          <div class="btc-price" id="btcPrice">—</div>
+        </div>
+      </div>
+      <div class="bar" style="margin-top:1.1rem"><i id="btcBar"></i></div>
+    </div>
+
+    <div class="metric">
+      <div class="label">Knoten</div>
+      <div class="value" id="mNodes">—</div>
+      <div class="bar"><i id="bNodes"></i></div>
+    </div>
+
+    <div class="metric">
+      <div class="label">Leistung</div>
+      <div class="value" id="mPerf">— PFLOPS</div>
+      <div class="bar"><i id="bPerf"></i></div>
+    </div>
+
+    <div class="metric">
+      <div class="label">Transaktionen (gesamt)</div>
+      <div class="value" id="mTx">—</div>
+      <div class="bar"><i id="bTx"></i></div>
+    </div>
+
+    <div class="metric">
+      <div class="label">Auslastung</div>
+      <div class="value" id="mLoad">— %</div>
+      <div class="bar"><i id="bLoad"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBUS -->
+<section class="section container">
+  <h2 class="section-title">Global Network Map</h2>
+  <div class="globe-card">
+    <div class="globe-wrap">
+      <canvas id="globe"></canvas>
+      <canvas id="globeFallback"></canvas>
+    </div>
+    <div class="globe-legend">Knoten (V1–V10) verbinden sich dynamisch. Grün = aktiv, Rot = inaktiv.</div>
+  </div>
+</section>
+
+<!-- FOOTER mit SIEGEL -->
+<footer>
+  <div class="seal-wrap">
+    <div style="position:relative">
+      <img class="seal" src="./IMG_7712.jpeg" alt="BloodyBitcoin Siegel" />
+      <div class="seal-gloss"></div>
+    </div>
+    <div>© <span id="yr"></span> BLOODYBITCOIN — GPU IS THE NEW OIL</div>
+  </div>
+</footer>
+
+<!-- SOUND TOGGLE -->
+<button class="sound" id="soundBtn" aria-label="Sound an/aus" title="Sound an/aus">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12zm-2.5-8.98v2.09a7 7 0 0 1 0 13.78v2.09c5.06-1.08 8.5-5.57 8.5-9.96s-3.44-8.88-8.5-9.99z"/></svg>
+</button>
+
+<script>
+/* ========== Helper ========== */
+const € = (n)=> n.toLocaleString('de-DE', {style:'currency', currency:'EUR', maximumFractionDigits:2});
+const fmt = (n)=> n.toLocaleString('de-DE');
+
+/* ========== Sticky hero particles (Canvas) ========== */
+(() => {
+  const cv = document.getElementById('heroParticles');
+  const ctx = cv.getContext('2d');
+  const P = [];
+  function fit(){ cv.width = cv.clientWidth; cv.height = cv.clientHeight; }
+  window.addEventListener('resize', fit, {passive:true}); fit();
+
+  for(let i=0;i<90;i++){
+    P.push({
+      x: Math.random()*cv.width, y: Math.random()*cv.height,
+      r: Math.random()*1.8+0.7,
+      vx: (Math.random()-.5)*0.35, vy:(Math.random()-.5)*0.35,
+      hue: Math.random()<.55 ? 145 : 355
+    });
+  }
+  let mx=0,my=0;
+  window.addEventListener('mousemove', e=>{
+    mx = (e.clientX / window.innerWidth - .5)*0.6;
+    my = (e.clientY / window.innerHeight - .5)*0.6;
+  }, {passive:true});
+
+  function loop(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(const p of P){
+      p.x += p.vx + mx; p.y += p.vy + my;
+      if(p.x<-12)p.x=cv.width+12; if(p.x>cv.width+12)p.x=-12;
+      if(p.y<-12)p.y=cv.height+12; if(p.y>cv.height+12)p.y=-12;
+      const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*9);
+      g.addColorStop(0, `hsla(${p.hue},100%,60%,.95)`); g.addColorStop(1,'transparent');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*9,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ========== BTC Preis (sekündlich, EUR) ========== */
+(async () => {
+  const priceEl = document.getElementById('btcPrice');
+  const bar = document.getElementById('btcBar');
+  async function fetchEUR(){
+    try{
+      const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur', {cache:'no-store'});
+      const j = await r.json();
+      const v = j.bitcoin?.eur;
+      if (typeof v === 'number'){
+        priceEl.textContent = €(v);
+        // dezent den Balken „atmen“ lassen
+        const w = 40 + (Math.random()*60);
+        bar.style.width = w+'%';
+      }
+    }catch(e){
+      priceEl.textContent = '—';
+    }
+  }
+  fetchEUR();
+  setInterval(fetchEUR, 1000);
+})();
+
+/* ========== Fake-Live-Metriken (flüssig) ========== */
+(() => {
+  const nodes = {el:'mNodes', bar:'bNodes', val:156, drift:1.2};
+  const perf  = {el:'mPerf',  bar:'bPerf',  val:3.6, drift:.04, suffix:' PFLOPS'};
+  const tx    = {el:'mTx',    bar:'bTx',    val:11_500_000, drift:2200};
+  const load  = {el:'mLoad',  bar:'bLoad',  val:41, drift:.8, suffix:' %'};
+
+  function update(m){
+    // smoother wobble
+    m.val += (Math.random()-.5) * m.drift;
+    if(m===load){ m.val = Math.max(12, Math.min(96, m.val)); }
+    if(m===perf){ m.val = Math.max(2.8, Math.min(6.2, m.val)); }
+    const el = document.getElementById(m.el);
+    const bar = document.getElementById(m.bar);
+    let txt;
+    if(m===perf) txt = m.val.toFixed(2) + (m.suffix||'');
+    else if(m===tx) txt = fmt(Math.round(m.val));
+    else if(m===load) txt = Math.round(m.val) + (m.suffix||'');
+    else txt = fmt(Math.round(m.val));
+    el.textContent = txt;
+    const w = (m===tx) ? (30 + (m.val % 70)/1_000_000) : (15 + (Math.random()*80));
+    bar.style.width = w + '%';
+  }
+  function tick(){ [nodes, perf, tx, load].forEach(update); }
+  tick(); setInterval(tick, 1300);
+})();
+
+/* ========== 3D-Globus (mit Fallback) ========== */
+(() => {
+  const canvas = document.getElementById('globe');
+  let gl;
+  try{ gl = canvas.getContext('webgl2') || canvas.getContext('webgl'); }catch(e){ gl = null; }
+  const fallback = document.getElementById('globeFallback');
+
+  function sizeAll(){
+    [canvas, fallback].forEach(cv=>{ cv.width = cv.clientWidth; cv.height = cv.clientHeight; });
+  }
+  window.addEventListener('resize', sizeAll, {passive:true}); sizeAll();
+
+  const nodes = [
+    {lat:52.52, lon:13.40, active:true,  name:'V1'},
+    {lat:48.13, lon:11.58, active:true,  name:'V2'},
+    {lat:40.71, lon:-74.01,active:true,  name:'V3'},
+    {lat:37.77, lon:-122.41,active:false,name:'V4'},
+    {lat:35.68, lon:139.69,active:true,  name:'V5'},
+    {lat:51.51, lon:-0.13, active:true,  name:'V6'},
+    {lat:-33.87,lon:151.21,active:false,name:'V7'},
+    {lat:25.20, lon:55.27, active:true,  name:'V8'},
+    {lat:1.35,  lon:103.82,active:true,  name:'V9'},
+    {lat:55.75, lon:37.62, active:false, name:'V10'}
+  ];
+
+  if(gl){
+    // THREE scene
+    const THREE = window.THREE;
+    const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(45, canvas.clientWidth/canvas.clientHeight, 0.1, 100);
+    cam.position.set(0,0,3.1);
+    // globe sphere with night texture-ish color (procedural)
+    const geo = new THREE.SphereGeometry(1, 64, 64);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x0b1a22, metalness:.2, roughness:.9, emissive:0x07221a, emissiveIntensity:.35
+    });
+    const globe = new THREE.Mesh(geo, mat);
+    scene.add(globe);
+
+    // atmosphere
+    const atmo = new THREE.Mesh(
+      new THREE.SphereGeometry(1.02,64,64),
+      new THREE.MeshBasicMaterial({color:0x1effc0, transparent:true, opacity:.08})
+    );
+    scene.add(atmo);
+
+    // lights
+    const l1 = new THREE.DirectionalLight(0x1effc0,.7); l1.position.set(2,1,2); scene.add(l1);
+    const l2 = new THREE.AmbientLight(0x112233,.7); scene.add(l2);
+
+    // node particles
+    const nodeGeo = new THREE.SphereGeometry(0.014, 10, 10);
+    nodes.forEach(n=>{
+      const m = new THREE.MeshBasicMaterial({color: n.active ? 0x1effc0 : 0xff3b3b});
+      const mesh = new THREE.Mesh(nodeGeo, m);
+      const phi = (90 - n.lat) * (Math.PI/180);
+      const theta = (n.lon + 180) * (Math.PI/180);
+      mesh.position.set(
+        -Math.sin(phi)*Math.cos(theta),
+        Math.cos(phi),
+        Math.sin(phi)*Math.sin(theta)
+      ).multiplyScalar(1.01);
+      mesh.userData.node = n.name;
+      scene.add(mesh);
+    });
+
+    // connecting lines
+    const matLine = new THREE.LineBasicMaterial({color:0x1effc0, transparent:true, opacity:.6});
+    function addLink(a,b){
+      const curve = new THREE.QuadraticBezierCurve3(
+        a.clone(), a.clone().multiplyScalar(1.25), b.clone()
+      );
+      const pts = curve.getPoints(32);
+      const geo = new THREE.BufferGeometry().setFromPoints(pts);
+      const line = new THREE.Line(geo, matLine);
+      scene.add(line);
+    }
+    // pick a few links
+    function vecFrom(lat,lon,s=1.01){
+      const phi=(90-lat)*(Math.PI/180), th=(lon+180)*(Math.PI/180);
+      return new THREE.Vector3(
+        -Math.sin(phi)*Math.cos(th),
+         Math.cos(phi),
+         Math.sin(phi)*Math.sin(th)
+      ).multiplyScalar(s);
+    }
+    const links = [[0,1],[1,5],[5,2],[2,3],[0,4],[4,8],[8,7]];
+    links.forEach(([i,j])=> addLink(vecFrom(nodes[i].lat,nodes[i].lon), vecFrom(nodes[j].lat,nodes[j].lon)));
+
+    function onResize(){
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+      cam.aspect = canvas.clientWidth/canvas.clientHeight; cam.updateProjectionMatrix();
+    }
+    onResize(); window.addEventListener('resize', onResize, {passive:true});
+
+    function animate(t){
+      globe.rotation.y += 0.0008;
+      atmo.rotation.y += 0.001;
+      renderer.render(scene, cam);
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }else{
+    // Fallback 2D canvas: wandernder Punkt + weiche Linien
+    const cv = fallback, ctx = cv.getContext('2d');
+    const W = ()=> (cv.width = cv.clientWidth, cv.height = cv.clientHeight);
+    window.addEventListener('resize', W, {passive:true}); W();
+    const pts = nodes.map(n=>({
+      x: (n.lon+180)/360 * cv.width,
+      y: (90-n.lat)/180 * cv.height,
+      active: n.active
+    }));
+    let t=0;
+    function loop(){
+      ctx.clearRect(0,0,cv.width,cv.height);
+      // glow bg
+      const g=ctx.createRadialGradient(cv.width*.7, cv.height*.3, 0, cv.width*.7, cv.height*.3, cv.width);
+      g.addColorStop(0,'#0b1a22'); g.addColorStop(1,'#070a0b'); ctx.fillStyle=g; ctx.fillRect(0,0,cv.width,cv.height);
+      // links
+      ctx.lineWidth=1.2;
+      pts.forEach((p,i)=>{
+        pts.forEach((q,j)=>{
+          if(i<j && (i+j)%3===0){
+            ctx.strokeStyle='rgba(46,247,255,.25)';
+            ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+          }
+        });
+      });
+      // nodes
+      pts.forEach((p)=>{
+        ctx.beginPath();
+        ctx.fillStyle = p.active ? 'rgba(44,255,181,.95)' : 'rgba(255,59,59,.9)';
+        ctx.arc(p.x, p.y, 4 + Math.sin(t/400)*1.2, 0, Math.PI*2); ctx.fill();
+        ctx.shadowColor = p.active ? 'rgba(44,255,181,.8)' : 'rgba(255,59,59,.8)';
+        ctx.shadowBlur = 12; ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+      t+=16; requestAnimationFrame(loop);
+    }
+    loop();
+  }
+})();
+
+/* ========== WALLET KNOPF (Platzhalter) ========== */
+document.getElementById('walletBtn').addEventListener('click', (e)=>{
+  e.preventDefault();
+  alert('Wallet-Verknüpfung: Kommt in der Beta.');
+});
+
+/* ========== WebAudio Ambient (mysteriös) ========== */
+(() => {
+  let ctx, master, oscA, oscB, noise, filter, lfo, enabled=false, lastY=window.scrollY;
+  function setup(){
+    if(ctx) return;
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = 0.05; master.connect(ctx.destination);
+    // airy noise
+    const buffer = ctx.createBuffer(1, ctx.sampleRate*2, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for(let i=0;i<data.length;i++) data[i] = (Math.random()*2-1) * 0.5;
+    noise = ctx.createBufferSource(); noise.buffer = buffer; noise.loop = true;
+    filter = ctx.createBiquadFilter(); filter.type='bandpass'; filter.frequency.value=600; filter.Q.value=6;
+    // LFO
+    lfo = ctx.createOscillator(); lfo.frequency.value=0.15;
+    const lfoGain = ctx.createGain(); lfoGain.gain.value=220;
+    lfo.connect(lfoGain); lfoGain.connect(filter.frequency);
+    // drones
+    oscA = ctx.createOscillator(); oscA.type='sine'; oscA.frequency.value=92;
+    oscB = ctx.createOscillator(); oscB.type='triangle'; oscB.frequency.value=141;
+    const gA = ctx.createGain(); gA.gain.value=.02;
+    const gB = ctx.createGain(); gB.gain.value=.02;
+    noise.connect(filter);
+    filter.connect(master); gA.connect(master); gB.connect(master);
+    oscA.connect(gA); oscB.connect(gB);
+    noise.start(); oscA.start(); oscB.start(); lfo.start();
+    // Scroll-Speed → leichte Modulation
+    addEventListener('scroll', ()=>{
+      const dy = Math.abs(window.scrollY - lastY); lastY = window.scrollY;
+      const spd = Math.min(1, dy/120);
+      master.gain.setTargetAtTime(0.04 + spd*0.06, ctx.currentTime, .15);
+    }, {passive:true});
+  }
+  const btn = document.getElementById('soundBtn');
+  btn.addEventListener('click', async ()=>{
+    if(!enabled){ setup(); await ctx.resume(); enabled=true; btn.style.opacity=1; }
+    else{ await ctx.suspend(); enabled=false; btn.style.opacity=.6; }
+  });
+})();
+
+/* Footer year */
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
