@@ -321,7 +321,110 @@ footer p{color:#97a3a8; letter-spacing:.24em; margin:10px 0 0}
 }
 
 hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,transparent);margin:28px 0}
-</style>
+/* =========================================================
+   ===================   RANKS / XP SYSTEM   ================
+   =======================================================*/
+.ranks {
+  background: linear-gradient(180deg, #060a0b, #090e12);
+  border: 1px solid #123139;
+  border-radius: 22px;
+  padding: 32px 28px;
+  box-shadow: inset 0 0 1px #20ffc015, 0 20px 40px rgba(0,0,0,.35);
+  margin-top: 40px;
+}
+
+.ranks h2 {
+  text-align: center;
+  color: #cfe6f3;
+  text-shadow: 0 0 16px #20ffc033;
+  margin-top: 0;
+  font-size: clamp(22px, 4vw, 30px);
+}
+
+.ranks-intro {
+  color: #9ed8cf;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.rank-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.rank-card {
+  background: linear-gradient(180deg, #0b1116, #0a1216);
+  border: 1px solid #16363c;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: inset 0 0 1px #20ffc020;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.rank-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #20ffc033, inset 0 0 1px #20ffc033;
+}
+
+.rank-card.legend {
+  background: linear-gradient(180deg, #1c0909, #180606);
+  border: 1px solid #8a4b16;
+  box-shadow: 0 0 25px #ff8a2a33, inset 0 0 1px #ff8a2a33;
+}
+
+.rank-card h3 {
+  margin: .4rem 0 .3rem;
+  color: #bff1e7;
+}
+.rank-card p {
+  color: #97b8b5;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.rank-card .badge {
+  display: inline-block;
+  padding: .3rem .6rem;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #0b191c, #091216);
+  color: #abffee;
+  font-size: .8rem;
+  border: 1px solid #1e5356;
+  margin-bottom: .5rem;
+  box-shadow: 0 0 12px #20ffc022;
+}
+
+.legend-glow {
+  color: #ff8a2a;
+  text-shadow: 0 0 12px #ff8a2a66, 0 0 24px #ff8a2a33;
+  font-weight: 700;
+}
+
+.xp-explainer {
+  margin-top: 34px;
+  background: linear-gradient(180deg, #0a1216, #0a1013);
+  border-radius: 16px;
+  padding: 18px 22px;
+  border: 1px solid #13363a;
+  box-shadow: inset 0 0 1px #20ffc01a;
+}
+
+.xp-explainer h3 {
+  margin-top: 0;
+  color: #cfe6f3;
+}
+
+.xp-explainer ul {
+  list-style: none;
+  margin: 0 1rem 0;
+  padding: 0;
+}
+
+.xp-explainer li {
+  padding: .3rem 0;
+  color: #9ed8cf;
+}</style>
 </head>
 <body>
 <!-- sanft fließender Hintergrund -->
