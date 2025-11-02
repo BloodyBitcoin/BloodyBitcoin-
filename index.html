@@ -7,87 +7,109 @@
 <meta name="description" content="BloodyBitcoin — Krypto • KI • High-Performance Netzwerk" />
 
 <style>
-:root {
+:root{
   --bg:#070a0b;
   --ink:#e7f6ff;
   --neon:#20ffc0;
   --lava:#ff8a2a;
-  --brd:#11313a;
   --card:#0b1116;
+  --brd:#11313a;
   --glow-neon:0 0 18px #20ffc0,0 0 42px #20ffc033;
+  --glow-lava:0 0 18px #ff8a2a,0 0 42px #ff8a2a55;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;overflow-x:hidden}
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  scroll-behavior:smooth;
+}
+img{max-width:100%;display:block}
 
-/* HEADER */
+/* ===== Header / Claim ===== */
 .claim{
   position:sticky;top:0;z-index:100;
-  background:linear-gradient(180deg,rgba(7,10,11,.85),rgba(7,10,11,.25));
-  backdrop-filter:blur(8px);border-bottom:1px solid #0f1f23;text-align:center;
+  background:rgba(7,10,11,.7);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid #0f1f23;
+  text-align:center;
 }
-.claim-inner{padding:1rem}
+.claim-inner{padding:.9rem 1rem}
 .claim h1{
-  font-weight:900;font-size:clamp(22px,4.5vw,36px);
-  color:#ffd8d8;text-shadow:0 0 16px #ff2e2e,0 0 38px #ff2e2e,0 0 64px #8b1111;
-  animation:pulseRed 2.5s ease-in-out infinite;
+  margin:0;font-weight:900;
+  font-size:clamp(22px,4.5vw,36px);
+  color:#ffd8d8;
+  text-shadow:0 0 16px #ff2e2e,0 0 38px #ff2e2e,0 0 64px #8b1111;
+  animation:pulseRed 2.4s ease-in-out infinite;
 }
-@keyframes pulseRed{0%,100%{filter:drop-shadow(0 0 8px #ff3a3a)}50%{filter:drop-shadow(0 0 24px #ff3a3a)}}
-.claim p{color:#f0b5b5;opacity:.9;margin-top:.2rem}
+@keyframes pulseRed{0%,100%{filter:drop-shadow(0 0 8px #ff3a3a)}50%{filter:drop-shadow(0 0 26px #ff3a3a)}}
+.claim p{margin:.2rem 0 0;color:#f0b5b5;opacity:.9;letter-spacing:.2px}
 
-/* HERO */
+/* ===== Hero (DNA) ===== */
 .hero{
-  position:relative;overflow:hidden;height:calc(100vh - 80px);
-  background:radial-gradient(1200px 480px at 12% 12%,#081b16 0%,#070a0b 100%);
+  position:relative;overflow:hidden;
+  height:calc(100svh - 84px);
+  background:radial-gradient(1200px 480px at 12% 12%,#081b16 0%,#081013 46%,#070a0b 100%);
 }
 .hero img.dna{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:saturate(1.2) brightness(1.05);transform:scale(1.02);
+  filter:saturate(1.15) contrast(1.05) brightness(1.05);
+  transform:scale(1.02);
 }
-.hero .overlay-grad{
-  position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,255,120,.15),rgba(255,32,48,.15));
+.overlay-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(16,255,120,.12),rgba(255,32,48,.12));
   mix-blend-mode:screen;
 }
 #particles{position:absolute;inset:0;pointer-events:none}
 
-/* DNA FULLSCREEN – fließender Hintergrund */
+/* ===== Fließender DNA-Hintergrund ===== */
 .dna-full{
-  position:relative;overflow:hidden;height:90vh;
-  background:radial-gradient(circle at center,#091312,#050606 70%);
+  position:relative;overflow:hidden;height:480px;margin-top:-6px;
 }
 .dna-full img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  mix-blend-mode:screen;filter:saturate(1.3) brightness(1.1);
-  animation:dnaGlow 6s ease-in-out infinite alternate;
+  animation:flowBg 18s ease-in-out infinite alternate;
 }
-@keyframes dnaGlow{
-  0%{filter:saturate(1.1) brightness(1.0) hue-rotate(0deg)}
-  100%{filter:saturate(1.3) brightness(1.2) hue-rotate(25deg)}
+@keyframes flowBg{
+  0%{transform:scale(1.05) translateX(-2%)}
+  100%{transform:scale(1.05) translateX(2%)}
 }
-  /* WALLET-BUTTON */
-.wallet-wrap{display:grid;place-items:center;padding:50px 0 30px}
+
+/* ===== Wallet ===== */
+.wallet-wrap{display:grid;place-items:center;padding:46px 0 30px}
 .btn{
   display:inline-grid;grid-auto-flow:column;gap:14px;align-items:center;
-  padding:18px 40px;border-radius:18px;
-  color:#d8fff5;font-weight:900;letter-spacing:.6px;
+  padding:18px 40px;border-radius:18px;color:#d8fff5;font-weight:900;letter-spacing:.6px;
   background:linear-gradient(180deg,#0e181c,#0a1216);
   border:1px solid #154248;
   box-shadow:inset 0 0 0 1px #20ffc025,0 16px 38px rgba(0,0,0,.45),0 0 40px #20ffc028;
   transition:transform .2s ease;
 }
-.btn:hover{transform:translateY(-1px)}.btn:active{transform:translateY(1px)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
 .btn .tube{font-size:1.3rem;filter:drop-shadow(0 0 8px #20ffc0)}
-
-/* PARAMETER-CARDS */
-.section{padding:clamp(28px,5.5vw,64px) 0}
+  /* ===== Panels & Parameter ===== */
 .container{width:min(1180px,92%);margin:auto}
+.section{padding:clamp(28px,5.5vw,64px) 0}
+.section h2{margin:0 0 1rem;color:#cfe6f3;font-size:clamp(18px,3.2vw,28px)}
 .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+
 .card{
   background:linear-gradient(180deg,var(--card),#081012);
   border:1px solid var(--brd);
-  border-radius:22px;padding:20px 22px;
+  border-radius:22px;
+  padding:20px 22px;
   box-shadow:inset 0 0 0 1px #20ffc015,0 12px 30px rgba(0,0,0,.35);
 }
+.card .label{color:#a9e6d5;margin-bottom:8px;letter-spacing:.4px}
+.val{font-size:clamp(22px,4vw,38px);font-weight:900}
+
+/* BTC Lava-Glas Karte */
 .card.btc{
+  grid-column:1/-1;
   background:linear-gradient(180deg,#2a1608,#1d0f06);
   border:1px solid #8a4b16;
   box-shadow:inset 0 0 0 1px #ffb15e33,0 0 30px #ff8a2a33;
@@ -96,15 +118,22 @@ html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-app
 .btc-logo{
   width:64px;height:64px;border-radius:16px;
   display:grid;place-items:center;
-  background:radial-gradient(circle at 30% 30%,#fff 0 15%,#ffd38a 15% 45%,#ff9b2f 45% 75%,#ff7b1c 75%);
   font-weight:900;font-size:1.4rem;color:#3a1b00;
+  background:radial-gradient(circle at 30% 30%,#fff 0 15%,#ffd38a 15% 45%,#ff9b2f 45% 75%,#ff7b1c 75%);
   box-shadow:var(--glow-lava);
 }
-.val{font-size:clamp(22px,4vw,38px);font-weight:900}
-.bar{height:12px;border-radius:10px;overflow:hidden;background:#081015;border:1px solid #13363a;margin-top:8px}
-.bar>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#20ff90,#20ffc0,#39f);box-shadow:0 0 18px #20ffc055;transition:width 2s ease}
+.btc-price{color:#ffd9b6;text-shadow:var(--glow-lava)}
 
-/* GLOBE */
+/* Leuchtbalken */
+.bar{height:12px;border-radius:10px;overflow:hidden;background:#081015;border:1px solid #13363a;margin-top:8px}
+.bar>i{
+  display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,#20ff90,#20ffc0,#39f);
+  box-shadow:0 0 18px #20ffc055;
+  transition:width 2s ease;
+}
+
+/* ===== Globus ===== */
 .globe-wrap{
   height:520px;border-radius:22px;position:relative;overflow:hidden;
   border:1px solid var(--brd);
@@ -113,22 +142,65 @@ html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-app
 }
 #globe{position:absolute;inset:0}
 
-/* FOOTER & SOUND */
-footer{background:#000;padding:56px 0 80px;margin-top:56px;text-align:center;border-top:1px solid #111}
-footer img{width:min(760px,92%);margin:auto;display:block}
-footer p{color:#97a3a8;letter-spacing:.24em;margin-top:18px}
+/* ===== Sound-Button ===== */
 .sound{
   position:fixed;right:16px;bottom:16px;z-index:200;
   width:50px;height:50px;border-radius:16px;display:grid;place-items:center;
   background:linear-gradient(180deg,#0f171c,#0a1216);
   border:1px solid #14313a;
   box-shadow:0 8px 18px rgba(0,0,0,.35),inset 0 0 0 1px #20ffc022;
-  cursor:pointer;color:#bff1e7;font-size:20px;
+  cursor:pointer;color:#bff1e7;font-size:20px;user-select:none;
+}
+
+/* ===== Footer + Flammen-Spruch ===== */
+footer{
+  background:#000;padding:64px 0 90px;margin-top:56px;text-align:center;border-top:1px solid #111
+}
+footer img{width:min(760px,92%);margin:auto;display:block}
+
+.flameText{
+  position:relative;
+  display:inline-block;
+  margin-top:28px;
+  font-weight:900;
+  font-size:clamp(22px,3.2vw,34px);
+  color:#ff3a3a;
+  letter-spacing:.04em;
+  text-shadow:
+    0 0 12px #ff2a2a,
+    0 0 28px #ff2a2a,
+    0 0 38px #ff2a2a;
+  animation:textPulse 2.2s ease-in-out infinite;
+}
+@keyframes textPulse{
+  0%,100%{filter:drop-shadow(0 0 10px #ff3a3a)}
+  50%{filter:drop-shadow(0 0 26px #ff3a3a)}
+}
+/* grüne Flammen-Schimmer */
+.flameText::before{
+  content:"";
+  position:absolute;left:-6%;right:-6%;top:-35%;height:160%;
+  background:conic-gradient(from 180deg at 50% 120%,rgba(0,255,160,.35),transparent 22%,rgba(0,255,160,.2) 40%,transparent 64%,rgba(0,255,160,.35) 82%,transparent);
+  filter:blur(10px) saturate(1.4);
+  mix-blend-mode:screen;
+  animation:flameWave 3.6s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes flameWave{
+  0%{transform:translateY(4px) rotate(0deg)}
+  50%{transform:translateY(-4px) rotate(2deg)}
+  100%{transform:translateY(4px) rotate(0deg)}
+}
+
+/* leichte Header-Politur beim Scrollen */
+@media (pointer:coarse){
+  .sound{width:56px;height:56px}
 }
 </style>
 </head>
 <body>
 
+<!-- ===== HEADER ===== -->
 <header class="claim">
   <div class="claim-inner container">
     <h1>GPU is the New OIL</h1>
@@ -136,319 +208,274 @@ footer p{color:#97a3a8;letter-spacing:.24em;margin-top:18px}
   </div>
 </header>
 
+<!-- ===== HERO ===== -->
 <section class="hero" aria-label="DNA Hero">
   <img class="dna" id="dnaImg" alt="Bloody Bitcoin DNA"/>
   <canvas id="particles"></canvas>
   <div class="overlay-grad"></div>
 </section>
 
-<!-- DNA-Fullscreen als fließender Hintergrund -->
+<!-- ===== DNA-FULLSCREEN (fließender Background) ===== -->
 <section class="dna-full">
-  <img src="dna-full.png" alt="DNA Fullscreen"/>
+  <img id="dnaFull" alt="DNA Background Full"/>
 </section>
 
+<!-- ===== WALLET ===== -->
 <div class="wallet-wrap container">
-  <a class="btn" href="#wallet">
-    <span class="tube">🧪</span><span>WALLET VERKNÜPFEN</span>
-  </a>
+  <a class="btn" href="#wallet"><span class="tube">🧪</span><span>WALLET VERKNÜPFEN</span></a>
 </div>
 
+<!-- ===== PARAMETER ===== -->
 <section class="section container" id="metrics">
   <h2>Netzwerk-Parameter</h2>
   <div class="grid">
     <div class="card btc">
       <div class="label">Bitcoin (EUR)</div>
-      <div class="btc-row"><div class="btc-logo">₿</div><div class="val btc-price" id="btcPrice">–</div></div>
+      <div class="btc-row">
+        <div class="btc-logo">₿</div>
+        <div class="val btc-price" id="btcPrice">–</div>
+      </div>
       <div class="bar"><i id="btcBar"></i></div>
     </div>
-    <div class="card"><div class="label">Knoten</div><div class="val" id="nodes">–</div><div class="bar"><i id="nodesBar"></i></div></div>
-    <div class="card"><div class="label">Leistung</div><div class="val"><span id="flops">–</span> PFLOPS</div><div class="bar"><i id="flopsBar"></i></div></div>
-    <div class="card"><div class="label">Transaktionen</div><div class="val" id="txs">–</div><div class="bar"><i id="txsBar"></i></div></div>
-    <div class="card"><div class="label">Auslastung</div><div class="val"><span id="load">–</span>%</div><div class="bar"><i id="loadBar"></i></div></div>
+
+    <div class="card">
+      <div class="label">Knoten</div>
+      <div class="val" id="nodes">–</div>
+      <div class="bar"><i id="nodesBar"></i></div>
+    </div>
+
+    <div class="card">
+      <div class="label">Leistung</div>
+      <div class="val"><span id="flops">–</span> PFLOPS</div>
+      <div class="bar"><i id="flopsBar"></i></div>
+    </div>
+
+    <div class="card">
+      <div class="label">Transaktionen (gesamt)</div>
+      <div class="val" id="txs">–</div>
+      <div class="bar"><i id="txsBar"></i></div>
+    </div>
+
+    <div class="card">
+      <div class="label">Auslastung</div>
+      <div class="val"><span id="load">–</span> %</div>
+      <div class="bar"><i id="loadBar"></i></div>
+    </div>
   </div>
 </section>
 
+<!-- ===== GLOBE ===== -->
 <section class="section container">
   <h2>Global Network Map</h2>
-  <div class="globe-wrap"><canvas id="globe"></canvas></div>
+  <div class="globe-wrap">
+    <canvas id="globe"></canvas>
+  </div>
 </section>
 
+<!-- ===== SOUND BUTTON ===== -->
 <button class="sound" id="soundBtn" aria-label="Sound umschalten">🔈</button>
+
+<!-- ===== FOOTER mit Siegel & Flammen-Spruch ===== -->
 <footer>
   <img id="sealImg" alt="Bloody Bitcoin Siegel"/>
-  <p>Forged in the Blood of Bitcoin</p>
+  <div class="flameText">FORGED IN THE BLOOD OF BITCOIN</div>
 </footer>
 <script>
-/* =========================================
-   1) ASSETS setzen (einheitliche Pfade)
-   ========================================= */
-const DNA_IMG  = '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png';   // Hero
-const DNA_FULL = '6D678E9C-E782-4914-B721-E25D4D198C88.jpeg'; // fließender Background
-const SEAL_IMG = 'IMG_7712.jpeg';                              // Footer
+/* ========== ASSETS (Bildpfade anpassen) ========== */
+const DNA_IMG   = '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png';
+const DNA_FULL  = '6D678E9C-E782-4914-B721-E25D4D198C88.jpeg';
+const SEAL_IMG  = 'IMG_7712.jpeg';
 
-// Hero & Footer
-const heroImg = document.getElementById('dnaImg');
-if(heroImg) heroImg.src = DNA_IMG;
+document.getElementById('dnaImg').src   = DNA_IMG;
+document.getElementById('dnaFull').src  = DNA_FULL;
+document.getElementById('sealImg').src  = SEAL_IMG;
 
-const sealImg = document.getElementById('sealImg');
-if(sealImg) sealImg.src = SEAL_IMG;
-
-// DNA-Fullscreen (falls Teil 2 ein Platzhalter eingefügt hat, überschreiben wir ihn hier)
-const dnaFullSectionImg = document.querySelector('.dna-full img#dnaFull') || document.querySelector('.dna-full img');
-if(dnaFullSectionImg) dnaFullSectionImg.src = DNA_FULL;
-
-
-/* =========================================
-   2) Partikel-Layer über dem Hero
-   ========================================= */
+/* ========== PARTIKEL über DNA ========== */
 (function particles(){
-  const cvs = document.getElementById('particles');
-  if(!cvs) return;
-  const ctx = cvs.getContext('2d', { alpha:true });
-  let W=0, H=0, P=[];
-
-  function resize(){
-    const hero = document.querySelector('.hero');
-    W = cvs.width  = hero.clientWidth;
-    H = cvs.height = hero.clientHeight;
-  }
-  function spawn(n=80){
-    P = Array.from({length:n}, () => ({
-      x: Math.random()*W,
-      y: Math.random()*H,
-      r: 2 + Math.random()*4,
-      vx:(Math.random()-.5)*0.6,
-      vy:(Math.random()-.5)*0.6,
-      col: Math.random()<.5 ? 'rgba(50,255,140,.75)' : 'rgba(255,40,60,.68)'
+  const cvs=document.getElementById('particles'),ctx=cvs.getContext('2d');
+  let W,H,parts=[];
+  function resize(){W=cvs.width=cvs.offsetWidth;H=cvs.height=cvs.offsetHeight;}
+  function spawn(n=70){
+    parts=[...Array(n)].map(()=>({
+      x:Math.random()*W,
+      y:Math.random()*H,
+      r:2+Math.random()*3,
+      vx:(Math.random()-.5)*.5,
+      vy:(Math.random()-.5)*.5,
+      c:Math.random()<.5?'rgba(32,255,192,.7)':'rgba(255,50,60,.6)'
     }));
   }
-  function loop(){
+  function draw(){
     ctx.clearRect(0,0,W,H);
-    for(const p of P){
-      p.x += p.vx; p.y += p.vy;
-      if(p.x<-12) p.x=W+12; if(p.x>W+12) p.x=-12;
-      if(p.y<-12) p.y=H+12; if(p.y>H+12) p.y=-12;
-
-      const g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3.5);
-      g.addColorStop(0,p.col); g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*3.5,0,Math.PI*2); ctx.fill();
+    for(const p of parts){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
+      g.addColorStop(0,p.c);g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r*3,0,6.283);ctx.fill();
     }
-    requestAnimationFrame(loop);
+    requestAnimationFrame(draw);
   }
-  window.addEventListener('resize', ()=>{ resize(); spawn(90); });
-  resize(); spawn(90); loop();
+  window.addEventListener('resize',()=>{resize();spawn(70)});
+  resize();spawn(70);draw();
 })();
 
+/* ========== FAKE-METRIKEN + BTC ========== */
+const el=id=>document.getElementById(id);
+function animateBar(id,pct){el(id).style.width=Math.min(100,Math.max(0,pct))+'%';}
+function randomWalk(v,s,min,max){v+=(Math.random()*2-1)*s;return Math.max(min,Math.min(max,v));}
 
-/* =========================================
-   3) Fake-Metriken + BTC-Preis (EUR) live
-   ========================================= */
-const $ = (id)=>document.getElementById(id);
-const bar = (id,p)=>{ const el=$(id); if(el) el.style.width = Math.max(0,Math.min(100,p)) + '%';}
-const rw  = (v,step,min,max)=> Math.max(min, Math.min(max, v + (Math.random()*2-1)*step));
-
-let nodes=160, flops=3.2, txs=11_500_000, load=45;
+let nodes=150,flops=3.4,txs=11_508_082,load=42;
 function updateFake(){
-  nodes = Math.round(rw(nodes, 3, 120, 260));
-  flops = Math.round(rw(flops, .08, 2.5, 5.8)*100)/100;
-  txs  += Math.round(Math.random()*1400);
-  load  = Math.round(rw(load, 2.5, 15, 95));
+  nodes=Math.round(randomWalk(nodes,3,120,240));
+  flops=Math.round(randomWalk(flops,.1,2.4,6)*100)/100;
+  txs+=Math.round(Math.random()*1400);
+  load=Math.round(randomWalk(load,2,12,95));
 
-  const n=$('nodes'), f=$('flops'), t=$('txs'), l=$('load');
-  if(n) n.textContent = nodes.toLocaleString('de-DE');
-  if(f) f.textContent = flops.toLocaleString('de-DE', {minimumFractionDigits:2});
-  if(t) t.textContent = txs.toLocaleString('de-DE');
-  if(l) l.textContent = load.toLocaleString('de-DE');
-
-  bar('nodesBar', nodes/3);
-  bar('flopsBar', (flops/6)*100);
-  bar('txsBar',   ((txs%1_000_000)/1_000_000)*100);
-  bar('loadBar',  load);
+  el('nodes').textContent=nodes.toLocaleString('de-DE');
+  el('flops').textContent=flops.toLocaleString('de-DE',{maximumFractionDigits:2});
+  el('txs').textContent=txs.toLocaleString('de-DE');
+  el('load').textContent=load;
+  animateBar('nodesBar',nodes/3);
+  animateBar('flopsBar',(flops/6)*100);
+  animateBar('txsBar',(txs%1_000_000)/10_000);
+  animateBar('loadBar',load);
 }
-setInterval(updateFake, 2200);
-updateFake();
+setInterval(updateFake,2200);updateFake();
 
-// BTC in EUR (sekündlich/mehrsekündlich; Coingecko)
+/* BTC-Preis in EUR */
 async function fetchBTC(){
   try{
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur', { cache:'no-store' });
-    const j = await r.json();
-    const eur = j?.bitcoin?.eur;
-    if(eur && $('btcPrice')){
-      $('btcPrice').textContent = eur.toLocaleString('de-DE', { style:'currency', currency:'EUR' });
-      bar('btcBar', 35 + Math.random()*60);
+    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
+    const j=await r.json();const eur=j?.bitcoin?.eur;
+    if(eur){
+      el('btcPrice').textContent=eur.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+      animateBar('btcBar',40+Math.random()*60);
     }
-  }catch(e){
-    // still & leise, kein Console-Spam auf Prod
-  }
+  }catch(e){}
 }
-setInterval(fetchBTC, 3500);
-fetchBTC();
+setInterval(fetchBTC,4000);fetchBTC();
 
-
-/* =========================================
-   4) Globus – realistischere Optik / zentriert
-   ========================================= */
+/* ========== REALISTISCHER GLOBE ========== */
 (function globe(){
-  const cvs = document.getElementById('globe');
-  if(!cvs) return;
-  const ctx = cvs.getContext('2d');
-  let W=0, H=0, t=0;
-
-  const nodes = [
-    {lat:48.1, lon:11.5},   // München
-    {lat:51.5, lon:-0.1},   // London
-    {lat:40.7, lon:-74.0},  // NYC
-    {lat:34.0, lon:-118.2}, // LA
-    {lat:35.6, lon:139.7},  // Tokio
-    {lat:-33.9,lon:151.2},  // Sydney
-    {lat:52.3, lon:13.4},   // Berlin
-    {lat:1.3,  lon:103.8},  // Singapur
-    {lat:-23.5,lon:-46.6},  // Sao Paulo
-    {lat:59.9, lon:30.3}    // St. Petersburg
+  const cvs=document.getElementById('globe'),ctx=cvs.getContext('2d');
+  let W,H,t=0;const nodes=[
+    {lat:48.1,lon:11.5},{lat:51.5,lon:-0.1},{lat:40.7,lon:-74},
+    {lat:35.6,lon:139.7},{lat:-33.9,lon:151.2},{lat:52.3,lon:13.4},
+    {lat:59.9,lon:30.3},{lat:1.3,lon:103.8},{lat:-23.5,lon:-46.6},{lat:34,lon:-118.2}
   ];
-
-  function resize(){
-    const wrap = cvs.parentElement;
-    W = cvs.width  = wrap.clientWidth;
-    H = cvs.height = wrap.clientHeight;
+  function resize(){W=cvs.width=cvs.offsetWidth;H=cvs.height=cvs.offsetHeight;}
+  function proj(lat,lon,r){
+    const R=Math.min(W,H)*.42,rad=Math.PI/180;
+    const λ=(lon+r)*rad,φ=lat*rad;
+    return{
+      x:W/2+R*Math.cos(φ)*Math.sin(λ),
+      y:H/2-R*Math.sin(φ),
+      z:Math.cos(φ)*Math.cos(λ)
+    };
   }
-  window.addEventListener('resize', resize, {passive:true});
-  resize();
-
-  // Orthographische Projektion + weiches Depth
-  function proj(lat,lon,rot){
-    const R = Math.min(W,H)*0.42;
-    const λ = (lon+rot) * Math.PI/180;
-    const φ = lat * Math.PI/180;
-    const cx=W/2, cy=H/2;
-    const x = R*Math.cos(φ)*Math.sin(λ);
-    const y = R*Math.sin(φ);
-    const z = Math.cos(φ)*Math.cos(λ);
-    return { x:cx+x, y:cy-y, z, R };
-  }
-
-  function drawGlobe(){
+  function draw(){
     ctx.clearRect(0,0,W,H);
+    const R=Math.min(W,H)*.46,cx=W/2,cy=H/2;
+    const grad=ctx.createRadialGradient(cx,cy,R*.1,cx,cy,R);
+    grad.addColorStop(0,'rgba(32,255,192,.1)');
+    grad.addColorStop(1,'transparent');
+    ctx.fillStyle=grad;ctx.beginPath();ctx.arc(cx,cy,R,0,6.283);ctx.fill();
 
-    const rot = (t*0.06)%360; // langsame, stetige Rotation
-    const cx=W/2, cy=H/2, R = Math.min(W,H)*0.46;
-
-    // Atmosphärischer Glow
-    let g = ctx.createRadialGradient(cx,cy,R*.15, cx,cy,R);
-    g.addColorStop(0,'rgba(32,255,192,.10)');
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
-
-    // Graticule (Breitenkreise) zart
-    ctx.save();
-    ctx.strokeStyle='rgba(32,255,192,.12)';
-    ctx.lineWidth=1;
-    for(let i=-60;i<=60;i+=30){
-      const rr = R*Math.cos(i*Math.PI/180);
-      ctx.beginPath(); ctx.ellipse(cx,cy, rr, R, 0, 0, Math.PI*2); ctx.stroke();
-    }
-    ctx.restore();
-
-    // Nodes + Glow
-    const pts = nodes.map(n => ({ n, p:proj(n.lat,n.lon,rot) }))
-                     .sort((a,b)=>a.p.z-b.p.z);
-
-    for(const {p} of pts){
-      if(p.z<=0) continue; // Rückseite unsichtbar
-      const alpha = 0.35 + 0.5*p.z;
-      const glow = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,16);
-      glow.addColorStop(0,`rgba(32,255,192,${alpha})`);
-      glow.addColorStop(1,'rgba(32,255,192,0)');
-      ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(p.x,p.y,16,0,Math.PI*2); ctx.fill();
-
-      ctx.fillStyle = `rgba(230,255,250,${.5+.5*p.z})`;
-      ctx.beginPath(); ctx.arc(p.x,p.y,2+2*p.z,0,Math.PI*2); ctx.fill();
-    }
-
-    // Verbindungen (geschwungene Kurven mit Puls)
-    ctx.lineWidth = 1.2;
-    for(let i=0;i<pts.length;i++){
-      const a=pts[i].p, b=pts[(i+3)%pts.length].p;
-      if(a.z<=0||b.z<=0) continue;
-      const grad = ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-      grad.addColorStop(0, `rgba(32,255,192,${.18 + .10*Math.sin(t/18)})`);
-      grad.addColorStop(1, `rgba(255,80,60,${.10 + .06*Math.sin(t/22)})`);
-      ctx.strokeStyle = grad;
-      ctx.beginPath();
-      const mx=(a.x+b.x)/2, my=(a.y+b.y)/2 - 30;
-      ctx.moveTo(a.x,a.y);
-      ctx.quadraticCurveTo(mx,my,b.x,b.y);
-      ctx.stroke();
-    }
-
-    // Umlaufende Daten-Impulse (wie Teilchen)
-    for(let k=0;k<6;k++){
-      const ang = (t*0.012 + k*60) * Math.PI/180;
-      const px = cx + Math.cos(ang) * R*0.88;
-      const py = cy + Math.sin(ang) * R*0.88;
-      const pulse = ctx.createRadialGradient(px,py,0,px,py,18);
-      pulse.addColorStop(0,'rgba(255,120,60,.25)');
-      pulse.addColorStop(1,'transparent');
-      ctx.fillStyle=pulse; ctx.beginPath(); ctx.arc(px,py,18,0,Math.PI*2); ctx.fill();
-    }
-
-    t += 1; requestAnimationFrame(drawGlobe);
-  }
-  drawGlobe();
-})();
-
-
-/* =========================================
-   5) Tiefer Brumm-Sound (scroll-reaktiv)
-   ========================================= */
-(function soundSystem(){
-  let audioCtx, osc1, osc2, gain, on=false, lastY=window.scrollY;
-  const btn = document.getElementById('soundBtn');
-
-  function setup(){
-    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    osc1 = audioCtx.createOscillator(); osc1.type='sine';     osc1.frequency.value=55;  // Bass A
-    osc2 = audioCtx.createOscillator(); osc2.type='triangle'; osc2.frequency.value=110; // Oktave
-    gain = audioCtx.createGain(); gain.gain.value=0.05;
-
-    // LFO für leichte Maschinen-Interferenz
-    const lfo = audioCtx.createOscillator();
-    const lfoGain = audioCtx.createGain();
-    lfo.frequency.value = 0.16;
-    lfoGain.gain.value  = 24;
-    lfo.connect(lfoGain).connect(osc1.frequency);
-
-    osc1.connect(gain); osc2.connect(gain); gain.connect(audioCtx.destination);
-    osc1.start(); osc2.start(); lfo.start();
-  }
-
-  function reactToScroll(){
-    if(!on || !audioCtx) return;
-    const y = window.scrollY;
-    const dy = Math.abs(y - lastY);
-    lastY = y;
-
-    const intensity = Math.min(1, dy/800);
-    const newGain   = 0.03 + intensity*0.09;
-    const detune    = (Math.random()-.5)*10;
-
-    osc1.detune.setTargetAtTime( detune,         audioCtx.currentTime, .15);
-    osc2.detune.setTargetAtTime(-detune,         audioCtx.currentTime, .15);
-    gain.gain.setTargetAtTime( newGain,          audioCtx.currentTime, .15);
-  }
-
-  if(btn){
-    btn.addEventListener('click', async ()=>{
-      if(!on){
-        if(!audioCtx) setup();
-        if(audioCtx.state==='suspended') await audioCtx.resume();
-        on = true; btn.textContent = '🔊';
-      }else{
-        on = false; btn.textContent = '🔈';
-        if(audioCtx) audioCtx.suspend();
+    const rot=t*0.4;
+    const pts=nodes.map(n=>proj(n.lat,n.lon,rot));
+    // leuchtende Punkte
+    for(const p of pts){
+      if(p.z>0){
+        const s=2+p.z*3;
+        const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,12);
+        g.addColorStop(0,'rgba(32,255,192,.8)');
+        g.addColorStop(1,'transparent');
+        ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,10,0,6.283);ctx.fill();
+        ctx.fillStyle=`rgba(180,255,240,${.6+p.z*.4})`;
+        ctx.beginPath();ctx.arc(p.x,p.y,s,0,6.283);ctx.fill();
       }
-    }, {passive:true});
+    }
+    // Verbindungen
+    ctx.lineWidth=1.1;
+    for(let i=0;i<pts.length;i++){
+      const a=pts[i],b=pts[(i+3)%pts.length];
+      if(a.z>0&&b.z>0){
+        const grad=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+        grad.addColorStop(0,'rgba(32,255,192,.25)');
+        grad.addColorStop(1,'rgba(0,255,192,.05)');
+        ctx.strokeStyle=grad;ctx.beginPath();
+        const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-30;
+        ctx.quadraticCurveTo(mx,my,b.x,b.y);ctx.stroke();
+      }
+    }
+    t+=0.02;requestAnimationFrame(draw);
   }
-  window.addEventListener('scroll', reactToScroll, {passive:true});
+  window.addEventListener('resize',()=>{resize()});
+  resize();draw();
 })();
+
+/* ========== SOUND (tiefes Brummen) ========== */
+(function sound(){
+  let ctx,osc,gain,on=false,lastY=window.scrollY;
+  const btn=document.getElementById('soundBtn');
+  function setup(){
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    osc=ctx.createOscillator();gain=ctx.createGain();
+    osc.type='sine';
+    osc.frequency.value=60; // tiefes Brummen
+    gain.gain.value=0.05;
+    osc.connect(gain).connect(ctx.destination);
+    osc.start();
+  }
+  function scrollFreq(){
+    const y=window.scrollY,dy=Math.abs(y-lastY);lastY=y;
+    if(!osc)return;
+    const f=50+Math.min(400,dy*3);
+    osc.frequency.exponentialRampToValueAtTime(f,ctx.currentTime+.1);
+    gain.gain.linearRampToValueAtTime(0.03+Math.min(.05,dy/800),ctx.currentTime+.1);
+  }
+  btn.addEventListener('click',async()=>{
+    if(!on){if(!ctx)setup();if(ctx.state==='suspended')await ctx.resume();
+      on=true;btn.textContent='🔊';
+    }else{on=false;btn.textContent='🔈';if(ctx)ctx.suspend();}
+  });
+  window.addEventListener('scroll',()=>{if(on)scrollFreq();});
+})();
+</script>
+<!-- ===== SMOOTH TRANSITIONS ===== -->
+<script>
+/* Smooth page fade-in */
+document.body.style.opacity = 0;
+window.addEventListener('load',()=>{
+  document.body.style.transition = 'opacity 1.2s ease-in-out';
+  document.body.style.opacity = 1;
+});
+
+/* GPU-Optimierung für Canvas-Animation */
+const allCanvas = document.querySelectorAll('canvas');
+allCanvas.forEach(cv=>{
+  cv.style.willChange='transform';
+  cv.style.imageRendering='auto';
+});
+</script>
+
+<!-- ===== PERFORMANCE TWEAKS ===== -->
+<script>
+if('requestIdleCallback' in window){
+  requestIdleCallback(()=>{
+    // leichte Preload-Tasks
+    const imgs=[...document.images];
+    imgs.forEach(i=>{i.loading='lazy';});
+  });
+}
+</script>
+
+<!-- ===== CREDITS / CLEAN END ===== -->
+<script>
+console.log('%c⚡ BLOODYBITCOIN — GPU IS THE NEW OIL ⚡','color:#20ffc0;font-weight:bold;font-size:16px');
+</script>
+
+</body>
+</html>
