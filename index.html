@@ -8,98 +8,8 @@
 
 <!-- Three.js (für den Globus) -->
 <script defer src="https://unpkg.com/three@0.157.0/build/three.min.js"></script>
-/* =========================================================
-   ====================   RANK SYSTEM   =====================
-   =======================================================*/
-.ranks{
-  background:linear-gradient(180deg,#060a0b,#090e12);
-  border:1px solid #123139;
-  border-radius:22px;
-  padding:32px 28px;
-  box-shadow:inset 0 0 0 1px #20ffc015, 0 20px 40px rgba(0,0,0,.35);
-  margin-top:40px;
-}
-.ranks h2{
-  text-align:center;
-  color:#cfe6f3;
-  text-shadow:0 0 16px #20ffc033;
-  margin-top:0;
-  font-size:clamp(22px,4vw,30px);
-}
-.ranks-intro{
-  color:#9ed8cf;
-  text-align:center;
-  margin-bottom:30px;
-  font-size:1rem;
-}
-.rank-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
-.rank-card{
-  background:linear-gradient(180deg,#0b1116,#0a1216);
-  border:1px solid #16363c;
-  border-radius:16px;
-  padding:18px 20px;
-  box-shadow:inset 0 0 0 1px #20ffc020;
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-.rank-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 25px #20ffc033, inset 0 0 0 1px #20ffc033;
-}
-.rank-card.legend{
-  background:linear-gradient(180deg,#1c0909,#180606);
-  border:1px solid #8a4b16;
-  box-shadow:0 0 20px #ff8a2a33, inset 0 0 0 1px #ff8a2a33;
-}
-.rank-card h3{
-  margin:.4rem 0 .3rem;
-  color:#bff1e7;
-}
-.rank-card p{
-  color:#97b8b5;
-  margin:0;
-  line-height:1.45;
-}
-.rank-card .badge{
-  display:inline-block;
-  padding:.3rem .6rem;
-  border-radius:8px;
-  background:linear-gradient(180deg,#0b191c,#091216);
-  color:#abffee;
-  font-size:.8rem;
-  border:1px solid #1e5356;
-  margin-bottom:.5rem;
-  box-shadow:0 0 12px #20ffc022;
-}
-.legend-glow{
-  color:#ff8a2a;
-  text-shadow:0 0 12px #ff8a2a66, 0 0 24px #ff8a2a33;
-  font-weight:700;
-}
-.xp-explainer{
-  margin-top:34px;
-  background:linear-gradient(180deg,#0a1216,#0b1116);
-  border-radius:16px;
-  padding:18px 22px;
-  border:1px solid #13363a;
-  box-shadow:inset 0 0 0 1px #20ffc01a;
-}
-.xp-explainer h3{
-  margin-top:0;
-  color:#cfe6f3;
-}
-.xp-explainer ul{
-  list-style:none;
-  margin:0 0 1rem 0;
-  padding:0;
-}
-.xp-explainer li{
-  padding:.3rem 0;
-  color:#9ed8cf;
-}
+
+<style>
 /* =========================================================
    ===============  THEME / DESIGN TOKENS  =================
    =======================================================*/
@@ -554,59 +464,7 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
     </div>
   </div>
 </section>
-<!-- RANKS / XP SYSTEM -->
-<section class="section container ranks">
-  <h2>Rank & XP System</h2>
-  <p class="ranks-intro">
-    Jeder Fortschritt im Netzwerk stärkt deine Verbindung. Sammle XP durch Interaktionen, Mining, KI-Missionen oder Bot-Deployments.
-    Je höher dein Rang, desto tiefer greifst du in das System.
-  </p>
 
-  <div class="rank-grid">
-    <div class="rank-card">
-      <div class="badge">⚙️ Level 10</div>
-      <h3>Data Initiate</h3>
-      <p>Erhalte Zugriff auf Basisdaten, Netzwerkmetriken und globale Node-Visualisierung.</p>
-    </div>
-
-    <div class="rank-card">
-      <div class="badge">🧠 Level 25</div>
-      <h3>Neural Adept</h3>
-      <p>Aktiviere KI-gestützte Prognosemodelle und Wallet-Monitoring in Echtzeit.</p>
-    </div>
-
-    <div class="rank-card">
-      <div class="badge">🛰️ Level 50</div>
-      <h3>Quantum Operator</h3>
-      <p>Synchronisiere Geräte über das SmartForce-OS und greife auf Deep-Learning-Module zu.</p>
-    </div>
-
-    <div class="rank-card">
-      <div class="badge">⚡ Level 75</div>
-      <h3>Chaos Architect</h3>
-      <p>Nutze experimentelle BotForge-Instanzen, manipuliere Marktflüsse & Layer-Signale.</p>
-    </div>
-
-    <div class="rank-card legend">
-      <div class="badge">💎 Level 100</div>
-      <h3>Legend Hyper</h3>
-      <p>Erreiche totale Systemkontrolle. Direkter Zugriff auf neuronale Kontrollkerne & autonome KI-Cluster.</p>
-    </div>
-  </div>
-
-  <hr class="sep" />
-
-  <div class="xp-explainer">
-    <h3>Wie verdienst du XP?</h3>
-    <ul>
-      <li>🧩 Durch erfolgreiche Bot-Deployments</li>
-      <li>💹 Analyse-Beiträge & Community-Signals</li>
-      <li>🔐 Stabile Node-Uptime & Netzwerk-Beitrag</li>
-      <li>⚙️ Experimentelle KI-Projekte & Smart-Module</li>
-    </ul>
-    <p>Jeder Fortschritt bringt dich näher an den <span class="legend-glow">Legend Hyper</span> Status.</p>
-  </div>
-</section>
 <!-- SOUND TOGGLE -->
 <button class="sound" id="soundBtn" aria-label="Sound umschalten">🔊</button>
 
