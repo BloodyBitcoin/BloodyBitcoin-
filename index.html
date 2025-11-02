@@ -1617,5 +1617,46 @@ document.addEventListener("click", (e) => {
   90% { opacity: 0.2; }
   100% { opacity: 0; }
 }
-</style></body>
+</style><script>
+let bloodActive = false;
+
+function triggerBloodRain() {
+  if (bloodActive) return;
+  bloodActive = true;
+
+  // Overlay erstellen
+  const overlay = document.createElement("div");
+  overlay.className = "blood-overlay";
+  document.body.appendChild(overlay);
+
+  // 40 Tropfen generieren
+  for (let i = 0; i < 40; i++) {
+    const drop = document.createElement("div");
+    drop.className = "blood-drop";
+    drop.style.left = Math.random() * 100 + "vw";
+    drop.style.animationDelay = Math.random() * 2 + "s";
+    drop.style.animationDuration = 2 + Math.random() * 3 + "s";
+    overlay.appendChild(drop);
+  }
+
+  // Textflüstern
+  const whisper = document.createElement("div");
+  whisper.className = "blood-whisper";
+  whisper.innerText = "⚠ SYSTEM BREACH DETECTED ⚠";
+  document.body.appendChild(whisper);
+
+  // Nach 10 Sekunden alles wieder entfernen
+  setTimeout(() => {
+    overlay.remove();
+    whisper.remove();
+    bloodActive = false;
+  }, 10000);
+}
+
+// Klick-Event auf den Bot aktivieren
+const aiBot = document.getElementById("ai-bot");
+if (aiBot) {
+  aiBot.addEventListener("click", triggerBloodRain);
+}
+</script></body>
 </html>
