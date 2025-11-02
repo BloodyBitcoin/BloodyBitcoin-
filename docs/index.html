@@ -11,19 +11,10 @@
   --bg:#070a0b;
   --ink:#e7f6ff;
   --muted:#9ab8c5;
-
   --neon:#20ffc0;
-  --neon2:#39f;
-
   --lava:#ff8a2a;
-  --lava2:#ffb15e;
-
   --card:#0b1116;
-  --card2:#0a1216;
   --brd:#11313a;
-
-  --glow-neon: 0 0 18px #20ffc0, 0 0 42px #20ffc033;
-  --glow-lava: 0 0 18px #ff8a2a, 0 0 42px #ff8a2a55;
 }
 
 /* Base */
@@ -31,430 +22,137 @@
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 img{max-width:100%;display:block}
 
-/* Header / Claim – ROT & pulsierend */
+/* Header */
 .claim{
-  position:sticky; top:0; z-index:100;
-  background:linear-gradient(180deg, rgba(7,10,11,.86), rgba(7,10,11,.25));
-  backdrop-filter: blur(8px);
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(180deg,rgba(7,10,11,.86),rgba(7,10,11,.25));
+  backdrop-filter:blur(8px);
   border-bottom:1px solid #0f1f23;
 }
-.claim-inner{padding:.95rem 1rem 1.05rem;text-align:center}
+.claim-inner{padding:.95rem 1rem;text-align:center}
 .claim h1{
-  margin:0;
-  font-weight:900; letter-spacing:.4px;
-  font-size:clamp(22px,4.5vw,36px);
+  margin:0;font-weight:900;font-size:clamp(22px,4.5vw,36px);
   color:#ffd8d8;
-  text-shadow:
-    0 0 16px #ff2e2e,
-    0 0 38px #ff2e2e,
-    0 0 64px #8b1111;
+  text-shadow:0 0 16px #ff2e2e,0 0 38px #ff2e2e,0 0 64px #8b1111;
   animation:pulseRed 2.25s ease-in-out infinite;
 }
-@keyframes pulseRed{
-  0%,100%{filter:drop-shadow(0 0 8px #ff3a3a)}
-  50%{filter:drop-shadow(0 0 26px #ff3a3a)}
-}
-.claim p{
-  margin:.2rem 0 0;
-  color:#f0b5b5; opacity:.9; letter-spacing:.2px
-}
+@keyframes pulseRed{0%,100%{filter:drop-shadow(0 0 8px #ff3a3a)}50%{filter:drop-shadow(0 0 26px #ff3a3a)}}
+.claim p{margin:.2rem 0 0;color:#f0b5b5;opacity:.9}
 
-/* Layout helpers */
+/* Hero */
+.hero{position:relative;overflow:hidden;height:calc(100svh - 84px);background:#000}
+.hero img.dna{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#particles{position:absolute;inset:0;pointer-events:none}
+
+/* Wallet */
+.wallet-wrap{display:grid;place-items:center;padding:40px 0 22px}
+.btn{
+  display:inline-grid;grid-auto-flow:column;gap:14px;align-items:center;
+  padding:18px 40px;border-radius:18px;color:#d8fff5;font-weight:900;
+  background:linear-gradient(180deg,#0e181c,#0a1216);
+  border:1px solid #154248;box-shadow:inset 0 0 0 1px #20ffc025,0 0 40px #20ffc028;
+}
+.btn .tube{font-size:1.25rem;filter:drop-shadow(0 0 8px #20ffc0)}
+
+/* Grid Cards */
 .container{width:min(1180px,92%);margin:0 auto}
 .section{padding:clamp(28px,5.5vw,64px) 0}
 .section h2{margin:0 0 1rem;color:#cfe6f3;font-size:clamp(18px,3.2vw,28px)}
-
-/* Hero (DNA) */
-.hero{
-  position:relative; overflow:hidden;
-  height:calc(100svh - 84px);
-  background:radial-gradient(1200px 480px at 12% 12%, #081b16 0%, #081013 46%, #070a0b 100%);
-}
-.hero img.dna{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  filter:saturate(1.15) contrast(1.05) brightness(1.05);
-  transform:scale(1.01);
-}
-.hero .overlay-grad{
-  position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(90deg, rgba(16,255,120,.12), rgba(255,32,48,.12));
-  mix-blend-mode:screen;
-}
-#particles{position:absolute; inset:0; pointer-events:none;}
-
-/* Wallet Button */
-.wallet-wrap{display:grid; place-items:center; padding:40px 0 22px}
-.btn{
-  --pad:18px;
-  display:inline-grid; grid-auto-flow:column; gap:14px; align-items:center;
-  padding:var(--pad) clamp(22px,5vw,42px);
-  border-radius:18px;
-  color:#d8fff5; font-weight:900; letter-spacing:.6px;
-  background:linear-gradient(180deg,#0e181c,#0a1216);
-  border:1px solid #154248;
-  box-shadow:inset 0 0 0 1px #20ffc025, 0 16px 38px rgba(0,0,0,.45), 0 0 40px #20ffc028;
-  position:relative;
-}
-.btn::after{
-  content:"";
-  position:absolute; inset:0; border-radius:18px;
-  box-shadow:0 0 80px #20ffc02f, 0 0 120px #20ffc019;
-  pointer-events:none;
-}
-.btn .tube{font-size:1.25rem;filter:drop-shadow(0 0 8px #20ffc0)}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(1px)}
-
-/* Panels */
 .grid{display:grid;gap:22px;grid-template-columns:repeat(2,minmax(280px,1fr))}
-@media (max-width:900px){.grid{grid-template-columns:1fr}}
-
-.card{
-  background:linear-gradient(180deg, var(--card2), var(--card));
-  border:1px solid var(--brd);
-  border-radius:22px; padding:20px 22px;
-  box-shadow: inset 0 0 0 1px #20ffc015, 0 12px 30px rgba(0,0,0,.35);
-}
-.card .label{color:#a9e6d5; margin-bottom:8px; letter-spacing:.4px}
-.card .val{font-size:clamp(22px,4vw,38px); font-weight:900}
-
-/* BTC Karte – Orange Lava Glas */
-.card.btc{
-  grid-column:1/-1;
-  background:linear-gradient(180deg, #2a1608, #1d0f06);
-  border:1px solid #8a4b16;
-  box-shadow: inset 0 0 0 1px #ffb15e33, 0 0 30px #ff8a2a33;
-}
-.btc-row{display:flex; align-items:center; gap:16px}
-.btc-logo{
-  width:64px;height:64px;border-radius:16px;
-  display:grid;place-items:center; font-weight:900; font-size:1.4rem; color:#3a1b00;
-  background:radial-gradient(circle at 30% 30%, #fff 0 15%, #ffd38a 15% 45%, #ff9b2f 45% 75%, #ff7b1c 75%);
-  box-shadow: var(--glow-lava);
-}
-.btc-price{color:#ffd9b6; text-shadow:var(--glow-lava)}
-
-/* Leuchtbalken – flüssig */
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#0a1216,#0b1116);border:1px solid var(--brd);border-radius:22px;padding:20px 22px}
+.card .label{color:#a9e6d5;margin-bottom:8px}
+.card .val{font-size:clamp(22px,4vw,38px);font-weight:900}
 .bar{height:12px;border-radius:10px;overflow:hidden;background:#081015;border:1px solid #13363a}
-.bar > i{display:block;height:100%;width:0%;
-  background:linear-gradient(90deg,#20ff90,#20ffc0,#39f);
-  box-shadow:0 0 18px #20ffc055;
-  transition:width 2.2s ease-in-out}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#20ff90,#20ffc0,#39f);box-shadow:0 0 18px #20ffc055;transition:width 2.2s ease-in-out}
 
 /* Globe */
 .globe-wrap{height:520px;border-radius:22px;position:relative;overflow:hidden;
   border:1px solid var(--brd);
-  background:radial-gradient(900px 420px at 70% 30%, #0b1116, #070a0b);
-  box-shadow: inset 0 0 0 1px #20ffc00f, 0 12px 30px rgba(0,0,0,.35);
+  background:radial-gradient(900px 420px at 70% 30%,#0b1116,#070a0b);
 }
-#globe{position:absolute; inset:0}
+#globe{position:absolute;inset:0}
 
-/* Sound Toggle */
-.sound{
-  position:fixed; right:16px; bottom:16px; z-index:200;
-  width:50px;height:50px;border-radius:16px; display:grid; place-items:center;
-  background:linear-gradient(180deg,#0f171c,#0a1216);
-  border:1px solid #14313a;
-  box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px #20ffc022;
-  cursor:pointer; color:#bff1e7; font-size:20px; user-select:none;
-}
+/* Sound */
+.sound{position:fixed;right:16px;bottom:16px;z-index:200;width:50px;height:50px;border-radius:16px;
+  display:grid;place-items:center;background:linear-gradient(180deg,#0f171c,#0a1216);
+  border:1px solid #14313a;box-shadow:0 0 18px rgba(0,0,0,.4);cursor:pointer;color:#bff1e7;font-size:20px}
 
-/* Footer / Siegel auf Schwarz */
-footer{background:#000; padding:56px 0 80px; margin-top:56px; text-align:center; border-top:1px solid #111}
-footer img{width:min(760px,92%); height:auto; margin-inline:auto; display:block}
-footer p{color:#97a3a8; letter-spacing:.24em; margin:18px 0 0}
+/* Footer */
+footer{background:#000;padding:56px 0 80px;text-align:center;border-top:1px solid #111;margin-top:56px}
+footer p{color:#97a3a8;letter-spacing:.24em;margin:18px 0 0}
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="claim">
-  <div class="claim-inner container">
-    <h1>GPU is the New OIL</h1>
-    <p>Founder — Chris R. Herloch</p>
-  </div>
-</header>
+<header class="claim"><div class="claim-inner container">
+  <h1>GPU is the New OIL</h1>
+  <p>Founder — Chris R. Herloch</p>
+</div></header>
 
-<!-- HERO -->
-<section class="hero" aria-label="DNA Hero">
+<section class="hero">
   <img class="dna" id="dnaImg" alt="Bloody Bitcoin DNA" />
   <canvas id="particles"></canvas>
-  <div class="overlay-grad"></div>
 </section>
 
-<!-- Wallet -->
-<div class="wallet-wrap container">
-  <a class="btn" href="#wallet">
-    <span class="tube">🧪</span>
-    <span>WALLET VERKNÜPFEN</span>
-  </a>
-</div>
+<div class="wallet-wrap container"><a class="btn" href="#wallet"><span class="tube">🧪</span><span>WALLET VERKNÜPFEN</span></a></div>
 
-<!-- PARAMETER -->
-<section class="section container" id="metrics">
+<section class="section container">
   <h2>Netzwerk-Parameter</h2>
-
   <div class="grid">
-    <div class="card btc">
-      <div class="label">Bitcoin (EUR)</div>
-      <div class="btc-row">
-        <div class="btc-logo">₿</div>
-        <div class="val btc-price" id="btcPrice">–</div>
-      </div>
-      <div class="bar" style="margin-top:14px"><i id="btcBar"></i></div>
-    </div>
-
-    <div class="card">
-      <div class="label">Knoten</div>
-      <div class="val" id="nodes">–</div>
-      <div class="bar"><i id="nodesBar"></i></div>
-    </div>
-
-    <div class="card">
-      <div class="label">Leistung</div>
-      <div class="val"><span id="flops">–</span> PFLOPS</div>
-      <div class="bar"><i id="flopsBar"></i></div>
-    </div>
-
-    <div class="card">
-      <div class="label">Transaktionen (gesamt)</div>
-      <div class="val" id="txs">–</div>
-      <div class="bar"><i id="txsBar"></i></div>
-    </div>
-
-    <div class="card">
-      <div class="label">Auslastung</div>
-      <div class="val"><span id="load">–</span> %</div>
-      <div class="bar"><i id="loadBar"></i></div>
-    </div>
+    <div class="card"><div class="label">Bitcoin (EUR)</div><div class="val" id="btcPrice">–</div><div class="bar"><i id="btcBar"></i></div></div>
+    <div class="card"><div class="label">Knoten</div><div class="val" id="nodes">–</div><div class="bar"><i id="nodesBar"></i></div></div>
+    <div class="card"><div class="label">Leistung</div><div class="val"><span id="flops">–</span> PFLOPS</div><div class="bar"><i id="flopsBar"></i></div></div>
+    <div class="card"><div class="label">Transaktionen</div><div class="val" id="txs">–</div><div class="bar"><i id="txsBar"></i></div></div>
   </div>
 </section>
 
-<!-- GLOBE -->
 <section class="section container">
   <h2>Global Network Map</h2>
-  <div class="globe-wrap">
-    <canvas id="globe"></canvas>
-  </div>
+  <div class="globe-wrap"><canvas id="globe"></canvas></div>
 </section>
 
-<!-- SOUND TOGGLE -->
-<button class="sound" id="soundBtn" aria-label="Sound umschalten">🔊</button>
+<button class="sound" id="soundBtn">🔊</button>
 
-<!-- FOOTER / SIEGEL -->
-<footer>
-  <img id="sealImg" alt="Bloody Bitcoin Seal" />
-  <p>© BLOODYBITCOIN — GPU IS THE NEW OIL</p>
-</footer>
+<footer><p>© BLOODYBITCOIN — GPU IS THE NEW OIL</p></footer>
 
 <script>
-/* ========== ASSET-PFADE (falls nötig hier ändern) ========== */
-const DNA_IMG  = '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png';  // <-- dein DNA-Bild
-const SEAL_IMG = 'IMG_7712.jpeg';                              // <-- dein Siegel
+const DNA_IMG='0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png';
+document.getElementById('dnaImg').src=DNA_IMG;
 
-document.getElementById('dnaImg').src  = DNA_IMG;
-document.getElementById('sealImg').src = SEAL_IMG;
-
-/* ========== PARTIKEL über dem DNA-Bild ========== */
-(function particles(){
-  const cvs = document.getElementById('particles');
-  const ctx = cvs.getContext('2d');
-  let W,H, list=[];
-  function resize(){ W=cvs.width = cvs.offsetWidth; H=cvs.height = document.querySelector('.hero').offsetHeight; }
-  function spawn(n=50){
-    list = new Array(n).fill(0).map(()=>({
-      x: Math.random()*W,
-      y: Math.random()*H,
-      r: 2+Math.random()*4,
-      vx:(Math.random()-.5)*0.6,
-      vy:(Math.random()-.5)*0.6,
-      g: Math.random()<.5 ? 'rgba(50,255,140,.7)' : 'rgba(255,40,60,.65)'
-    }));
-  }
-  function tick(){
-    ctx.clearRect(0,0,W,H);
-    for(const p of list){
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x< -10) p.x=W+10; if(p.x>W+10) p.x=-10;
-      if(p.y< -10) p.y=H+10; if(p.y>H+10) p.y=-10;
-      const grd = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
-      grd.addColorStop(0, p.g); grd.addColorStop(1, 'transparent');
-      ctx.fillStyle = grd; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2); ctx.fill();
-    }
-    requestAnimationFrame(tick);
-  }
-  window.addEventListener('resize', ()=>{resize(); spawn(70);});
-  resize(); spawn(70); tick();
+/* Particles */
+(function(){
+  const c=document.getElementById('particles'),x=c.getContext('2d');
+  let W,H,p=[];
+  function R(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  function init(){p=[...Array(70)].map(()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:2+Math.random()*3,c:Math.random()<.5?'rgba(32,255,192,.7)':'rgba(255,40,60,.65)'}));}
+  function tick(){x.clearRect(0,0,W,H);p.forEach(o=>{o.x+=o.vx;o.y+=o.vy;if(o.x<0)o.x=W;if(o.x>W)o.x=0;if(o.y<0)o.y=H;if(o.y>H)o.y=0;
+    const g=x.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r*3);g.addColorStop(0,o.c);g.addColorStop(1,'transparent');x.fillStyle=g;x.beginPath();x.arc(o.x,o.y,o.r*3,0,7);x.fill();});
+  requestAnimationFrame(tick);}
+  window.addEventListener('resize',()=>{R();init();});
+  R();init();tick();
 })();
 
-/* ========== METRIKEN (Fake-Daten + BTC EUR live) ========== */
-const el = id=>document.getElementById(id);
-function animateBar(id, pct){ el(id).style.width = Math.max(0,Math.min(100,pct)) + '%'; }
+/* BTC + Random Stats */
+const el=id=>document.getElementById(id);
+function bar(id,p){el(id).style.width=p+'%';}
+async function btc(){try{const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur');const j=await r.json();const v=j.bitcoin.eur;el('btcPrice').textContent=v.toLocaleString('de-DE',{style:'currency',currency:'EUR'});bar('btcBar',30+Math.random()*60);}catch{}}
+setInterval(btc,3000);btc();
+let n=100,f=3.2,t=2000000;
+setInterval(()=>{n+=Math.random()*4-2;f+=Math.random()*.1-.05;t+=Math.random()*1000;
+el('nodes').textContent=Math.round(n);
+el('flops').textContent=f.toFixed(2);
+el('txs').textContent=t.toLocaleString();
+bar('nodesBar',n/3);bar('flopsBar',(f/6)*100);bar('txsBar',(t%1000000)/10000);
+},2000);
 
-function randomWalk(v, step, min, max){
-  v += (Math.random()*2-1)*step;
-  return Math.max(min, Math.min(max, v));
-}
-
-let nodes=156, flops=3.4, txs=11_508_082, load=41;
-function updateFake(){
-  nodes = Math.round(randomWalk(nodes, 2.5, 120, 240));
-  flops = Math.round(randomWalk(flops, .08, 2.4, 5.8)*100)/100;
-  txs += Math.round(Math.random()*1200);
-  load = Math.round(randomWalk(load, 2.2, 12, 95));
-
-  el('nodes').textContent = nodes.toLocaleString('de-DE');
-  el('flops').textContent = flops.toLocaleString('de-DE', {maximumFractionDigits:2, minimumFractionDigits:2});
-  el('txs').textContent   = txs.toLocaleString('de-DE');
-  el('load').textContent  = load.toLocaleString('de-DE');
-
-  animateBar('nodesBar', nodes/3);
-  animateBar('flopsBar', (flops/6)*100);
-  animateBar('txsBar',   ( (txs%1_000_000)/1_000_000 )*100);
-  animateBar('loadBar',  load);
-}
-setInterval(updateFake, 2200); updateFake();
-
-/* BTC in EUR – sekündlich */
-async function fetchBTC(){
-  try{
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
-    const j = await r.json();
-    const eur = j?.bitcoin?.eur ?? null;
-    if(eur){
-      el('btcPrice').textContent = eur.toLocaleString('de-DE', {style:'currency', currency:'EUR'});
-      animateBar('btcBar', 30 + Math.random()*70);
-    }
-  }catch(e){ /* still leise */ }
-}
-setInterval(fetchBTC, 1000); fetchBTC();
-
-/* ========== GLOBE (Canvas – Punkte & Linien, soft-tech) ========== */
-(function globe(){
-  const cvs = document.getElementById('globe');
-  const ctx = cvs.getContext('2d');
-  let W,H, t=0;
-
-  const nodes = [
-    {name:'V1', lat: 48.1, lon: 11.5},
-    {name:'V2', lat: 51.5, lon:  -0.1},
-    {name:'V3', lat: 40.7, lon:-74.0},
-    {name:'V4', lat: 35.6, lon:139.7},
-    {name:'V5', lat: -33.9,lon:151.2},
-    {name:'V6', lat: 52.3, lon: 13.4},
-    {name:'V7', lat: 59.9, lon: 30.3},
-    {name:'V8', lat: 1.3,  lon:103.8},
-    {name:'V9', lat:-23.5, lon:-46.6},
-    {name:'V10',lat: 34.0, lon:-118.2},
-  ];
-
-  function resize(){ W=cvs.width = cvs.offsetWidth; H=cvs.height = cvs.offsetHeight; }
-  function proj(lat,lon,rot){
-    // einfache Orthographic-Projektion
-    const rad = Math.PI/180, R = Math.min(W,H)*0.42;
-    const λ = (lon+rot)*rad, φ = lat*rad;
-    const cx = W/2, cy = H/2;
-    const x = R*Math.cos(φ)*Math.sin(λ);
-    const y = R*Math.sin(φ);
-    const z = Math.cos(φ)*Math.cos(λ); // depth für sorting / alpha
-    return {x:cx+x, y:cy-y, z};
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-
-    // Kugel-Glow
-    const R = Math.min(W,H)*0.46, cx=W/2, cy=H/2;
-    const g = ctx.createRadialGradient(cx,cy, R*.2, cx,cy,R);
-    g.addColorStop(0,'rgba(32,255,192,.08)');
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
-
-    // Graticule-Kreise
-    ctx.strokeStyle = 'rgba(32,255,192,.18)';
-    ctx.lineWidth = 1;
-    for(let i=-60;i<=60;i+=30){
-      const rr = R*Math.cos(i*Math.PI/180);
-      ctx.beginPath(); ctx.ellipse(cx,cy, rr, R, 0, 0, Math.PI*2); ctx.stroke();
-    }
-
-    // Punkte
-    const rot = t*0.015*180/Math.PI; // langsam drehen
-    const pts = nodes.map(n=>({n, p:proj(n.lat,n.lon,rot)})).sort((a,b)=>a.p.z-b.p.z);
-    for(const {p} of pts){
-      const alpha = Math.max(0, p.z); // nur Vorderseite
-      if(alpha<=0) continue;
-      const r = 3 + 3*alpha;
-      const glow = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,16);
-      glow.addColorStop(0,`rgba(32,255,192,${.35+alpha*.35})`);
-      glow.addColorStop(1,'rgba(32,255,192,0)');
-      ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(p.x,p.y,16,0,Math.PI*2); ctx.fill();
-
-      ctx.fillStyle=`rgba(200,255,245,${.6+alpha*.4})`;
-      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,Math.PI*2); ctx.fill();
-    }
-
-    // Verbindungen (sanfte Linien, pulsierend)
-    ctx.lineWidth = 1.2;
-    for(let i=0;i<pts.length-1;i++){
-      const a=pts[i].p, b=pts[(i+3)%pts.length].p;
-      if(a.z<=0||b.z<=0) continue;
-      const grad = ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-      grad.addColorStop(0,'rgba(32,255,192,.20)');
-      grad.addColorStop(1,'rgba(32,255,192,.02)');
-      ctx.strokeStyle=grad;
-      ctx.beginPath();
-      ctx.moveTo(a.x,a.y);
-      const mx=(a.x+b.x)/2, my=(a.y+b.y)/2 - 30; // leichte Wölbung
-      ctx.quadraticCurveTo(mx,my,b.x,b.y);
-      ctx.stroke();
-    }
-
-    t+=1; requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize', ()=>{resize()});
-  resize(); draw();
-})();
-
-/* ========== Sound (mysteriös, reagiert auf Scroll-Tempo) ========== */
-(function sound(){
-  let audioCtx, osc, gain, on=false, lastY=window.scrollY;
-  const btn = document.getElementById('soundBtn');
-
-  function setup(){
-    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    osc = audioCtx.createOscillator();
-    gain = audioCtx.createGain();
-    osc.type='triangle';
-    osc.frequency.value = 220;       // Grundton
-    gain.gain.value = 0.03;          // dezent
-    osc.connect(gain).connect(audioCtx.destination);
-    osc.start();
-  }
-
-  function setFreqByScroll(){
-    const y=window.scrollY; const dy=Math.abs(y-lastY);
-    lastY=y;
-    if(!osc) return;
-    const f = 160 + Math.min(640, dy*6); // schneller scroll → höher
-    osc.frequency.exponentialRampToValueAtTime(f, (audioCtx||{}).currentTime+0.08||0);
-    // leichtes Lautstärke-Pulsieren
-    const g = 0.02 + Math.min(.06, dy/800);
-    gain.gain.linearRampToValueAtTime(g, (audioCtx||{}).currentTime+0.08||0);
-  }
-
-  btn.addEventListener('click', async ()=>{
-    if(!on){
-      if(!audioCtx) setup();
-      if(audioCtx.state==='suspended') await audioCtx.resume();
-      on=true; btn.textContent='🔊';
-    }else{
-      on=false; btn.textContent='🔈';
-      if(audioCtx) audioCtx.suspend();
-    }
-  }, {passive:true});
-
-  window.addEventListener('scroll', ()=>{ if(on) setFreqByScroll(); }, {passive:true});
-})();
-</script>
-</body>
-</html>
+/* Realistic Globe with Radar Motion */
+(function(){
+const c=document.getElementById('globe'),x=c.getContext('2d');
+let W,H,R,rot=0,zoom=1,dz=0.001,radar=0;
+const land=[[60,-100],[10,-80],[0,20],[50,100],[70,40]];
+const nodes=[
+  {lat:50.1,lon:8.6},{lat:40.7,lon:-74},{lat:35.6,lon:139.7},{lat:-23.5,lon:-46.6},{lat:25.2,lon:55.3},{lat:1.3,lon:103.8},{lat:-33.9,lon:151.2},{lat:52.3,lon:13.4},{lat:59.9,lon:30.3},{lat:19,lon:72.8}
+];
+function Rz(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;R=Math.min(W,H)*0.38;}
+function proj(lat,lon){const r=Math.PI/180,λ=(lon+rot)*r,φ=lat*r;const x1
