@@ -1012,5 +1012,79 @@ if('requestIdleCallback' in window){
 .beta-note strong {
   color: #cfe6f3;
 }
+</style><!-- FIREWALL STATUS BAR -->
+<div class="firewall-bar">
+  <div class="firewall-light"></div>
+  <span class="firewall-text">FIREWALL ACTIVE</span>
+</div>
+
+<style>
+.firewall-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #001, #021a13, #001);
+  background-size: 400% 400%;
+  animation: bgShift 12s ease infinite;
+  box-shadow: 0 -2px 15px #00ffcc33;
+  border-top: 1px solid #0f3;
+  z-index: 9999;
+}
+
+.firewall-light {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #0f0;
+  box-shadow: 0 0 12px 3px #00ff99;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.firewall-text {
+  color: #caffee;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #00ffaa88;
+  font-size: 1rem;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 6px 2px #00ff9955; background: #00ff99; }
+  50% { box-shadow: 0 0 14px 4px #00ffaa; background: #20ffc0; }
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🔥 Optional: Warnzustand */
+.firewall-bar.alert .firewall-light {
+  background: #ff2020;
+  box-shadow: 0 0 16px 4px #ff5050;
+  animation: alertPulse 0.5s infinite;
+}
+
+.firewall-bar.alert .firewall-text {
+  color: #ff5050;
+  text-shadow: 0 0 10px #ff3030;
+}
+
+@keyframes alertPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}<!-- FIREWALL STATUS BAR -->
+<div class="firewall-bar">
+  <div class="firewall-light"></div>
+  <span class="firewall-text">FIREWALL ACTIVE</span>
+</div>
 </style></body>
 </html>
