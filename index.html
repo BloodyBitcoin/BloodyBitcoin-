@@ -1094,7 +1094,56 @@ if('requestIdleCallback' in window){
   <div class="firewall-light"></div>
   <span class="firewall-text">FIREWALL ACTIVE</span>
 </div>
-</style><!-- BLOOD SURGE BUTTON -->
+/* ===== VIRUS NEBEL EFFEKT ===== */
+.virus-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(180, 0, 255, 0.4), rgba(100, 0, 150, 0.2), transparent 80%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 20;
+  filter: blur(35px);
+  opacity: 0.4;
+  animation: virusMove 12s ease-in-out infinite, virusPulse 8s ease-in-out infinite alternate;
+  backdrop-filter: blur(8px);
+}
+
+@keyframes virusMove {
+  0% { background-position: 40% 50%; transform: scale(1) rotate(0deg); }
+  25% { background-position: 60% 45%; transform: scale(1.05) rotate(5deg); }
+  50% { background-position: 50% 55%; transform: scale(1.1) rotate(0deg); }
+  75% { background-position: 45% 60%; transform: scale(1.05) rotate(-5deg); }
+  100% { background-position: 40% 50%; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes virusPulse {
+  0% { opacity: 0.25; filter: blur(30px); }
+  50% { opacity: 0.5; filter: blur(40px); }
+  100% { opacity: 0.3; filter: blur(35px); }
+}/* ===== BLOOD SURGE VIRUS BOOST ===== */
+.virus-overlay.surge {
+  animation: virusSurge 1.5s ease-out;
+  opacity: 0.9;
+  filter: blur(50px) brightness(1.8);
+}
+
+@keyframes virusSurge {
+  0% {
+    opacity: 0.4;
+    filter: blur(35px) brightness(1);
+  }
+  30% {
+    opacity: 1;
+    filter: blur(60px) brightness(2);
+  }
+  100% {
+    opacity: 0.5;
+    filter: blur(40px) brightness(1.2);
+  }
+}</style><!-- BLOOD SURGE BUTTON -->
 <button id="bloodBtn" class="blood-btn">💉 BLOOD SURGE</button>
 
 <script>
@@ -1102,7 +1151,14 @@ const btn = document.getElementById('bloodBtn');
 btn.addEventListener('click', () => {
   // Füge Effektklasse hinzu
   document.body.classList.add('blood-mode');
-  
+    // VIRUS SURGE EFFEKT AKTIVIEREN
+  const virus = document.querySelector('.virus-overlay');
+  if (virus) {
+    virus.classList.add('surge');
+    setTimeout(() => {
+      virus.classList.remove('surge');
+    }, 1500);
+  }
   // Entferne sie nach 2,8 Sekunden wieder
   setTimeout(() => {
     document.body.classList.remove('blood-mode');
