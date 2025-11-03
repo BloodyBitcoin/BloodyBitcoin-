@@ -972,7 +972,15 @@ if('requestIdleCallback' in window){
   });
 }
 </script>
-<!-- BETA / TESTNET DISCLAIMER -->
+<!-- 🔒 BLOODY BITCOIN LOCKED PROJECT SECTION -->
+<section id="locked-project" style="margin-top: 80px; margin-bottom: 80px; text-align:center;">
+  <div class="locked-container">
+    <img src="84603815-1706-415f-b953-21047422fdae.jpeg" alt="Secret Project" class="locked-image">
+    <div class="glitch-overlay"></div>
+    <div class="lock">🔒</div>
+  </div>
+  <div class="countdown" id="countdown"></div>
+</section><!-- BETA / TESTNET DISCLAIMER -->
 <section class="section container beta-note">
   <h3>🧪 Beta- & Testnetz-Status</h3>
   <p>
@@ -1617,7 +1625,94 @@ document.addEventListener("click", (e) => {
   90% { opacity: 0.2; }
   100% { opacity: 0; }
 }
-</style><script>
+/* === BLOODY BITCOIN LOCKED PROJECT STYLES === */
+
+#locked-project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.locked-container {
+  position: relative;
+  display: inline-block;
+  filter: brightness(0.7) contrast(1.2);
+}
+
+.locked-image {
+  width: 85%;
+  max-width: 600px;
+  border-radius: 10px;
+  filter: blur(3px) brightness(0.6);
+}
+
+/* Pixel/Glitch Overlay */
+.glitch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 255, 100, 0.1) 0px,
+    rgba(0, 255, 100, 0.2) 2px,
+    rgba(0, 0, 0, 0.3) 4px
+  );
+  animation: glitchMove 0.4s infinite alternate;
+  mix-blend-mode: lighten;
+  z-index: 2;
+}
+
+@keyframes glitchMove {
+  from { transform: translateX(0px); opacity: 0.8; }
+  to { transform: translateX(10px); opacity: 0.4; }
+}
+
+/* Pulsierendes Schloss */
+.lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  color: #00ff88;
+  text-shadow: 0 0 25px #00ff88, 0 0 45px #00ff88;
+  animation: pulseLock 1.5s infinite ease-in-out, shakeLock 4s infinite ease-in-out;
+  z-index: 5;
+}
+
+@keyframes pulseLock {
+  0%, 100% { opacity: 1; text-shadow: 0 0 15px #00ff88, 0 0 35px #00ff88; }
+  50% { opacity: 0.6; text-shadow: 0 0 40px #00ff88, 0 0 80px #00ff88; }
+}
+
+@keyframes shakeLock {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  25% { transform: translate(-49%, -51%) rotate(2deg); }
+  50% { transform: translate(-51%, -50%) rotate(-3deg); }
+  75% { transform: translate(-50%, -49%) rotate(1deg); }
+}
+
+/* Countdown Text */
+.countdown {
+  margin-top: 20px;
+  font-family: "Share Tech Mono", monospace;
+  color: #00ff99;
+  font-size: 1.8rem;
+  text-shadow: 0 0 15px #00ff88;
+  letter-spacing: 2px;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.3; }
+}</style><script>
 let bloodActive = false;
 
 function triggerBloodRain() {
@@ -1658,5 +1753,141 @@ const aiBot = document.getElementById("ai-bot");
 if (aiBot) {
   aiBot.addEventListener("click", triggerBloodRain);
 }
-</script></body>
+</script><style>
+  /* === Locked Project Styles === */
+  .locked-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    border: 2px solid #00ff66;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #00ff66aa;
+    overflow: hidden;
+  }
+
+  .locked-image {
+    width: 100%;
+    display: block;
+    filter: brightness(0.4) blur(1px);
+  }
+
+  .glitch-overlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0,255,0,0.15),
+      rgba(0,255,0,0.15) 2px,
+      rgba(0,0,0,0.3) 3px
+    );
+    mix-blend-mode: overlay;
+    animation: glitchMove 2s infinite linear;
+    z-index: 2;
+  }
+
+  @keyframes glitchMove {
+    0% { transform: translate(0, 0); opacity: 0.6; }
+    25% { transform: translate(2px, -3px); opacity: 0.8; }
+    50% { transform: translate(-3px, 1px); opacity: 0.5; }
+    75% { transform: translate(1px, 2px); opacity: 0.7; }
+    100% { transform: translate(0, 0); opacity: 0.6; }
+  }
+
+  .lock {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ff88;
+    font-size: 5rem;
+    text-shadow: 0 0 10px #00ff88, 0 0 30px #00ff88;
+    animation: lockShake 1.2s infinite ease-in-out;
+    z-index: 3;
+  }
+
+  @keyframes lockShake {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    25% { transform: translate(-49%, -51%) rotate(1deg) scale(1.02); }
+    50% { transform: translate(-51%, -49%) rotate(-1deg) scale(0.98); }
+    75% { transform: translate(-50%, -50%) rotate(1deg) scale(1.01); }
+  }
+
+  .countdown {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    color: #00ff99;
+    text-shadow: 0 0 10px #00ff66;
+    animation: glowPulse 3s infinite ease-in-out;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff33; opacity: 1; }
+    50% { text-shadow: 0 0 25px #00ffaa, 0 0 45px #00ff88; opacity: 0.8; }
+  }
+</style>
+
+<script>
+  // === Countdown Script ===
+  const countdown = document.getElementById("countdown");
+  const targetDate = new Date("October 23, 2026 00:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      countdown.innerHTML = "🟢 ACCESS GRANTED";
+      document.querySelector(".lock").style.display = "none";
+      document.querySelector(".glitch-overlay").style.display = "none";
+      document.querySelector(".locked-image").style.filter = "none";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }, 1000);
+</script>// === BLOODY BITCOIN LOCKED PROJECT SCRIPT ===
+
+// Countdown-Datum festlegen (23. Oktober 2026)
+const targetDate = new Date("October 23, 2026 00:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  const countdownEl = document.querySelector(".countdown");
+  const lockEl = document.querySelector(".lock");
+  const overlayEl = document.querySelector(".glitch-overlay");
+
+  if (distance < 0) {
+    // Wenn Countdown abgelaufen ist: Schloss entfernen + Bild freigeben
+    countdownEl.innerHTML = "🟢 ACCESS GRANTED";
+    lockEl.style.opacity = "0";
+    overlayEl.style.opacity = "0";
+  } else {
+    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+}
+
+// Countdown jede Sekunde aktualisieren
+setInterval(updateCountdown, 1000);
+
+// Pulsierendes Schloss-Animation aktiv halten
+setInterval(() => {
+  const lock = document.querySelector(".lock");
+  if (lock) {
+    lock.style.transform = `scale(${1 + Math.sin(Date.now() / 300) * 0.05})`;
+  }
+}, 100);
+</body>
 </html>
