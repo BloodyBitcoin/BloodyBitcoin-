@@ -2737,26 +2737,28 @@ setInterval(() => {
 </style>
 <!-- 🔮 END BOT WAVE CONTROL -->
 <!-- ⚡ END HC-3B -->
-<!-- 🧠 BOT LIGHT CONTROL - ONLY ACTIVE IN LOCKED SECTION -->
+<!-- 🧠 BOT LIGHT CONTROL – ONLY ACTIVE IN HC-3B SECTION -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const aiBot = document.getElementById("ai-bot");
-  const lockTarget = document.querySelector("#hc3b-section");
+  const lockTarget = document.querySelector("#hc3b-section"); // Abschnitt mit Gehirn
 
   if (aiBot && lockTarget) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Aktiviere violettes Licht nur im gesperrten Bereich
+          console.log("🔵 Bot-Pulse aktiviert"); // Debug-Info
           aiBot.classList.add("bot-pulse");
         } else {
-          // Entferne violettes Licht überall sonst
+          console.log("⚫ Bot-Pulse deaktiviert"); // Debug-Info
           aiBot.classList.remove("bot-pulse");
         }
       });
-    }, { threshold: 0.6 }); // Aktiv, wenn ~60% des Abschnitts sichtbar sind
+    }, { threshold: 0.6 });
 
     observer.observe(lockTarget);
+  } else {
+    console.warn("⚠️ HC-3B Abschnitt oder ai-bot nicht gefunden!");
   }
 });
 </script>
