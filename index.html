@@ -2737,3 +2737,26 @@ setInterval(() => {
 </style>
 <!-- 🔮 END BOT WAVE CONTROL -->
 <!-- ⚡ END HC-3B -->
+<!-- 🧠 BOT LIGHT CONTROL - ONLY ACTIVE IN LOCKED SECTION -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const aiBot = document.getElementById("ai-bot");
+  const lockTarget = document.querySelector("#locked-project"); // Bereich mit dem Schloss
+
+  if (aiBot && lockTarget) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Aktiviere violettes Licht nur im gesperrten Bereich
+          aiBot.classList.add("bot-pulse");
+        } else {
+          // Entferne violettes Licht überall sonst
+          aiBot.classList.remove("bot-pulse");
+        }
+      });
+    }, { threshold: 0.6 }); // Aktiv, wenn ~60% des Abschnitts sichtbar sind
+
+    observer.observe(lockTarget);
+  }
+});
+</script>
