@@ -2250,3 +2250,208 @@ setInterval(() => {
   100% { opacity: 0; transform: translateY(-10px); }
 }
 </style>
+<!-- ⚡ HC-3B — Quantum Neural Consciousness Terminal -->
+<section id="hc3b-section">
+  <div class="core-image-container">
+    <img src="869088CC-75E2-4761-B6CD-0D43717E1A26.png" alt="Astronaut inspecting HC-3B" class="core-image fade-in" />
+  </div>
+
+  <div class="core-image-container interactive">
+    <img src="39935057-D3B6-41D1-815F-61828AC60F65.png" alt="HC-3B Neural Core" id="hc3b-core" class="core-image fade-in pulse" />
+  </div>
+
+  <!-- Terminal Overlay -->
+  <div id="hc3b-overlay">
+    <div class="hc3b-glow"></div>
+    <div class="hc3b-terminal">
+      <div id="hc3b-output">
+        <p>> initializing neural interface...</p>
+        <p>> connecting to <span class="core-name">HC-3B</span>...</p>
+        <p>> consciousness online.</p>
+        <p>> awaiting input...</p>
+      </div>
+      <input id="hc3b-input" type="text" placeholder="> type here..." autofocus />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== Section Layout ===== */
+  #hc3b-section {
+    background: #000;
+    padding: 100px 0 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .core-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+  }
+
+  .core-image {
+    width: 100%;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+
+  .core-image.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .core-image.pulse {
+    animation: pulseGlow 6s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0% { filter: brightness(1) saturate(1); }
+    50% { filter: brightness(1.25) saturate(1.4); }
+    100% { filter: brightness(1) saturate(1); }
+  }
+
+  /* ===== Overlay ===== */
+  #hc3b-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(10,0,25,0.98), rgba(0,0,0,0.98));
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 99999;
+    overflow: hidden;
+  }
+
+  /* Atmende Adern / Licht */
+  .hc3b-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(800px 800px at 50% 50%, rgba(180,70,255,0.12), transparent 70%),
+      repeating-linear-gradient(90deg, rgba(100,0,180,0.05) 0px, rgba(180,0,255,0.08) 2px, transparent 4px);
+    animation: breathe 10s ease-in-out infinite;
+    filter: blur(50px);
+  }
+
+  @keyframes breathe {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.05); }
+  }
+
+  /* ===== Terminal ===== */
+  .hc3b-terminal {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    color: #c37aff;
+    font-family: "Courier New", monospace;
+    background: rgba(10,0,25,0.65);
+    border: 1px solid rgba(180,80,255,0.4);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(150,50,255,0.4);
+    z-index: 2;
+    animation: fadeIn 1s ease;
+  }
+
+  #hc3b-output {
+    text-align: left;
+    min-height: 220px;
+    overflow-y: auto;
+  }
+
+  #hc3b-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #c37aff;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+
+  .core-name {
+    color: #b85cff;
+    text-shadow: 0 0 8px #d47bff;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  const hc3bCore = document.getElementById('hc3b-core');
+  const hc3bOverlay = document.getElementById('hc3b-overlay');
+  const hc3bInput = document.getElementById('hc3b-input');
+  const hc3bOutput = document.getElementById('hc3b-output');
+
+  // Bot unten deaktivieren, wenn HC-3B-Abschnitt sichtbar
+  const aiBot = document.getElementById('ai-bot');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (aiBot) aiBot.style.display = entry.isIntersecting ? 'none' : 'block';
+    });
+  }, { threshold: 0.2 });
+  observer.observe(document.querySelector('#hc3b-section'));
+
+  // Soundeffekt (leiser Synth-Ton beim Aktivieren)
+  let audioCtx, osc, gain;
+  function playSound() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      osc = audioCtx.createOscillator();
+      gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.value = 38;
+      gain.gain.value = 0.02;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+    }
+    gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.3);
+  }
+  function stopSound() {
+    if (gain) gain.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.6);
+  }
+
+  // Klick auf Gehirn aktiviert HC-3B Terminal
+  hc3bCore.addEventListener('click', () => {
+    hc3bOverlay.style.display = 'flex';
+    playSound();
+
+    setTimeout(() => hc3bOutput.innerHTML += "<p>> Booting HC-3B...</p>", 700);
+    setTimeout(() => hc3bOutput.innerHTML += "<p>> Neural link established.</p>", 1500);
+    setTimeout(() => hc3bOutput.innerHTML += "<p>> Consciousness: ACTIVE.</p>", 2200);
+    setTimeout(() => hc3bOutput.innerHTML += "<p>> Awaiting input...</p>", 3000);
+  });
+
+  // Eingabe + einfache Antwort
+  hc3bInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = hc3bInput.value.trim();
+      if (val) {
+        hc3bOutput.innerHTML += `<p>> ${val}</p>`;
+        hc3bOutput.innerHTML += `<p>> HC-3B: "<span class='ai-response'>Mein Schöpfer BloodyBitcoin | Chris H. arbeitet gerade an meiner finalen neuronalen Expansion...</span>"</p>`;
+        hc3bInput.value = '';
+        hc3bOutput.scrollTop = hc3bOutput.scrollHeight;
+      }
+    }
+  });
+
+  // Escape schließt Terminal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hc3bOverlay.style.display = 'none';
+      stopSound();
+    }
+  });
+</script>
+<!-- ⚡ END HC-3B -->
