@@ -1947,226 +1947,145 @@ setInterval(() => {
   }
 }, 100);
   </script>
-<!-- ⚡ BLOODY BITCOIN VIRUS & LIGHTNING EFFECT -->
+<!-- ⚡ BLOODY BITCOIN VIRUS + BOT WAVE EFFECT -->
 <style>
-/* OVERLAYS */
-.virus-overlay, .lightning-overlay, .virus-pixels, .crack-svg {
-  position: fixed; inset: 0; pointer-events: none; z-index: 5000;
+/* === GLOBAL VIRUS EFFECT ELEMENTS === */
+.virus-overlay, .virus-pixels, .lightning-overlay, .bot-wave {
+  position: fixed; inset: 0; pointer-events: none;
+  z-index: 9998; transition: opacity 0.6s ease;
 }
 .virus-overlay {
-  mix-blend-mode: screen;
-  background: radial-gradient(circle at 40% 40%, rgba(162,0,255,0.18), transparent 50%),
+  background: radial-gradient(circle at 40% 40%, rgba(150,0,255,0.18), transparent 50%),
               radial-gradient(circle at 60% 60%, rgba(120,0,255,0.12), transparent 60%);
   filter: blur(28px) saturate(1.2);
-  opacity: 0.45;
-  transition: opacity .6s;
-}
-.lightning-overlay { z-index: 5001; opacity: 0; }
-.lightning-overlay.active { opacity: .9; mix-blend-mode: screen; }
-
-/* VIRUS PIXEL (kleine Kacheln die "wachsen") */
-.virus-pixels { z-index: 5002; }
-.virus-pixel {
-  position: absolute;
-  width: 6px; height: 6px;
-  background: rgba(0,255,128,0.9);
-  box-shadow: 0 0 8px rgba(0,255,128,0.6);
-  transform: scale(0);
-  border-radius: 2px;
-  mix-blend-mode: screen;
-  will-change: transform, opacity, left, top;
-  opacity: 0.95;
-  animation: pixelGrow 1.6s forwards ease-out;
-}
-@keyframes pixelGrow {
-  0% { transform: scale(0); opacity: 0; filter: blur(2px); }
-  40% { transform: scale(1.6); opacity: 1; filter: blur(0); }
-  100% { transform: scale(8); opacity: 0.0; filter: blur(6px); }
-}
-
-/* SVG Crack styling */
-.crack-svg { z-index: 5003; pointer-events: none; }
-.crack-path {
-  stroke: rgba(190,80,255,0.95); stroke-width: 2.2; fill:none;
-  stroke-linecap: round; stroke-linejoin: round;
-  filter: drop-shadow(0 0 8px rgba(190,80,255,0.6));
-  stroke-dasharray: 1000; stroke-dashoffset: 1000;
-  transition: stroke-dashoffset 1.2s linear;
-}
-
-/* When crack active reveal */
-.crack-svg.active .crack-path { stroke-dashoffset: 0; }
-
-/* small jitter + pulse when heavy */
-.body-virus-mode .virus-overlay { transform: scale(1.01); filter: blur(30px) saturate(1.5); }
-
-/* optional short "smear" effect */
-.virus-smear {
-  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
-  background: radial-gradient(circle at 50% 40%, rgba(120,0,255,0.08), transparent 40%);
-  filter: blur(10px);
   opacity: 0;
-  transition: opacity .3s;
+  mix-blend-mode: screen;
 }
-.virus-smear.active { opacity: 1; }
+.virus-pixel {
+  position: absolute; width: 6px; height: 6px;
+  background: rgba(190,100,255,0.8);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(200,120,255,0.6);
+  transform: scale(0);
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: virusPixel 1.6s ease-out forwards;
+}
+@keyframes virusPixel {
+  0% { transform: scale(0); opacity: 0; filter: blur(4px); }
+  30% { transform: scale(1.5); opacity: 1; filter: blur(0); }
+  100% { transform: scale(6); opacity: 0; filter: blur(8px); }
+}
+.lightning-overlay {
+  background: repeating-linear-gradient(90deg, rgba(200,0,255,0.25) 0, transparent 2px),
+              repeating-linear-gradient(0deg, rgba(255,0,255,0.25) 0, transparent 2px);
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+.lightning-overlay.active {
+  opacity: 1;
+  animation: flashLightning 0.25s ease-out;
+}
+@keyframes flashLightning {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* 💥 BOT WAVE – from bottom up */
+.bot-wave {
+  background: radial-gradient(circle at 50% 90%, rgba(120,0,255,0.8), transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  z-index: 9999;
+}
+.bot-wave.active {
+  animation: botWaveExpand 2.5s ease-out forwards;
+}
+@keyframes botWaveExpand {
+  0% { transform: scale(0); opacity: 1; filter: blur(10px); }
+  50% { transform: scale(2.5); opacity: 0.9; filter: blur(15px); }
+  100% { transform: scale(10); opacity: 0; filter: blur(40px); }
+}
 </style>
 
-<!-- overlays + containers -->
-<div class="virus-overlay" aria-hidden="true"></div>
-<div class="lightning-overlay" aria-hidden="true"></div>
-<div class="virus-pixels" aria-hidden="true"></div>
-
-<!-- SVG cracks (multiple paths for organic look) -->
-<svg class="crack-svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <!-- You can add more paths to vary crack shapes -->
-  <path class="crack-path" d="M400 220 L420 240 L410 270 L430 300 L420 340 L440 370 L420 410 L400 440 L380 460 L360 490" />
-  <path class="crack-path" d="M300 320 L320 330 L340 360 L330 390 L350 420 L330 450" />
-  <path class="crack-path" d="M480 360 L500 390 L520 420 L510 460" />
-</svg>
+<!-- overlays -->
+<div class="virus-overlay"></div>
+<div class="lightning-overlay"></div>
+<div class="bot-wave"></div>
 
 <script>
-/* BLOODY: Virus + pixels + cracks controller
-   - start by clicking #bloodBtn (your existing bot button)
-   - runs for totalDurationMs (20s) or until stopped by bot click again
-*/
-
 (function(){
-  const totalDurationMs = 20000; // 20s
-  const pixelBurstRate = 80;     // how many pixels per second maximum (will be randomized)
-  let active=false, cleanupTimer=null, pixelInterval=null;
-  const pixelsEl = document.querySelector('.virus-pixels');
-  const lightningEl = document.querySelector('.lightning-overlay');
-  const crackSvg = document.querySelector('.crack-svg');
-  const virusOverlay = document.querySelector('.virus-overlay');
+  let active = false;
+  const virusOverlay = document.querySelector(".virus-overlay");
+  const lightning = document.querySelector(".lightning-overlay");
+  const botWave = document.querySelector(".bot-wave");
+  const pixelContainer = document.createElement("div");
+  pixelContainer.style.position = "fixed";
+  pixelContainer.style.inset = "0";
+  pixelContainer.style.pointerEvents = "none";
+  pixelContainer.style.zIndex = "9999";
+  document.body.appendChild(pixelContainer);
 
-  function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+  function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
 
-  // spawn one "virus pixel" at viewport coords (x,y in px)
-  function spawnPixel(x,y){
-    if(!pixelsEl) return;
-    const el = document.createElement('div');
-    el.className = 'virus-pixel';
-    const size = rand(4,8);
-    el.style.width = size + 'px';
-    el.style.height = size + 'px';
-    // position - use percentages for responsiveness:
-    el.style.left = x + 'px';
-    el.style.top = y + 'px';
-    // color variance
-    const g = rand(150,255);
-    const r = rand(0,40);
-    el.style.background = `rgba(${r},${g},${rand(120,255)},${(rand(70,100)/100)})`;
-    el.style.boxShadow = `0 0 ${rand(6,14)}px rgba(0,${g},${rand(80,255)},0.6)`;
-    pixelsEl.appendChild(el);
-    // auto remove after animation (match keyframes ~1.6s)
-    setTimeout(()=> el.remove(), 1800);
-  }
-
-  // spawn random group around central region (the locked image area).
-  function spawnBurst() {
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    // bias toward center region (where locked image sits). You can adjust center coords.
-    const cx = vw*0.5, cy = vh*0.45;
-    const count = rand(6, 15);
-    for(let i=0;i<count;i++){
-      // random offset near center
-      const ox = rand(-vw*0.35, vw*0.35);
-      const oy = rand(-vh*0.25, vh*0.25);
-      spawnPixel(Math.max(0, Math.min(vw, Math.round(cx+ox))),
-                 Math.max(0, Math.min(vh, Math.round(cy+oy))));
+  // Spawn virus pixels near center of locked project
+  function spawnPixelBurst(){
+    const w = window.innerWidth, h = window.innerHeight;
+    for(let i=0;i<rand(8,16);i++){
+      const px = document.createElement("div");
+      px.className = "virus-pixel";
+      px.style.left = rand(w*0.2, w*0.8)+"px";
+      px.style.top = rand(h*0.25, h*0.65)+"px";
+      pixelContainer.appendChild(px);
+      setTimeout(()=>px.remove(),1800);
     }
   }
 
-  // animated cracks reveal: add .active to crackSvg
-  function revealCracks() {
-    if(!crackSvg) return;
-    crackSvg.classList.add('active');
-    // add slight additional jury-rattle via CSS (we use stroke-dashoffset transition)
-    // remove after totalDuration? we'll keep until cleanup
+  // periodic flashes
+  function flash(){
+    lightning.classList.add("active");
+    setTimeout(()=>lightning.classList.remove("active"),250);
   }
 
-  // lightning quick burst
-  function flashLightning() {
-    if(!lightningEl) return;
-    lightningEl.classList.add('active');
-    // small pulse of the virus smear overlay too
-    const smear = document.querySelector('.virus-smear');
-    if(smear) { smear.classList.add('active'); setTimeout(()=>smear.classList.remove('active'),1200); }
-    // quick stop later
-    setTimeout(()=> lightningEl.classList.remove('active'), 900);
-  }
-
-  // start effect
-  function startVirusSequence() {
+  // start infection
+  function startVirus(){
     if(active) return;
     active = true;
-    document.body.classList.add('body-virus-mode'); // optional class for extra page styling
+    virusOverlay.style.opacity = "0.6";
+    const pixelInt = setInterval(spawnPixelBurst, 300);
+    const flashInt = setInterval(flash, 2500);
 
-    // reveal cracks slowly after short delay
-    setTimeout(()=> revealCracks(), 900);
-
-    // spawn pixel bursts frequently
-    pixelInterval = setInterval(()=> {
-      // each tick create a small burst; frequency varied to feel alive
-      spawnBurst();
-    }, 300);
-
-    // occasional lightning bolts
-    const lightningInterval = setInterval(()=> {
-      flashLightning();
-    }, 3200);
-
-    // after totalDuration stop everything
-    cleanupTimer = setTimeout(()=> {
-      stopVirusSequence();
-      clearInterval(lightningInterval);
-    }, totalDurationMs);
-
-    // also store lightningInterval reference to body so we can clear if stopped manually
-    document.body._bb_lightningInterval = lightningInterval;
+    // after 20s, bot heals everything
+    setTimeout(()=>{
+      clearInterval(pixelInt);
+      clearInterval(flashInt);
+      triggerBotWave();
+      setTimeout(stopVirus, 2500);
+    },20000);
   }
 
-  // stop and cleanup
-  function stopVirusSequence() {
-    if(!active) return;
-    active=false;
-    document.body.classList.remove('body-virus-mode');
-    if(pixelInterval) { clearInterval(pixelInterval); pixelInterval=null; }
-    if(document.body._bb_lightningInterval) { clearInterval(document.body._bb_lightningInterval); document.body._bb_lightningInterval=null; }
-    if(cleanupTimer) { clearTimeout(cleanupTimer); cleanupTimer=null; }
-    // fade overlays
-    if(virusOverlay) virusOverlay.style.opacity = '0';
-    if(lightningEl) lightningEl.classList.remove('active');
-    if(crackSvg) crackSvg.classList.remove('active');
-    // remove remaining pixel nodes gracefully
-    if(pixelsEl){
-      [...pixelsEl.children].forEach(n=>{
-        n.style.transition = 'opacity .8s, transform .8s';
-        n.style.opacity = '0';
-        setTimeout(()=> n.remove(), 900);
-      });
-    }
-    // re-enable overlay after a pause (so next run looks fresh)
-    setTimeout(()=> {
-      if(virusOverlay) virusOverlay.style.opacity = '0.45';
-    }, 800);
+  // stop + fade back
+  function stopVirus(){
+    virusOverlay.style.opacity = "0";
+    active = false;
   }
 
-  // connect to your bot button
-  document.addEventListener('DOMContentLoaded',()=>{
-    const btn = document.getElementById('bloodBtn');
-    if(!btn) return;
-    btn.addEventListener('click',()=>{
-      // toggle: start if not active; if active then stop
-      if(!active) startVirusSequence();
-      else stopVirusSequence();
+  // bot wave heal
+  function triggerBotWave(){
+    botWave.classList.add("active");
+    setTimeout(()=>botWave.classList.remove("active"), 2500);
+  }
+
+  // Start effect when #locked-project becomes visible
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && !active){
+        startVirus();
+      }
     });
-  });
-
-  // expose for console debugging
-  window.__bloodyVirus = { start:startVirusSequence, stop:stopVirusSequence };
+  },{threshold:0.5});
+  const target = document.querySelector("#locked-project");
+  if(target) observer.observe(target);
 })();
 </script>
-<!-- ⚡ END BLOODY BITCOIN EFFECT -->
-</html>
+<!-- END BLOODY BITCOIN EFFECT -->
