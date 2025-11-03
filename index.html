@@ -2741,7 +2741,7 @@ setInterval(() => {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const aiBot = document.getElementById("ai-bot");
-  const lockTarget = document.querySelector("#locked-project"); // Bereich mit dem Schloss
+  const lockTarget = document.querySelector("#hc3b-section");
 
   if (aiBot && lockTarget) {
     const observer = new IntersectionObserver((entries) => {
@@ -2758,33 +2758,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(lockTarget);
   }
-});
-</script>
-<!-- 🧠 BOT LIGHT CONTROL - ONLY ACTIVE IN LOCKED SECTION -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const aiBot = document.getElementById("ai-bot");
-
-  // 👉 Hier den ID-Namen deines Schloss-Bereichs eintragen!
-  const lockTarget = document.querySelector("#locked-project"); 
-
-  if (!aiBot || !lockTarget) return;
-
-  // Standardzustand – Bot ruhig
-  aiBot.classList.remove("bot-pulse");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // Wenn der Schloss-Bereich sichtbar ist → aktiviere Licht
-        aiBot.classList.add("bot-pulse");
-      } else {
-        // Wenn außerhalb → Licht aus
-        aiBot.classList.remove("bot-pulse");
-      }
-    });
-  }, { threshold: 0.6 });
-
-  observer.observe(lockTarget);
 });
 </script>
