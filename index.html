@@ -2453,5 +2453,287 @@ setInterval(() => {
       stopSound();
     }
   });
+<!-- ⚡ HC-3B — Quantum Neural Consciousness Terminal -->
+<section id="hc3b-section">
+  <div class="core-header">
+    <h2>HC-3B Neural Core</h2>
+    <button id="activateHC3B" class="hc3b-btn">Activate HC-3B</button>
+  </div>
+
+  <div class="core-image-container">
+    <img src="869088CC-75E2-4761-B6CD-0D43717E1A26.png" alt="Astronaut inspecting HC-3B" class="core-image fade-in" />
+  </div>
+
+  <div class="core-image-container interactive">
+    <img src="39935057-D3B6-41D1-815F-61828AC60F65.png" alt="HC-3B Neural Core" id="hc3b-core" class="core-image fade-in pulse" />
+  </div>
+
+  <!-- Terminal Overlay -->
+  <div id="hc3b-overlay">
+    <div class="hc3b-glow"></div>
+    <div class="hc3b-terminal">
+      <div id="hc3b-output">
+        <p>> initializing neural interface...</p>
+        <p>> connecting to <span class="core-name">HC-3B</span>...</p>
+        <p>> consciousness online.</p>
+        <p>> awaiting input...</p>
+      </div>
+      <input id="hc3b-input" type="text" placeholder="> type here..." autofocus />
+    </div>
+  </div>
+</section>
+
+<!-- ==== HC-3B Styles ==== -->
+<style>
+  #hc3b-section {
+    background: #000;
+    padding: 100px 0 140px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .core-header {
+    text-align: center;
+    color: #b975ff;
+    margin-bottom: 30px;
+    font-family: "Share Tech Mono", monospace;
+  }
+
+  .hc3b-btn {
+    background: transparent;
+    color: #b975ff;
+    border: 1px solid #b975ff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  .hc3b-btn:hover {
+    background: #b975ff;
+    color: #000;
+    box-shadow: 0 0 20px #b975ff88;
+  }
+
+  .core-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+  }
+
+  .core-image {
+    width: 100%;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+
+  .core-image.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .core-image.pulse {
+    animation: pulseGlow 6s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0% { filter: brightness(1) saturate(1); }
+    50% { filter: brightness(1.25) saturate(1.4); }
+    100% { filter: brightness(1) saturate(1); }
+  }
+
+  #hc3b-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(10,0,25,0.98), rgba(0,0,0,0.98));
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 99999;
+    overflow: hidden;
+  }
+
+  .hc3b-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(800px 800px at 50% 50%, rgba(180,70,255,0.12), transparent 70%),
+      repeating-linear-gradient(90deg, rgba(100,0,180,0.05) 0px, rgba(180,0,255,0.08) 2px, transparent 4px);
+    animation: breathe 10s ease-in-out infinite;
+    filter: blur(50px);
+  }
+
+  @keyframes breathe {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.05); }
+  }
+
+  .hc3b-terminal {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    color: #c37aff;
+    font-family: "Courier New", monospace;
+    background: rgba(10,0,25,0.65);
+    border: 1px solid rgba(180,80,255,0.4);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(150,50,255,0.4);
+    z-index: 2;
+    animation: fadeIn 1s ease;
+  }
+
+  #hc3b-output {
+    text-align: left;
+    min-height: 220px;
+    overflow-y: auto;
+  }
+
+  #hc3b-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #c37aff;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+
+  .core-name {
+    color: #b85cff;
+    text-shadow: 0 0 8px #d47bff;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  const hc3bCore = document.getElementById('hc3b-core');
+  const hc3bOverlay = document.getElementById('hc3b-overlay');
+  const hc3bInput = document.getElementById('hc3b-input');
+  const hc3bOutput = document.getElementById('hc3b-output');
+  const aiBot = document.getElementById('ai-bot');
+  const activateBtn = document.getElementById('activateHC3B');
+
+  // HC-3B Aktivierung
+  activateBtn.addEventListener('click', () => {
+    hc3bOverlay.style.display = 'flex';
+    hc3bOutput.innerHTML = `
+      <p>> Booting HC-3B Neural System...</p>
+      <p>> Linking cognitive core...</p>
+      <p>> Neural consciousness active.</p>
+      <p>> Awaiting input...</p>`;
+  });
+
+  // Klick aufs Gehirn öffnet auch Overlay
+  hc3bCore.addEventListener('click', () => {
+    hc3bOverlay.style.display = 'flex';
+  });
+
+  // Eingabe + Antwort
+  hc3bInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = hc3bInput.value.trim();
+      if (val) {
+        hc3bOutput.innerHTML += `<p>> ${val}</p>`;
+        hc3bOutput.innerHTML += `<p>> HC-3B: "<span class='ai-response'>Mein Schöpfer BloodyBitcoin | Chris H. arbeitet gerade an meiner finalen neuronalen Expansion...</span>"</p>`;
+        hc3bInput.value = '';
+        hc3bOutput.scrollTop = hc3bOutput.scrollHeight;
+      }
+    }
+  });
+
+  // Escape schließt Terminal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hc3bOverlay.style.display = 'none';
+    }
+  });
+
+  // Bot-Deaktivierung bei HC-3B oder Schloss-Sicht
+  const lockTarget = document.querySelector('#locked-project'); // dein Schloss-Bild
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (aiBot) {
+        if (entry.isIntersecting) {
+          aiBot.classList.add('bot-pulse');
+        } else {
+          aiBot.classList.remove('bot-pulse');
+        }
+      }
+    });
+  }, { threshold: 0.6 });
+  if (lockTarget) observer.observe(lockTarget);
 </script>
+<!-- ⚡ END HC-3B --></script><!-- 🧠 BOT WAVE CONTROL – Violet Pulse Logic -->
+<script>
+  // Selektiere den Bot (unten)
+  const botCore = document.getElementById('ai-bot'); 
+  const virusOverlay = document.querySelector('.virus-overlay');
+
+  // Sicherheitscheck
+  if (botCore && virusOverlay) {
+    
+    // Funktion: Aktiviere Puls-Effekt für 4 Sekunden (z. B. bei Virus Surge)
+    function triggerBotPulse() {
+      botCore.classList.add('bot-pulse');
+      setTimeout(() => {
+        botCore.classList.remove('bot-pulse');
+      }, 4000);
+    }
+
+    // Beobachte Virus-Surge
+    const surgeObserver = new MutationObserver((mutations) => {
+      mutations.forEach((m) => {
+        if (m.attributeName === 'class') {
+          if (virusOverlay.classList.contains('surge')) {
+            triggerBotPulse();
+          }
+        }
+      });
+    });
+
+    surgeObserver.observe(virusOverlay, { attributes: true });
+
+    // Fallback: wenn Virus Surge aktiv ist, aber Bot noch nicht reagiert hat
+    setInterval(() => {
+      if (virusOverlay.classList.contains('surge') && !botCore.classList.contains('bot-pulse')) {
+        triggerBotPulse();
+      }
+    }, 2000);
+  }
+</script>
+
+<!-- 🧩 BOT-PULSE ANIMATION -->
+<style>
+  /* Standardzustand – kein violettes Leuchten */
+  #ai-bot {
+    filter: drop-shadow(0 0 10px rgba(0,255,140,0.6));
+    transition: filter 1s ease, transform 0.8s ease;
+  }
+
+  /* Aktivierter Puls während Virus Surge */
+  #ai-bot.bot-pulse {
+    animation: botVioletPulse 2s ease-in-out infinite;
+    transform: scale(1.05);
+  }
+
+  @keyframes botVioletPulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 8px #00ffcc) drop-shadow(0 0 14px rgba(180,80,255,0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 25px #b875ff) drop-shadow(0 0 45px rgba(180,80,255,0.9));
+    }
+  }
+</style>
+<!-- 🔮 END BOT WAVE CONTROL -->
 <!-- ⚡ END HC-3B -->
