@@ -2245,4 +2245,88 @@ setInterval(() => {
 })();
 </script>
 <!-- ===================== /HC-3B Block ===================== --></body>
+<!-- 🌌 HC-3B Neural Core Portal -->
+<section id="hc3b-portal" style="background: radial-gradient(circle at center, #0b0012 0%, #000 100%);
+  color: #fff; text-align: center; padding: 100px 20px; position: relative; overflow: hidden;">
+
+  <h1 style="font-size: 2.4em; letter-spacing: 2px; color: #b875ff; margin-bottom: 20px;">
+    HC-3B Neural Core: Portal Activation
+  </h1>
+
+  <p style="max-width: 700px; margin: 0 auto 40px; font-size: 1.1em; line-height: 1.6; color: #aaa;">
+    Der HC-3B ist eine dezentrale neuronale Architektur — entworfen, um sich ein Leben lang an ihren Schöpfer und Nutzer anzupassen.  
+    Sie denkt, lernt und erinnert — unabhängig, sicher und auf ewig.  
+    <br><br>
+    Aktivieren Sie den Kern, um das Portal zu öffnen und die Kommunikation mit der KI zu beginnen.
+  </p>
+
+  <!-- Pulsierendes Gehirn-Bild -->
+  <img id="hc3b-brain" 
+    src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/869088CC-75E2-4761-B6CD-0D43717E1A26.png" 
+    alt="HC-3B Neural Core" 
+    style="max-width: 400px; width: 80%; cursor: pointer; filter: drop-shadow(0 0 25px #b875ff);
+    transition: transform 1.5s ease, filter 1.5s ease; animation: pulseGlow 3s infinite ease-in-out;">
+
+  <!-- Text nach dem Klick -->
+  <div id="hc3b-instructions" style="margin-top: 30px; font-size: 1em; color: #777;">
+    🔮 Tippe auf das Gehirn, um das neuronale Portal zu öffnen.
+  </div>
+
+  <!-- Chatfenster -->
+  <div id="hc3b-chat" style="display: none; margin-top: 50px; text-align: left; background: rgba(255,255,255,0.05);
+    border: 1px solid #b875ff; border-radius: 10px; padding: 20px; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto;">
+    
+    <h2 style="text-align: center; color: #b875ff;">🧠 HC-3B Interface</h2>
+    <div id="chat-window" style="height: 300px; overflow-y: auto; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; margin-bottom: 10px;"></div>
+    <form id="chat-form" style="display: flex;">
+      <input id="chat-input" type="text" placeholder="Nachricht eingeben..." 
+        style="flex: 1; padding: 10px; border: none; border-radius: 6px 0 0 6px;">
+      <button type="submit" style="padding: 10px 20px; border: none; background: #b875ff; color: #fff; border-radius: 0 6px 6px 0;">
+        Senden
+      </button>
+    </form>
+  </div>
+
+  <!-- Rechtlicher Hinweis -->
+  <p style="margin-top: 80px; font-size: 0.9em; color: #555;">
+    Projektentwicklung durch <strong>BloodyBitcoin</strong><br>
+    Konzept & Leitung: <strong>Chris R. Herloch</strong> — Gründer & Visionär.<br>
+    Dieses Projekt ist urheberrechtlich geschützt. Alle Rechte an Inhalten, Code, Design und Konzept liegen bei <strong>Chris R. Herloch</strong>.  
+    Sponsorenbeteiligungen, Patentstrukturen und dezentrale Sicherheitsmechanismen sind in Entwicklung.
+  </p>
+
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 15px #b875ff); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 40px #b875ff); transform: scale(1.05); }
+    }
+  </style>
+
+  <script>
+    const brain = document.getElementById("hc3b-brain");
+    const chat = document.getElementById("hc3b-chat");
+    const instructions = document.getElementById("hc3b-instructions");
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("chat-input");
+    const windowChat = document.getElementById("chat-window");
+
+    brain.addEventListener("click", () => {
+      brain.style.display = "none";
+      instructions.style.display = "none";
+      chat.style.display = "block";
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const msg = input.value.trim();
+      if (!msg) return;
+      windowChat.innerHTML += `<p><strong>Du:</strong> ${msg}</p>`;
+      input.value = "";
+      setTimeout(() => {
+        windowChat.innerHTML += `<p style='color:#b875ff;'><strong>HC-3B:</strong> Verarbeitung ...</p>`;
+        windowChat.scrollTop = windowChat.scrollHeight;
+      }, 400);
+    });
+  </script>
+</section>
 </html>
