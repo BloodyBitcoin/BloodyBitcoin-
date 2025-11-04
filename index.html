@@ -507,13 +507,137 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
   </div>
 </section>
 
-<!-- GLOBE -->
-<section class="section container">
+<!-- 🧠 BLOODY BITCOIN — GLOBAL NETWORK MAP 2.0 -->
+<section class="section container" id="network-map">
   <h2>Global Network Map</h2>
-  <div class="globe-wrap">
-    <canvas id="globe"></canvas>
+
+  <div class="network-grid">
+    <div class="node founder">
+      <h3>Founder & Neural Architect</h3>
+      <p>HC-3B Core Origin</p>
+    </div>
+
+    <div class="node" id="ai">
+      <h3>AI Systems Engineer</h3>
+      <p>Neural Ops / Machine Learning</p>
+    </div>
+
+    <div class="node" id="marketing">
+      <h3>Network Strategist</h3>
+      <p>Visibility / Growth / Media</p>
+    </div>
+
+    <div class="node" id="interface">
+      <h3>Interface Agent</h3>
+      <p>Model & Human Frontend</p>
+    </div>
+
+    <div class="node" id="security">
+      <h3>Cybernetic Engineer</h3>
+      <p>Zero-Trust & Data Defense</p>
+    </div>
+
+    <svg class="neural-links" viewBox="0 0 600 400" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="glowline" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00ffcc" />
+          <stop offset="100%" stop-color="#ff0033" />
+        </linearGradient>
+      </defs>
+      <path d="M300 180 Q 200 100, 120 160" class="link" />
+      <path d="M300 180 Q 380 100, 480 160" class="link" />
+      <path d="M300 180 Q 120 260, 180 320" class="link" />
+      <path d="M300 180 Q 480 260, 420 320" class="link" />
+    </svg>
   </div>
 </section>
+
+<style>
+/* === Network Grid Layout === */
+#network-map {
+  position: relative;
+  text-align: center;
+  margin-top: 60px;
+}
+.network-grid {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 420px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 50%, #081012, #050708);
+  border: 1px solid #10333a;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px #20ffc015, 0 22px 44px rgba(0,0,0,.35);
+}
+
+/* === Nodes (Cards) === */
+.node {
+  position: absolute;
+  width: 180px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: linear-gradient(180deg,#0c1318,#0a1116);
+  border: 1px solid #14333a;
+  box-shadow: inset 0 0 0 1px #20ffc012, 0 0 20px rgba(0,0,0,.3);
+  color: #9ed8cf;
+  font-size: 0.9rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+  backdrop-filter: blur(3px);
+}
+.node:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #20ffc033, inset 0 0 1px #20ffc033;
+}
+.node h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #bff1e7;
+}
+
+/* === Positionen der Nodes === */
+.founder { top: 170px; left: 50%; transform: translateX(-50%); z-index: 5; }
+#ai { top: 60px; left: 80%; transform: translateX(-50%); }
+#marketing { top: 60px; left: 20%; transform: translateX(-50%); }
+#interface { bottom: 40px; left: 25%; transform: translateX(-50%); }
+#security { bottom: 40px; left: 75%; transform: translateX(-50%); }
+
+/* === Founder Glow Effekt === */
+.founder {
+  background: radial-gradient(circle at 50% 50%, rgba(255,0,50,0.2), rgba(0,0,0,0.9));
+  border: 2px solid #ff0033;
+  box-shadow: 0 0 25px #ff0033, 0 0 60px #00ff99, inset 0 0 20px rgba(255,0,50,0.5);
+  animation: pulseCore 2.5s infinite ease-in-out;
+}
+@keyframes pulseCore {
+  0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 60px #00ff99; }
+  50% { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 35px #ff3366, 0 0 80px #00ffaa; }
+  100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 60px #00ff99; }
+}
+
+/* === Linien (Neural Links) === */
+.neural-links {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.link {
+  fill: none;
+  stroke: url(#glowline);
+  stroke-width: 1.8;
+  opacity: 0.75;
+  filter: drop-shadow(0 0 6px #00ffaa);
+  stroke-dasharray: 8 10;
+  animation: flow 4s linear infinite;
+}
+@keyframes flow {
+  to { stroke-dashoffset: -60; }
+}
+</style>
 
 <!-- THE BLOODY LAB -->
 <section class="section container">
