@@ -507,76 +507,117 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
   </div>
 </section>
 
-<!-- 🌐 HC-3B NEURAL NETWORK MAP v5.0 -->
-<section class="section container" id="network-map">
+<section id="network-map" class="section container">
   <h2>HC-3B Neural Network Map</h2>
 
-  <div class="network-grid">
-    <!-- ROW 1 -->
-    <div class="node" id="n1">
-      <div class="placeholder">Bild folgt</div>
-      <h3>AI Systems Engineer</h3>
-      <p>Neural Ops / Machine Learning</p>
-    </div>
+  <div class="neural-grid">
+    <!-- Top Row -->
+    <div class="node"><div class="placeholder">Bild folgt</div><h3>AI Systems Engineer</h3></div>
+    <div class="node"><div class="placeholder">Bild folgt</div><h3>Interface Agent</h3></div>
 
-    <div class="node" id="n2">
-      <div class="placeholder">Bild folgt</div>
-      <h3>Interface Agent</h3>
-      <p>Human Frontend / Public Link</p>
-    </div>
-
-    <!-- ROW 2 -->
-    <div class="node" id="n3">
-      <div class="placeholder">Bild folgt</div>
-      <h3>Network Strategist</h3>
-      <p>Visibility / Growth / Media</p>
-    </div>
-
-    <!-- Founder Core -->
+    <!-- Middle Row -->
+    <div class="node"><div class="placeholder">Bild folgt</div><h3>Network Strategist</h3></div>
+    
+    <!-- CORE -->
     <div class="node founder">
-      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg" 
-           alt="Chris R. Herloch" class="portrait founder-img">
+      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg" alt="Chris R. Herloch">
       <h3>Chris R. Herloch</h3>
       <p>Founder & Neural Architect</p>
     </div>
 
-    <div class="node" id="n4">
-      <div class="placeholder">Bild folgt</div>
-      <h3>Cybernetic Engineer</h3>
-      <p>Zero-Trust / Data Defense</p>
-    </div>
+    <div class="node"><div class="placeholder">Bild folgt</div><h3>Cybernetic Engineer</h3></div>
 
-    <!-- ROW 3 -->
-    <div class="node" id="n5">
-      <div class="placeholder">Bild folgt</div>
-      <h3>Signal Architect</h3>
-      <p>Communications / Data Flow</p>
-    </div>
-
-    <div class="node" id="n6">
-      <div class="placeholder">Bild folgt</div>
-      <h3>Quantum Operator</h3>
-      <p>Systems / Core Logic</p>
-    </div>
-
-    <!-- Neural Connections -->
-    <svg class="neural-links" viewBox="0 0 800 600" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="glowline" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#00ffcc"/>
-          <stop offset="100%" stop-color="#ff3366"/>
-        </linearGradient>
-      </defs>
-      <path d="M400 300 Q300 150,180 120" class="link"/>
-      <path d="M400 300 Q500 150,620 120" class="link"/>
-      <path d="M400 300 Q300 300,180 300" class="link"/>
-      <path d="M400 300 Q500 300,620 300" class="link"/>
-      <path d="M400 300 Q300 450,180 480" class="link"/>
-      <path d="M400 300 Q500 450,620 480" class="link"/>
-    </svg>
+    <!-- Bottom Row -->
+    <div class="node"><div class="placeholder">Bild folgt</div><h3>Signal Architect</h3></div>
+    <div class="node"><div class="placeholder">Bild folgt</div><h3>Quantum Operator</h3></div>
   </div>
 </section>
 
+<style>
+#network-map {
+  text-align: center;
+  margin-top: 100px;
+  position: relative;
+}
+
+.neural-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 80px;
+  justify-items: center;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* === Node Base === */
+.node {
+  background: rgba(10,15,15,0.7);
+  border: 1px solid #133;
+  border-radius: 16px;
+  width: 200px;
+  height: 280px;
+  box-shadow: 0 0 25px rgba(0,255,200,0.1);
+  transition: transform .3s ease, box-shadow .3s ease;
+  overflow: hidden;
+  padding: 10px;
+}
+.node:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px rgba(0,255,200,0.3);
+}
+.node h3 {
+  color: #aafaf0;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.placeholder {
+  background: rgba(0,255,180,0.05);
+  border: 1px dashed #144;
+  border-radius: 10px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #67a;
+}
+
+/* === Founder (Center) === */
+.founder {
+  grid-column: 2;
+  grid-row: 2;
+  width: 240px;
+  height: 340px;
+  border: 2px solid #ff0040;
+  box-shadow: 0 0 30px #ff0040aa, 0 0 80px #00ffcc44;
+  background: radial-gradient(circle at 50% 50%, rgba(255,0,80,0.25), rgba(0,0,0,0.8));
+  animation: pulseCore 3s ease-in-out infinite;
+  z-index: 5;
+}
+.founder img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.founder h3 {
+  color: #fff;
+  margin: 0;
+}
+.founder p {
+  color: #ffccd0;
+  margin: 4px 0 0;
+  font-size: .9rem;
+}
+
+/* === Core Pulse === */
+@keyframes pulseCore {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 30px #ff0040aa, 0 0 80px #00ffcc44; }
+  50% { transform: scale(1.05); box-shadow: 0 0 60px #ff3366, 0 0 120px #00ffaa55; }
+}
+</style>
 <style>
 #network-map {
   position: relative;
