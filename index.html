@@ -506,45 +506,90 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
     </div>
   </div>
 </section>
+<section id="network-map-v2" class="section container">
+  <h2>HC-3B Neural Network Map</h2>
 
+  <div class="network-grid-v2">
+    <!-- Founder -->
+    <div class="node founder-v2">
+      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg" class="portrait-v2">
+      <h3>Chris R. Herloch</h3>
+      <p>Founder & Neural Architect</p>
+    </div>
 
-   #network-map {
-  position: relative;
+    <!-- Row 1 -->
+    <div class="node small-v2" id="n1">
+      <div class="placeholder-v2">Bild folgt</div>
+      <h3>Model 01</h3>
+      <p>Visual Identity / Neural Media</p>
+    </div>
+
+    <div class="node small-v2" id="n2">
+      <div class="placeholder-v2">Bild folgt</div>
+      <h3>Model 02</h3>
+      <p>Visual Identity / Neural Media</p>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="node small-v2" id="n3">
+      <div class="placeholder-v2">Bild folgt</div>
+      <h3>Marketing Lead</h3>
+      <p>Outreach / Community Growth</p>
+    </div>
+
+    <div class="node small-v2" id="n4">
+      <div class="placeholder-v2">Bild folgt</div>
+      <h3>KI-Operator</h3>
+      <p>Data Control / Neural Sync</p>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="node small-v2" id="n5">
+      <div class="placeholder-v2">Bild folgt</div>
+      <h3>Hackator</h3>
+      <p>Security / System Penetration</p>
+    </div>
+
+    <div class="node small-v2" id="n6">
+      <div class="placeholder-v2">Bild folgt</div>
+      <h3>Cryptomane</h3>
+      <p>Blockchain / Digital Assets</p>
+    </div>
+  </div>
+</section>
+
+<style>
+#network-map-v2 {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 120px;
 }
 
-.network-grid {
+.network-grid-v2 {
   position: relative;
   width: 100%;
   max-width: 1100px;
-  height: 800px;
+  height: 1250px;
   margin: 0 auto;
-  background: radial-gradient(circle at 50% 50%, #060c0f, #000);
+  background: radial-gradient(circle at 50% 50%, #070b0e, #000);
   border-radius: 24px;
   border: 1px solid #11333a;
   box-shadow: inset 0 0 0 1px #20ffc010, 0 22px 44px rgba(0,0,0,.4);
 }
 
-/* === NODE BASE === */
+/* --- NODE STYLES --- */
 .node {
   position: absolute;
-  width: 220px;
-  height: 320px;
   padding: 14px;
-  border-radius: 16px;
+  border-radius: 18px;
   background: linear-gradient(180deg,#0c1318,#060a0c);
   border: 1px solid #14333a;
   box-shadow: inset 0 0 0 1px #20ffc010, 0 0 25px rgba(0,0,0,.4);
   color: #bfe9e2;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.node:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 35px #20ffc050, inset 0 0 2px #20ffc033;
+  text-align: center;
+  overflow: hidden;
 }
 .node h3 {
-  margin: 10px 0 5px;
+  margin: 12px 0 4px;
   font-size: 1rem;
   color: #c6fff4;
 }
@@ -554,360 +599,76 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
   color: #88b8b0;
 }
 
-/* === Founder Node === */
-.founder {
-  top: 50%;
+/* Founder (you) */
+.founder-v2 {
+  top: 80px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  width: 260px;
-  height: 380px;
-  background: radial-gradient(circle at 50% 50%, rgba(255,0,80,0.25), rgba(0,0,0,0.9));
+  transform: translateX(-50%);
+  width: 280px;
+  height: 420px;
   border: 2px solid #ff0055;
-  box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99, inset 0 0 25px rgba(255,0,80,0.6);
-  animation: pulseCore 2.8s infinite ease-in-out;
+  box-shadow: 0 0 30px #ff0033, 0 0 100px #00ff99, inset 0 0 25px rgba(255,0,80,0.6);
+  background: radial-gradient(circle at 50% 50%, rgba(255,0,80,0.2), rgba(0,0,0,0.85));
+  animation: pulseCore 3s infinite ease-in-out;
 }
-.founder-img {
+.portrait-v2 {
   width: 100%;
-  height: 250px;
-  object-fit: contain;
+  height: 300px;
+  object-fit: cover;
   border-radius: 12px;
   margin-bottom: 8px;
 }
 
-/* === Placeholder === */
-.placeholder {
+/* Team nodes */
+.small-v2 {
+  width: 200px;
+  height: 260px;
+}
+
+.placeholder-v2 {
   width: 100%;
-  height: 220px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
   background: rgba(20,40,40,0.25);
   color: #888;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
   border: 1px dashed #2a4444;
 }
 
-/* === Positions (3×2) === */
-#n1 { top: 90px; left: 22%; }
-#n2 { top: 90px; left: 72%; transform: translateX(-100%); }
-#n3 { top: 340px; left: 10%; }
-#n4 { top: 340px; left: 90%; transform: translateX(-100%); }
-#n5 { bottom: 80px; left: 22%; }
-#n6 { bottom: 80px; left: 72%; transform: translateX(-100%); }
+/* --- POSITIONING --- */
+#n1 { top: 550px; left: 18%; }
+#n2 { top: 550px; right: 18%; }
 
-/* === Neural Glow Animation === */
-@keyframes pulseCore {
-  0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99; }
-  50% { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 40px #ff3366, 0 0 120px #00ffaa; }
-  100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99; }
-}
+#n3 { top: 800px; left: 18%; }
+#n4 { top: 800px; right: 18%; }
 
-/* === Neural Links === */
-.neural-links {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-.link {
-  fill:
-<style>
-#network-map {
-  position: relative;
-  text-align: center;
-  margin-top: 80px;
-}
+#n5 { top: 1050px; left: 18%; }
+#n6 { top: 1050px; right: 18%; }
 
-.network-grid {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  height: 600px;
-  margin: 0 auto;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 50%, #0a1116, #040506);
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid #10333a;
-  box-shadow: inset 0 0 0 1px #20ffc010, 0 22px 44px rgba(0,0,0,.35);
-}
-
-/* === NODE BASE === */
-.node {
-  position: absolute;
-  width: 220px;
-  height: 320px;
-  padding: 14px;
-  border-radius: 16px;
-  background: linear-gradient(180deg,#0c1318,#0a1116);
-  border: 1px solid #14333a;
-  box-shadow: inset 0 0 0 1px #20ffc010, 0 0 25px rgba(0,0,0,.4);
-  color: #bfe9e2;
-  transition: transform .3s ease, box-shadow .3s ease;
-  backdrop-filter: blur(3px);
-}
-.node:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 30px #20ffc040, inset 0 0 2px #20ffc033;
-}
-.node h3 {
-  margin: 10px 0 5px;
-  font-size: 1rem;
-  color: #c6fff4;
-}
-.node p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #88b8b0;
-}
-
-/* === Founder Node === */
-.founder {
-  top: 240px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  background: radial-gradient(circle at 50% 50%, rgba(255,0,80,0.25), rgba(0,0,0,0.9));
-  border: 2px solid #ff0055;
-  box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99, inset 0 0 25px rgba(255,0,80,0.6);
-  animation: pulseCore 2.5s infinite ease-in-out;
-}
-.founder-img {
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
-  border-radius: 12px;
-  margin-bottom: 8px;
-}
-
-/* === Placeholder === */
-.placeholder {
-  width: 100%;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  background: rgba(20,40,40,0.4);
-  color: #888;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  border: 1px dashed #2a4444;
-}
-
-/* === Node Positions === */
-#ai { top: 60px; left: 18%; }
-#marketing { top: 60px; left: 82%; transform: translateX(-100%); }
-#interface { bottom: 60px; left: 25%; }
-#security { bottom: 60px; left: 75%; transform: translateX(-100%); }
-
-/* === Neural Glow === */
+/* --- ANIMATION --- */
 @keyframes pulseCore {
   0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99; }
-  50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 40px #ff3366, 0 0 100px #00ffaa; }
+  50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 45px #ff3366, 0 0 120px #00ffaa; }
   100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99; }
 }
 
-/* === Neural Links === */
-.neural-links {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-.link {
-  fill: none;
-  stroke: url(#glowline);
-  stroke-width: 2.6;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 12px #00ffaa);
-  stroke-dasharray: 10 14;
-  animation: flow 2.5s linear infinite;
-}
-@keyframes flow { to { stroke-dashoffset: -80; } }
-</style>
-<style>
-#network-map{
-  position:relative;
-  text-align:center;
-  margin-top:80px;
-}
-.network-grid{
-  position:relative;
-  width:100%;
-  max-width:900px;
-  height:540px;
-  margin:0 auto;
-  display:grid;
-  place-items:center;
-  background:radial-gradient(circle at 50% 50%,#0a1116,#040506);
-  border-radius:24px;
-  overflow:hidden;
-  border:1px solid #10333a;
-  box-shadow:inset 0 0 0 1px #20ffc010,0 22px 44px rgba(0,0,0,.35);
-}
-
-/* === NODE BASE === */
-.node{
-  position:absolute;
-  width:200px;
-  height:280px;
-  padding:14px;
-  border-radius:16px;
-  background:linear-gradient(180deg,#0c1318,#0a1116);
-  border:1px solid #14333a;
-  box-shadow:inset 0 0 0 1px #20ffc010,0 0 25px rgba(0,0,0,.4);
-  color:#bfe9e2;
-  transition:transform .3s ease,box-shadow .3s ease;
-  backdrop-filter:blur(3px);
-}
-.node:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 30px #20ffc040, inset 0 0 2px #20ffc033;
-}
-.node h3{
-  margin:10px 0 5px;
-  font-size:1rem;
-  color:#c6fff4;
-}
-.node p{
-  margin:0;
-  font-size:0.85rem;
-  color:#88b8b0;
-}
-
-/* === Founder Node === */
-.founder{
-  top:220px; left:50%;
-  transform:translateX(-50%);
-  z-index:5;
-  background:radial-gradient(circle at 50% 50%,rgba(255,0,80,0.25),rgba(0,0,0,0.9));
-  border:2px solid #ff0055;
-  box-shadow:0 0 25px #ff0033,0 0 80px #00ff99,inset 0 0 25px rgba(255,0,80,0.6);
-  animation:pulseCore 2.5s infinite ease-in-out;
-}
-.portrait{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:8px;
-  filter:brightness(0.9) contrast(1.1);
-}
-
-/* === Placeholder === */
-.placeholder{
-  width:100%;
-  height:180px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  background:rgba(20,40,40,0.4);
-  color:#888;
-  font-size:0.9rem;
-  letter-spacing:1px;
-  border:1px dashed #2a4444;
-}
-
-/* === Node Positions === */
-#ai{ top:80px; left:15%; }
-#marketing{ top:80px; left:85%; transform:translateX(-100%);}
-#interface{ bottom:60px; left:25%; }
-#security{ bottom:60px; left:75%; transform:translateX(-100%); }
-
-/* === Neural Glow === */
-@keyframes pulseCore{
-  0%{ transform:translateX(-50%) scale(1); box-shadow:0 0 25px #ff0033,0 0 80px #00ff99
-
-<style>
-/* === Network Grid Layout === */
-#network-map {
-  position: relative;
-  text-align: center;
-  margin-top: 60px;
-}
-.network-grid {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  height: 420px;
-  margin: 0 auto;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 50%, #081012, #050708);
-  border: 1px solid #10333a;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 1px #20ffc015, 0 22px 44px rgba(0,0,0,.35);
-}
-
-/* === Nodes (Cards) === */
-.node {
-  position: absolute;
-  width: 180px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: linear-gradient(180deg,#0c1318,#0a1116);
-  border: 1px solid #14333a;
-  box-shadow: inset 0 0 0 1px #20ffc012, 0 0 20px rgba(0,0,0,.3);
-  color: #9ed8cf;
-  font-size: 0.9rem;
-  transition: transform .3s ease, box-shadow .3s ease;
-  backdrop-filter: blur(3px);
-}
-.node:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px #20ffc033, inset 0 0 1px #20ffc033;
-}
-.node h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: #bff1e7;
-}
-
-/* === Positionen der Nodes === */
-.founder { top: 170px; left: 50%; transform: translateX(-50%); z-index: 5; }
-#ai { top: 60px; left: 80%; transform: translateX(-50%); }
-#marketing { top: 60px; left: 20%; transform: translateX(-50%); }
-#interface { bottom: 40px; left: 25%; transform: translateX(-50%); }
-#security { bottom: 40px; left: 75%; transform: translateX(-50%); }
-
-/* === Founder Glow Effekt === */
-.founder {
-  background: radial-gradient(circle at 50% 50%, rgba(255,0,50,0.2), rgba(0,0,0,0.9));
-  border: 2px solid #ff0033;
-  box-shadow: 0 0 25px #ff0033, 0 0 60px #00ff99, inset 0 0 20px rgba(255,0,50,0.5);
-  animation: pulseCore 2.5s infinite ease-in-out;
-}
-@keyframes pulseCore {
-  0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 60px #00ff99; }
-  50% { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 35px #ff3366, 0 0 80px #00ffaa; }
-  100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 60px #00ff99; }
-}
-
-/* === Linien (Neural Links) === */
-.neural-links {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-.link {
-  fill: none;
-  stroke: url(#glowline);
-  stroke-width: 1.8;
-  opacity: 0.75;
-  filter: drop-shadow(0 0 6px #00ffaa);
-  stroke-dasharray: 8 10;
-  animation: flow 4s linear infinite;
-}
-@keyframes flow {
-  to { stroke-dashoffset: -60; }
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .network-grid-v2 {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 60px;
+  }
+  .node, .founder-v2, .small-v2 {
+    position: relative;
+    top: 0; left: 0; right: 0;
+    transform: none;
+  }
 }
 </style>
 
