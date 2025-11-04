@@ -507,19 +507,19 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
   </div>
 </section>
 
-<!-- 🌐 HC-3B NEURAL NETWORK MAP v3.0 -->
+<!-- 🌐 HC-3B NEURAL NETWORK MAP v4.0 -->
 <section class="section container" id="network-map">
   <h2>HC-3B Neural Network Map</h2>
 
   <div class="network-grid">
     <!-- Founder -->
     <div class="node founder">
-      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg" alt="Chris R. Herloch" class="portrait">
+      <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg" alt="Chris R. Herloch" class="portrait founder-img">
       <h3>Chris R. Herloch</h3>
       <p>Founder & Neural Architect</p>
     </div>
 
-    <!-- Team Nodes -->
+    <!-- Team Members -->
     <div class="node" id="ai">
       <div class="placeholder">Bild folgt</div>
       <h3>AI Systems Engineer</h3>
@@ -560,6 +560,122 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
   </div>
 </section>
 
+<style>
+#network-map {
+  position: relative;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.network-grid {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 50%, #0a1116, #040506);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #10333a;
+  box-shadow: inset 0 0 0 1px #20ffc010, 0 22px 44px rgba(0,0,0,.35);
+}
+
+/* === NODE BASE === */
+.node {
+  position: absolute;
+  width: 220px;
+  height: 320px;
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg,#0c1318,#0a1116);
+  border: 1px solid #14333a;
+  box-shadow: inset 0 0 0 1px #20ffc010, 0 0 25px rgba(0,0,0,.4);
+  color: #bfe9e2;
+  transition: transform .3s ease, box-shadow .3s ease;
+  backdrop-filter: blur(3px);
+}
+.node:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px #20ffc040, inset 0 0 2px #20ffc033;
+}
+.node h3 {
+  margin: 10px 0 5px;
+  font-size: 1rem;
+  color: #c6fff4;
+}
+.node p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #88b8b0;
+}
+
+/* === Founder Node === */
+.founder {
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  background: radial-gradient(circle at 50% 50%, rgba(255,0,80,0.25), rgba(0,0,0,0.9));
+  border: 2px solid #ff0055;
+  box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99, inset 0 0 25px rgba(255,0,80,0.6);
+  animation: pulseCore 2.5s infinite ease-in-out;
+}
+.founder-img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+/* === Placeholder === */
+.placeholder {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(20,40,40,0.4);
+  color: #888;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  border: 1px dashed #2a4444;
+}
+
+/* === Node Positions === */
+#ai { top: 60px; left: 18%; }
+#marketing { top: 60px; left: 82%; transform: translateX(-100%); }
+#interface { bottom: 60px; left: 25%; }
+#security { bottom: 60px; left: 75%; transform: translateX(-100%); }
+
+/* === Neural Glow === */
+@keyframes pulseCore {
+  0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99; }
+  50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 40px #ff3366, 0 0 100px #00ffaa; }
+  100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 25px #ff0033, 0 0 80px #00ff99; }
+}
+
+/* === Neural Links === */
+.neural-links {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.link {
+  fill: none;
+  stroke: url(#glowline);
+  stroke-width: 2.6;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 12px #00ffaa);
+  stroke-dasharray: 10 14;
+  animation: flow 2.5s linear infinite;
+}
+@keyframes flow { to { stroke-dashoffset: -80; } }
+</style>
 <style>
 #network-map{
   position:relative;
