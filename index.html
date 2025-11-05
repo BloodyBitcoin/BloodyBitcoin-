@@ -2119,99 +2119,139 @@ const observerHeart = new IntersectionObserver(entries => {
 
 observerHeart.observe(heart);
 </script>
-<!-- ========================= -->
-<!-- ⚡ TOP NODES – GLOBAL USER ASSETS -->
-<!-- ========================= -->
-<section id="top-nodes" style="background:#000; color:#fff; text-align:center; padding:60px 20px;">
-  <h2 style="font-size:2.5em; color:#ff9900; margin-bottom:10px;">
-    ⚡ TOP NODES — GLOBAL USER ASSETS
-  </h2>
-  <p style="color:#888; margin-bottom:40px;">
-    Tracking the strongest digital wallets in the network
-  </p>
-
-  <div class="nodes-table" style="max-width:900px; margin:auto; overflow-x:auto;">
-    <table style="width:100%; border-collapse:collapse; font-family:monospace;">
-      <thead style="color:#ffae00; text-align:left;">
-        <tr>
-          <th>RANK</th>
-          <th>USERNAME</th>
-          <th>WALLET</th>
-          <th>BTC</th>
-          <th>USD</th>
-        </tr>
-      </thead>
-      <tbody id="userTable" style="font-size:1.1em;"></tbody>
-    </table>
-  </div>
-
-  <p id="btcInfo" style="margin-top:25px; font-size:0.9em; color:#777;">
-    💹 Live BTC/USD feed updates every 60 seconds
-  </p>
-</section>
-
-<script>
-  // Nutzerliste – Platz 3 bist du 🥉
-  const users = [
-    { rank: "🥇", name: "CryptoSeer", wallet: "bc1q****z3a9", btc: 5.0 },
-    { rank: "🥈", name: "LunaNode", wallet: "bc1q****f8p2", btc: 2.0 },
-    { rank: "🥉", name: "BloodyBitcoin", wallet: "bc1q****x1h3", btc: 1.1 },
-    { rank: 4, name: "HashBreaker", wallet: "bc1q****w9r5", btc: 0.5 },
-    { rank: 5, name: "ChainGhost", wallet: "bc1q****k3t2", btc: 0.3 },
-    { rank: 6, name: "QuantumWolf", wallet: "bc1q****m7l9", btc: 0.2 },
-    { rank: 7, name: "ByteSage", wallet: "bc1q****q2c8", btc: 0.1 },
-    { rank: 8, name: "NeonNexus", wallet: "bc1q****r5b4", btc: 0.001 },
-    { rank: 9, name: "ZeroSync", wallet: "bc1q****v6n1", btc: 0.0001 },
-    { rank: 10, name: "DustPulse", wallet: "bc1q****y8s3", btc: 0.00001 },
-  ];
-
-  async function updateBTCValues() {
-    const table = document.getElementById("userTable");
-    const info = document.getElementById("btcInfo");
-    let btcPrice = 70000; // Fallback
-
-    try {
-      const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json");
-      const data = await res.json();
-      btcPrice = data.bpi.USD.rate_float;
-      info.innerHTML = `💹 1 BTC = $${btcPrice.toLocaleString()} — auto-update every 60s`;
-    } catch (err) {
-      info.innerHTML = "⚠️ Live price unavailable — using last known rate";
-    }
-
-    table.innerHTML = "";
-    users.forEach((user, i) => {
-      const usd = (user.btc * btcPrice).toFixed(2);
-      const border =
-        i === 0 ? "2px solid gold" :
-        i === 1 ? "2px solid silver" :
-        i === 2 ? "2px solid #cd7f32" : "1px solid #222";
-      const glow =
-        i === 0 ? "0 0 20px gold" :
-        i === 1 ? "0 0 20px silver" :
-        i === 2 ? "0 0 20px #cd7f32" : "none";
-      const row = `
-        <tr style="background:#111; border:${border}; box-shadow:${glow};">
-          <td style="padding:10px 15px;">${user.rank}</td>
-          <td style="color:#a855f7;">${user.name}</td>
-          <td style="color:#ff6600;">${user.wallet}</td>
-          <td>${user.btc}</td>
-          <td style="color:#00ff90;">$${usd}</td>
-        </tr>`;
-      table.innerHTML += row;
-    });
-  }
-
-  updateBTCValues();
-  setInterval(updateBTCValues, 60000); // alle 60 Sekunden
-</script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Nodes — Global User Assets</title>
 <style>
-  #top-nodes table tr:hover {
-    transform: scale(1.02);
-    background: #1a1a1a;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(255,165,0,0.3);
+  body {
+    background-color: #000;
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
   }
+
+  /* Leuchtende Überschrift */
+  h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    color: #ffb300;
+    text-shadow:
+      0 0 10px #ffb300,
+      0 0 20px #ff9900,
+      0 0 40px #ff6600,
+      0 0 80px #ff3300;
+    margin-top: 40px;
+    font-weight: 700;
+  }
+
+  .table-container {
+    width: 90%;
+    max-width: 750px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background: rgba(15, 15, 15, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.3);
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    font-size: 1.1em;
+  }
+
+  th, td {
+    padding: 14px 10px;
+  }
+
+  th {
+    color: #ffb300;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Grundfarben der Texte */
+  .username { color: #c77dff; }
+  .wallet { color: #ff8c00; }
+  .btc { color: #00e676; }
+
+  /* Leuchtende Rahmen für Top 3 */
+  .rank-1 {
+    border: 2px solid gold;
+    box-shadow:
+      0 0 10px gold,
+      0 0 30px #ffdd33,
+      inset 0 0 10px gold;
+  }
+
+  .rank-2 {
+    border: 2px solid silver;
+    box-shadow:
+      0 0 10px silver,
+      0 0 25px #c0c0c0,
+      inset 0 0 8px silver;
+  }
+
+  .rank-3 {
+    border: 2px solid #cd7f32;
+    box-shadow:
+      0 0 10px #cd7f32,
+      0 0 25px #ff9966,
+      inset 0 0 8px #cd7f32;
+  }
+
+  tr.rank-1 td, tr.rank-2 td, tr.rank-3 td {
+    font-weight: 600;
+  }
+
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+  }
+</style>
+</head>
+<body>
+
+<h1>⚡ TOP NODES — GLOBAL USER ASSETS ⚡</h1>
+
+<div class="table-container">
+  <table>
+    <tr>
+      <th>RANK</th>
+      <th>USERNAME</th>
+      <th>WALLET</th>
+      <th>BTC</th>
+    </tr>
+
+    <tr class="rank-1">
+      <td>🥇 1</td><td class="username">CryptoSeer</td><td class="wallet">bc1q****z3a9</td><td class="btc">5.0</td>
+    </tr>
+    <tr class="rank-2">
+      <td>🥈 2</td><td class="username">LunaNode</td><td class="wallet">bc1q****f8p2</td><td class="btc">2.0</td>
+    </tr>
+    <tr class="rank-3">
+      <td>🥉 3</td><td class="username">BloodyBitcoin</td><td class="wallet">bc1q****x1h3</td><td class="btc">1.1</td>
+    </tr>
+    <tr><td>4</td><td class="username">HashBreaker</td><td class="wallet">bc1q****w9r5</td><td class="btc">0.5</td></tr>
+    <tr><td>5</td><td class="username">ChainGhost</td><td class="wallet">bc1q****k3t2</td><td class="btc">0.3</td></tr>
+    <tr><td>6</td><td class="username">QuantumWolf</td><td class="wallet">bc1q****m7l9</td><td class="btc">0.2</td></tr>
+    <tr><td>7</td><td class="username">ByteSage</td><td class="wallet">bc1q****q2c8</td><td class="btc">0.1</td></tr>
+    <tr><td>8</td><td class="username">NeonNexus</td><td class="wallet">bc1q****r5b4</td><td class="btc">0.001</td></tr>
+    <tr><td>9</td><td class="username">ZeroSync</td><td class="wallet">bc1q****v6n1</td><td class="btc">0.0001</td></tr>
+    <tr><td>10</td><td class="username">DustPulse</td><td class="wallet">bc1q****y8s3</td><td class="btc">0.00001</td></tr>
+  </table>
+</div>
+
+</body>
 </style>
 </html>
