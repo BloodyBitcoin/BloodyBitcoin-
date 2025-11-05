@@ -2097,27 +2097,28 @@ setInterval(() => {
   75% { opacity: 0.5; transform: scale(1.05); }
 }
 </style>
+</style>
 
+<!-- ❤️ Herzschlag-Skript (korrigiert) -->
 <script>
-const heart = document.getElementById("heart");
-const audio = document.getElementById("heartbeat-sound");
-audio.volume = 0.25;
+  const heart = document.getElementById("heart");
+  const audio = document.getElementById("heartbeat");
+  audio.volume = 0.25;
 
-// spielt Herzschlag nur ab, wenn Herz sichtbar
-const observerHeart = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      if (audio.paused) {
-        audio.loop = true;
-        audio.play().catch(()=>{});
+  const observerHeart = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (audio.paused) {
+          audio.loop = true;
+          audio.play().catch(() => {});
+        }
+      } else {
+        if (!audio.paused) audio.pause();
       }
-    } else {
-      if (!audio.paused) audio.pause();
-    }
-  });
-}, { threshold: 0.6 });
+    });
+  }, { threshold: 0.6 });
 
-observerHeart.observe(heart);
+  observerHeart.observe(heart);
 </script>
 </style>
 <!-- ⚡ TOP NODES – GLOBAL USER ASSETS ⚡ -->
@@ -2195,7 +2196,6 @@ observerHeart.observe(heart);
   updateBTCValues();
   setInterval(updateBTCValues, 60000);
 </script>
-
 <style>
   #top-nodes table tr:hover {
     transform: scale(1.02);
