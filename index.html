@@ -2145,7 +2145,7 @@ observerHeart.observe(heart);
     </table>
   </div>
 
-  <p style="margin-top:25px; font-size:0.9em; color:#777;">
+  <p id="btcInfo" style="margin-top:25px; font-size:0.9em; color:#777;">
     💹 Live BTC/USD feed updates every 60 seconds
   </p>
 </section>
@@ -2166,45 +2166,44 @@ observerHeart.observe(heart);
   ];
 
   async function updateBTCValues() {
+    const table = document.getElementById("userTable");
+    const info = document.getElementById("btcInfo");
+    let btcPrice = 70000; // Fallback
+
     try {
       const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json");
       const data = await res.json();
-      const btcPrice = data.bpi.USD.rate_float;
-
-      const table = document.getElementById("userTable");
-      table.innerHTML = "";
-
-      users.forEach((user, i) => {
-        const usd = (user.btc * btcPrice).toFixed(2);
-
-        // Gold / Silber / Bronze Rahmen
-        const border =
-          i === 0 ? "2px solid gold" :
-          i === 1 ? "2px solid silver" :
-          i === 2 ? "2px solid #cd7f32" : "1px solid #222";
-
-        const glow =
-          i === 0 ? "0 0 20px gold" :
-          i === 1 ? "0 0 20px silver" :
-          i === 2 ? "0 0 20px #cd7f32" : "none";
-
-        const row = `
-          <tr style="background:#111; border:${border}; box-shadow:${glow};">
-            <td style="padding:10px 15px;">${user.rank}</td>
-            <td style="color:#a855f7;">${user.name}</td>
-            <td style="color:#ff6600;">${user.wallet}</td>
-            <td>${user.btc}</td>
-            <td style="color:#00ff90;">$${usd}</td>
-          </tr>`;
-        table.innerHTML += row;
-      });
+      btcPrice = data.bpi.USD.rate_float;
+      info.innerHTML = `💹 1 BTC = $${btcPrice.toLocaleString()} — auto-update every 60s`;
     } catch (err) {
-      console.error("BTC API Error:", err);
+      info.innerHTML = "⚠️ Live price unavailable — using last known rate";
     }
+
+    table.innerHTML = "";
+    users.forEach((user, i) => {
+      const usd = (user.btc * btcPrice).toFixed(2);
+      const border =
+        i === 0 ? "2px solid gold" :
+        i === 1 ? "2px solid silver" :
+        i === 2 ? "2px solid #cd7f32" : "1px solid #222";
+      const glow =
+        i === 0 ? "0 0 20px gold" :
+        i === 1 ? "0 0 20px silver" :
+        i === 2 ? "0 0 20px #cd7f32" : "none";
+      const row = `
+        <tr style="background:#111; border:${border}; box-shadow:${glow};">
+          <td style="padding:10px 15px;">${user.rank}</td>
+          <td style="color:#a855f7;">${user.name}</td>
+          <td style="color:#ff6600;">${user.wallet}</td>
+          <td>${user.btc}</td>
+          <td style="color:#00ff90;">$${usd}</td>
+        </tr>`;
+      table.innerHTML += row;
+    });
   }
 
   updateBTCValues();
-  setInterval(updateBTCValues, 60000); // Aktualisierung alle 60 Sekunden
+  setInterval(updateBTCValues, 60000); // alle 60 Sekunden
 </script>
 
 <style>
