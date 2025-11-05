@@ -2208,7 +2208,20 @@ setInterval(() => {
 </script>
 
 <style>
-  /* Grundlayout */
+  /* Verhindert den schwarzen Balken */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Hauptlayout */
+  #top-nodes {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
   #top-nodes table {
     width: 100%;
     border-collapse: collapse;
@@ -2226,27 +2239,28 @@ setInterval(() => {
   #top-nodes table td {
     padding: 10px 15px;
     border-bottom: 1px solid #222;
+    white-space: nowrap;
   }
 
   /* Spaltenfarben */
-  .rank { color: #ffaa00; width: 60px; text-align: center; }
+  .rank { color: #ffaa00; width: 50px; text-align: center; }
   .name { color: #b066ff; text-align: left; font-weight: 600; }
-  .wallet { color: #fff; text-align: left; }
-  .btc { color: #ff4040; text-align: right; }
-  .usd { color: #00ff90; text-align: right; }
+  .wallet { color: #ffffff; text-align: left; }
+  .btc { color: #ff4040; text-align: right; font-weight: 500; }
+  .usd { color: #00ff90; text-align: right; font-weight: 600; }
 
   /* Glow Top 3 */
   @keyframes glow-gold {
     0%, 100% { box-shadow: 0 0 10px gold; }
-    50% { box-shadow: 0 0 30px gold; }
+    50% { box-shadow: 0 0 25px gold; }
   }
   @keyframes glow-silver {
     0%, 100% { box-shadow: 0 0 10px silver; }
-    50% { box-shadow: 0 0 30px silver; }
+    50% { box-shadow: 0 0 25px silver; }
   }
   @keyframes glow-bronze {
     0%, 100% { box-shadow: 0 0 10px #cd7f32; }
-    50% { box-shadow: 0 0 30px #cd7f32; }
+    50% { box-shadow: 0 0 25px #cd7f32; }
   }
 
   .gold-glow {
@@ -2263,9 +2277,13 @@ setInterval(() => {
   }
 
   /* Hover Effekt */
+  #top-nodes table tr {
+    transition: all 0.3s ease;
+  }
+
   #top-nodes table tr:hover {
     background: #1a1a1a;
     transform: scale(1.01);
-    transition: all 0.3s ease;
+    transform-origin: center;
   }
 </style>
