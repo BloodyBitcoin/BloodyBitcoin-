@@ -2181,33 +2181,20 @@ setInterval(() => {
         const usd = (user.btc * btcPrice).toFixed(2);
         const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
 
-        const border =
-          i === 0 ? "2px solid gold" :
-          i === 1 ? "2px solid silver" :
-          i === 2 ? "2px solid #cd7f32" : "none";
-
-        const glow =
+        const glowClass =
           i === 0 ? "gold-glow" :
           i === 1 ? "silver-glow" :
           i === 2 ? "bronze-glow" : "";
 
         const row = `
-          <tr class="${glow}" style="border-left:${border}; transition:0.3s;">
-            <td>${medal || user.rank}</td>
-            <td>${user.name}</td>
-            <td style="color:#a855f7;">${user.wallet}</td>
+          <tr class="${glowClass}">
+            <td class="rank">${medal || user.rank}</td>
+            <td class="name">${user.name}</td>
+            <td class="wallet">${user.wallet}</td>
             <td class="btc">${user.btc}</td>
             <td class="usd">$${usd}</td>
           </tr>`;
         table.innerHTML += row;
-      });
-
-      // BTC/USD Zahlen mit Leuchteffekt animieren
-      const btcCells = document.querySelectorAll(".btc, .usd");
-      btcCells.forEach(cell => {
-        cell.classList.remove("flash");
-        void cell.offsetWidth; // Trick um Animation neu zu starten
-        cell.classList.add("flash");
       });
     } catch (err) {
       console.error("BTC API Error:", err);
@@ -2221,36 +2208,64 @@ setInterval(() => {
 </script>
 
 <style>
-  /* Pulsierender Glow für Top 3 */
-  @keyframes pulse-gold {
-    0%, 100% { box-shadow: 0 0 15px gold; }
-    50% { box-shadow: 0 0 35px gold; }
+  /* Grundlayout */
+  #top-nodes table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
   }
-  @keyframes pulse-silver {
-    0%, 100% { box-shadow: 0 0 15px silver; }
-    50% { box-shadow: 0 0 35px silver; }
+
+  #top-nodes table thead th {
+    color: #ffaa00;
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #333;
   }
-  @keyframes pulse-bronze {
-    0%, 100% { box-shadow: 0 0 15px #cd7f32; }
-    50% { box-shadow: 0 0 35px #cd7f32; }
+
+  #top-nodes table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #222;
+  }
+
+  /* Spaltenfarben */
+  .rank { color: #ffaa00; width: 60px; text-align: center; }
+  .name { color: #b066ff; text-align: left; font-weight: 600; }
+  .wallet { color: #fff; text-align: left; }
+  .btc { color: #ff4040; text-align: right; }
+  .usd { color: #00ff90; text-align: right; }
+
+  /* Glow Top 3 */
+  @keyframes glow-gold {
+    0%, 100% { box-shadow: 0 0 10px gold; }
+    50% { box-shadow: 0 0 30px gold; }
+  }
+  @keyframes glow-silver {
+    0%, 100% { box-shadow: 0 0 10px silver; }
+    50% { box-shadow: 0 0 30px silver; }
+  }
+  @keyframes glow-bronze {
+    0%, 100% { box-shadow: 0 0 10px #cd7f32; }
+    50% { box-shadow: 0 0 30px #cd7f32; }
   }
 
   .gold-glow {
-    animation: pulse-gold 2.5s infinite ease-in-out;
+    border: 1px solid gold;
+    animation: glow-gold 2s infinite ease-in-out;
   }
   .silver-glow {
-    animation: pulse-silver 2.5s infinite ease-in-out;
+    border: 1px solid silver;
+    animation: glow-silver 2s infinite ease-in-out;
   }
   .bronze-glow {
-    animation: pulse-bronze 2.5s infinite ease-in-out;
+    border: 1px solid #cd7f32;
+    animation: glow-bronze 2s infinite ease-in-out;
   }
 
-  /* Leuchteffekt bei Zahländerung */
-  @keyframes flashColor {
-    0% { color: #ffffff; text-shadow: 0 0 20px #fff; }
-    100% { color: inherit; text-shadow: none; }
-  }
-  .flash {
-    animation: flashColor 0.8s ease;
+  /* Hover Effekt */
+  #top-nodes table tr:hover {
+    background: #1a1a1a;
+    transform: scale(1.01);
+    transition: all 0.3s ease;
   }
 </style>
