@@ -2160,19 +2160,17 @@ setInterval(() => {
 
   async function updateBTCValues() {
     try {
-      const res = await fetch("https://corsproxy.io/?https://api.coindesk.com/v1/bpi/currentprice/USD.json");
+      // Coinbase-API → funktioniert sicher auch auf GitHub Pages
+      const res = await fetch("https://api.coinbase.com/v2/prices/spot?currency=USD");
       const data = await res.json();
-      const btcPrice = data.bpi.USD.rate_float;
+      const btcPrice = parseFloat(data.data.amount);
 
       const table = document.getElementById("userTable");
       table.innerHTML = "";
 
       users.forEach((user, i) => {
         const usd = (user.btc * btcPrice).toFixed(2);
-        const medal =
-          i === 0 ? "🥇" :
-          i === 1 ? "🥈" :
-          i === 2 ? "🥉" : "";
+        const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
 
         const row = `
           <tr style="border-left:4px solid ${
@@ -2196,13 +2194,3 @@ setInterval(() => {
   updateBTCValues();
   setInterval(updateBTCValues, 60000);
 </script>
-<style>
-  #top-nodes table tr:hover {
-    transform: scale(1.02);
-    background: #1a1a1a;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(255,165,0,0.3);
-  }
-</style>
-</body>
-</html>
