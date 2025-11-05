@@ -2121,3 +2121,165 @@ observerHeart.observe(heart);
 </script>
 
 </html>
+<!-- GLOBAL USER ASSETS / BTC LEADERBOARD -->
+<section id="top-nodes" class="section container leaderboard">
+  <h2>🌐 Top Nodes — Global User Assets</h2>
+  <p class="lead-text">Tracking the strongest digital wallets worldwide</p>
+
+  <table id="userTable">
+    <!-- Die Werte werden per Script unten generiert -->
+  </table>
+
+  <p class="update-note">🟢 Live BTC/USD feed updates every 60s</p>
+</section>
+
+<script>
+  const users = [
+    { rank: 1, name: "CryptoSeer", wallet: "0xA1B2C3", btc: 2.45 },
+    { rank: 2, name: "LunaNode", wallet: "0xB4D5E6", btc: 2.02 },
+    { rank: 3, name: "BloodyBitcoin", wallet: "0xC7F8G9", btc: 1.75 },
+    { rank: 4, name: "HashBreaker", wallet: "0xD0H1I2", btc: 1.12 },
+    { rank: 5, name: "ChainGhost", wallet: "0xE3J4K5", btc: 0.88 },
+    { rank: 6, name: "QuantumWolf", wallet: "0xF6L7M8", btc: 0.73 },
+    { rank: 7, name: "ByteSage", wallet: "0xN9O0P1", btc: 0.65 },
+    { rank: 8, name: "NeonNexus", wallet: "0xQ2R3S4", btc: 0.51 },
+    { rank: 9, name: "ZeroSync", wallet: "0xT5U6V7", btc: 0.43 },
+    { rank: 10, name: "DustPulse", wallet: "0xW8X9Y0", btc: 0.29 },
+    { rank: 11, name: "BlockSerpent", wallet: "0xAB12CD", btc: 0.21 },
+    { rank: 12, name: "BitSpectre", wallet: "0xEF34GH", btc: 0.17 },
+    { rank: 13, name: "ShadowMiner", wallet: "0xIJ56KL", btc: 0.14 },
+    { rank: 14, name: "NeuroHash", wallet: "0xMN78OP", btc: 0.11 },
+    { rank: 15, name: "DarkPulse", wallet: "0xQR90ST", btc: 0.09 },
+    { rank: 16, name: "SilentNode", wallet: "0xUV12WX", btc: 0.06 },
+    { rank: 17, name: "ChainWhisper", wallet: "0xYZ34AB", btc: 0.04 },
+    { rank: 18, name: "BitEcho", wallet: "0xCD56EF", btc: 0.03 },
+    { rank: 19, name: "HashShade", wallet: "0xGH78IJ", btc: 0.02 },
+    { rank: 20, name: "PulseByte", wallet: "0xKL90MN", btc: 0.01 }
+  ];
+
+  async function updateBTCValues() {
+    try {
+      const res = await fetch("https://api.coinbase.com/v2/prices/spot?currency=USD");
+      const data = await res.json();
+      const btcPrice = parseFloat(data.data.amount);
+
+      const table = document.getElementById("userTable");
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th>RANK</th>
+            <th>USERNAME</th>
+            <th>WALLET</th>
+            <th>BTC</th>
+            <th>USD</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+
+      const tbody = table.querySelector("tbody");
+
+      users.forEach((user, i) => {
+        const usd = (user.btc * btcPrice).toFixed(2);
+        const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
+        const glowClass =
+          i === 0 ? "gold-glow" :
+          i === 1 ? "silver-glow" :
+          i === 2 ? "bronze-glow" : "";
+
+        const row = document.createElement("tr");
+        row.className = glowClass;
+        row.innerHTML = `
+          <td class="rank">${medal || user.rank}</td>
+          <td class="name">${user.name}</td>
+          <td class="wallet">${user.wallet}</td>
+          <td class="btc">${user.btc}</td>
+          <td class="usd">$${usd}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    } catch (err) {
+      document.getElementById("userTable").innerHTML =
+        '<tr><td colspan="5" style="color:red;">⚠️ API Error – bitte Seite neu laden</td></tr>';
+    }
+  }
+
+  updateBTCValues();
+  setInterval(updateBTCValues, 60000);
+</script>
+
+<style>
+/* === GLOBAL USER ASSETS TABLE === */
+.leaderboard {
+  margin-top: 60px;
+  text-align: center;
+  padding: 20px 10px;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+#top-nodes h2 {
+  color: #ffaa00;
+  font-size: 1.6rem;
+  text-shadow: 0 0 12px #ff990033;
+  margin-bottom: 6px;
+}
+
+.lead-text {
+  color: #9ed8cf;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+#userTable {
+  width: 95%;
+  max-width: 820px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-family: 'Consolas', monospace;
+  font-size: 0.9rem;
+}
+
+#userTable th {
+  color: #ffaa00;
+  text-align: left;
+  border-bottom: 2px solid #333;
+  padding: 8px 12px;
+}
+
+#userTable td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #222;
+  vertical-align: middle;
+}
+
+/* Farben der Spalten */
+.rank { color: #ffaa00; width: 45px; text-align: center; }
+.name { color: #b066ff; text-align: left; font-weight: 600; }
+.wallet { color: #ffffff; text-align: left; }
+.btc { color: #ff4040; text-align: right; font-weight: 500; }
+.usd { color: #00ff90; text-align: right; font-weight: 600; }
+
+/* Glow für Top 3 */
+.gold-glow { border: 1px solid gold; box-shadow: 0 0 15px gold; }
+.silver-glow { border: 1px solid silver; box-shadow: 0 0 15px silver; }
+.bronze-glow { border: 1px solid #cd7f32; box-shadow: 0 0 15px #cd7f32; }
+
+/* Hover Effekt */
+#userTable tr {
+  transition: all 0.3s ease;
+}
+
+#userTable tr:hover {
+  background: #111;
+  transform: scale(1.005);
+}
+
+/* Live Update Hinweis */
+.update-note {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #9ed8cf;
+  text-align: center;
+}
+</style>
