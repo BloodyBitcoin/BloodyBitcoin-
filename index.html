@@ -2146,21 +2146,30 @@ setInterval(() => {
 
 <script>
   const users = [
-    { rank: 1, name: "CryptoSeer", wallet: "0xA1B2C3", btc: 2.15 },
-    { rank: 2, name: "LunaNode", wallet: "0xB4D5E6", btc: 1.92 },
-    { rank: 3, name: "BloodyBitcoin", wallet: "0xC7F8G9", btc: 1.65 },
-    { rank: 4, name: "HashBreaker", wallet: "0xD0H1I2", btc: 1.22 },
-    { rank: 5, name: "ChainGhost", wallet: "0xE3J4K5", btc: 0.87 },
-    { rank: 6, name: "QuantumWolf", wallet: "0xF6L7M8", btc: 0.72 },
+    { rank: 1, name: "CryptoSeer", wallet: "0xA1B2C3", btc: 2.45 },
+    { rank: 2, name: "LunaNode", wallet: "0xB4D5E6", btc: 2.02 },
+    { rank: 3, name: "BloodyBitcoin", wallet: "0xC7F8G9", btc: 1.75 },
+    { rank: 4, name: "HashBreaker", wallet: "0xD0H1I2", btc: 1.12 },
+    { rank: 5, name: "ChainGhost", wallet: "0xE3J4K5", btc: 0.88 },
+    { rank: 6, name: "QuantumWolf", wallet: "0xF6L7M8", btc: 0.73 },
     { rank: 7, name: "ByteSage", wallet: "0xN9O0P1", btc: 0.65 },
-    { rank: 8, name: "NeonNexus", wallet: "0xQ2R3S4", btc: 0.53 },
-    { rank: 9, name: "ZeroSync", wallet: "0xT5U6V7", btc: 0.40 },
-    { rank: 10, name: "DustPulse", wallet: "0xW8X9Y0", btc: 0.28 }
+    { rank: 8, name: "NeonNexus", wallet: "0xQ2R3S4", btc: 0.51 },
+    { rank: 9, name: "ZeroSync", wallet: "0xT5U6V7", btc: 0.43 },
+    { rank: 10, name: "DustPulse", wallet: "0xW8X9Y0", btc: 0.29 },
+    { rank: 11, name: "BlockSerpent", wallet: "0xAB12CD", btc: 0.21 },
+    { rank: 12, name: "BitSpectre", wallet: "0xEF34GH", btc: 0.17 },
+    { rank: 13, name: "ShadowMiner", wallet: "0xIJ56KL", btc: 0.14 },
+    { rank: 14, name: "NeuroHash", wallet: "0xMN78OP", btc: 0.11 },
+    { rank: 15, name: "DarkPulse", wallet: "0xQR90ST", btc: 0.09 },
+    { rank: 16, name: "SilentNode", wallet: "0xUV12WX", btc: 0.06 },
+    { rank: 17, name: "ChainWhisper", wallet: "0xYZ34AB", btc: 0.04 },
+    { rank: 18, name: "BitEcho", wallet: "0xCD56EF", btc: 0.03 },
+    { rank: 19, name: "HashShade", wallet: "0xGH78IJ", btc: 0.02 },
+    { rank: 20, name: "PulseByte", wallet: "0xKL90MN", btc: 0.01 }
   ];
 
   async function updateBTCValues() {
     try {
-      // Coinbase-API → funktioniert sicher auch auf GitHub Pages
       const res = await fetch("https://api.coinbase.com/v2/prices/spot?currency=USD");
       const data = await res.json();
       const btcPrice = parseFloat(data.data.amount);
@@ -2172,17 +2181,33 @@ setInterval(() => {
         const usd = (user.btc * btcPrice).toFixed(2);
         const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
 
+        const border =
+          i === 0 ? "2px solid gold" :
+          i === 1 ? "2px solid silver" :
+          i === 2 ? "2px solid #cd7f32" : "none";
+
+        const glow =
+          i === 0 ? "gold-glow" :
+          i === 1 ? "silver-glow" :
+          i === 2 ? "bronze-glow" : "";
+
         const row = `
-          <tr style="border-left:4px solid ${
-            i===0?"gold":i===1?"silver":i===2?"#cd7f32":"transparent"
-          }; transition:0.3s;">
+          <tr class="${glow}" style="border-left:${border}; transition:0.3s;">
             <td>${medal || user.rank}</td>
             <td>${user.name}</td>
             <td style="color:#a855f7;">${user.wallet}</td>
-            <td style="color:#ff6600;">${user.btc}</td>
-            <td style="color:#00ff90;">$${usd}</td>
+            <td class="btc">${user.btc}</td>
+            <td class="usd">$${usd}</td>
           </tr>`;
         table.innerHTML += row;
+      });
+
+      // BTC/USD Zahlen mit Leuchteffekt animieren
+      const btcCells = document.querySelectorAll(".btc, .usd");
+      btcCells.forEach(cell => {
+        cell.classList.remove("flash");
+        void cell.offsetWidth; // Trick um Animation neu zu starten
+        cell.classList.add("flash");
       });
     } catch (err) {
       console.error("BTC API Error:", err);
@@ -2194,3 +2219,38 @@ setInterval(() => {
   updateBTCValues();
   setInterval(updateBTCValues, 60000);
 </script>
+
+<style>
+  /* Pulsierender Glow für Top 3 */
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 15px gold; }
+    50% { box-shadow: 0 0 35px gold; }
+  }
+  @keyframes pulse-silver {
+    0%, 100% { box-shadow: 0 0 15px silver; }
+    50% { box-shadow: 0 0 35px silver; }
+  }
+  @keyframes pulse-bronze {
+    0%, 100% { box-shadow: 0 0 15px #cd7f32; }
+    50% { box-shadow: 0 0 35px #cd7f32; }
+  }
+
+  .gold-glow {
+    animation: pulse-gold 2.5s infinite ease-in-out;
+  }
+  .silver-glow {
+    animation: pulse-silver 2.5s infinite ease-in-out;
+  }
+  .bronze-glow {
+    animation: pulse-bronze 2.5s infinite ease-in-out;
+  }
+
+  /* Leuchteffekt bei Zahländerung */
+  @keyframes flashColor {
+    0% { color: #ffffff; text-shadow: 0 0 20px #fff; }
+    100% { color: inherit; text-shadow: none; }
+  }
+  .flash {
+    animation: flashColor 0.8s ease;
+  }
+</style>
