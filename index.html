@@ -2160,7 +2160,7 @@ setInterval(() => {
 
   async function updateBTCValues() {
     try {
-      const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json");
+      const res = await fetch("https://corsproxy.io/?https://api.coindesk.com/v1/bpi/currentprice/USD.json");
       const data = await res.json();
       const btcPrice = data.bpi.USD.rate_float;
 
