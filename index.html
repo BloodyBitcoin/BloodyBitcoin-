@@ -2119,5 +2119,81 @@ const observerHeart = new IntersectionObserver(entries => {
 
 observerHeart.observe(heart);
 </script>
+<!-- ========================= -->
+<!-- ⚡ TOP NODES – GLOBAL USER ASSETS -->
+<!-- ========================= -->
+<section id="top-nodes" style="background:#000; color:#fff; text-align:center; padding:60px 20px;">
+  <h2 style="font-size:2.5em; color:#ff9900; margin-bottom:10px;">
+    ⚡ TOP NODES — GLOBAL USER ASSETS
+  </h2>
+  <p style="color:#888; margin-bottom:40px;">
+    Tracking the strongest digital wallets in the network
+  </p>
+
+  <div class="nodes-table" style="max-width:900px; margin:auto; overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-family:monospace;">
+      <thead style="color:#ffae00; text-align:left;">
+        <tr>
+          <th>RANK</th>
+          <th>USERNAME</th>
+          <th>WALLET</th>
+          <th>BTC</th>
+          <th>USD</th>
+        </tr>
+      </thead>
+      <tbody id="userTable" style="font-size:1.1em;"></tbody>
+    </table>
+  </div>
+
+  <p style="margin-top:25px; font-size:0.9em; color:#777;">
+    ⏱ Updated live with BTC/USD values — refresh for the latest snapshot
+  </p>
+</section>
+
+<script>
+  // Beispiel-Nutzerdaten (du bist Rang 3 🥉)
+  const users = [
+    { rank: "🥇", name: "CryptoSeer", wallet: "bc1q****z3a9", btc: 5.0 },
+    { rank: "🥈", name: "LunaNode", wallet: "bc1q****f8p2", btc: 2.0 },
+    { rank: "🥉", name: "BloodyBitcoin", wallet: "bc1q****x1h3", btc: 1.1 },
+    { rank: 4, name: "HashBreaker", wallet: "bc1q****w9r5", btc: 0.5 },
+    { rank: 5, name: "ChainGhost", wallet: "bc1q****k3t2", btc: 0.3 },
+    { rank: 6, name: "QuantumWolf", wallet: "bc1q****m7l9", btc: 0.2 },
+    { rank: 7, name: "ByteSage", wallet: "bc1q****q2c8", btc: 0.1 },
+    { rank: 8, name: "NeonNexus", wallet: "bc1q****r5b4", btc: 0.001 },
+    { rank: 9, name: "ZeroSync", wallet: "bc1q****v6n1", btc: 0.0001 },
+    { rank: 10, name: "DustPulse", wallet: "bc1q****y8s3", btc: 0.00001 },
+  ];
+
+  // Fester BTC-Kurs für Darstellung (wird später dynamisch ersetzt)
+  const btcPrice = 70000;
+  const table = document.getElementById("userTable");
+
+  users.forEach((user, i) => {
+    const usd = (user.btc * btcPrice).toFixed(2);
+    const glow = i === 0 ? "0 0 15px gold"
+               : i === 1 ? "0 0 15px silver"
+               : i === 2 ? "0 0 15px #cd7f32"
+               : "none";
+
+    const row = `
+      <tr style="background:#111; box-shadow:${glow};">
+        <td style="padding:10px 15px;">${user.rank}</td>
+        <td style="color:#a855f7;">${user.name}</td>
+        <td style="color:#ff6600;">${user.wallet}</td>
+        <td>${user.btc}</td>
+        <td style="color:#00ff90;">$${usd}</td>
+      </tr>`;
+    table.innerHTML += row;
+  });
+</script>
+
+<style>
+  #top-nodes table tr:hover {
+    transform: scale(1.01);
+    background: #1a1a1a;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(255,165,0,0.3);
+  }
 </style>
 </html>
