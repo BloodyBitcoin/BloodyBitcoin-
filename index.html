@@ -2119,6 +2119,101 @@ const observerHeart = new IntersectionObserver(entries => {
 
 observerHeart.observe(heart);
 </script>
-</body>
+<!-- ========================= -->
+<!-- ⚡ TOP NODES – GLOBAL USER ASSETS -->
+<!-- ========================= -->
+<section id="top-nodes" style="background:#000; color:#fff; text-align:center; padding:60px 20px;">
+  <h2 style="font-size:2.5em; color:#ff9900; margin-bottom:10px;">
+    ⚡ TOP NODES — GLOBAL USER ASSETS
+  </h2>
+  <p style="color:#888; margin-bottom:40px;">
+    Tracking the strongest digital wallets in the network
+  </p>
+
+  <div class="nodes-table" style="max-width:900px; margin:auto; overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-family:monospace;">
+      <thead style="color:#ffae00; text-align:left;">
+        <tr>
+          <th>RANK</th>
+          <th>USERNAME</th>
+          <th>WALLET</th>
+          <th>BTC</th>
+          <th>USD</th>
+        </tr>
+      </thead>
+      <tbody id="userTable" style="font-size:1.1em;"></tbody>
+    </table>
+  </div>
+
+  <p style="margin-top:25px; font-size:0.9em; color:#777;">
+    💹 Live BTC/USD feed updates every 60 seconds
+  </p>
+</section>
+
+<script>
+  // Nutzerliste – Platz 3 bist du 🥉
+  const users = [
+    { rank: "🥇", name: "CryptoSeer", wallet: "bc1q****z3a9", btc: 5.0 },
+    { rank: "🥈", name: "LunaNode", wallet: "bc1q****f8p2", btc: 2.0 },
+    { rank: "🥉", name: "BloodyBitcoin", wallet: "bc1q****x1h3", btc: 1.1 },
+    { rank: 4, name: "HashBreaker", wallet: "bc1q****w9r5", btc: 0.5 },
+    { rank: 5, name: "ChainGhost", wallet: "bc1q****k3t2", btc: 0.3 },
+    { rank: 6, name: "QuantumWolf", wallet: "bc1q****m7l9", btc: 0.2 },
+    { rank: 7, name: "ByteSage", wallet: "bc1q****q2c8", btc: 0.1 },
+    { rank: 8, name: "NeonNexus", wallet: "bc1q****r5b4", btc: 0.001 },
+    { rank: 9, name: "ZeroSync", wallet: "bc1q****v6n1", btc: 0.0001 },
+    { rank: 10, name: "DustPulse", wallet: "bc1q****y8s3", btc: 0.00001 },
+  ];
+
+  async function updateBTCValues() {
+    try {
+      const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice/USD.json");
+      const data = await res.json();
+      const btcPrice = data.bpi.USD.rate_float;
+
+      const table = document.getElementById("userTable");
+      table.innerHTML = "";
+
+      users.forEach((user, i) => {
+        const usd = (user.btc * btcPrice).toFixed(2);
+
+        // Gold / Silber / Bronze Rahmen
+        const border =
+          i === 0 ? "2px solid gold" :
+          i === 1 ? "2px solid silver" :
+          i === 2 ? "2px solid #cd7f32" : "1px solid #222";
+
+        const glow =
+          i === 0 ? "0 0 20px gold" :
+          i === 1 ? "0 0 20px silver" :
+          i === 2 ? "0 0 20px #cd7f32" : "none";
+
+        const row = `
+          <tr style="background:#111; border:${border}; box-shadow:${glow};">
+            <td style="padding:10px 15px;">${user.rank}</td>
+            <td style="color:#a855f7;">${user.name}</td>
+            <td style="color:#ff6600;">${user.wallet}</td>
+            <td>${user.btc}</td>
+            <td style="color:#00ff90;">$${usd}</td>
+          </tr>`;
+        table.innerHTML += row;
+      });
+    } catch (err) {
+      console.error("BTC API Error:", err);
+    }
+  }
+
+  updateBTCValues();
+  setInterval(updateBTCValues, 60000); // Aktualisierung alle 60 Sekunden
+</script>
+
+<style>
+  #top-nodes table tr:hover {
+    transform: scale(1.02);
+    background: #1a1a1a;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255,165,0,0.3);
+  }
 </style>
+</body>
 </html>
