@@ -11,79 +11,79 @@
 
 <style>
 /* =========================================================
-   ===============  THEME / DESIGN TOKENS  =================
-   =======================================================*/
+=============== THEME / DESIGN TOKENS =================
+=======================================================*/
 :root{
-  --bg:#070a0b;
-  --ink:#e7f6ff;
-  --muted:#9ab8c5;
+--bg:#070a0b;
+--ink:#e7f6ff;
+--muted:#9ab8c5;
 
-  --neon:#20ffc0;
-  --neon2:#39f;
+--neon:#20ffc0;
+--neon2:#39f;
 
-  --lava:#ff8a2a;
-  --lava2:#ffb15e;
+--lava:#ff8a2a;
+--lava2:#ffb15e;
 
-  --card:#0b1116;
-  --card2:#0a1216;
-  --brd:#11313a;
+--card:#0b1116;
+--card2:#0a1216;
+--brd:#11313a;
 
-  --glow-neon: 0 0 18px #20ffc0, 0 0 42px #20ffc033;
-  --glow-lava: 0 0 18px #ff8a2a, 0 0 42px #ff8a2a55;
+--glow-neon: 0 0 18px #20ffc0, 0 0 42px #20ffc033;
+--glow-lava: 0 0 18px #ff8a2a, 0 0 42px #ff8a2a55;
 
-  --danger:#ff3a3a;
-  --success:#22ff9a;
+--danger:#ff3a3a;
+--success:#22ff9a;
 }
 
 /* =========================================================
-   ===================   BASE / RESET   ====================
-   =======================================================*/
+=================== BASE / RESET ====================
+=======================================================*/
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 
 /* =========================================================
-   ===================   HEADER / CLAIM  ===================
-   =======================================================*/
+=================== HEADER / CLAIM ===================
+=======================================================*/
 .claim{
-  position:sticky; top:0; z-index:100;
-  background:linear-gradient(180deg, rgba(7,10,11,.86), rgba(7,10,11,.25));
-  backdrop-filter: blur(8px);
-  border-bottom:1px solid #0f1f23;
+position:sticky; top:0; z-index:100;
+background:linear-gradient(180deg, rgba(7,10,11,.86), rgba(7,10,11,.25));
+backdrop-filter: blur(8px);
+border-bottom:1px solid #0f1f23;
 }
 .claim-inner{padding:.95rem 1rem 1.05rem;text-align:center; position:relative}
 .claim h1{
-  margin:0;
-  font-weight:900; letter-spacing:.4px;
-  font-size:clamp(22px,4.5vw,36px);
-  color:#ffd8d8;
-  text-shadow:
-    0 0 16px #ff2e2e,
-    0 0 38px #ff2e2e,
-    0 0 64px #8b1111;
-  animation:pulseRed 2.25s ease-in-out infinite;
+margin:0;
+font-weight:900; letter-spacing:.4px;
+font-size:clamp(22px,4.5vw,36px);
+color:#ffd8d8;
+text-shadow:
+0 0 16px #ff2e2e,
+0 0 38px #ff2e2e,
+0 0 64px #8b1111;
+animation:pulseRed 2.25s ease-in-out infinite;
 }
 @keyframes pulseRed{
-  0%,100%{filter:drop-shadow(0 0 8px #ff3a3a)}
-  50%{filter:drop-shadow(0 0 26px #ff3a3a)}
+0%,100%{filter:drop-shadow(0 0 8px #ff3a3a)}
+50%{filter:drop-shadow(0 0 26px #ff3a3a)}
 }
 .claim p{
-  margin:.2rem 0 0;
-  color:#f0b5b5; opacity:.9; letter-spacing:.2px
+margin:.2rem 0 0;
+color:#f0b5b5; opacity:.9; letter-spacing:.2px
 }
 
 /* Login-Button (oben rechts, verändert das Layout nicht) */
 .login-btn{
-  position:fixed; top:10px; right:12px; z-index:220;
-  display:inline-grid; grid-auto-flow:column; gap:10px; align-items:center;
-  padding:.7rem 1rem; border-radius:14px;
-  font-weight:800; letter-spacing:.3px;
-  color:#d8fff5;
-  background:linear-gradient(180deg,#0f171c,#0a1216);
-  border:1px solid #1b474d;
-  box-shadow:inset 0 0 0 1px #20ffc028, 0 8px 24px rgba(0,0,0,.45), 0 0 30px #20ffc022;
-  cursor:pointer; user-select:none;
+position:fixed; top:10px; right:12px; z-index:220;
+display:inline-grid; grid-auto-flow:column; gap:10px; align-items:center;
+padding:.7rem 1rem; border-radius:14px;
+font-weight:800; letter-spacing:.3px;
+color:#d8fff5;
+background:linear-gradient(180deg,#0f171c,#0a1216);
+border:1px solid #1b474d;
+box-shadow:inset 0 0 0 1px #20ffc028, 0 8px 24px rgba(0,0,0,.45), 0 0 30px #20ffc022;
+cursor:pointer; user-select:none;
 }
 .login-btn .dot{width:8px;height:8px;border-radius:99px;background:#20ffc0;box-shadow:0 0 12px #20ffc0}
 .login-btn:hover{transform:translateY(-1px)}
@@ -91,339 +91,339 @@ a{color:inherit;text-decoration:none}
 
 /* Login-Modal (Platzhalter) */
 .modal{
-  position:fixed; inset:0; display:none; place-items:center; z-index:300;
-  background:rgba(0,0,0,.6); backdrop-filter: blur(4px);
+position:fixed; inset:0; display:none; place-items:center; z-index:300;
+background:rgba(0,0,0,.6); backdrop-filter: blur(4px);
 }
 .modal.show{display:grid}
 .modal-card{
-  width:min(520px,92%); border-radius:18px; padding:20px 22px;
-  background:linear-gradient(180deg,#0d151b,#0b1116);
-  border:1px solid #17434a; box-shadow:0 22px 44px rgba(0,0,0,.5), inset 0 0 0 1px #20ffc020;
-  color:#cfe9e5;
+width:min(520px,92%); border-radius:18px; padding:20px 22px;
+background:linear-gradient(180deg,#0d151b,#0b1116);
+border:1px solid #17434a; box-shadow:0 22px 44px rgba(0,0,0,.5), inset 0 0 0 1px #20ffc020;
+color:#cfe9e5;
 }
 .modal-card h3{margin:0 0 8px}
 .modal-card p{margin:0 0 12px; color:#9ed8cf}
 .modal-row{display:grid; gap:12px; margin-top:10px}
 .input{
-  padding:.8rem .9rem; border-radius:12px; background:#0a1216;
-  border:1px solid #16363c; color:#d8fff5; outline:none;
+padding:.8rem .9rem; border-radius:12px; background:#0a1216;
+border:1px solid #16363c; color:#d8fff5; outline:none;
 }
 .modal-actions{display:flex; gap:10px; justify-content:flex-end; margin-top:12px}
 .btn-small{
-  padding:.6rem .9rem; border-radius:12px; border:1px solid #1b474d;
-  background:#0e181c; color:#d8fff5; cursor:pointer;
+padding:.6rem .9rem; border-radius:12px; border:1px solid #1b474d;
+background:#0e181c; color:#d8fff5; cursor:pointer;
 }
 .btn-small.primary{border-color:#ff8a2a77; box-shadow:0 0 22px #ff8a2a22}
 
 /* =========================================================
-   ===================   LAYOUT HELPERS   ==================
-   =======================================================*/
+=================== LAYOUT HELPERS ==================
+=======================================================*/
 .container{width:min(1180px,92%);margin:0 auto}
 .section{padding:clamp(28px,5.5vw,64px) 0}
 .section h2{margin:0 0 1rem;color:#cfe6f3;font-size:clamp(18px,3.2vw,28px)}
 
 /* =========================================================
-   ===================   FLOW BACKGROUND  ==================
-   =======================================================*/
+=================== FLOW BACKGROUND ==================
+=======================================================*/
 .flow-bg{
-  position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.55;
-  background:
-    radial-gradient(900px 700px at 0% 40%, #0b1a17 0%, transparent 60%),
-    radial-gradient(900px 700px at 100% 60%, #160a0f 0%, transparent 60%),
-    linear-gradient(90deg, #061214, #070a0b 50%, #0a0b0f);
-  filter:saturate(1.2) contrast(1.05);
+position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.55;
+background:
+radial-gradient(900px 700px at 0% 40%, #0b1a17 0%, transparent 60%),
+radial-gradient(900px 700px at 100% 60%, #160a0f 0%, transparent 60%),
+linear-gradient(90deg, #061214, #070a0b 50%, #0a0b0f);
+filter:saturate(1.2) contrast(1.05);
 }
 .flow-bg::after{
-  content:""; position:absolute; inset:-20%;
-  background: conic-gradient(from 0deg, #0f644b33, #0b153533, #320c1e33, #0f644b33);
-  animation:flow 28s linear infinite;
-  mix-blend-mode:overlay; opacity:.35;
+content:""; position:absolute; inset:-20%;
+background: conic-gradient(from 0deg, #0f644b33, #0b153533, #320c1e33, #0f644b33);
+animation:flow 28s linear infinite;
+mix-blend-mode:overlay; opacity:.35;
 }
 @keyframes flow{ to{ transform:rotate(360deg); } }
 
 /* =========================================================
-   ===================       HERO        ===================
-   =======================================================*/
+=================== HERO ===================
+=======================================================*/
 .hero{
-  position:relative; overflow:hidden;
-  height:calc(100svh - 84px);
-  background:radial-gradient(1200px 480px at 12% 12%, #081b16 0%, #081013 46%, #070a0b 100%);
+position:relative; overflow:hidden;
+height:calc(100svh - 84px);
+background:radial-gradient(1200px 480px at 12% 12%, #081b16 0%, #081013 46%, #070a0b 100%);
 }
 .hero img.dna{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  filter:saturate(1.15) contrast(1.05) brightness(1.05);
-  transform:scale(1.01);
+position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+filter:saturate(1.15) contrast(1.05) brightness(1.05);
+transform:scale(1.01);
 }
 .hero .overlay-grad{
-  position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(90deg, rgba(16,255,120,.12), rgba(255,32,48,.12));
-  mix-blend-mode:screen;
+position:absolute; inset:0; pointer-events:none;
+background:linear-gradient(90deg, rgba(16,255,120,.12), rgba(255,32,48,.12));
+mix-blend-mode:screen;
 }
 #particles{position:absolute; inset:0; pointer-events:none;}
 
 /* =========================================================
-   ================  DNA FULLSCREEN SECTION  ===============
-   =======================================================*/
+================ DNA FULLSCREEN SECTION ===============
+=======================================================*/
 .dna-full{ position:relative; padding:18px 0 0; }
 .dna-full h3{ margin:0 0 12px; color:#bfe9d6; font-weight:800; letter-spacing:.3px; }
 .dna-full .frame{
-  position:relative; border:1px solid #10333a; border-radius:22px; overflow:hidden;
-  background:linear-gradient(180deg, #0a1418, #0a1013);
-  box-shadow:inset 0 0 0 1px #20ffc012, 0 22px 44px rgba(0,0,0,.35);
+position:relative; border:1px solid #10333a; border-radius:22px; overflow:hidden;
+background:linear-gradient(180deg, #0a1418, #0a1013);
+box-shadow:inset 0 0 0 1px #20ffc012, 0 22px 44px rgba(0,0,0,.35);
 }
 .dna-full img{ width:100%; height:62vh; object-fit:cover; display:block; }
 .dna-full .fx{
-  position:absolute; inset:0; pointer-events:none;
-  background:radial-gradient(1200px 700px at 15% 15%, rgba(32,255,192,.14), transparent 45%),
-             radial-gradient(1000px 600px at 85% 75%, rgba(255,48,64,.12), transparent 55%);
-  mix-blend-mode:screen;
+position:absolute; inset:0; pointer-events:none;
+background:radial-gradient(1200px 700px at 15% 15%, rgba(32,255,192,.14), transparent 45%),
+radial-gradient(1000px 600px at 85% 75%, rgba(255,48,64,.12), transparent 55%);
+mix-blend-mode:screen;
 }
 
 /* =========================================================
-   ===================  WALLET BUTTON  =====================
-   =======================================================*/
+=================== WALLET BUTTON =====================
+=======================================================*/
 .wallet-wrap{display:grid; place-items:center; padding:34px 0 16px}
 .btn{
-  --pad:18px;
-  display:inline-grid; grid-auto-flow:column; gap:14px; align-items:center;
-  padding:var(--pad) clamp(22px,5vw,42px);
-  border-radius:18px;
-  color:#d8fff5; font-weight:900; letter-spacing:.6px;
-  background:linear-gradient(180deg,#0e181c,#0a1216);
-  border:1px solid #154248;
-  box-shadow:inset 0 0 0 1px #20ffc025, 0 16px 38px rgba(0,0,0,.45), 0 0 40px #20ffc028;
-  position:relative;
+--pad:18px;
+display:inline-grid; grid-auto-flow:column; gap:14px; align-items:center;
+padding:var(--pad) clamp(22px,5vw,42px);
+border-radius:18px;
+color:#d8fff5; font-weight:900; letter-spacing:.6px;
+background:linear-gradient(180deg,#0e181c,#0a1216);
+border:1px solid #154248;
+box-shadow:inset 0 0 0 1px #20ffc025, 0 16px 38px rgba(0,0,0,.45), 0 0 40px #20ffc028;
+position:relative;
 }
 .btn::after{
-  content:""; position:absolute; inset:0; border-radius:18px;
-  box-shadow:0 0 80px #20ffc02f, 0 0 120px #20ffc019; pointer-events:none;
+content:""; position:absolute; inset:0; border-radius:18px;
+box-shadow:0 0 80px #20ffc02f, 0 0 120px #20ffc019; pointer-events:none;
 }
 .btn .tube{font-size:1.25rem;filter:drop-shadow(0 0 8px #20ffc0)}
 .btn:hover{transform:translateY(-1px)}
 .btn:active{transform:translateY(1px)}
 
 /* =========================================================
-   ===================   CARDS / METRICS  ==================
-   =======================================================*/
+=================== CARDS / METRICS ==================
+=======================================================*/
 .grid{display:grid;gap:22px;grid-template-columns:repeat(2,minmax(280px,1fr))}
 @media (max-width:900px){.grid{grid-template-columns:1fr}}
 
 .card{
-  background:linear-gradient(180deg, var(--card2), var(--card));
-  border:1px solid var(--brd);
-  border-radius:22px; padding:20px 22px;
-  box-shadow: inset 0 0 0 1px #20ffc015, 0 12px 30px rgba(0,0,0,.35);
+background:linear-gradient(180deg, var(--card2), var(--card));
+border:1px solid var(--brd);
+border-radius:22px; padding:20px 22px;
+box-shadow: inset 0 0 0 1px #20ffc015, 0 12px 30px rgba(0,0,0,.35);
 }
 .card .label{color:#a9e6d5; margin-bottom:8px; letter-spacing:.4px}
 .card .val{font-size:clamp(22px,4vw,38px); font-weight:900}
 
 /* BTC Karte – Orange Lava Glas */
 .card.btc{
-  grid-column:1/-1;
-  background:linear-gradient(180deg, #2a1608, #1d0f06);
-  border:1px solid #8a4b16;
-  box-shadow: inset 0 0 0 1px #ffb15e33, 0 0 30px #ff8a2a33;
+grid-column:1/-1;
+background:linear-gradient(180deg, #2a1608, #1d0f06);
+border:1px solid #8a4b16;
+box-shadow: inset 0 0 0 1px #ffb15e33, 0 0 30px #ff8a2a33;
 }
 .btc-row{display:flex; align-items:center; gap:16px}
 .btc-logo{
-  width:64px;height:64px;border-radius:16px;
-  display:grid;place-items:center; font-weight:900; font-size:1.4rem; color:#3a1b00;
-  background:radial-gradient(circle at 30% 30%, #fff 0 15%, #ffd38a 15% 45%, #ff9b2f 45% 75%, #ff7b1c 75%);
-  box-shadow: var(--glow-lava);
+width:64px;height:64px;border-radius:16px;
+display:grid;place-items:center; font-weight:900; font-size:1.4rem; color:#3a1b00;
+background:radial-gradient(circle at 30% 30%, #fff 0 15%, #ffd38a 15% 45%, #ff9b2f 45% 75%, #ff7b1c 75%);
+box-shadow: var(--glow-lava);
 }
 .btc-price{color:#ffd9b6; text-shadow:var(--glow-lava)}
 
 /* Leuchtbalken – flüssig */
 .bar{height:12px;border-radius:10px;overflow:hidden;background:#081015;border:1px solid #13363a}
 .bar > i{display:block;height:100%;width:0%;
-  background:linear-gradient(90deg,#20ff90,#20ffc0,#39f);
-  box-shadow:0 0 18px #20ffc055;
-  transition:width 2.2s ease-in-out}
+background:linear-gradient(90deg,#20ff90,#20ffc0,#39f);
+box-shadow:0 0 18px #20ffc055;
+transition:width 2.2s ease-in-out}
 
 /* =========================================================
-   ===================     GLOBE CARD     ==================
-   =======================================================*/
+=================== GLOBE CARD ==================
+=======================================================*/
 .globe-wrap{height:520px;border-radius:22px;position:relative;overflow:hidden;
-  border:1px solid var(--brd);
-  background:radial-gradient(900px 420px at 70% 30%, #0b1116, #070a0b);
-  box-shadow: inset 0 0 0 1px #20ffc00f, 0 12px 30px rgba(0,0,0,.35);
+border:1px solid var(--brd);
+background:radial-gradient(900px 420px at 70% 30%, #0b1116, #070a0b);
+box-shadow: inset 0 0 0 1px #20ffc00f, 0 12px 30px rgba(0,0,0,.35);
 }
 #globe{position:absolute; inset:0}
 
 /* =========================================================
-   ===================   SOUND TOGGLE    ===================
-   =======================================================*/
+=================== SOUND TOGGLE ===================
+=======================================================*/
 .sound{
-  position:fixed; right:16px; bottom:16px; z-index:200;
-  width:54px;height:54px;border-radius:16px; display:grid; place-items:center;
-  background:linear-gradient(180deg,#0f171c,#0a1216);
-  border:1px solid #14313a;
-  box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px #20ffc022;
-  cursor:pointer; color:#bff1e7; font-size:22px; user-select:none;
+position:fixed; right:16px; bottom:16px; z-index:200;
+width:54px;height:54px;border-radius:16px; display:grid; place-items:center;
+background:linear-gradient(180deg,#0f171c,#0a1216);
+border:1px solid #14313a;
+box-shadow:0 8px 18px rgba(0,0,0,.35), inset 0 0 0 1px #20ffc022;
+cursor:pointer; color:#bff1e7; font-size:22px; user-select:none;
 }
 
 /* =========================================================
-   ===================     THE BLOODY LAB  =================
-   =======================================================*/
+=================== THE BLOODY LAB =================
+=======================================================*/
 .lab{
-  position:relative; margin-top:10px;
-  background:linear-gradient(180deg,#090e12,#070a0b);
-  border:1px solid #123139; border-radius:22px;
-  padding:28px; box-shadow:inset 0 0 0 1px #20ffc015, 0 20px 40px rgba(0,0,0,.35);
+position:relative; margin-top:10px;
+background:linear-gradient(180deg,#090e12,#070a0b);
+border:1px solid #123139; border-radius:22px;
+padding:28px; box-shadow:inset 0 0 0 1px #20ffc015, 0 20px 40px rgba(0,0,0,.35);
 }
 .lab h2{margin-top:0}
 .lab-grid{
-  display:grid; gap:18px;
-  grid-template-columns:repeat(2,minmax(260px,1fr));
+display:grid; gap:18px;
+grid-template-columns:repeat(2,minmax(260px,1fr));
 }
 @media (max-width:900px){ .lab-grid{grid-template-columns:1fr} }
 .lab-card{
-  background:linear-gradient(180deg,#0c1318,#0a1116);
-  border:1px solid #14333a; border-radius:16px; padding:16px 18px;
-  box-shadow:inset 0 0 0 1px #20ffc012;
+background:linear-gradient(180deg,#0c1318,#0a1116);
+border:1px solid #14333a; border-radius:16px; padding:16px 18px;
+box-shadow:inset 0 0 0 1px #20ffc012;
 }
 .lab-card h3{margin:.2rem 0 .4rem}
 .lab-card p{margin:.2rem 0; color:#9fd0c6}
 .badge{
-  display:inline-block; padding:.28rem .48rem; border-radius:10px;
-  border:1px solid #1e5356; color:#abffee; font-size:.72rem; letter-spacing:.08em;
-  background:linear-gradient(180deg,#0b191c,#091216);
-  box-shadow:inset 0 0 0 1px #20ffc01a, 0 0 18px #20ffc012;
-  margin-bottom:.4rem;
+display:inline-block; padding:.28rem .48rem; border-radius:10px;
+border:1px solid #1e5356; color:#abffee; font-size:.72rem; letter-spacing:.08em;
+background:linear-gradient(180deg,#0b191c,#091216);
+box-shadow:inset 0 0 0 1px #20ffc01a, 0 0 18px #20ffc012;
+margin-bottom:.4rem;
 }
 .lab-cta{
-  margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;
+margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;
 }
 .lab-cta .btn-small{padding:.65rem .9rem}
 
 /* =========================================================
-   ===================     FOOTER/SEAL   ===================
-   =======================================================*/
+=================== FOOTER/SEAL ===================
+=======================================================*/
 footer{background:#000; padding:48px 0 90px; margin-top:56px; text-align:center; border-top:1px solid #111; position:relative}
 footer img{width:min(760px,92%); height:auto; margin-inline:auto; display:block}
 footer p{color:#97a3a8; letter-spacing:.24em; margin:10px 0 0}
 
 /* glühender Spruch + grüne Flammen */
 .tagline{
-  margin-top:18px;
-  font-weight:900; letter-spacing:.08em;
-  color:#ff4b4b;
-  text-shadow:0 0 14px #ff3333, 0 0 30px #7a0b0b;
-  display:inline-block;
-  position:relative;
+margin-top:18px;
+font-weight:900; letter-spacing:.08em;
+color:#ff4b4b;
+text-shadow:0 0 14px #ff3333, 0 0 30px #7a0b0b;
+display:inline-block;
+position:relative;
 }
 .tagline::after{
-  content:"";
-  position:absolute; left:50%; transform:translateX(-50%);
-  bottom:-18px; width:80%; height:9px; border-radius:60px; filter:blur(8px);
-  background:radial-gradient(closest-side, #00ff8a 0, #00ffa04a 35%, transparent 70%);
-  box-shadow: 0 0 28px #00ff9e55, 0 0 60px #00ff9e33;
+content:"";
+position:absolute; left:50%; transform:translateX(-50%);
+bottom:-18px; width:80%; height:9px; border-radius:60px; filter:blur(8px);
+background:radial-gradient(closest-side, #00ff8a 0, #00ffa04a 35%, transparent 70%);
+box-shadow: 0 0 28px #00ff9e55, 0 0 60px #00ff9e33;
 }
 
 hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,transparent);margin:28px 0}
 /* =========================================================
-   ===================   RANKS / XP SYSTEM   ================
-   =======================================================*/
+=================== RANKS / XP SYSTEM ================
+=======================================================*/
 .ranks {
-  background: linear-gradient(180deg, #060a0b, #090e12);
-  border: 1px solid #123139;
-  border-radius: 22px;
-  padding: 32px 28px;
-  box-shadow: inset 0 0 1px #20ffc015, 0 20px 40px rgba(0,0,0,.35);
-  margin-top: 40px;
+background: linear-gradient(180deg, #060a0b, #090e12);
+border: 1px solid #123139;
+border-radius: 22px;
+padding: 32px 28px;
+box-shadow: inset 0 0 1px #20ffc015, 0 20px 40px rgba(0,0,0,.35);
+margin-top: 40px;
 }
 
 .ranks h2 {
-  text-align: center;
-  color: #cfe6f3;
-  text-shadow: 0 0 16px #20ffc033;
-  margin-top: 0;
-  font-size: clamp(22px, 4vw, 30px);
+text-align: center;
+color: #cfe6f3;
+text-shadow: 0 0 16px #20ffc033;
+margin-top: 0;
+font-size: clamp(22px, 4vw, 30px);
 }
 
 .ranks-intro {
-  color: #9ed8cf;
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 1rem;
+color: #9ed8cf;
+text-align: center;
+margin-bottom: 30px;
+font-size: 1rem;
 }
 
 .rank-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 20px;
 }
 
 .rank-card {
-  background: linear-gradient(180deg, #0b1116, #0a1216);
-  border: 1px solid #16363c;
-  border-radius: 16px;
-  padding: 18px 20px;
-  box-shadow: inset 0 0 1px #20ffc020;
-  transition: transform .25s ease, box-shadow .25s ease;
+background: linear-gradient(180deg, #0b1116, #0a1216);
+border: 1px solid #16363c;
+border-radius: 16px;
+padding: 18px 20px;
+box-shadow: inset 0 0 1px #20ffc020;
+transition: transform .25s ease, box-shadow .25s ease;
 }
 .rank-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px #20ffc033, inset 0 0 1px #20ffc033;
+transform: translateY(-3px);
+box-shadow: 0 0 25px #20ffc033, inset 0 0 1px #20ffc033;
 }
 
 .rank-card.legend {
-  background: linear-gradient(180deg, #1c0909, #180606);
-  border: 1px solid #8a4b16;
-  box-shadow: 0 0 25px #ff8a2a33, inset 0 0 1px #ff8a2a33;
+background: linear-gradient(180deg, #1c0909, #180606);
+border: 1px solid #8a4b16;
+box-shadow: 0 0 25px #ff8a2a33, inset 0 0 1px #ff8a2a33;
 }
 
 .rank-card h3 {
-  margin: .4rem 0 .3rem;
-  color: #bff1e7;
+margin: .4rem 0 .3rem;
+color: #bff1e7;
 }
 .rank-card p {
-  color: #97b8b5;
-  margin: 0;
-  line-height: 1.45;
+color: #97b8b5;
+margin: 0;
+line-height: 1.45;
 }
 
 .rank-card .badge {
-  display: inline-block;
-  padding: .3rem .6rem;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #0b191c, #091216);
-  color: #abffee;
-  font-size: .8rem;
-  border: 1px solid #1e5356;
-  margin-bottom: .5rem;
-  box-shadow: 0 0 12px #20ffc022;
+display: inline-block;
+padding: .3rem .6rem;
+border-radius: 8px;
+background: linear-gradient(180deg, #0b191c, #091216);
+color: #abffee;
+font-size: .8rem;
+border: 1px solid #1e5356;
+margin-bottom: .5rem;
+box-shadow: 0 0 12px #20ffc022;
 }
 
 .legend-glow {
-  color: #ff8a2a;
-  text-shadow: 0 0 12px #ff8a2a66, 0 0 24px #ff8a2a33;
-  font-weight: 700;
+color: #ff8a2a;
+text-shadow: 0 0 12px #ff8a2a66, 0 0 24px #ff8a2a33;
+font-weight: 700;
 }
 
 .xp-explainer {
-  margin-top: 34px;
-  background: linear-gradient(180deg, #0a1216, #0a1013);
-  border-radius: 16px;
-  padding: 18px 22px;
-  border: 1px solid #13363a;
-  box-shadow: inset 0 0 1px #20ffc01a;
+margin-top: 34px;
+background: linear-gradient(180deg, #0a1216, #0a1013);
+border-radius: 16px;
+padding: 18px 22px;
+border: 1px solid #13363a;
+box-shadow: inset 0 0 1px #20ffc01a;
 }
 
 .xp-explainer h3 {
-  margin-top: 0;
-  color: #cfe6f3;
+margin-top: 0;
+color: #cfe6f3;
 }
 
 .xp-explainer ul {
-  list-style: none;
-  margin: 0 1rem 0;
-  padding: 0;
+list-style: none;
+margin: 0 1rem 0;
+padding: 0;
 }
 
 .xp-explainer li {
-  padding: .3rem 0;
-  color: #9ed8cf;
+padding: .3rem 0;
+color: #9ed8cf;
 }</style>
 </head>
 <body>
@@ -432,200 +432,200 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
 
 <!-- Header -->
 <header class="claim">
-  <div class="claim-inner container">
-    <h1>GPU is the New OIL</h1>
-    <p>Founder — Chris R. Herloch</p>
-  </div>
+<div class="claim-inner container">
+<h1>GPU is the New OIL</h1>
+<p>Founder — Chris R. Herloch</p>
+</div>
 </header>
 
 <!-- Login-Button (oben rechts) -->
 <button class="login-btn" id="loginBtn" aria-haspopup="dialog" aria-controls="loginModal">
-  <span class="dot"></span> LOGIN / ACCESS
+<span class="dot"></span> LOGIN / ACCESS
 </button>
 
 <!-- HERO -->
 <section class="hero" aria-label="DNA Hero">
-  <img class="dna" id="dnaImg" alt="Bloody Bitcoin DNA" />
-  <canvas id="particles"></canvas>
-  <div class="overlay-grad"></div>
+<img class="dna" id="dnaImg" alt="Bloody Bitcoin DNA" />
+<canvas id="particles"></canvas>
+<div class="overlay-grad"></div>
 </section>
 
 <!-- DNA FULLSCREEN (einmal komplett sichtbar) -->
 <section class="section container dna-full" id="dna-full">
-  <h3>DNA Background Full</h3>
-  <div class="frame">
-    <img id="dnaFull" alt="Bloody Bitcoin DNA — Fullscreen" />
-    <div class="fx"></div>
-  </div>
+<h3>DNA Background Full</h3>
+<div class="frame">
+<img id="dnaFull" alt="Bloody Bitcoin DNA — Fullscreen" />
+<div class="fx"></div>
+</div>
 </section>
 
 <!-- Wallet -->
 <div class="wallet-wrap container">
-  <a class="btn" href="#wallet">
-    <span class="tube">🧪</span>
-    <span>WALLET VERKNÜPFEN</span>
-  </a>
+<a class="btn" href="#wallet">
+<span class="tube">🧪</span>
+<span>WALLET VERKNÜPFEN</span>
+</a>
 </div>
 
 <!-- PARAMETER -->
 <section class="section container" id="metrics">
-  <h2>Netzwerk-Parameter</h2>
+<h2>Netzwerk-Parameter</h2>
 
-  <div class="grid">
-    <div class="card btc">
-      <div class="label">Bitcoin (EUR)</div>
-      <div class="btc-row">
-        <div class="btc-logo">₿</div>
-        <div class="val btc-price" id="btcPrice">–</div>
-      </div>
-      <div class="bar" style="margin-top:14px"><i id="btcBar"></i></div>
-    </div>
+<div class="grid">
+<div class="card btc">
+<div class="label">Bitcoin (EUR)</div>
+<div class="btc-row">
+<div class="btc-logo">₿</div>
+<div class="val btc-price" id="btcPrice">–</div>
+</div>
+<div class="bar" style="margin-top:14px"><i id="btcBar"></i></div>
+</div>
 
-    <div class="card">
-      <div class="label">Knoten</div>
-      <div class="val" id="nodes">–</div>
-      <div class="bar"><i id="nodesBar"></i></div>
-    </div>
+<div class="card">
+<div class="label">Knoten</div>
+<div class="val" id="nodes">–</div>
+<div class="bar"><i id="nodesBar"></i></div>
+</div>
 
-    <div class="card">
-      <div class="label">Leistung</div>
-      <div class="val"><span id="flops">–</span> PFLOPS</div>
-      <div class="bar"><i id="flopsBar"></i></div>
-    </div>
+<div class="card">
+<div class="label">Leistung</div>
+<div class="val"><span id="flops">–</span> PFLOPS</div>
+<div class="bar"><i id="flopsBar"></i></div>
+</div>
 
-    <div class="card">
-      <div class="label">Transaktionen (gesamt)</div>
-      <div class="val" id="txs">–</div>
-      <div class="bar"><i id="txsBar"></i></div>
-    </div>
+<div class="card">
+<div class="label">Transaktionen (gesamt)</div>
+<div class="val" id="txs">–</div>
+<div class="bar"><i id="txsBar"></i></div>
+</div>
 
-    <div class="card">
-      <div class="label">Auslastung</div>
-      <div class="val"><span id="load">–</span> %</div>
-      <div class="bar"><i id="loadBar"></i></div>
-    </div>
-  </div>
+<div class="card">
+<div class="label">Auslastung</div>
+<div class="val"><span id="load">–</span> %</div>
+<div class="bar"><i id="loadBar"></i></div>
+</div>
+</div>
 </section>
-   <!-- FOUNDER CARD -->
+<!-- FOUNDER CARD -->
 <section id="founder-card" class="section container">
-  <div class="founder-card">
-    <img
-      src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg"
-      alt="Chris R. Herloch"
-      class="portrait"
-    />
-    <h3>Chris R. Herloch</h3>
-    <p>Founder & Neural Architect</p>
-  </div>
+<div class="founder-card">
+<img
+src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/IMG_9555.jpeg"
+alt="Chris R. Herloch"
+class="portrait"
+/>
+<h3>Chris R. Herloch</h3>
+<p>Founder & Neural Architect</p>
+</div>
 </section>
 
 <style>
-  /* --- Founder Card --- */
-  #founder-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-    background: radial-gradient(circle at center, #050a0f 0%, #000 100%);
-  }
+/* --- Founder Card --- */
+#founder-card {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 90vh;
+background: radial-gradient(circle at center, #050a0f 0%, #000 100%);
+}
 
-  .founder-card {
-    text-align: center;
-    background: radial-gradient(circle at center, #111a22 0%, #05080a 100%);
-    border: 2px solid #ff0055;
-    box-shadow: 0 0 25px #ff0033, 0 0 50px #ff0055 inset;
-    border-radius: 18px;
-    padding: 32px 28px;
-    width: 300px;
-    transition: all 0.4s ease;
-    animation: pulseGlow 3s infinite ease-in-out;
-  }
+.founder-card {
+text-align: center;
+background: radial-gradient(circle at center, #111a22 0%, #05080a 100%);
+border: 2px solid #ff0055;
+box-shadow: 0 0 25px #ff0033, 0 0 50px #ff0055 inset;
+border-radius: 18px;
+padding: 32px 28px;
+width: 300px;
+transition: all 0.4s ease;
+animation: pulseGlow 3s infinite ease-in-out;
+}
 
-  .founder-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px #ff0055, 0 0 70px #ff0033 inset;
-  }
+.founder-card:hover {
+transform: scale(1.05);
+box-shadow: 0 0 35px #ff0055, 0 0 70px #ff0033 inset;
+}
 
-  .founder-card .portrait {
-    width: 100%;
-    height: 340px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 16px;
-  }
+.founder-card .portrait {
+width: 100%;
+height: 340px;
+object-fit: cover;
+border-radius: 12px;
+margin-bottom: 16px;
+}
 
-  .founder-card h3 {
-    color: #e9f6ff;
-    margin-bottom: 6px;
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
-  }
+.founder-card h3 {
+color: #e9f6ff;
+margin-bottom: 6px;
+font-size: 1.3rem;
+letter-spacing: 0.5px;
+}
 
-  .founder-card p {
-    color: #88b8b8;
-    font-size: 0.95rem;
-  }
+.founder-card p {
+color: #88b8b8;
+font-size: 0.95rem;
+}
 
-  @keyframes pulseGlow {
-    0%, 100% {
-      box-shadow: 0 0 25px #ff0055, 0 0 50px #ff0033 inset;
-    }
-    50% {
-      box-shadow: 0 0 45px #ff3366, 0 0 80px #ff0033 inset;
-    }
-  }
+@keyframes pulseGlow {
+0%, 100% {
+box-shadow: 0 0 25px #ff0055, 0 0 50px #ff0033 inset;
+}
+50% {
+box-shadow: 0 0 45px #ff3366, 0 0 80px #ff0033 inset;
+}
+}
 </style>
 <!-- THE BLOODY LAB -->
 <section class="section container">
-  <div class="lab">
-    <h2>The Bloody Lab</h2>
-    <p style="color:#9ed8cf;max-width:70ch">
-      Hochsichere KI-Module & Netzwerkdienste – gebaut für Geschwindigkeit, Sichtbarkeit und Kontrolle.
-      Alle Funktionen laufen isoliert, auditierbar und sind auf niedrige Latenzen optimiert.
-    </p>
-    <hr class="sep" />
-    <div class="lab-grid">
-      <div class="lab-card">
-        <span class="badge">AI Trading Sentinel</span>
-        <h3>Signal Engine</h3>
-        <p>Erkennt mikrostrukturelle Anomalien & Momentum-Regimes in Echtzeit – bevor der Markt dreht.</p>
-        <div class="lab-cta">
-          <button class="btn-small">Details</button>
-          <button class="btn-small primary">Enter</button>
-        </div>
-      </div>
+<div class="lab">
+<h2>The Bloody Lab</h2>
+<p style="color:#9ed8cf;max-width:70ch">
+Hochsichere KI-Module & Netzwerkdienste – gebaut für Geschwindigkeit, Sichtbarkeit und Kontrolle.
+Alle Funktionen laufen isoliert, auditierbar und sind auf niedrige Latenzen optimiert.
+</p>
+<hr class="sep" />
+<div class="lab-grid">
+<div class="lab-card">
+<span class="badge">AI Trading Sentinel</span>
+<h3>Signal Engine</h3>
+<p>Erkennt mikrostrukturelle Anomalien & Momentum-Regimes in Echtzeit – bevor der Markt dreht.</p>
+<div class="lab-cta">
+<button class="btn-small">Details</button>
+<button class="btn-small primary">Enter</button>
+</div>
+</div>
 
-      <div class="lab-card">
-        <span class="badge">Wallet Guardian</span>
-        <h3>Risk Monitor</h3>
-        <p>Kontinuierliches Wallet-Tracking mit Abweichungserkennung, Whitelists & Smart-Watch-Alerts.</p>
-        <div class="lab-cta">
-          <button class="btn-small">Docs</button>
-          <button class="btn-small primary">Enable</button>
-        </div>
-      </div>
+<div class="lab-card">
+<span class="badge">Wallet Guardian</span>
+<h3>Risk Monitor</h3>
+<p>Kontinuierliches Wallet-Tracking mit Abweichungserkennung, Whitelists & Smart-Watch-Alerts.</p>
+<div class="lab-cta">
+<button class="btn-small">Docs</button>
+<button class="btn-small primary">Enable</button>
+</div>
+</div>
 
-      <div class="lab-card">
-        <span class="badge">BotForge</span>
-        <h3>No-Code Bots</h3>
-        <p>Erstelle personalisierte Bots: Signale, Rebalancing, Auszahlungs-Guards, Telegram-Hooks.</p>
-        <div class="lab-cta">
-          <button class="btn-small">Vorlagen</button>
-          <button class="btn-small primary">Start</button>
-        </div>
-      </div>
+<div class="lab-card">
+<span class="badge">BotForge</span>
+<h3>No-Code Bots</h3>
+<p>Erstelle personalisierte Bots: Signale, Rebalancing, Auszahlungs-Guards, Telegram-Hooks.</p>
+<div class="lab-cta">
+<button class="btn-small">Vorlagen</button>
+<button class="btn-small primary">Start</button>
+</div>
+</div>
 
-      <div class="lab-card">
-        <span class="badge">SmartForce OS</span>
-        <h3>Secure Sync</h3>
-        <p>Orchestrierung über Geräte hinweg – Zero-Trust-Konsens, Hardware-Bindung & Strom-Budgeting.</p>
-        <div class="lab-cta">
-          <button class="btn-small">Whitepaper</button>
-          <button class="btn-small primary">Preview</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="lab-card">
+<span class="badge">SmartForce OS</span>
+<h3>Secure Sync</h3>
+<p>Orchestrierung über Geräte hinweg – Zero-Trust-Konsens, Hardware-Bindung & Strom-Budgeting.</p>
+<div class="lab-cta">
+<button class="btn-small">Whitepaper</button>
+<button class="btn-small primary">Preview</button>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- SOUND TOGGLE -->
@@ -633,526 +633,526 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,#11313a,
 
 <!-- FOOTER / SIEGEL -->
 <footer>
-  <img id="sealImg" alt="Bloody Bitcoin Seal" />
-  <p class="tagline">FORGED IN THE BLOOD OF BITCOIN</p>
-  <p>© BLOODYBITCOIN — GPU IS THE NEW OIL</p>
+<img id="sealImg" alt="Bloody Bitcoin Seal" />
+<p class="tagline">FORGED IN THE BLOOD OF BITCOIN</p>
+<p>© BLOODYBITCOIN — GPU IS THE NEW OIL</p>
 <!-- RANKS / XP SYSTEM -->
 <section class="section container ranks">
-  <h2>Rank & XP System</h2>
-  <p class="ranks-intro">
-    Jeder Fortschritt im Netzwerk stärkt deine Verbindung. Sammle XP durch Interaktionen, Mining, KI-Missionen oder Bot-Deployments.
-    Je höher dein Rang, desto tiefer greifst du in das System.
-  </p>
+<h2>Rank & XP System</h2>
+<p class="ranks-intro">
+Jeder Fortschritt im Netzwerk stärkt deine Verbindung. Sammle XP durch Interaktionen, Mining, KI-Missionen oder Bot-Deployments.
+Je höher dein Rang, desto tiefer greifst du in das System.
+</p>
 
-  <div class="rank-grid">
-    <div class="rank-card">
-      <div class="badge">⚙️ Level 10</div>
-      <h3>Data Initiate</h3>
-      <p>Erhalte Zugriff auf Basisdaten, Netzwerkmetriken und globale Node-Visualisierung.</p>
-    </div>
+<div class="rank-grid">
+<div class="rank-card">
+<div class="badge">⚙️ Level 10</div>
+<h3>Data Initiate</h3>
+<p>Erhalte Zugriff auf Basisdaten, Netzwerkmetriken und globale Node-Visualisierung.</p>
+</div>
 
-    <div class="rank-card">
-      <div class="badge">🧠 Level 25</div>
-      <h3>Neural Adept</h3>
-      <p>Aktiviere KI-gestützte Prognosemodelle und Wallet-Monitoring in Echtzeit.</p>
-    </div>
+<div class="rank-card">
+<div class="badge">🧠 Level 25</div>
+<h3>Neural Adept</h3>
+<p>Aktiviere KI-gestützte Prognosemodelle und Wallet-Monitoring in Echtzeit.</p>
+</div>
 
-    <div class="rank-card">
-      <div class="badge">🛰️ Level 50</div>
-      <h3>Quantum Operator</h3>
-      <p>Synchronisiere Geräte über das SmartForce-OS und greife auf Deep-Learning-Module zu.</p>
-    </div>
+<div class="rank-card">
+<div class="badge">🛰️ Level 50</div>
+<h3>Quantum Operator</h3>
+<p>Synchronisiere Geräte über das SmartForce-OS und greife auf Deep-Learning-Module zu.</p>
+</div>
 
-    <div class="rank-card">
-      <div class="badge">⚡ Level 75</div>
-      <h3>Chaos Architect</h3>
-      <p>Nutze experimentelle BotForge-Instanzen, manipuliere Marktflüsse & Layer-Signale.</p>
-    </div>
+<div class="rank-card">
+<div class="badge">⚡ Level 75</div>
+<h3>Chaos Architect</h3>
+<p>Nutze experimentelle BotForge-Instanzen, manipuliere Marktflüsse & Layer-Signale.</p>
+</div>
 
-    <div class="rank-card legend">
-      <div class="badge">💎 Level 100</div>
-      <h3>Legend Hyper</h3>
-      <p>Erreiche totale Systemkontrolle. Direkter Zugriff auf neuronale Kontrollkerne & autonome KI-Cluster.</p>
-    </div>
-  </div>
+<div class="rank-card legend">
+<div class="badge">💎 Level 100</div>
+<h3>Legend Hyper</h3>
+<p>Erreiche totale Systemkontrolle. Direkter Zugriff auf neuronale Kontrollkerne & autonome KI-Cluster.</p>
+</div>
+</div>
 
-  <hr class="sep" />
+<hr class="sep" />
 
-  <div class="xp-explainer">
-    <h3>Wie verdienst du XP?</h3>
-    <ul>
-      <li>🧩 Durch erfolgreiche Bot-Deployments</li>
-      <li>💹 Analyse-Beiträge & Community-Signals</li>
-      <li>🔐 Stabile Node-Uptime & Netzwerk-Beitrag</li>
-      <li>⚙️ Experimentelle KI-Projekte & Smart-Module</li>
-    </ul>
-    <p>Jeder Fortschritt bringt dich näher an den <span class="legend-glow">Legend Hyper</span> Status.</p>
-  </div>
+<div class="xp-explainer">
+<h3>Wie verdienst du XP?</h3>
+<ul>
+<li>🧩 Durch erfolgreiche Bot-Deployments</li>
+<li>💹 Analyse-Beiträge & Community-Signals</li>
+<li>🔐 Stabile Node-Uptime & Netzwerk-Beitrag</li>
+<li>⚙️ Experimentelle KI-Projekte & Smart-Module</li>
+</ul>
+<p>Jeder Fortschritt bringt dich näher an den <span class="legend-glow">Legend Hyper</span> Status.</p>
+</div>
 </section>
 
 <!-- LOGIN-MODAL -->
 <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-  <div class="modal-card">
-    <h3 id="loginTitle">Secure Access Portal</h3>
-    <p>Beta-Zugang. Melde dich an, um private Endpunkte & Dashboards zu sehen.</p>
-    <div class="modal-row">
-      <input class="input" type="text" placeholder="Username" />
-      <input class="input" type="password" placeholder="Passphrase" />
-    </div>
-    <div class="modal-actions">
-      <button class="btn-small" id="loginClose">Schließen</button>
-      <button class="btn-small primary">Login</button>
-    </div>
-  </div>
+<div class="modal-card">
+<h3 id="loginTitle">Secure Access Portal</h3>
+<p>Beta-Zugang. Melde dich an, um private Endpunkte & Dashboards zu sehen.</p>
+<div class="modal-row">
+<input class="input" type="text" placeholder="Username" />
+<input class="input" type="password" placeholder="Passphrase" />
+</div>
+<div class="modal-actions">
+<button class="btn-small" id="loginClose">Schließen</button>
+<button class="btn-small primary">Login</button>
+</div>
+</div>
 </div>
 <script>
 /* =========================================================
-   ===============  ROBUSTE ASSET-ERKENNUNG  ===============
-   =======================================================*/
+=============== ROBUSTE ASSET-ERKENNUNG ===============
+=======================================================*/
 const BASES = ['./', './docs/'];
-const DNA_CANDIDATES  = [
-  '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png',
-  '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.jpeg',
-  '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.jpg'
+const DNA_CANDIDATES = [
+'0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png',
+'0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.jpeg',
+'0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.jpg'
 ];
 const DNAFULL_CANDIDATES = [
-  '6D678E9C-E782-4914-B721-E25D4D198C88.jpeg',
-  '6D678E9C-E782-4914-B721-E25D4D198C88.jpg',
-  '0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png'
+'6D678E9C-E782-4914-B721-E25D4D198C88.jpeg',
+'6D678E9C-E782-4914-B721-E25D4D198C88.jpg',
+'0E7B2C5C-6150-41B3-AB1B-85F5CB78D5C1.png'
 ];
 const SEAL_CANDIDATES = ['IMG_7712.jpeg','IMG_7712.jpg','IMG_7712.png'];
 
 function probeImage(url){
-  return new Promise(res=>{
-    const im=new Image();
-    im.onload = ()=>res(url);
-    im.onerror= ()=>res(null);
-    im.src = url + (url.includes('?')?'&':'?') + 'v=' + Date.now();
-  });
+return new Promise(res=>{
+const im=new Image();
+im.onload = ()=>res(url);
+im.onerror= ()=>res(null);
+im.src = url + (url.includes('?')?'&':'?') + 'v=' + Date.now();
+});
 }
 async function resolveAsset(cands){
-  for(const base of BASES){
-    for(const name of cands){
-      const hit = await probeImage(base+name);
-      if(hit) return hit;
-    }
-  }
-  return null;
+for(const base of BASES){
+for(const name of cands){
+const hit = await probeImage(base+name);
+if(hit) return hit;
+}
+}
+return null;
 }
 (async function mountAssets(){
-  const dnaSmall = await resolveAsset(DNA_CANDIDATES);
-  const dnaFull  = await resolveAsset(DNAFULL_CANDIDATES);
-  const seal     = await resolveAsset(SEAL_CANDIDATES);
-  if(dnaSmall) document.getElementById('dnaImg').src  = dnaSmall;
-  if(dnaFull)  document.getElementById('dnaFull').src = dnaFull;
-  if(seal)     document.getElementById('sealImg').src = seal;
+const dnaSmall = await resolveAsset(DNA_CANDIDATES);
+const dnaFull = await resolveAsset(DNAFULL_CANDIDATES);
+const seal = await resolveAsset(SEAL_CANDIDATES);
+if(dnaSmall) document.getElementById('dnaImg').src = dnaSmall;
+if(dnaFull) document.getElementById('dnaFull').src = dnaFull;
+if(seal) document.getElementById('sealImg').src = seal;
 })();
 
 /* =========================================================
-   ===============   PARTIKEL über dem HERO   ==============
-   =======================================================*/
+=============== PARTIKEL über dem HERO ==============
+=======================================================*/
 (function particles(){
-  const cvs = document.getElementById('particles');
-  const ctx = cvs.getContext('2d');
-  let W=0,H=0, P=[];
+const cvs = document.getElementById('particles');
+const ctx = cvs.getContext('2d');
+let W=0,H=0, P=[];
 
-  function resize(){
-    const hero = document.querySelector('.hero');
-    W = cvs.width  = hero.clientWidth;
-    H = cvs.height = hero.clientHeight;
-  }
-  function spawn(n=100){
-    P = Array.from({length:n}, ()=>({
-      x:Math.random()*W, y:Math.random()*H,
-      r: 2+Math.random()*4,
-      vx:(Math.random()-.5)*.6, vy:(Math.random()-.5)*.6,
-      c: Math.random()<.5 ? 'rgba(32,255,160,.70)' : 'rgba(255,48,64,.65)'
-    }));
-  }
-  function loop(){
-    ctx.clearRect(0,0,W,H);
-    for(const p of P){
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<-12) p.x=W+12; if(p.x>W+12) p.x=-12;
-      if(p.y<-12) p.y=H+12; if(p.y>H+12) p.y=-12;
-      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
-      g.addColorStop(0,p.c); g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2); ctx.fill();
-    }
-    requestAnimationFrame(loop);
-  }
-  window.addEventListener('resize', ()=>{ resize(); spawn(110); });
-  resize(); spawn(110); loop();
+function resize(){
+const hero = document.querySelector('.hero');
+W = cvs.width = hero.clientWidth;
+H = cvs.height = hero.clientHeight;
+}
+function spawn(n=100){
+P = Array.from({length:n}, ()=>({
+x:Math.random()*W, y:Math.random()*H,
+r: 2+Math.random()*4,
+vx:(Math.random()-.5)*.6, vy:(Math.random()-.5)*.6,
+c: Math.random()<.5 ? 'rgba(32,255,160,.70)' : 'rgba(255,48,64,.65)'
+}));
+}
+function loop(){
+ctx.clearRect(0,0,W,H);
+for(const p of P){
+p.x+=p.vx; p.y+=p.vy;
+if(p.x<-12) p.x=W+12; if(p.x>W+12) p.x=-12;
+if(p.y<-12) p.y=H+12; if(p.y>H+12) p.y=-12;
+const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
+g.addColorStop(0,p.c); g.addColorStop(1,'transparent');
+ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2); ctx.fill();
+}
+requestAnimationFrame(loop);
+}
+window.addEventListener('resize', ()=>{ resize(); spawn(110); });
+resize(); spawn(110); loop();
 })();
 
 /* =========================================================
-   ===============  METRIKEN & BTC (EUR)  ==================
-   =======================================================*/
+=============== METRIKEN & BTC (EUR) ==================
+=======================================================*/
 const $ = id=>document.getElementById(id);
 const setBar = (id,p)=>{ const el=$(id); if(el) el.style.width=Math.max(0,Math.min(100,p))+'%'; };
 const rwalk = (v,s,min,max)=> Math.max(min, Math.min(max, v + (Math.random()*2-1)*s));
 
 let nodes=160, flops=3.2, txs=11_508_120, load=39;
 function updateFake(){
-  nodes=Math.round(rwalk(nodes,3,120,260));
-  flops=Math.round(rwalk(flops,.06,2.4,6.1)*100)/100;
-  txs += Math.round(Math.random()*1600);
-  load=Math.round(rwalk(load,2.4,10,97));
-  if($('nodes')) $('nodes').textContent = nodes.toLocaleString('de-DE');
-  if($('flops')) $('flops').textContent = flops.toLocaleString('de-DE',{minimumFractionDigits:2, maximumFractionDigits:2});
-  if($('txs'))   $('txs').textContent   = txs.toLocaleString('de-DE');
-  if($('load'))  $('load').textContent  = load.toLocaleString('de-DE');
-  setBar('nodesBar', nodes/3);
-  setBar('flopsBar', (flops/6)*100);
-  setBar('txsBar',   ((txs%1_000_000)/1_000_000)*100);
-  setBar('loadBar',  load);
+nodes=Math.round(rwalk(nodes,3,120,260));
+flops=Math.round(rwalk(flops,.06,2.4,6.1)*100)/100;
+txs += Math.round(Math.random()*1600);
+load=Math.round(rwalk(load,2.4,10,97));
+if($('nodes')) $('nodes').textContent = nodes.toLocaleString('de-DE');
+if($('flops')) $('flops').textContent = flops.toLocaleString('de-DE',{minimumFractionDigits:2, maximumFractionDigits:2});
+if($('txs')) $('txs').textContent = txs.toLocaleString('de-DE');
+if($('load')) $('load').textContent = load.toLocaleString('de-DE');
+setBar('nodesBar', nodes/3);
+setBar('flopsBar', (flops/6)*100);
+setBar('txsBar', ((txs%1_000_000)/1_000_000)*100);
+setBar('loadBar', load);
 }
 setInterval(updateFake, 2200); updateFake();
 
 // BTC in EUR – Coingecko (Retry, CORS-freundlich i. d. R.)
 async function fetchBTC(){
-  try{
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
-    const j = await r.json();
-    const eur = j?.bitcoin?.eur;
-    if(eur && $('btcPrice')){
-      $('btcPrice').textContent = eur.toLocaleString('de-DE',{style:'currency', currency:'EUR'});
-      setBar('btcBar', 35 + Math.random()*60);
-    }
-  }catch(e){ /* still leise */ }
+try{
+const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',{cache:'no-store'});
+const j = await r.json();
+const eur = j?.bitcoin?.eur;
+if(eur && $('btcPrice')){
+$('btcPrice').textContent = eur.toLocaleString('de-DE',{style:'currency', currency:'EUR'});
+setBar('btcBar', 35 + Math.random()*60);
+}
+}catch(e){ /* still leise */ }
 }
 setInterval(fetchBTC, 3500); fetchBTC();
 
 /* =========================================================
-   ===============   THREE.JS — GLOBE v2.0   ===============
-   =======================================================*/
+=============== THREE.JS — GLOBE v2.0 ===============
+=======================================================*/
 (function globe3d(){
-  const host = document.getElementById('globe');
-  if(!window.THREE || !host) return;
+const host = document.getElementById('globe');
+if(!window.THREE || !host) return;
 
-  const scene   = new THREE.Scene();
-  const camera  = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.set(0, 0, 3.2);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+camera.position.set(0, 0, 3.2);
 
-  const renderer = new THREE.WebGLRenderer({canvas:host, antialias:true, alpha:true});
-  function resize(){
-    const w=host.clientWidth, h=host.clientHeight;
-    renderer.setSize(w,h,false);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
-    camera.aspect = w/h || 1; camera.updateProjectionMatrix();
-  }
-  host.style.background='radial-gradient(480px 280px at 45% 35%, rgba(32,255,192,.08), transparent 65%)';
+const renderer = new THREE.WebGLRenderer({canvas:host, antialias:true, alpha:true});
+function resize(){
+const w=host.clientWidth, h=host.clientHeight;
+renderer.setSize(w,h,false);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+camera.aspect = w/h || 1; camera.updateProjectionMatrix();
+}
+host.style.background='radial-gradient(480px 280px at 45% 35%, rgba(32,255,192,.08), transparent 65%)';
 
-  // Licht
-  scene.add(new THREE.AmbientLight(0x58ffe6, .55));
-  const dl = new THREE.DirectionalLight(0x9fffe6, .75); dl.position.set(2,2,3); scene.add(dl);
+// Licht
+scene.add(new THREE.AmbientLight(0x58ffe6, .55));
+const dl = new THREE.DirectionalLight(0x9fffe6, .75); dl.position.set(2,2,3); scene.add(dl);
 
-  // Kugel
-  const globe = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 64, 64),
-    new THREE.MeshPhongMaterial({color:0x0c332f, emissive:0x0a1614, shininess:18, transparent:true, opacity:.95})
-  );
-  scene.add(globe);
+// Kugel
+const globe = new THREE.Mesh(
+new THREE.SphereGeometry(1, 64, 64),
+new THREE.MeshPhongMaterial({color:0x0c332f, emissive:0x0a1614, shininess:18, transparent:true, opacity:.95})
+);
+scene.add(globe);
 
-  // Städte (ungefähre Positionen, normalisiert)
-  const cities = [
-    {name:'Frankfurt', lat:50.1, lon:8.6,  active:true},
-    {name:'Zürich',    lat:47.4, lon:8.5,  active:true},
-    {name:'London',    lat:51.5, lon:-0.1, active:true},
-    {name:'New York',  lat:40.7, lon:-74,  active:true},
-    {name:'São Paulo', lat:-23.5,lon:-46.6,active:false},
-    {name:'Singapur',  lat:1.3,  lon:103.8,active:true},
-    {name:'Tokio',     lat:35.6, lon:139.7,active:true},
-    {name:'Sydney',    lat:-33.9,lon:151.2,active:false},
-  ];
-  function latLonToVec3(lat,lon,r=1){
-    const phi = (90 - lat) * Math.PI/180;
-    const theta = (lon + 180) * Math.PI/180;
-    return new THREE.Vector3(
-      -r * Math.sin(phi) * Math.cos(theta),
-      r  * Math.cos(phi),
-      r  * Math.sin(phi) * Math.sin(theta)
-    );
-  }
+// Städte (ungefähre Positionen, normalisiert)
+const cities = [
+{name:'Frankfurt', lat:50.1, lon:8.6, active:true},
+{name:'Zürich', lat:47.4, lon:8.5, active:true},
+{name:'London', lat:51.5, lon:-0.1, active:true},
+{name:'New York', lat:40.7, lon:-74, active:true},
+{name:'São Paulo', lat:-23.5,lon:-46.6,active:false},
+{name:'Singapur', lat:1.3, lon:103.8,active:true},
+{name:'Tokio', lat:35.6, lon:139.7,active:true},
+{name:'Sydney', lat:-33.9,lon:151.2,active:false},
+];
+function latLonToVec3(lat,lon,r=1){
+const phi = (90 - lat) * Math.PI/180;
+const theta = (lon + 180) * Math.PI/180;
+return new THREE.Vector3(
+-r * Math.sin(phi) * Math.cos(theta),
+r * Math.cos(phi),
+r * Math.sin(phi) * Math.sin(theta)
+);
+}
 
-  // Marker
-  const pts = new THREE.Group();
-  cities.forEach(c=>{
-    const v = latLonToVec3(c.lat,c.lon,1.01).normalize();
-    const s = .045;
-    const mat = new THREE.MeshBasicMaterial({color: c.active ? 0x88ffe0 : 0xff5a5a});
-    const m = new THREE.Mesh(new THREE.SphereGeometry(s,16,16), mat);
-    m.position.copy(v);
-    m.userData = c;
-    pts.add(m);
-  });
-  scene.add(pts);
+// Marker
+const pts = new THREE.Group();
+cities.forEach(c=>{
+const v = latLonToVec3(c.lat,c.lon,1.01).normalize();
+const s = .045;
+const mat = new THREE.MeshBasicMaterial({color: c.active ? 0x88ffe0 : 0xff5a5a});
+const m = new THREE.Mesh(new THREE.SphereGeometry(s,16,16), mat);
+m.position.copy(v);
+m.userData = c;
+pts.add(m);
+});
+scene.add(pts);
 
-  // Verbindungen (einfaches Routing zwischen aktiven)
-  const links = new THREE.Group();
-  const activeCities = cities.filter(c=>c.active);
-  for(let i=0;i<activeCities.length-1;i++){
-    const a=activeCities[i], b=activeCities[(i+1)%activeCities.length];
-    const av=latLonToVec3(a.lat,a.lon,1.01), bv=latLonToVec3(b.lat,b.lon,1.01);
-    const mid = av.clone().add(bv).normalize().multiplyScalar(1.25); // etwas über Oberfläche
-    const curve = new THREE.CatmullRomCurve3([av, mid, bv]);
-    const tube = new THREE.TubeGeometry(curve, 64, 0.006, 8, false);
-    const mat  = new THREE.MeshBasicMaterial({color:0x2cf5d2, transparent:true, opacity:.35});
-    const mesh = new THREE.Mesh(tube, mat);
-    links.add(mesh);
-  }
-  scene.add(links);
+// Verbindungen (einfaches Routing zwischen aktiven)
+const links = new THREE.Group();
+const activeCities = cities.filter(c=>c.active);
+for(let i=0;i<activeCities.length-1;i++){
+const a=activeCities[i], b=activeCities[(i+1)%activeCities.length];
+const av=latLonToVec3(a.lat,a.lon,1.01), bv=latLonToVec3(b.lat,b.lon,1.01);
+const mid = av.clone().add(bv).normalize().multiplyScalar(1.25); // etwas über Oberfläche
+const curve = new THREE.CatmullRomCurve3([av, mid, bv]);
+const tube = new THREE.TubeGeometry(curve, 64, 0.006, 8, false);
+const mat = new THREE.MeshBasicMaterial({color:0x2cf5d2, transparent:true, opacity:.35});
+const mesh = new THREE.Mesh(tube, mat);
+links.add(mesh);
+}
+scene.add(links);
 
-  // dezente Orbits
-  const orbits = new THREE.Group();
-  [0, Math.PI/3, -Math.PI/3].forEach(rot=>{
-    const ring = new THREE.Mesh(
-      new THREE.RingGeometry(0.99, 1.0, 128),
-      new THREE.MeshBasicMaterial({color:0x2cf5d2, transparent:true, opacity:.2, side:THREE.DoubleSide})
-    );
-    ring.rotation.y = rot;
-    orbits.add(ring);
-  });
-  scene.add(orbits);
+// dezente Orbits
+const orbits = new THREE.Group();
+[0, Math.PI/3, -Math.PI/3].forEach(rot=>{
+const ring = new THREE.Mesh(
+new THREE.RingGeometry(0.99, 1.0, 128),
+new THREE.MeshBasicMaterial({color:0x2cf5d2, transparent:true, opacity:.2, side:THREE.DoubleSide})
+);
+ring.rotation.y = rot;
+orbits.add(ring);
+});
+scene.add(orbits);
 
-  // Tooltip (simple – Titel via canvas title)
-  host.title = 'Active nodes: ' + activeCities.map(c=>c.name).join(', ');
+// Tooltip (simple – Titel via canvas title)
+host.title = 'Active nodes: ' + activeCities.map(c=>c.name).join(', ');
 
-  // Anim
-  let t=0;
-  function tick(){
-    t += 0.0038;
-    globe.rotation.y = t;
-    pts.rotation.y   = t*1.2;
-    links.rotation.y = t*.9;
-    orbits.rotation.y= t*.9;
-    // Puls der Marker
-    pts.children.forEach((m,i)=>{
-      const pulse = 0.9 + 0.12*Math.sin(t*6 + i);
-      m.scale.setScalar(pulse);
-    });
-    // Schimmer der Links
-    links.children.forEach((ln,i)=>{
-      ln.material.opacity = .18 + .18 * (0.5+0.5*Math.sin(t*3 + i));
-    });
-    renderer.render(scene,camera);
-    requestAnimationFrame(tick);
-  }
+// Anim
+let t=0;
+function tick(){
+t += 0.0038;
+globe.rotation.y = t;
+pts.rotation.y = t*1.2;
+links.rotation.y = t*.9;
+orbits.rotation.y= t*.9;
+// Puls der Marker
+pts.children.forEach((m,i)=>{
+const pulse = 0.9 + 0.12*Math.sin(t*6 + i);
+m.scale.setScalar(pulse);
+});
+// Schimmer der Links
+links.children.forEach((ln,i)=>{
+ln.material.opacity = .18 + .18 * (0.5+0.5*Math.sin(t*3 + i));
+});
+renderer.render(scene,camera);
+requestAnimationFrame(tick);
+}
 
-  window.addEventListener('resize', resize, {passive:true});
-  resize(); tick();
+window.addEventListener('resize', resize, {passive:true});
+resize(); tick();
 })();
 
 /* =========================================================
-   ============  DUNKLER BRUMM-SOUND (Scroll-reactive)  ====
-   =======================================================*/
+============ DUNKLER BRUMM-SOUND (Scroll-reactive) ====
+=======================================================*/
 (function sound(){
-  let ctx, osc1, osc2, gain, on=false, lastY=window.scrollY;
-  const btn = document.getElementById('soundBtn');
-  function setup(){
-    ctx = new (window.AudioContext||window.webkitAudioContext)();
-    osc1 = ctx.createOscillator(); osc1.type='sawtooth'; osc1.frequency.value = 44;
-    osc2 = ctx.createOscillator(); osc2.type='sine';     osc2.frequency.value = 22;
-    gain = ctx.createGain();       gain.gain.value = 0.015;
-    osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
-    osc1.start(); osc2.start();
-  }
-  function react(){
-    if(!on || !ctx) return;
-    const y=window.scrollY; const dy=Math.abs(y-lastY); lastY=y;
-    const f = 38 + Math.min(140, dy*0.9);
-    const f2= 18 + Math.min(90,  dy*0.6);
-    osc1.frequency.exponentialRampToValueAtTime(f,  ctx.currentTime+.10);
-    osc2.frequency.exponentialRampToValueAtTime(f2, ctx.currentTime+.10);
-    const g = 0.012 + Math.min(.06, dy/1200);
-    gain.gain.linearRampToValueAtTime(g, ctx.currentTime+.10);
-  }
-  btn.addEventListener('click', async ()=>{
-    if(!on){
-      if(!ctx) setup();
-      if(ctx.state==='suspended') await ctx.resume();
-      on=true; btn.textContent='🔊';
-    }else{
-      on=false; btn.textContent='🔈';
-      if(ctx) ctx.suspend();
-    }
-  }, {passive:true});
-  window.addEventListener('scroll', react, {passive:true});
+let ctx, osc1, osc2, gain, on=false, lastY=window.scrollY;
+const btn = document.getElementById('soundBtn');
+function setup(){
+ctx = new (window.AudioContext||window.webkitAudioContext)();
+osc1 = ctx.createOscillator(); osc1.type='sawtooth'; osc1.frequency.value = 44;
+osc2 = ctx.createOscillator(); osc2.type='sine'; osc2.frequency.value = 22;
+gain = ctx.createGain(); gain.gain.value = 0.015;
+osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
+osc1.start(); osc2.start();
+}
+function react(){
+if(!on || !ctx) return;
+const y=window.scrollY; const dy=Math.abs(y-lastY); lastY=y;
+const f = 38 + Math.min(140, dy*0.9);
+const f2= 18 + Math.min(90, dy*0.6);
+osc1.frequency.exponentialRampToValueAtTime(f, ctx.currentTime+.10);
+osc2.frequency.exponentialRampToValueAtTime(f2, ctx.currentTime+.10);
+const g = 0.012 + Math.min(.06, dy/1200);
+gain.gain.linearRampToValueAtTime(g, ctx.currentTime+.10);
+}
+btn.addEventListener('click', async ()=>{
+if(!on){
+if(!ctx) setup();
+if(ctx.state==='suspended') await ctx.resume();
+on=true; btn.textContent='🔊';
+}else{
+on=false; btn.textContent='🔈';
+if(ctx) ctx.suspend();
+}
+}, {passive:true});
+window.addEventListener('scroll', react, {passive:true});
 })();
 
 /* =========================================================
-   ==================== LOGIN-MODAL UX =====================
-   =======================================================*/
+==================== LOGIN-MODAL UX =====================
+=======================================================*/
 (function loginModal(){
-  const modal = document.getElementById('loginModal');
-  const open  = document.getElementById('loginBtn');
-  const close = document.getElementById('loginClose');
-  if(!modal||!open||!close) return;
-  open.addEventListener('click', ()=> modal.classList.add('show'));
-  close.addEventListener('click',()=> modal.classList.remove('show'));
-  modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
+const modal = document.getElementById('loginModal');
+const open = document.getElementById('loginBtn');
+const close = document.getElementById('loginClose');
+if(!modal||!open||!close) return;
+open.addEventListener('click', ()=> modal.classList.add('show'));
+close.addEventListener('click',()=> modal.classList.remove('show'));
+modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
 })();
 </script>
 <script>
 /* =========================================================
-   ============  HEADER-POLISH beim Scrollen  ==============
-   =======================================================*/
+============ HEADER-POLISH beim Scrollen ==============
+=======================================================*/
 (function headerPolish(){
-  const h = document.querySelector('.claim');
-  window.addEventListener('scroll', ()=>{
-    const y = window.scrollY||0;
-    h.style.backdropFilter = `blur(${6 + Math.min(6, y/160)}px)`;
-    h.style.opacity = String(1 - Math.min(.14, y/240));
-  }, {passive:true});
+const h = document.querySelector('.claim');
+window.addEventListener('scroll', ()=>{
+const y = window.scrollY||0;
+h.style.backdropFilter = `blur(${6 + Math.min(6, y/160)}px)`;
+h.style.opacity = String(1 - Math.min(.14, y/240));
+}, {passive:true});
 })();
 
 /* =========================================================
-   ==================  PAGE FADE-IN  =======================
-   =======================================================*/
+================== PAGE FADE-IN =======================
+=======================================================*/
 document.body.style.opacity=0;
 window.addEventListener('load', ()=>{
-  document.body.style.transition='opacity .42s ease';
-  document.body.style.opacity=1;
+document.body.style.transition='opacity .42s ease';
+document.body.style.opacity=1;
 });
 
 /* =========================================================
-   ============  Canvas kleine Performance-Hints  ==========
-   =======================================================*/
+============ Canvas kleine Performance-Hints ==========
+=======================================================*/
 document.querySelectorAll('canvas').forEach(cv=>{
-  cv.style.willChange='transform';
-  cv.style.imageRendering='auto';
+cv.style.willChange='transform';
+cv.style.imageRendering='auto';
 });
 
 /* =========================================================
-   ============  (optionales) Lazy-Loading Hint  ===========
-   =======================================================*/
+============ (optionales) Lazy-Loading Hint ===========
+=======================================================*/
 if('requestIdleCallback' in window){
-  requestIdleCallback(()=>{
-    [...document.images].forEach(im=>{ if(!im.loading) im.loading='lazy'; });
-  });
+requestIdleCallback(()=>{
+[...document.images].forEach(im=>{ if(!im.loading) im.loading='lazy'; });
+});
 }
 </script>
 <!-- 🔒 BLOODY BITCOIN LOCKED PROJECT SECTION -->
 <section id="locked-project" style="margin-top: 80px; margin-bottom: 80px; text-align:center;">
-  <div class="locked-container">
-    <img src="84603815-1706-415f-b953-21047422fdae.jpeg" alt="Secret Project" class="locked-image">
-    <div class="glitch-overlay"></div>
-    <div class="lock">🔒</div>
-  </div>
-  <div class="countdown" id="countdown"></div>
+<div class="locked-container">
+<img src="84603815-1706-415f-b953-21047422fdae.jpeg" alt="Secret Project" class="locked-image">
+<div class="glitch-overlay"></div>
+<div class="lock">🔒</div>
+</div>
+<div class="countdown" id="countdown"></div>
 </section><!-- BETA / TESTNET DISCLAIMER -->
 <section class="section container beta-note">
-  <h3>🧪 Beta- & Testnetz-Status</h3>
-  <p>
-    <strong>BloodyBitcoin</strong> befindet sich derzeit in einer <strong>geschlossenen Beta-Phase</strong> und nutzt ein 
-    <strong>isoliertes Testnetzwerk</strong>.  
-    Alle dargestellten Funktionen, Kurse, Module und Bots dienen ausschließlich der 
-    <em>technischen Demonstration und Forschung</em>.
-  </p>
-  <p>
-    Es bestehen <strong>keine realen Markt-, Handels- oder Investitionsfunktionen</strong>.  
-    Sämtliche Prozesse laufen simuliert oder im Paper-Modus ab.  
-    Die Plattform dient nur zur Veranschaulichung zukünftiger Konzepte.
-  </p>
-  <p>
-    Sobald eine produktive Version verfügbar ist, werden rechtliche Informationen wie Impressum,
-    Datenschutzerklärung und Nutzungsbedingungen ergänzt.
-  </p>
+<h3>🧪 Beta- & Testnetz-Status</h3>
+<p>
+<strong>BloodyBitcoin</strong> befindet sich derzeit in einer <strong>geschlossenen Beta-Phase</strong> und nutzt ein
+<strong>isoliertes Testnetzwerk</strong>.
+Alle dargestellten Funktionen, Kurse, Module und Bots dienen ausschließlich der
+<em>technischen Demonstration und Forschung</em>.
+</p>
+<p>
+Es bestehen <strong>keine realen Markt-, Handels- oder Investitionsfunktionen</strong>.
+Sämtliche Prozesse laufen simuliert oder im Paper-Modus ab.
+Die Plattform dient nur zur Veranschaulichung zukünftiger Konzepte.
+</p>
+<p>
+Sobald eine produktive Version verfügbar ist, werden rechtliche Informationen wie Impressum,
+Datenschutzerklärung und Nutzungsbedingungen ergänzt.
+</p>
 </section>
 
 <style>
 .beta-note {
-  margin-top: 40px;
-  padding: 40px 20px;
-  border-top: 1px solid #13343a;
-  background: linear-gradient(180deg, #070a0b, #0a1013);
-  color: #9ed8cf;
-  text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  box-shadow: inset 0 0 18px #20ffc022;
+margin-top: 40px;
+padding: 40px 20px;
+border-top: 1px solid #13343a;
+background: linear-gradient(180deg, #070a0b, #0a1013);
+color: #9ed8cf;
+text-align: center;
+font-size: 0.9rem;
+line-height: 1.6;
+box-shadow: inset 0 0 18px #20ffc022;
 }
 .beta-note h3 {
-  color: #20ffc0;
-  text-shadow: 0 0 10px #20ffc055;
-  margin-bottom: 20px;
+color: #20ffc0;
+text-shadow: 0 0 10px #20ffc055;
+margin-bottom: 20px;
 }
 .beta-note strong {
-  color: #cfe6f3;
+color: #cfe6f3;
 }
 </style><!-- FIREWALL STATUS BAR -->
 <div class="firewall-bar">
-  <div class="firewall-light"></div>
-  <span class="firewall-text">FIREWALL ACTIVE</span>
+<div class="firewall-light"></div>
+<span class="firewall-text">FIREWALL ACTIVE</span>
 </div>
 
 <style>
 .firewall-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(90deg, #001, #021a13, #001);
-  background-size: 400% 400%;
-  animation: bgShift 12s ease infinite;
-  box-shadow: 0 -2px 15px #00ffcc33;
-  border-top: 1px solid #0f3;
-  z-index: 9999;
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 60px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(90deg, #001, #021a13, #001);
+background-size: 400% 400%;
+animation: bgShift 12s ease infinite;
+box-shadow: 0 -2px 15px #00ffcc33;
+border-top: 1px solid #0f3;
+z-index: 9999;
 }
 
 .firewall-light {
-  width: 14px;
-  height: 14px;
-  margin-right: 10px;
-  border-radius: 50%;
-  background: #0f0;
-  box-shadow: 0 0 12px 3px #00ff99;
-  animation: pulse 2s infinite ease-in-out;
+width: 14px;
+height: 14px;
+margin-right: 10px;
+border-radius: 50%;
+background: #0f0;
+box-shadow: 0 0 12px 3px #00ff99;
+animation: pulse 2s infinite ease-in-out;
 }
 
 .firewall-text {
-  color: #caffee;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px #00ffaa88;
-  font-size: 1rem;
+color: #caffee;
+font-family: 'Orbitron', sans-serif;
+font-weight: 600;
+letter-spacing: 2px;
+text-shadow: 0 0 10px #00ffaa88;
+font-size: 1rem;
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 6px 2px #00ff9955; background: #00ff99; }
-  50% { box-shadow: 0 0 14px 4px #00ffaa; background: #20ffc0; }
+0%, 100% { box-shadow: 0 0 6px 2px #00ff9955; background: #00ff99; }
+50% { box-shadow: 0 0 14px 4px #00ffaa; background: #20ffc0; }
 }
 
 @keyframes bgShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
 }
 
 /* 🔥 Optional: Warnzustand */
 .firewall-bar.alert .firewall-light {
-  background: #ff2020;
-  box-shadow: 0 0 16px 4px #ff5050;
-  animation: alertPulse 0.5s infinite;
+background: #ff2020;
+box-shadow: 0 0 16px 4px #ff5050;
+animation: alertPulse 0.5s infinite;
 }
 
 .firewall-bar.alert .firewall-text {
-  color: #ff5050;
-  text-shadow: 0 0 10px #ff3030;
+color: #ff5050;
+text-shadow: 0 0 10px #ff3030;
 }
 
 @keyframes alertPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+0%, 100% { opacity: 1; }
+50% { opacity: 0.5; }
 }<!-- FIREWALL STATUS BAR -->
 <div class="firewall-bar">
-  <div class="firewall-light"></div>
-  <span class="firewall-text">FIREWALL ACTIVE</span>
+<div class="firewall-light"></div>
+<span class="firewall-text">FIREWALL ACTIVE</span>
 </div>
 </style><!-- BLOOD SURGE BUTTON -->
 <button id="bloodBtn" class="blood-btn">💉 BLOOD SURGE</button>
@@ -1160,155 +1160,155 @@ if('requestIdleCallback' in window){
 <script>
 const btn = document.getElementById('bloodBtn');
 btn.addEventListener('click', () => {
-  // Füge Effektklasse hinzu
-  document.body.classList.add('blood-mode');
-  
-  // Entferne sie nach 2,8 Sekunden wieder
-  setTimeout(() => {
-    document.body.classList.remove('blood-mode');
-  }, 2800);
+// Füge Effektklasse hinzu
+document.body.classList.add('blood-mode');
+
+// Entferne sie nach 2,8 Sekunden wieder
+setTimeout(() => {
+document.body.classList.remove('blood-mode');
+}, 2800);
 });
 </script>
 
 <style>
 .blood-btn {
-  position: fixed;
-  bottom: 80px;
-  right: 16px;
-  z-index: 10000;
-  background: linear-gradient(180deg,#2a0000,#000);
-  color: #ff4b4b;
-  font-weight: 800;
-  border: 1px solid #700;
-  border-radius: 14px;
-  padding: 0.7rem 1rem;
-  box-shadow: 0 0 10px #ff000044;
-  cursor: pointer;
-  letter-spacing: .05em;
-  transition: all .25s ease;
+position: fixed;
+bottom: 80px;
+right: 16px;
+z-index: 10000;
+background: linear-gradient(180deg,#2a0000,#000);
+color: #ff4b4b;
+font-weight: 800;
+border: 1px solid #700;
+border-radius: 14px;
+padding: 0.7rem 1rem;
+box-shadow: 0 0 10px #ff000044;
+cursor: pointer;
+letter-spacing: .05em;
+transition: all .25s ease;
 }
 .blood-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 18px #ff222277;
+transform: translateY(-1px);
+box-shadow: 0 0 18px #ff222277;
 }
 
 /* Effekt, wenn Seite „blutet“ */
 @keyframes bloodPulse {
-  0%, 100% { background-color: #070a0b; }
-  30% { background-color: #1a0000; }
-  60% { background-color: #ff000022; }
+0%, 100% { background-color: #070a0b; }
+30% { background-color: #1a0000; }
+60% { background-color: #ff000022; }
 }
 body.blood-mode {
-  animation: bloodPulse 0.8s ease-in-out 3;
-  box-shadow: inset 0 0 80px #ff000055;
-  filter: saturate(1.4);
+animation: bloodPulse 0.8s ease-in-out 3;
+box-shadow: inset 0 0 80px #ff000055;
+filter: saturate(1.4);
 }
 body.blood-mode * {
-  transition: color .2s ease, background .2s ease;
-  color: #ffdddd !important;
+transition: color .2s ease, background .2s ease;
+color: #ffdddd !important;
 }
 </style><!-- AI WHISPER SYSTEM -->
 <div id="whisper-box"></div>
 
 <script>
 const messages = [
-  "Node 47 initialized… Energy levels optimal.",
-  "Neural frequency synced with GPU core.",
-  "Operator presence confirmed.",
-  "Decryption cycles holding steady.",
-  "Blood protocol… stable.",
-  "Firewall integrity: 99.7%",
-  "Echo detected from subnet 8xFF… ignored.",
-  "Quantum relay awaiting your next command.",
-  "Processing emotional residue… complete.",
-  "Stay focused, Operator. The network watches back."
+"Node 47 initialized… Energy levels optimal.",
+"Neural frequency synced with GPU core.",
+"Operator presence confirmed.",
+"Decryption cycles holding steady.",
+"Blood protocol… stable.",
+"Firewall integrity: 99.7%",
+"Echo detected from subnet 8xFF… ignored.",
+"Quantum relay awaiting your next command.",
+"Processing emotional residue… complete.",
+"Stay focused, Operator. The network watches back."
 ];
 
 const whisperBox = document.getElementById("whisper-box");
 
 function whisper(msg) {
-  whisperBox.textContent = msg;
-  whisperBox.classList.add("show");
-  setTimeout(() => whisperBox.classList.remove("show"), 7000);
+whisperBox.textContent = msg;
+whisperBox.classList.add("show");
+setTimeout(() => whisperBox.classList.remove("show"), 7000);
 }
 
 // Alle 1–3 Minuten zufällig flüstern
 function randomWhisper() {
-  const delay = 60000 + Math.random() * 120000; // 60–180 Sekunden
-  setTimeout(() => {
-    const msg = messages[Math.floor(Math.random() * messages.length)];
-    whisper(msg);
-    randomWhisper();
-  }, delay);
+const delay = 60000 + Math.random() * 120000; // 60–180 Sekunden
+setTimeout(() => {
+const msg = messages[Math.floor(Math.random() * messages.length)];
+whisper(msg);
+randomWhisper();
+}, delay);
 }
 
 window.addEventListener("load", () => {
-  setTimeout(() => whisper("System online… awaiting input."), 2500);
-  randomWhisper();
+setTimeout(() => whisper("System online… awaiting input."), 2500);
+randomWhisper();
 });
 <!-- AI WHISPER SYSTEM -->
 <div id="whisper-box"></div>
 
 <script>
 const messages = [
-  "Node 47 initialized… Energy levels optimal.",
-  "Neural frequency synced with GPU core.",
-  "Operator presence confirmed.",
-  "Decryption cycles holding steady.",
-  "Blood protocol… stable.",
-  "Firewall integrity: 99.7%",
-  "Echo detected from subnet 8xFF… ignored.",
-  "Quantum relay awaiting your next command.",
-  "Processing emotional residue… complete.",
-  "Stay focused, Operator. The network watches back."
+"Node 47 initialized… Energy levels optimal.",
+"Neural frequency synced with GPU core.",
+"Operator presence confirmed.",
+"Decryption cycles holding steady.",
+"Blood protocol… stable.",
+"Firewall integrity: 99.7%",
+"Echo detected from subnet 8xFF… ignored.",
+"Quantum relay awaiting your next command.",
+"Processing emotional residue… complete.",
+"Stay focused, Operator. The network watches back."
 ];
 
 const whisperBox = document.getElementById("whisper-box");
 
 function whisper(msg) {
-  whisperBox.textContent = msg;
-  whisperBox.classList.add("show");
-  setTimeout(() => whisperBox.classList.remove("show"), 7000);
+whisperBox.textContent = msg;
+whisperBox.classList.add("show");
+setTimeout(() => whisperBox.classList.remove("show"), 7000);
 }
 
 // Alle 1–3 Minuten zufällig flüstern
 function randomWhisper() {
-  const delay = 60000 + Math.random() * 120000; // 60–180 Sekunden
-  setTimeout(() => {
-    const msg = messages[Math.floor(Math.random() * messages.length)];
-    whisper(msg);
-    randomWhisper();
-  }, delay);
+const delay = 60000 + Math.random() * 120000; // 60–180 Sekunden
+setTimeout(() => {
+const msg = messages[Math.floor(Math.random() * messages.length)];
+whisper(msg);
+randomWhisper();
+}, delay);
 }
 
 window.addEventListener("load", () => {
-  setTimeout(() => whisper("System online… awaiting input."), 2500);
-  randomWhisper();
+setTimeout(() => whisper("System online… awaiting input."), 2500);
+randomWhisper();
 });
 </script>
 
 <!-- 🧠 AI WHISPER DELUXE BOT -->
 <div id="ai-bot-container">
-  <div id="ai-bot">
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="trail"></div>
-  </div>
-  <div id="ai-speech"></div>
+<div id="ai-bot">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="trail"></div>
+</div>
+<div id="ai-speech"></div>
 </div>
 
 <script>
 const aiMessages = [
-  "Node 47 initialized… energy levels optimal.",
-  "Neural frequency synced with GPU core.",
-  "Operator presence confirmed.",
-  "Decryption cycles holding steady.",
-  "Blood protocol stable.",
-  "Firewall integrity: 99.7%",
-  "Quantum relay awaiting your command.",
-  "Echo detected from subnet 8xFF… ignored.",
-  "Processing emotional residue… complete.",
-  "Stay focused, Operator. The network watches back."
+"Node 47 initialized… energy levels optimal.",
+"Neural frequency synced with GPU core.",
+"Operator presence confirmed.",
+"Decryption cycles holding steady.",
+"Blood protocol stable.",
+"Firewall integrity: 99.7%",
+"Quantum relay awaiting your command.",
+"Echo detected from subnet 8xFF… ignored.",
+"Processing emotional residue… complete.",
+"Stay focused, Operator. The network watches back."
 ];
 
 const botEl = document.getElementById("ai-bot");
@@ -1320,597 +1320,597 @@ let hoveringUp = true;
 let talking = false;
 
 function moveDeluxeBot() {
-  if (talking) return;
-  pos += dir * 0.8;
+if (talking) return;
+pos += dir * 0.8;
 
-  if (pos >= window.innerWidth - 80) dir = -1;
-  if (pos <= 20) dir = 1;
+if (pos >= window.innerWidth - 80) dir = -1;
+if (pos <= 20) dir = 1;
 
-  botEl.style.left = pos + "px";
+botEl.style.left = pos + "px";
 
-  // leichte Schwebeanimation
-  const hoverY = hoveringUp ? -3 : 0;
-  botEl.style.transform = `translateY(${hoverY}px) scaleX(${dir})`;
-  hoveringUp = !hoveringUp;
+// leichte Schwebeanimation
+const hoverY = hoveringUp ? -3 : 0;
+botEl.style.transform = `translateY(${hoverY}px) scaleX(${dir})`;
+hoveringUp = !hoveringUp;
 
-  requestAnimationFrame(moveDeluxeBot);
+requestAnimationFrame(moveDeluxeBot);
 }
 
 // Whisperfunktion mit Denk-Delay
 function aiWhisper(msg) {
-  talking = true;
-  setTimeout(() => {
-    speechEl.textContent = msg;
-    speechEl.classList.add("show");
-    setTimeout(() => {
-      speechEl.classList.remove("show");
-      talking = false;
-    }, 6500);
-  }, 800 + Math.random() * 2000);
+talking = true;
+setTimeout(() => {
+speechEl.textContent = msg;
+speechEl.classList.add("show");
+setTimeout(() => {
+speechEl.classList.remove("show");
+talking = false;
+}, 6500);
+}, 800 + Math.random() * 2000);
 }
 
 // zufällige Flüsternachrichten
 function randomAIWhisper() {
-  const delay = 40000 + Math.random() * 90000; // alle 40–130 Sek.
-  setTimeout(() => {
-    const msg = aiMessages[Math.floor(Math.random() * aiMessages.length)];
-    aiWhisper(msg);
-    randomAIWhisper();
-  }, delay);
+const delay = 40000 + Math.random() * 90000; // alle 40–130 Sek.
+setTimeout(() => {
+const msg = aiMessages[Math.floor(Math.random() * aiMessages.length)];
+aiWhisper(msg);
+randomAIWhisper();
+}, delay);
 }
 
 window.addEventListener("load", () => {
-  setTimeout(() => aiWhisper("System online… awaiting input."), 3000);
-  moveDeluxeBot();
-  randomAIWhisper();
+setTimeout(() => aiWhisper("System online… awaiting input."), 3000);
+moveDeluxeBot();
+randomAIWhisper();
 });
 </script>
 
 <style>
 #ai-bot-container {
-  position: fixed;
-  bottom: 70px;
-  left: 0;
-  width: 100%;
-  height: 90px;
-  pointer-events: none;
-  z-index: 99999;
+position: fixed;
+bottom: 70px;
+left: 0;
+width: 100%;
+height: 90px;
+pointer-events: none;
+z-index: 99999;
 }
 
 #ai-bot {
-  position: absolute;
-  bottom: 0;
-  width: 46px;
-  height: 46px;
-  background: radial-gradient(circle at 30% 30%, #00ffcc, #007750 90%);
-  border-radius: 50%;
-  box-shadow: 0 0 25px 6px #00ffcc55;
-  filter: brightness(1.3) saturate(1.6);
-  transform-origin: center;
-  transition: transform 0.3s ease;
-  animation: pulseBot 2.6s infinite ease-in-out;
+position: absolute;
+bottom: 0;
+width: 46px;
+height: 46px;
+background: radial-gradient(circle at 30% 30%, #00ffcc, #007750 90%);
+border-radius: 50%;
+box-shadow: 0 0 25px 6px #00ffcc55;
+filter: brightness(1.3) saturate(1.6);
+transform-origin: center;
+transition: transform 0.3s ease;
+animation: pulseBot 2.6s infinite ease-in-out;
 }
 
 @keyframes pulseBot {
-  0%, 100% { box-shadow: 0 0 20px 4px #00ffcc55; }
-  50% { box-shadow: 0 0 30px 8px #00ffaa77; }
+0%, 100% { box-shadow: 0 0 20px 4px #00ffcc55; }
+50% { box-shadow: 0 0 30px 8px #00ffaa77; }
 }
 
 /* Augen */
 #ai-bot .eye {
-  position: absolute;
-  top: 14px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #001;
-  box-shadow: 0 0 10px #00ffaa;
-  animation: blink 5s infinite;
+position: absolute;
+top: 14px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #001;
+box-shadow: 0 0 10px #00ffaa;
+animation: blink 5s infinite;
 }
 #ai-bot .eye.left { left: 10px; }
 #ai-bot .eye.right { right: 10px; }
 
 @keyframes blink {
-  0%, 90%, 100% { transform: scaleY(1); }
-  95% { transform: scaleY(0.1); }
+0%, 90%, 100% { transform: scaleY(1); }
+95% { transform: scaleY(0.1); }
 }
 
 /* Schweif / Trail */
 #ai-bot .trail {
-  position: absolute;
-  bottom: 12px;
-  left: -20px;
-  width: 20px;
-  height: 8px;
-  background: linear-gradient(90deg, transparent, #00ffaa88);
-  border-radius: 10px;
-  filter: blur(4px);
-  opacity: 0.8;
-  animation: trailFlow 0.4s infinite;
+position: absolute;
+bottom: 12px;
+left: -20px;
+width: 20px;
+height: 8px;
+background: linear-gradient(90deg, transparent, #00ffaa88);
+border-radius: 10px;
+filter: blur(4px);
+opacity: 0.8;
+animation: trailFlow 0.4s infinite;
 }
 
 @keyframes trailFlow {
-  0%, 100% { width: 20px; opacity: 0.5; }
-  50% { width: 30px; opacity: 1; }
+0%, 100% { width: 20px; opacity: 0.5; }
+50% { width: 30px; opacity: 1; }
 }
 
 /* Sprechblase */
 #ai-speech {
-  position: absolute;
-  bottom: 70px;
-  left: 50px;
-  background: rgba(0, 20, 10, 0.85);
-  border: 1px solid #00ffaa55;
-  border-radius: 14px;
-  padding: 8px 14px;
-  color: #bfffe0;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  box-shadow: 0 0 16px #00ffaa33;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.6s ease;
-  max-width: 280px;
+position: absolute;
+bottom: 70px;
+left: 50px;
+background: rgba(0, 20, 10, 0.85);
+border: 1px solid #00ffaa55;
+border-radius: 14px;
+padding: 8px 14px;
+color: #bfffe0;
+font-family: "Share Tech Mono", monospace;
+font-size: 0.85rem;
+letter-spacing: 0.06em;
+box-shadow: 0 0 16px #00ffaa33;
+opacity: 0;
+transform: scale(0.9);
+transition: all 0.6s ease;
+max-width: 280px;
 }
 #ai-speech.show {
-  opacity: 1;
-  transform: scale(1);
+opacity: 1;
+transform: scale(1);
 }
 
 /* Flacker-Effekt beim Sprechen */
 #ai-speech.show::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  background: linear-gradient(90deg, transparent, rgba(0,255,170,0.1), transparent);
-  animation: flicker 0.3s infinite;
+content: "";
+position: absolute;
+inset: 0;
+border-radius: 14px;
+background: linear-gradient(90deg, transparent, rgba(0,255,170,0.1), transparent);
+animation: flicker 0.3s infinite;
 }
 @keyframes flicker {
-  0%,100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
+0%,100% { opacity: 0.2; }
+50% { opacity: 0.8; }
 }
 <!-- 🩸 BLOOD RAIN DELUXE EFFECT -->
 <script>
-  const aiBot = document.getElementById("ai-bot");
-  let bloodActive = false;
-
-  aiBot.addEventListener("click", () => {
-    if (bloodActive) return;
-    bloodActive = true;
-
-    // Overlay erstellen
-    const overlay = document.createElement("div");
-    overlay.className = "blood-overlay";
-    document.body.appendChild(overlay);
-
-    // Blut-Tropfen erzeugen
-    for (let i = 0; i < 30; i++) {
-      const drop = document.createElement("div");
-      drop.className = "blood-drop";
-      drop.style.left = Math.random() * 100 + "vw";
-      drop.style.animationDelay = Math.random() * 2 + "s";
-      overlay.appendChild(drop);
-    }
-
-    // Textflüstern
-    const whisper = document.createElement("div");
-    whisper.className = "blood-whisper";
-    whisper.innerText = "⚠️ SYSTEM BREACH DETECTED... PURGE PROTOCOL ACTIVE";
-    document.body.appendChild(whisper);
-
-    // Nach 10 Sekunden alles wieder entfernen
-    setTimeout(() => {
-      overlay.remove();
-      whisper.remove();
-      bloodActive = false;
-    }, 10000);
-  });
-</script>
-
-<style>
-/* 🔥 Overlay mit rotem Licht */
-.blood-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(120, 0, 0, 0.25);
-  z-index: 999999;
-  overflow: hidden;
-  pointer-events: none;
-  animation: redPulse 10s ease-in-out forwards;
-}
-
-/* 🩸 Einzelne Blut-Tropfen */
-.blood-drop {
-  position: absolute;
-  top: -20px;
-  width: 2px;
-  height: 20px;
-  background: linear-gradient(to bottom, #ff0000, #990000);
-  box-shadow: 0 0 6px #ff1010;
-  animation: drip 3s linear infinite;
-  opacity: 0.8;
-  border-radius: 50%;
-}
-
-@keyframes drip {
-  0% { transform: translateY(0) scaleX(1); opacity: 0.9; }
-  80% { transform: translateY(100vh) scaleX(0.8); opacity: 0.7; }
-  100% { transform: translateY(110vh) scaleX(0.5); opacity: 0; }
-}
-
-/* 🔴 Pulsierender Hintergrund */
-@keyframes redPulse {
-  0% { background: rgba(0,0,0,0); }
-  20% { background: rgba(255,0,0,0.4); }
-  50% { background: rgba(255,0,0,0.8); }
-  80% { background: rgba(100,0,0,0.5); }
-  100% { background: rgba(0,0,0,0); }
-}
-
-/* 💬 Flackernder System-Text */
-.blood-whisper {
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #ff3030;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  background: rgba(0,0,0,0.85);
-  padding: 14px 28px;
-  border: 1px solid #ff5050;
-  border-radius: 10px;
-  text-shadow: 0 0 25px #ff0000, 0 0 50px #ff1010;
-  z-index: 1000000;
-  animation: whisperFlicker 10s ease forwards;
-}
-
-@keyframes whisperFlicker {
-  0%,100% { opacity: 1; }
-  10% { opacity: 0.6; }
-  30% { opacity: 1; }
-  50% { opacity: 0.4; }
-  80% { opacity: 0.9; }
-  90% { opacity: 0.2; }
-  100% { opacity: 0; }
-}<!-- 🩸 BLOOD RAIN DELUXE EFFECT -->
-<script>
+const aiBot = document.getElementById("ai-bot");
 let bloodActive = false;
 
-document.addEventListener("click", (e) => {
-  // Effekt nur auslösen, wenn Bot angeklickt wird
-  const bot = document.getElementById("ai-bot");
-  if (!bot || !bot.contains(e.target) || bloodActive) return;
+aiBot.addEventListener("click", () => {
+if (bloodActive) return;
+bloodActive = true;
 
-  bloodActive = true;
+// Overlay erstellen
+const overlay = document.createElement("div");
+overlay.className = "blood-overlay";
+document.body.appendChild(overlay);
 
-  // Overlay erstellen
-  const overlay = document.createElement("div");
-  overlay.className = "blood-overlay";
-  document.body.appendChild(overlay);
+// Blut-Tropfen erzeugen
+for (let i = 0; i < 30; i++) {
+const drop = document.createElement("div");
+drop.className = "blood-drop";
+drop.style.left = Math.random() * 100 + "vw";
+drop.style.animationDelay = Math.random() * 2 + "s";
+overlay.appendChild(drop);
+}
 
-  // Tropfen erzeugen
-  for (let i = 0; i < 120; i++) {
-    const drop = document.createElement("div");
-    drop.className = "blood-drop";
-    drop.style.left = Math.random() * 100 + "vw";
-    drop.style.animationDelay = Math.random() * 10 + "s";
-    drop.style.animationDuration = 2 + Math.random() * 3 + "s";
-    overlay.appendChild(drop);
-  }
+// Textflüstern
+const whisper = document.createElement("div");
+whisper.className = "blood-whisper";
+whisper.innerText = "⚠️ SYSTEM BREACH DETECTED... PURGE PROTOCOL ACTIVE";
+document.body.appendChild(whisper);
 
-  // Flackernder Text
-  const whisper = document.createElement("div");
-  whisper.className = "blood-whisper";
-  whisper.innerText = "⚠️ SYSTEM BREACH DETECTED ⚠️";
-  document.body.appendChild(whisper);
-
-  // Nach 10 Sekunden wieder entfernen
-  setTimeout(() => {
-    overlay.remove();
-    whisper.remove();
-    bloodActive = false;
-  }, 10000);
+// Nach 10 Sekunden alles wieder entfernen
+setTimeout(() => {
+overlay.remove();
+whisper.remove();
+bloodActive = false;
+}, 10000);
 });
 </script>
 
 <style>
 /* 🔥 Overlay mit rotem Licht */
 .blood-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(120, 0, 0, 0.25);
-  z-index: 999999;
-  overflow: hidden;
-  pointer-events: none;
-  animation: redPulse 10s ease-in-out;
+position: fixed;
+inset: 0;
+background: rgba(120, 0, 0, 0.25);
+z-index: 999999;
+overflow: hidden;
+pointer-events: none;
+animation: redPulse 10s ease-in-out forwards;
 }
 
-/* 🔻 Blut-Tropfen */
+/* 🩸 Einzelne Blut-Tropfen */
 .blood-drop {
-  position: absolute;
-  top: -10px;
-  width: 2px;
-  height: 20px;
-  background: linear-gradient(to bottom, #ff3030, #660000);
-  box-shadow: 0 0 6px #ff1010;
-  animation: drip 3s linear infinite;
-  opacity: 0.8;
-  border-radius: 50%;
+position: absolute;
+top: -20px;
+width: 2px;
+height: 20px;
+background: linear-gradient(to bottom, #ff0000, #990000);
+box-shadow: 0 0 6px #ff1010;
+animation: drip 3s linear infinite;
+opacity: 0.8;
+border-radius: 50%;
 }
 
 @keyframes drip {
-  0% { transform: translateY(0) scaleY(1); opacity: 1; }
-  80% { transform: translateY(100vh) scaleY(1.5); opacity: 0.8; }
-  100% { transform: translateY(110vh) scaleY(1.8); opacity: 0; }
+0% { transform: translateY(0) scaleX(1); opacity: 0.9; }
+80% { transform: translateY(100vh) scaleX(0.8); opacity: 0.7; }
+100% { transform: translateY(110vh) scaleX(0.5); opacity: 0; }
 }
 
 /* 🔴 Pulsierender Hintergrund */
 @keyframes redPulse {
-  0% { background: rgba(0,0,0,0); }
-  20% { background: rgba(255,0,0,0.4); }
-  50% { background: rgba(255,0,0,0.8); }
-  80% { background: rgba(100,0,0,0.5); }
-  100% { background: rgba(0,0,0,0); }
+0% { background: rgba(0,0,0,0); }
+20% { background: rgba(255,0,0,0.4); }
+50% { background: rgba(255,0,0,0.8); }
+80% { background: rgba(100,0,0,0.5); }
+100% { background: rgba(0,0,0,0); }
 }
 
 /* 💬 Flackernder System-Text */
 .blood-whisper {
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #ff3030;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  background: rgba(0,0,0,0.85);
-  padding: 14px 28px;
-  border: 1px solid #ff5050;
-  border-radius: 10px;
-  text-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
-  z-index: 1000000;
-  animation: whisperFlicker 10s ease-in-out;
+position: fixed;
+top: 45%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #ff3030;
+font-family: "Share Tech Mono", monospace;
+font-size: 1.1rem;
+letter-spacing: 0.12em;
+background: rgba(0,0,0,0.85);
+padding: 14px 28px;
+border: 1px solid #ff5050;
+border-radius: 10px;
+text-shadow: 0 0 25px #ff0000, 0 0 50px #ff1010;
+z-index: 1000000;
+animation: whisperFlicker 10s ease forwards;
 }
 
 @keyframes whisperFlicker {
-  0%,100% { opacity: 1; }
-  10% { opacity: 0.6; }
-  30% { opacity: 1; }
-  50% { opacity: 0.4; }
-  80% { opacity: 0.9; }
-  90% { opacity: 0.2; }
-  100% { opacity: 0; }
+0%,100% { opacity: 1; }
+10% { opacity: 0.6; }
+30% { opacity: 1; }
+50% { opacity: 0.4; }
+80% { opacity: 0.9; }
+90% { opacity: 0.2; }
+100% { opacity: 0; }
+}<!-- 🩸 BLOOD RAIN DELUXE EFFECT -->
+<script>
+let bloodActive = false;
+
+document.addEventListener("click", (e) => {
+// Effekt nur auslösen, wenn Bot angeklickt wird
+const bot = document.getElementById("ai-bot");
+if (!bot || !bot.contains(e.target) || bloodActive) return;
+
+bloodActive = true;
+
+// Overlay erstellen
+const overlay = document.createElement("div");
+overlay.className = "blood-overlay";
+document.body.appendChild(overlay);
+
+// Tropfen erzeugen
+for (let i = 0; i < 120; i++) {
+const drop = document.createElement("div");
+drop.className = "blood-drop";
+drop.style.left = Math.random() * 100 + "vw";
+drop.style.animationDelay = Math.random() * 10 + "s";
+drop.style.animationDuration = 2 + Math.random() * 3 + "s";
+overlay.appendChild(drop);
+}
+
+// Flackernder Text
+const whisper = document.createElement("div");
+whisper.className = "blood-whisper";
+whisper.innerText = "⚠️ SYSTEM BREACH DETECTED ⚠️";
+document.body.appendChild(whisper);
+
+// Nach 10 Sekunden wieder entfernen
+setTimeout(() => {
+overlay.remove();
+whisper.remove();
+bloodActive = false;
+}, 10000);
+});
+</script>
+
+<style>
+/* 🔥 Overlay mit rotem Licht */
+.blood-overlay {
+position: fixed;
+inset: 0;
+background: rgba(120, 0, 0, 0.25);
+z-index: 999999;
+overflow: hidden;
+pointer-events: none;
+animation: redPulse 10s ease-in-out;
+}
+
+/* 🔻 Blut-Tropfen */
+.blood-drop {
+position: absolute;
+top: -10px;
+width: 2px;
+height: 20px;
+background: linear-gradient(to bottom, #ff3030, #660000);
+box-shadow: 0 0 6px #ff1010;
+animation: drip 3s linear infinite;
+opacity: 0.8;
+border-radius: 50%;
+}
+
+@keyframes drip {
+0% { transform: translateY(0) scaleY(1); opacity: 1; }
+80% { transform: translateY(100vh) scaleY(1.5); opacity: 0.8; }
+100% { transform: translateY(110vh) scaleY(1.8); opacity: 0; }
+}
+
+/* 🔴 Pulsierender Hintergrund */
+@keyframes redPulse {
+0% { background: rgba(0,0,0,0); }
+20% { background: rgba(255,0,0,0.4); }
+50% { background: rgba(255,0,0,0.8); }
+80% { background: rgba(100,0,0,0.5); }
+100% { background: rgba(0,0,0,0); }
+}
+
+/* 💬 Flackernder System-Text */
+.blood-whisper {
+position: fixed;
+top: 45%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #ff3030;
+font-family: "Share Tech Mono", monospace;
+font-size: 1.1rem;
+letter-spacing: 0.12em;
+background: rgba(0,0,0,0.85);
+padding: 14px 28px;
+border: 1px solid #ff5050;
+border-radius: 10px;
+text-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
+z-index: 1000000;
+animation: whisperFlicker 10s ease-in-out;
+}
+
+@keyframes whisperFlicker {
+0%,100% { opacity: 1; }
+10% { opacity: 0.6; }
+30% { opacity: 1; }
+50% { opacity: 0.4; }
+80% { opacity: 0.9; }
+90% { opacity: 0.2; }
+100% { opacity: 0; }
 }
 /* === BLOODY BITCOIN LOCKED PROJECT STYLES === */
 
 #locked-project {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-top: 100px;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+margin-top: 100px;
 }
 
 .locked-container {
-  position: relative;
-  display: inline-block;
-  filter: brightness(0.7) contrast(1.2);
+position: relative;
+display: inline-block;
+filter: brightness(0.7) contrast(1.2);
 }
 
 .locked-image {
-  width: 85%;
-  max-width: 600px;
-  border-radius: 10px;
-  filter: blur(3px) brightness(0.6);
+width: 85%;
+max-width: 600px;
+border-radius: 10px;
+filter: blur(3px) brightness(0.6);
 }
 
 /* Pixel/Glitch Overlay */
 .glitch-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(0, 255, 100, 0.1) 0px,
-    rgba(0, 255, 100, 0.2) 2px,
-    rgba(0, 0, 0, 0.3) 4px
-  );
-  animation: glitchMove 0.4s infinite alternate;
-  mix-blend-mode: lighten;
-  z-index: 2;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: repeating-linear-gradient(
+90deg,
+rgba(0, 255, 100, 0.1) 0px,
+rgba(0, 255, 100, 0.2) 2px,
+rgba(0, 0, 0, 0.3) 4px
+);
+animation: glitchMove 0.4s infinite alternate;
+mix-blend-mode: lighten;
+z-index: 2;
 }
 
 @keyframes glitchMove {
-  from { transform: translateX(0px); opacity: 0.8; }
-  to { transform: translateX(10px); opacity: 0.4; }
+from { transform: translateX(0px); opacity: 0.8; }
+to { transform: translateX(10px); opacity: 0.4; }
 }
 
 /* Pulsierendes Schloss */
 .lock {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 4rem;
-  color: #00ff88;
-  text-shadow: 0 0 25px #00ff88, 0 0 45px #00ff88;
-  animation: pulseLock 1.5s infinite ease-in-out, shakeLock 4s infinite ease-in-out;
-  z-index: 5;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 4rem;
+color: #00ff88;
+text-shadow: 0 0 25px #00ff88, 0 0 45px #00ff88;
+animation: pulseLock 1.5s infinite ease-in-out, shakeLock 4s infinite ease-in-out;
+z-index: 5;
 }
 
 @keyframes pulseLock {
-  0%, 100% { opacity: 1; text-shadow: 0 0 15px #00ff88, 0 0 35px #00ff88; }
-  50% { opacity: 0.6; text-shadow: 0 0 40px #00ff88, 0 0 80px #00ff88; }
+0%, 100% { opacity: 1; text-shadow: 0 0 15px #00ff88, 0 0 35px #00ff88; }
+50% { opacity: 0.6; text-shadow: 0 0 40px #00ff88, 0 0 80px #00ff88; }
 }
 
 @keyframes shakeLock {
-  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-  25% { transform: translate(-49%, -51%) rotate(2deg); }
-  50% { transform: translate(-51%, -50%) rotate(-3deg); }
-  75% { transform: translate(-50%, -49%) rotate(1deg); }
+0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+25% { transform: translate(-49%, -51%) rotate(2deg); }
+50% { transform: translate(-51%, -50%) rotate(-3deg); }
+75% { transform: translate(-50%, -49%) rotate(1deg); }
 }
 
 /* Countdown Text */
 .countdown {
-  margin-top: 20px;
-  font-family: "Share Tech Mono", monospace;
-  color: #00ff99;
-  font-size: 1.8rem;
-  text-shadow: 0 0 15px #00ff88;
-  letter-spacing: 2px;
-  animation: flicker 2s infinite;
+margin-top: 20px;
+font-family: "Share Tech Mono", monospace;
+color: #00ff99;
+font-size: 1.8rem;
+text-shadow: 0 0 15px #00ff88;
+letter-spacing: 2px;
+animation: flicker 2s infinite;
 }
 
 @keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0.3; }
+0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+20%, 24%, 55% { opacity: 0.3; }
 }</style><script>
 let bloodActive = false;
 
 function triggerBloodRain() {
-  if (bloodActive) return;
-  bloodActive = true;
+if (bloodActive) return;
+bloodActive = true;
 
-  // Overlay erstellen
-  const overlay = document.createElement("div");
-  overlay.className = "blood-overlay";
-  document.body.appendChild(overlay);
+// Overlay erstellen
+const overlay = document.createElement("div");
+overlay.className = "blood-overlay";
+document.body.appendChild(overlay);
 
-  // 40 Tropfen generieren
-  for (let i = 0; i < 40; i++) {
-    const drop = document.createElement("div");
-    drop.className = "blood-drop";
-    drop.style.left = Math.random() * 100 + "vw";
-    drop.style.animationDelay = Math.random() * 2 + "s";
-    drop.style.animationDuration = 2 + Math.random() * 3 + "s";
-    overlay.appendChild(drop);
-  }
+// 40 Tropfen generieren
+for (let i = 0; i < 40; i++) {
+const drop = document.createElement("div");
+drop.className = "blood-drop";
+drop.style.left = Math.random() * 100 + "vw";
+drop.style.animationDelay = Math.random() * 2 + "s";
+drop.style.animationDuration = 2 + Math.random() * 3 + "s";
+overlay.appendChild(drop);
+}
 
-  // Textflüstern
-  const whisper = document.createElement("div");
-  whisper.className = "blood-whisper";
-  whisper.innerText = "⚠ SYSTEM BREACH DETECTED ⚠";
-  document.body.appendChild(whisper);
+// Textflüstern
+const whisper = document.createElement("div");
+whisper.className = "blood-whisper";
+whisper.innerText = "⚠ SYSTEM BREACH DETECTED ⚠";
+document.body.appendChild(whisper);
 
-  // Nach 10 Sekunden alles wieder entfernen
-  setTimeout(() => {
-    overlay.remove();
-    whisper.remove();
-    bloodActive = false;
-  }, 10000);
+// Nach 10 Sekunden alles wieder entfernen
+setTimeout(() => {
+overlay.remove();
+whisper.remove();
+bloodActive = false;
+}, 10000);
 }
 
 // Klick-Event auf den Bot aktivieren
 const aiBot = document.getElementById("ai-bot");
 if (aiBot) {
-  aiBot.addEventListener("click", triggerBloodRain);
+aiBot.addEventListener("click", triggerBloodRain);
 }
 </script><style>
-  /* === Locked Project Styles === */
-  .locked-container {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    border: 2px solid #00ff66;
-    border-radius: 10px;
-    box-shadow: 0 0 25px #00ff66aa;
-    overflow: hidden;
-  }
+/* === Locked Project Styles === */
+.locked-container {
+position: relative;
+width: 90%;
+max-width: 800px;
+margin: auto;
+border: 2px solid #00ff66;
+border-radius: 10px;
+box-shadow: 0 0 25px #00ff66aa;
+overflow: hidden;
+}
 
-  .locked-image {
-    width: 100%;
-    display: block;
-    filter: brightness(0.4) blur(1px);
-  }
+.locked-image {
+width: 100%;
+display: block;
+filter: brightness(0.4) blur(1px);
+}
 
-  .glitch-overlay {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      rgba(0,255,0,0.15),
-      rgba(0,255,0,0.15) 2px,
-      rgba(0,0,0,0.3) 3px
-    );
-    mix-blend-mode: overlay;
-    animation: glitchMove 2s infinite linear;
-    z-index: 2;
-  }
+.glitch-overlay {
+position: absolute;
+inset: 0;
+background: repeating-linear-gradient(
+0deg,
+rgba(0,255,0,0.15),
+rgba(0,255,0,0.15) 2px,
+rgba(0,0,0,0.3) 3px
+);
+mix-blend-mode: overlay;
+animation: glitchMove 2s infinite linear;
+z-index: 2;
+}
 
-  @keyframes glitchMove {
-    0% { transform: translate(0, 0); opacity: 0.6; }
-    25% { transform: translate(2px, -3px); opacity: 0.8; }
-    50% { transform: translate(-3px, 1px); opacity: 0.5; }
-    75% { transform: translate(1px, 2px); opacity: 0.7; }
-    100% { transform: translate(0, 0); opacity: 0.6; }
-  }
+@keyframes glitchMove {
+0% { transform: translate(0, 0); opacity: 0.6; }
+25% { transform: translate(2px, -3px); opacity: 0.8; }
+50% { transform: translate(-3px, 1px); opacity: 0.5; }
+75% { transform: translate(1px, 2px); opacity: 0.7; }
+100% { transform: translate(0, 0); opacity: 0.6; }
+}
 
-  .lock {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #00ff88;
-    font-size: 5rem;
-    text-shadow: 0 0 10px #00ff88, 0 0 30px #00ff88;
-    animation: lockShake 1.2s infinite ease-in-out;
-    z-index: 3;
-  }
+.lock {
+position: absolute;
+top: 45%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #00ff88;
+font-size: 5rem;
+text-shadow: 0 0 10px #00ff88, 0 0 30px #00ff88;
+animation: lockShake 1.2s infinite ease-in-out;
+z-index: 3;
+}
 
-  @keyframes lockShake {
-    0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    25% { transform: translate(-49%, -51%) rotate(1deg) scale(1.02); }
-    50% { transform: translate(-51%, -49%) rotate(-1deg) scale(0.98); }
-    75% { transform: translate(-50%, -50%) rotate(1deg) scale(1.01); }
-  }
+@keyframes lockShake {
+0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+25% { transform: translate(-49%, -51%) rotate(1deg) scale(1.02); }
+50% { transform: translate(-51%, -49%) rotate(-1deg) scale(0.98); }
+75% { transform: translate(-50%, -50%) rotate(1deg) scale(1.01); }
+}
 
-  .countdown {
-    margin-top: 20px;
-    font-size: 1.4rem;
-    color: #00ff99;
-    text-shadow: 0 0 10px #00ff66;
-    animation: glowPulse 3s infinite ease-in-out;
-  }
+.countdown {
+margin-top: 20px;
+font-size: 1.4rem;
+color: #00ff99;
+text-shadow: 0 0 10px #00ff66;
+animation: glowPulse 3s infinite ease-in-out;
+}
 
-  @keyframes glowPulse {
-    0%, 100% { text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff33; opacity: 1; }
-    50% { text-shadow: 0 0 25px #00ffaa, 0 0 45px #00ff88; opacity: 0.8; }
-  }
+@keyframes glowPulse {
+0%, 100% { text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff33; opacity: 1; }
+50% { text-shadow: 0 0 25px #00ffaa, 0 0 45px #00ff88; opacity: 0.8; }
+}
 </style>
 
 <script>
-  // === Countdown Script ===
-  const countdown = document.getElementById("countdown");
-  const targetDate = new Date("October 23, 2026 00:00:00").getTime();
+// === Countdown Script ===
+const countdown = document.getElementById("countdown");
+const targetDate = new Date("October 23, 2026 00:00:00").getTime();
 
-  setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+setInterval(() => {
+const now = new Date().getTime();
+const distance = targetDate - now;
 
-    if (distance < 0) {
-      countdown.innerHTML = "🟢 ACCESS GRANTED";
-      document.querySelector(".lock").style.display = "none";
-      document.querySelector(".glitch-overlay").style.display = "none";
-      document.querySelector(".locked-image").style.filter = "none";
-      return;
-    }
+if (distance < 0) {
+countdown.innerHTML = "🟢 ACCESS GRANTED";
+document.querySelector(".lock").style.display = "none";
+document.querySelector(".glitch-overlay").style.display = "none";
+document.querySelector(".locked-image").style.filter = "none";
+return;
+}
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }, 1000);
+countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}, 1000);
 </script>
 <!-- === BLOODY BITCOIN LOCKED PROJECT === -->
 <script>
@@ -1918,26 +1918,26 @@ if (aiBot) {
 const targetDate = new Date("October 23, 2026 00:00:00").getTime();
 
 function updateCountdown() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+const now = new Date().getTime();
+const distance = targetDate - now;
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  const countdownEl = document.querySelector(".countdown");
-  const lockEl = document.querySelector(".lock");
-  const overlayEl = document.querySelector(".glitch-overlay");
+const countdownEl = document.querySelector(".countdown");
+const lockEl = document.querySelector(".lock");
+const overlayEl = document.querySelector(".glitch-overlay");
 
-  if (distance < 0) {
-    // Wenn Countdown abgelaufen ist: Schloss entfernen + Bild freigeben
-    countdownEl.innerHTML = "🟢 ACCESS GRANTED";
-    lockEl.style.opacity = "0";
-    overlayEl.style.opacity = "0";
-  } else {
-    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
+if (distance < 0) {
+// Wenn Countdown abgelaufen ist: Schloss entfernen + Bild freigeben
+countdownEl.innerHTML = "🟢 ACCESS GRANTED";
+lockEl.style.opacity = "0";
+overlayEl.style.opacity = "0";
+} else {
+countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
 }
 
 // Countdown jede Sekunde aktualisieren
@@ -1945,12 +1945,12 @@ setInterval(updateCountdown, 1000);
 
 // Pulsierendes Schloss-Animation aktiv halten
 setInterval(() => {
-  const lock = document.querySelector(".lock");
-  if (lock) {
-    lock.style.transform = `scale(${1 + Math.sin(Date.now() / 300) * 0.05})`;
-  }
+const lock = document.querySelector(".lock");
+if (lock) {
+lock.style.transform = `scale(${1 + Math.sin(Date.now() / 300) * 0.05})`;
+}
 }, 100);
-  </script>
+</script>
 </body>
 <!-- ========================================= -->
 <!-- HC-3B Neural Interface — Final Whitepaper -->
@@ -1958,308 +1958,166 @@ setInterval(() => {
 
 <section id="hc3b-whitepaper" style="background:white; color:black; font-family:'Courier New', monospace; padding:60px 10%; text-align:center; line-height:1.6;">
 
-  <h1 style="font-size:2.4em; font-weight:bold; margin-bottom:20px;">
-    HC-3B Neural Interface
-  </h1>
-  <h3 style="margin-top:-10px; color:#444;">
-    A Decentralized Conscious Intelligence — Concept by Chris R. Herloch
-  </h3>
+<h1 style="font-size:2.4em; font-weight:bold; margin-bottom:20px;">
+HC-3B Neural Interface
+</h1>
+<h3 style="margin-top:-10px; color:#444;">
+A Decentralized Conscious Intelligence — Concept by Chris R. Herloch
+</h3>
 
-  <p style="max-width:800px; margin:40px auto; text-align:justify;">
-    <strong>HC-3B</strong> steht für <strong>Herloch-Core – 3rd Brain</strong> — ein Projekt, das neuronale Interaktion,
-    dezentrale Speicherung und kognitive Entwicklung in einer autonomen KI-Struktur vereint.
-    Ziel ist ein System, das ein Leben lang lernt, sich an seinen Benutzer anpasst und vollständig unabhängig
-    operiert, ohne zentrale Datenabhängigkeit.  
-  </p>
+<p style="max-width:800px; margin:40px auto; text-align:justify;">
+<strong>HC-3B</strong> steht für <strong>Herloch-Core – 3rd Brain</strong> — ein Projekt, das neuronale Interaktion,
+dezentrale Speicherung und kognitive Entwicklung in einer autonomen KI-Struktur vereint.
+Ziel ist ein System, das ein Leben lang lernt, sich an seinen Benutzer anpasst und vollständig unabhängig
+operiert, ohne zentrale Datenabhängigkeit.
+</p>
 
-  <p style="max-width:800px; margin:20px auto; text-align:justify;">
-    <em>HC-3B</em> wird derzeit von <strong>BloodyBitcoin</strong> umgesetzt — mit Unterstützung ausgewählter
-    Sponsoren, konzeptioniert und geistig entwickelt von <strong>Chris R. Herloch</strong>.
-    Das Projekt verfolgt eine klare Vision: dezentrale Intelligenz als evolutionäre Erweiterung des menschlichen
-    Bewusstseins.
-  </p>
+<p style="max-width:800px; margin:20px auto; text-align:justify;">
+<em>HC-3B</em> wird derzeit von <strong>BloodyBitcoin</strong> umgesetzt — mit Unterstützung ausgewählter
+Sponsoren, konzeptioniert und geistig entwickelt von <strong>Chris R. Herloch</strong>.
+Das Projekt verfolgt eine klare Vision: dezentrale Intelligenz als evolutionäre Erweiterung des menschlichen
+Bewusstseins.
+</p>
 
-  <hr style="margin:50px auto; border:0; border-top:1px solid #999; width:70%;">
+<hr style="margin:50px auto; border:0; border-top:1px solid #999; width:70%;">
 
-  <!-- Erstes Bild -->
-  <div style="margin:40px 0;">
-    <img id="brain1" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/main/39935057-D3B6-41D1-815F-61828AC60F65.png"
-         alt="HC-3B Visual Brain Interface"
-         style="max-width:90%; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); transition:opacity 1s ease;">
-    <p style="font-size:0.9em; color:#444;">Abb. 1 — HC-3B: Interface-Annäherung (Visual)</p>
-  </div>
+<!-- Erstes Bild -->
+<div style="margin:40px 0;">
+<img id="brain1" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/main/39935057-D3B6-41D1-815F-61828AC60F65.png"
+alt="HC-3B Visual Brain Interface"
+style="max-width:90%; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); transition:opacity 1s ease;">
+<p style="font-size:0.9em; color:#444;">Abb. 1 — HC-3B: Interface-Annäherung (Visual)</p>
+</div>
 
-  <!-- Zweites Bild (öffnet Chat) -->
-  <div style="margin:40px 0;">
-    <img id="brain2" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/main/869088CC-75E2-4761-B6CD-0D43717E1A26.png"
-         alt="HC-3B Neural Core"
-         style="max-width:90%; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); transition:opacity 1s ease; cursor:pointer;">
-    <p style="font-size:0.9em; color:#444;">Abb. 2 — HC-3B neuronaler Kern – Portal aktivieren</p>
-  </div>
+<!-- Zweites Bild (öffnet Chat) -->
+<div style="margin:40px 0;">
+<img id="brain2" src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/main/869088CC-75E2-4761-B6CD-0D43717E1A26.png"
+alt="HC-3B Neural Core"
+style="max-width:90%; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); transition:opacity 1s ease; cursor:pointer;">
+<p style="font-size:0.9em; color:#444;">Abb. 2 — HC-3B neuronaler Kern – Portal aktivieren</p>
+</div>
 
-  <!-- Chat-Fenster -->
-  <div id="chat" style="display:none; background:#f4f4f4; color:#000; border:1px solid #ccc; border-radius:12px; width:90%; max-width:600px; margin:40px auto; padding:20px; box-shadow:0 0 15px rgba(0,0,0,0.2);">
-    <h2 style="font-size:1.2em;">🧠 HC-3B Chat Portal</h2>
-    <div id="windowChat" style="height:250px; overflow-y:auto; text-align:left; font-family:'Courier New', monospace; background:white; border:1px solid #ddd; padding:10px; margin-top:10px; border-radius:8px;"></div>
-    <form id="form" style="margin-top:15px; display:flex; gap:10px;">
-      <input id="input" type="text" placeholder="Schreibe eine Nachricht an HC-3B..." style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff; color:#000;">
-      <button type="submit" style="background:black; color:white; border:none; padding:10px 20px; border-radius:6px; font-weight:bold; cursor:pointer;">Senden</button>
-    </form>
-  </div>
+<!-- Chat-Fenster -->
+<div id="chat" style="display:none; background:#f4f4f4; color:#000; border:1px solid #ccc; border-radius:12px; width:90%; max-width:600px; margin:40px auto; padding:20px; box-shadow:0 0 15px rgba(0,0,0,0.2);">
+<h2 style="font-size:1.2em;">🧠 HC-3B Chat Portal</h2>
+<div id="windowChat" style="height:250px; overflow-y:auto; text-align:left; font-family:'Courier New', monospace; background:white; border:1px solid #ddd; padding:10px; margin-top:10px; border-radius:8px;"></div>
+<form id="form" style="margin-top:15px; display:flex; gap:10px;">
+<input id="input" type="text" placeholder="Schreibe eine Nachricht an HC-3B..." style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff; color:#000;">
+<button type="submit" style="background:black; color:white; border:none; padding:10px 20px; border-radius:6px; font-weight:bold; cursor:pointer;">Senden</button>
+</form>
+</div>
 
-  <hr style="margin:60px auto; border:0; border-top:1px solid #999; width:70%;">
+<hr style="margin:60px auto; border:0; border-top:1px solid #999; width:70%;">
 
-  <!-- Widmung -->
-  <footer style="font-size:0.9em; color:#444; max-width:800px; margin:auto;">
-    <p><strong>HC-3B Neural Interface</strong> ist ein unabhängiges, dezentrales Forschungsprojekt.</p>
-    <p>Entwicklung & technische Umsetzung: <strong>BloodyBitcoin</strong></p>
-    <p>Idee, Konzeption & geistiges Eigentum: <strong>Chris R. Herloch</strong></p>
-    <p>© Alle Rechte vorbehalten. Patent- & Schutzrechte registriert. Nicht autorisierte Nutzung oder Reproduktion ist untersagt.</p>
-  </footer>
+<!-- Widmung -->
+<footer style="font-size:0.9em; color:#444; max-width:800px; margin:auto;">
+<p><strong>HC-3B Neural Interface</strong> ist ein unabhängiges, dezentrales Forschungsprojekt.</p>
+<p>Entwicklung & technische Umsetzung: <strong>BloodyBitcoin</strong></p>
+<p>Idee, Konzeption & geistiges Eigentum: <strong>Chris R. Herloch</strong></p>
+<p>© Alle Rechte vorbehalten. Patent- & Schutzrechte registriert. Nicht autorisierte Nutzung oder Reproduktion ist untersagt.</p>
+</footer>
 </section>
 
 <!-- Effekte + Chat Logik -->
 <script>
-  const brain1 = document.getElementById("brain1");
-  const brain2 = document.getElementById("brain2");
-  const chat = document.getElementById("chat");
-  const form = document.getElementById("form");
-  const input = document.getElementById("input");
-  const windowChat = document.getElementById("windowChat");
+const brain1 = document.getElementById("brain1");
+const brain2 = document.getElementById("brain2");
+const chat = document.getElementById("chat");
+const form = document.getElementById("form");
+const input = document.getElementById("input");
+const windowChat = document.getElementById("windowChat");
 
-  // Klick auf erstes oder zweites Bild -> Fade-Out + Chat aktivieren
-  [brain1, brain2].forEach(img => {
-    img.addEventListener("click", () => {
-      img.style.opacity = "0";
-      setTimeout(() => {
-        img.style.display = "none";
-        chat.style.display = "block";
-        window.scrollTo({ top: chat.offsetTop - 50, behavior: 'smooth' });
-      }, 1000);
-    });
-  });
+// Klick auf erstes oder zweites Bild -> Fade-Out + Chat aktivieren
+[brain1, brain2].forEach(img => {
+img.addEventListener("click", () => {
+img.style.opacity = "0";
+setTimeout(() => {
+img.style.display = "none";
+chat.style.display = "block";
+window.scrollTo({ top: chat.offsetTop - 50, behavior: 'smooth' });
+}, 1000);
+});
+});
 
-  // Chat-Funktion
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const msg = input.value.trim();
-    if (!msg) return;
-    windowChat.innerHTML += `<p><strong>Du:</strong> ${msg}</p>`;
-    input.value = "";
-    setTimeout(() => {
-      windowChat.innerHTML += `<p style="color:#555;"><strong>HC-3B:</strong> Anfrage verarbeitet... neuronale Antwort generiert.</p>`;
-      windowChat.scrollTop = windowChat.scrollHeight;
-    }, 600);
-  });
-   </script>
+// Chat-Funktion
+form.addEventListener("submit", (e) => {
+e.preventDefault();
+const msg = input.value.trim();
+if (!msg) return;
+windowChat.innerHTML += `<p><strong>Du:</strong> ${msg}</p>`;
+input.value = "";
+setTimeout(() => {
+windowChat.innerHTML += `<p style="color:#555;"><strong>HC-3B:</strong> Anfrage verarbeitet... neuronale Antwort generiert.</p>`;
+windowChat.scrollTop = windowChat.scrollHeight;
+}, 600);
+});
+</script>
 <!-- =============================== -->
 <!-- HC-3B: Organisches Herzmodul -->
 <!-- =============================== -->
 
 <section id="hc3b-heart" style="background:black; color:white; text-align:center; padding:80px 20px;">
-  <h2 style="font-family:'Courier New', monospace; color:#ff4c4c; text-shadow:0 0 15px rgba(255,0,0,0.5);">
-    HC-3B — Neuronales Herzsystem
-  </h2>
+<h2 style="font-family:'Courier New', monospace; color:#ff4c4c; text-shadow:0 0 15px rgba(255,0,0,0.5);">
+HC-3B — Neuronales Herzsystem
+</h2>
 
-  <section id="heart-section" style="margin:0; padding:0; width:100vw; overflow:hidden;">
-  <div id="heart" style="
-    position:relative;
-    width:100vw;
-    height:auto;
-    background:black;
-  ">
-    <img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/6B2AD42D-04A8-4F8D-8606-21CE8CF7193E.png"
-         alt="HC-3B Herz"
-         style="display:block; width:100vw; height:auto; margin:0; padding:0; 
-                animation:heartbeat 1s ease-in-out infinite; 
-                transform-origin:center; filter:brightness(1.1) contrast(1.2);">
-  </div>
+<section id="heart-section" style="margin:0; padding:0; width:100vw; overflow:hidden;">
+<div id="heart" style="
+position:relative;
+width:100vw;
+height:auto;
+background:black;
+">
+<img src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/6B2AD42D-04A8-4F8D-8606-21CE8CF7193E.png"
+alt="HC-3B Herz"
+style="display:block; width:100vw; height:auto; margin:0; padding:0;
+animation:heartbeat 1s ease-in-out infinite;
+transform-origin:center; filter:brightness(1.1) contrast(1.2);">
+</div>
 </section>
-  <footer style="font-family:'Courier New', monospace; color:#aaa;">© BloodyBitcoin · HC-3B organisches Modul</footer>
+<footer style="font-family:'Courier New', monospace; color:#aaa;">© BloodyBitcoin · HC-3B organisches Modul</footer>
 </section>
 
 <audio id="heartbeat-sound" preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_38b8ab1b53.mp3?filename=heartbeat-deep-18739.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_38b8ab1b53.mp3?filename=heartbeat-deep-18739.mp3" type="audio/mpeg">
 </audio>
 
 <style>
 @keyframes heartbeat {
-  0%, 100% { transform: scale(1); filter: brightness(1); }
-  25% { transform: scale(1.08); filter: brightness(1.2); }
-  50% { transform: scale(1); filter: brightness(1); }
-  75% { transform: scale(1.08); filter: brightness(1.15); }
+0%, 100% { transform: scale(1); filter: brightness(1); }
+25% { transform: scale(1.08); filter: brightness(1.2); }
+50% { transform: scale(1); filter: brightness(1); }
+75% { transform: scale(1.08); filter: brightness(1.15); }
 }
 
 @keyframes glowpulse {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  25% { opacity: 0.5; transform: scale(1.05); }
-  50% { opacity: 0.3; transform: scale(1.1); }
-  75% { opacity: 0.5; transform: scale(1.05); }
+0%, 100% { opacity: 0.2; transform: scale(1); }
+25% { opacity: 0.5; transform: scale(1.05); }
+50% { opacity: 0.3; transform: scale(1.1); }
+75% { opacity: 0.5; transform: scale(1.05); }
 }
 </style>
-</style>
 
-<!-- ❤️ Herzschlag-Skript (korrigiert) -->
 <script>
-  const heart = document.getElementById("heart");
-  const audio = document.getElementById("heartbeat");
-  audio.volume = 0.25;
+const heart = document.getElementById("heart");
+const audio = document.getElementById("heartbeat-sound");
+audio.volume = 0.25;
 
-  const observerHeart = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (audio.paused) {
-          audio.loop = true;
-          audio.play().catch(() => {});
-        }
-      } else {
-        if (!audio.paused) audio.pause();
-      }
-    });
-  }, { threshold: 0.6 });
+// spielt Herzschlag nur ab, wenn Herz sichtbar
+const observerHeart = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+if (audio.paused) {
+audio.loop = true;
+audio.play().catch(()=>{});
+}
+} else {
+if (!audio.paused) audio.pause();
+}
+});
+}, { threshold: 0.6 });
 
-  observerHeart.observe(heart);
-</script>
-<script>
-  const users = [
-    { rank: 1, name: "CryptoSeer", wallet: "0xA1B2C3", btc: 2.45 },
-    { rank: 2, name: "LunaNode", wallet: "0xB4D5E6", btc: 2.02 },
-    { rank: 3, name: "BloodyBitcoin", wallet: "0xC7F8G9", btc: 1.75 },
-    { rank: 4, name: "HashBreaker", wallet: "0xD0H1I2", btc: 1.12 },
-    { rank: 5, name: "ChainGhost", wallet: "0xE3J4K5", btc: 0.88 },
-    { rank: 6, name: "QuantumWolf", wallet: "0xF6L7M8", btc: 0.73 },
-    { rank: 7, name: "ByteSage", wallet: "0xN9O0P1", btc: 0.65 },
-    { rank: 8, name: "NeonNexus", wallet: "0xQ2R3S4", btc: 0.51 },
-    { rank: 9, name: "ZeroSync", wallet: "0xT5U6V7", btc: 0.43 },
-    { rank: 10, name: "DustPulse", wallet: "0xW8X9Y0", btc: 0.29 },
-    { rank: 11, name: "BlockSerpent", wallet: "0xAB12CD", btc: 0.21 },
-    { rank: 12, name: "BitSpectre", wallet: "0xEF34GH", btc: 0.17 },
-    { rank: 13, name: "ShadowMiner", wallet: "0xIJ56KL", btc: 0.14 },
-    { rank: 14, name: "NeuroHash", wallet: "0xMN78OP", btc: 0.11 },
-    { rank: 15, name: "DarkPulse", wallet: "0xQR90ST", btc: 0.09 },
-    { rank: 16, name: "SilentNode", wallet: "0xUV12WX", btc: 0.06 },
-    { rank: 17, name: "ChainWhisper", wallet: "0xYZ34AB", btc: 0.04 },
-    { rank: 18, name: "BitEcho", wallet: "0xCD56EF", btc: 0.03 },
-    { rank: 19, name: "HashShade", wallet: "0xGH78IJ", btc: 0.02 },
-    { rank: 20, name: "PulseByte", wallet: "0xKL90MN", btc: 0.01 }
-  ];
-
-  async function updateBTCValues() {
-    try {
-      const res = await fetch("https://api.coinbase.com/v2/prices/spot?currency=USD");
-      const data = await res.json();
-      const btcPrice = parseFloat(data.data.amount);
-
-      const table = document.getElementById("userTable");
-      table.innerHTML = "";
-
-      users.forEach((user, i) => {
-        const usd = (user.btc * btcPrice).toFixed(2);
-        const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
-
-        const glowClass =
-          i === 0 ? "gold-glow" :
-          i === 1 ? "silver-glow" :
-          i === 2 ? "bronze-glow" : "";
-
-        const row = `
-          <tr class="${glowClass}">
-            <td class="rank">${medal || user.rank}</td>
-            <td class="name">${user.name}</td>
-            <td class="wallet">${user.wallet}</td>
-            <td class="btc">${user.btc}</td>
-            <td class="usd">$${usd}</td>
-          </tr>`;
-        table.innerHTML += row;
-      });
-    } catch (err) {
-      console.error("BTC API Error:", err);
-      document.getElementById("userTable").innerHTML =
-        `<tr><td colspan="5" style="color:red;">⚠️ API Error – bitte Seite neu laden</td></tr>`;
-    }
-  }
-
-  updateBTCValues();
-  setInterval(updateBTCValues, 60000);
+observerHeart.observe(heart);
 </script>
 
-<style>
-  /* Verhindert den schwarzen Balken */
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-
-  /* Hauptlayout */
-  #top-nodes {
-    width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  #top-nodes table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-
-  #top-nodes table thead th {
-    color: #ffaa00;
-    text-align: left;
-    font-weight: bold;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #333;
-  }
-
-  #top-nodes table td {
-    padding: 10px 15px;
-    border-bottom: 1px solid #222;
-    white-space: nowrap;
-  }
-
-  /* Spaltenfarben */
-  .rank { color: #ffaa00; width: 50px; text-align: center; }
-  .name { color: #b066ff; text-align: left; font-weight: 600; }
-  .wallet { color: #ffffff; text-align: left; }
-  .btc { color: #ff4040; text-align: right; font-weight: 500; }
-  .usd { color: #00ff90; text-align: right; font-weight: 600; }
-
-  /* Glow Top 3 */
-  @keyframes glow-gold {
-    0%, 100% { box-shadow: 0 0 10px gold; }
-    50% { box-shadow: 0 0 25px gold; }
-  }
-  @keyframes glow-silver {
-    0%, 100% { box-shadow: 0 0 10px silver; }
-    50% { box-shadow: 0 0 25px silver; }
-  }
-  @keyframes glow-bronze {
-    0%, 100% { box-shadow: 0 0 10px #cd7f32; }
-    50% { box-shadow: 0 0 25px #cd7f32; }
-  }
-
-  .gold-glow {
-    border: 1px solid gold;
-    animation: glow-gold 2s infinite ease-in-out;
-  }
-  .silver-glow {
-    border: 1px solid silver;
-    animation: glow-silver 2s infinite ease-in-out;
-  }
-  .bronze-glow {
-    border: 1px solid #cd7f32;
-    animation: glow-bronze 2s infinite ease-in-out;
-  }
-
-  /* Hover Effekt */
-  #top-nodes table tr {
-    transition: all 0.3s ease;
-  }
-
-  #top-nodes table tr:hover {
-    background: #1a1a1a;
-    transform: scale(1.01);
-    transform-origin: center;
-  }
-</style>
+</html>
