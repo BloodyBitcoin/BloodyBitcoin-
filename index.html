@@ -743,8 +743,11 @@ return null;
 const dnaSmall = await resolveAsset(DNA_CANDIDATES);
 const dnaFull = await resolveAsset(DNAFULL_CANDIDATES);
 const seal = await resolveAsset(SEAL_CANDIDATES);
-if(dnaSmall) document.getElementById('dnaImg').src = dnaSmall;
-if(dnaFull) document.getElementById('dnaFull').src = dnaFull;
+document.getElementById('dnaImg').src =
+"https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/Bazaart_3EA15FA2-464F-42F9-B8C9-E04207BC9633.jpeg";
+
+document.getElementById('dnaFull').src =
+"https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/Bazaart_3EA15FA2-464F-42F9-B8C9-E04207BC9633.jpeg";
 if(seal) document.getElementById('sealImg').src = seal;
 })();
 
