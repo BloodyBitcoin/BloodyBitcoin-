@@ -2316,3 +2316,56 @@ setInterval(updateBTCValues,60000);
   opacity: 0.6;
 }
 </style>
+<!-- SAMURAI BLOCK - ANS ENDE DER SEITE HÄNGEN -->
+<style>
+.samurai-section {
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* Pulsierender, grüner Titel */
+.samurai-title {
+  color: #2aff2a;
+  font-size: 2rem;
+  font-weight: bold;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0%   { opacity: 1;   text-shadow: 0 0 6px #2aff2a; }
+  50%  { opacity: .6;  text-shadow: 0 0 18px #2aff2a; }
+  100% { opacity: 1;   text-shadow: 0 0 6px #2aff2a; }
+}
+
+/* Bild mit Glitch / Flacker-Effekt */
+.glitch-img {
+  max-width: 450px;
+  width: 90%;
+  margin-top: 20px;
+  animation: glitch 2.5s infinite;
+}
+
+@keyframes glitch {
+  0%   { filter: none; transform: none; }
+  10%  { filter: contrast(120%) brightness(110%); transform: translate(1px,-1px); }
+  14%  { filter: hue-rotate(10deg); transform: translate(-1px,1px) scale(1.01); }
+  18%  { filter: none; transform: none; }
+  40%  { filter: saturate(130%); }
+  42%  { filter: blur(1px); }
+  44%  { filter: none; }
+  70%  { opacity: .9; }
+  72%  { opacity: .6; }
+  74%  { opacity: 1; }
+  100% { filter: none; transform: none; }
+}
+</style>
+
+<section class="samurai-section">
+  <div class="samurai-title">Ära Samurai aktiviert</div>
+
+  <img
+    class="glitch-img"
+    src="https://raw.githubusercontent.com/BloodyBitcoin/BloodyBitcoin-/refs/heads/main/Bazaart_DCD41011-1CBE-42C4-B9F8-5432FC63C0F6.jpeg"
+    alt="Ära Samurai Bild"
+  />
+</section>
