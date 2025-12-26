@@ -764,37 +764,58 @@ if(seal) document.getElementById('sealImg').src = seal;
 =============== PARTIKEL über dem HERO ==============
 =======================================================*/
 (function particles(){
-const cvs = document.getElementById('particles');
-const ctx = cvs.getContext('2d');
-let W=0,H=0, P=[];
+  const cvs = document.getElementById('particles');
+  const ctx = cvs.getContext('2d');
 
-function resize(){
-const hero = document.querySelector('.hero');
-W = cvs.width = hero.clientWidth;
-H = cvs.height = hero.clientHeight;
-}
-function spawn(n=100){
-P = Array.from({length:n}, ()=>({
-x:Math.random()*W, y:Math.random()*H,
-r: 2+Math.random()*4,
-vx:(Math.random()-.5)*.6, vy:(Math.random()-.5)*.6,
-c: Math.random()<.5 ? 'rgba(32,255,160,.70)' : 'rgba(255,48,64,.65)'
-}));
-}
-function loop(){
-ctx.clearRect(0,0,W,H);
-for(const p of P){
-p.x+=p.vx; p.y+=p.vy;
-if(p.x<-12) p.x=W+12; if(p.x>W+12) p.x=-12;
-if(p.y<-12) p.y=H+12; if(p.y>H+12) p.y=-12;
-const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
-g.addColorStop(0,p.c); g.addColorStop(1,'transparent');
-ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2); ctx.fill();
-}
-requestAnimationFrame(loop);
-}
-window.addEventListener('resize', ()=>{ resize(); spawn(110); });
-resize(); spawn(110); loop();
+  let W=0, H=0, P=[];
+
+  function resize(){
+    const hero = document.querySelector('.hero');
+    W = cvs.width = hero.clientWidth;
+    H = cvs.height = hero.clientHeight;
+  }
+
+  function spawn(n=55){
+    P = Array.from({length:n}, ()=>({
+      x:Math.random()*W,
+      y:Math.random()*H,
+      vx:(Math.random()-.5)*0.25,
+      vy:(Math.random()-.5)*0.25,
+      len: 8 + Math.random()*22,
+      alpha: 0.15 + Math.random()*0.25
+    }));
+  }
+
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+
+    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = '#2cffc0';
+
+    for(const p of P){
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(p.x - p.vx*p.len, p.y - p.vy*p.len);
+      ctx.stroke();
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if(p.x < -20) p.x = W+20;
+      if(p.x > W+20) p.x = -20;
+      if(p.y < -20) p.y = H+20;
+      if(p.y > H+20) p.y = -20;
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', ()=>{ resize(); spawn(55); });
+
+  resize();
+  spawn(55);
+  loop();
 })();
 
 /* =========================================================
